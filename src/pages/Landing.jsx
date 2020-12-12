@@ -99,7 +99,7 @@ function Landing(props) {
 				<Grid item container xs={12} justify="space-around">
 					<Grid item>
 						<Link
-							to="/signinteacher"
+							to="/club/signin"
 							style={{
 								textDecoration: "None",
 								textTransform: "capitalize",
@@ -118,7 +118,7 @@ function Landing(props) {
 					</Grid>
 					<Grid item>
 						<Link
-							to="/signinstudent"
+							to="/student/signin"
 							style={{ textDecoration: "None" }}
 						>
 							<Button
