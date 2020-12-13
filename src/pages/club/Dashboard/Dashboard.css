@@ -1,4 +1,8 @@
 .dashboard-drawer {
 	width: 240px !important;
-	margin-top: 64px !important;
+}
+
+.dash-main {
+	margin-left: 70px;
+	padding-top: 10px;
 }
