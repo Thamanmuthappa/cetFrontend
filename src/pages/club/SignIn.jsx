@@ -68,8 +68,6 @@ const ClubSignin = () => {
 	const classes = useStyles();
 	const { register, handleSubmit, errors } = useForm();
 
-	const [otpModal, setOtpModal] = useState(false);
-
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -88,6 +86,7 @@ const ClubSignin = () => {
 			console.log(error);
 		}
 	};
+
 
 	return (
 		<div
@@ -256,40 +255,6 @@ const ClubSignin = () => {
 								<br />
 							</CardContent>
 						</Card>
-						<Dialog
-							open={otpModal}
-							onClose={() => setOtpModal(false)}
-							style={{ fontSize: "1.2rem" }}
-							aria-labelledby="form-dialog-title"
-						>
-							<DialogContent>
-								<p>
-									<strong>
-										Enter the OTP you received on your email
-									</strong>
-								</p>
-								<form autoComplete="off">
-									<TextField
-										label="Enter the OTP"
-										name="otp"
-										style={{
-											width: "100%",
-											marginBottom: "5%",
-										}}
-									/>
-								</form>
-							</DialogContent>
-							<DialogActions>
-								<Button color="secondary">Resend</Button>
-
-								<Button
-									color="secondary"
-									style={{ outline: "none" }}
-								>
-									Done
-								</Button>
-							</DialogActions>
-						</Dialog>
 					</form>
 				</Grid>
 			</Grid>

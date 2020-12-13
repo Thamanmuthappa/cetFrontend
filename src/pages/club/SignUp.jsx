@@ -10,6 +10,7 @@ import {
 	MenuItem,
 	TextField,
 	Typography,
+	Snackbar,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -68,10 +69,13 @@ const SignUp = () => {
 	const classes = useStyles();
 	const { register, handleSubmit, errors } = useForm();
 	const [open, setOpen] = useState(false);
+	const [disable, setDisabled] = useState(true);
+	const [snackopen, setSOpen] = useState(false);
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPass] = useState("");
 	const [type, setType] = useState("");
+	const [otp, setOTP] = useState("");
 
 	const handleFormSubmit = async () => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/signup`;
@@ -88,6 +92,46 @@ const SignUp = () => {
 			await Axios.post(url, data).then((res) => {
 				console.log(res);
 				setOpen(true);
+				setTimeout(setDisabled(false), 60000);
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleOTPSubmit = async () => {
+		const url = `${process.env.REACT_APP_BACKEND_URL}/club/email/verify`;
+		const data = {
+			email,
+			emailVerificationCode: otp,
+		};
+
+		console.log(data);
+
+		try {
+			await Axios.post(url, data).then((res) => {
+				console.log(res);
+				setSOpen(true);
+				setOpen(false);
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const resendVerificationEmail = async () => {
+		const url = `${process.env.REACT_APP_BACKEND_URL}/club/email/resendOTP`;
+		const data = {
+			email,
+		};
+
+		console.log(data);
+
+		try {
+			await Axios.post(url, data).then((res) => {
+				console.log(res);
+				setDisabled(true);
+				setTimeout(setDisabled(false), 60000);
 			});
 		} catch (error) {
 			console.log(error);
@@ -317,6 +361,10 @@ const SignUp = () => {
 						<form autoComplete="off">
 							<TextField
 								name="otp"
+								value={otp}
+								onChange={(e) => {
+									setOTP(e.target.value);
+								}}
 								label="Enter OTP"
 								variant="outlined"
 								type="otp"
@@ -333,15 +381,30 @@ const SignUp = () => {
 								position: "absolute",
 								left: 30,
 							}}
+							disabled={disable}
+							onClick={resendVerificationEmail}
 						>
 							Resend
 						</Button>
 
-						<Button color="secondary" style={{ outline: "none" }}>
+						<Button
+							color="secondary"
+							style={{ outline: "none" }}
+							onClick={handleOTPSubmit}
+						>
 							Done
 						</Button>
 					</DialogActions>
 				</Dialog>
+				<Snackbar
+					open={snackopen}
+					autoHideDuration={6000}
+					onClose={() => {
+						setSOpen(false);
+					}}
+				>
+					Account Sucessfully Created
+				</Snackbar>
 				<Grid item xs={6} style={{ textAlign: "center" }}>
 					<img src="/assets/celebration.png" alt="" height="auto" />
 				</Grid>
