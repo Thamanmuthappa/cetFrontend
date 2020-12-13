@@ -6,6 +6,7 @@ import {
 	DialogActions,
 	DialogContent,
 	Grid,
+	Hidden,
 	makeStyles,
 	TextField,
 	Typography,
@@ -61,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Signin = () => {
+const ClubSignin = () => {
 	const classes = useStyles();
 
 	return (
@@ -82,7 +83,7 @@ const Signin = () => {
 					height: "auto",
 					position: "absolute",
 					left: "7rem",
-					top: "5rem",
+					top: "3rem",
 				}}
 			/>
 			<Grid
@@ -91,13 +92,15 @@ const Signin = () => {
 				className={classes.gridContainer}
 				spacing={0}
 			>
-				<Grid item xs={6} style={{ textAlign: "center" }}>
-					<img
-						src="/assets/celebration.png"
-						// width="70%"
-						height="auto"
-					/>
-				</Grid>
+				<Hidden mdDown>
+					<Grid item xs={6} style={{ textAlign: "center" }}>
+						<img
+							src="/assets/celebration.png"
+							// width="70%"
+							height="auto"
+						/>
+					</Grid>
+				</Hidden>
 				<Grid item container sm={12} md={6}>
 					<form>
 						<Card className={classes.root}>
@@ -135,7 +138,6 @@ const Signin = () => {
 											label="Email *"
 											variant="outlined"
 											type="email"
-											id="batch-name"
 											className="form-input"
 										/>
 									</Grid>
@@ -145,7 +147,6 @@ const Signin = () => {
 											label="Password *"
 											variant="outlined"
 											type="password"
-											id="batch-name"
 											className="form-input"
 										/>
 									</Grid>
@@ -204,7 +205,6 @@ const Signin = () => {
 								<p>Enter the OTP you received on your email</p>
 								<form autoComplete="off">
 									<TextField
-										id="standard-basic"
 										label="Enter the OTP"
 										name="otp"
 									/>
@@ -243,10 +243,7 @@ const Signin = () => {
 							<DialogContent>
 								<p>Enter new E-mail</p>
 								<form autoComplete="off">
-									<TextField
-										id="standard-basic"
-										name="email"
-									/>
+									<TextField name="email" />
 								</form>
 							</DialogContent>
 							<DialogActions>
@@ -319,4 +316,4 @@ const Signin = () => {
 	);
 };
 
-export default Signin;
+export default ClubSignin;
