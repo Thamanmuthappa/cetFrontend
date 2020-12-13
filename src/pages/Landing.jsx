@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Landing(props) {
+function Landing() {
 	const classes = useStyles();
 
 	return (
@@ -72,7 +72,7 @@ function Landing(props) {
 			style={{
 				// backgroundImage: "url(assets/longbg.png)",
 				height: "100vh",
-				minWidth: "calc(100vw - 15px)",
+				width: "calc(100vw - 15px)",
 				backgroundPosition: "bottom",
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
@@ -88,7 +88,7 @@ function Landing(props) {
 				<Grid item xs={12}>
 					<h4 className={classes.header1}>
 						Welcome to{" "}
-						<span className={clsx(classes.textColored)}>
+						<span className={classes.textColored}>
 							Common Entry Test
 						</span>
 					</h4>
