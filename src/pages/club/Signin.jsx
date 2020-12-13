@@ -11,8 +11,9 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const useStyles = makeStyles((theme) => ({
 	media: {
@@ -64,6 +65,13 @@ const useStyles = makeStyles((theme) => ({
 
 const ClubSignin = () => {
 	const classes = useStyles();
+	const { register, handleSubmit, errors } = useForm();
+
+	const [otpModal, setOtpModal] = useState(false);
+
+	const handleFormSubmit = async () => {
+		setOtpModal(true);
+	};
 
 	return (
 		<div
@@ -102,7 +110,7 @@ const ClubSignin = () => {
 					</Grid>
 				</Hidden>
 				<Grid item container sm={12} md={6}>
-					<form>
+					<form onSubmit={handleSubmit(handleFormSubmit)}>
 						<Card className={classes.root}>
 							<CardContent className={classes.cardContent}>
 								<Grid
@@ -139,6 +147,14 @@ const ClubSignin = () => {
 											variant="outlined"
 											type="email"
 											className="form-input"
+											inputRef={register({
+												required: true,
+											})}
+											error={errors.email}
+											helperText={
+												errors.email &&
+												"Email is required"
+											}
 										/>
 									</Grid>
 									<Grid item xs={12}>
@@ -148,6 +164,19 @@ const ClubSignin = () => {
 											variant="outlined"
 											type="password"
 											className="form-input"
+											inputRef={register({
+												required: true,
+												minLength: 8,
+											})}
+											error={errors.password}
+											helperText={
+												(errors.password?.type ===
+													"required" &&
+													"Password is required") ||
+												(errors.password?.type ===
+													"minLength" &&
+													"Password should be at least 8 characters long!")
+											}
 										/>
 									</Grid>
 									<Grid item xs={12}></Grid>
@@ -157,7 +186,7 @@ const ClubSignin = () => {
 											Don't have an account?{" "}
 											<span style={{ color: "#E45044" }}>
 												<Link
-													to="/createaccount"
+													to="/club/signup"
 													style={{
 														marginRight: "10px",
 													}}
@@ -198,35 +227,30 @@ const ClubSignin = () => {
 							</CardContent>
 						</Card>
 						<Dialog
-							style={{ fontSize: "1.6rem" }}
+							open={otpModal}
+							onClose={() => setOtpModal(false)}
+							style={{ fontSize: "1.2rem" }}
 							aria-labelledby="form-dialog-title"
 						>
 							<DialogContent>
-								<p>Enter the OTP you received on your email</p>
+								<p>
+									<strong>
+										Enter the OTP you received on your email
+									</strong>
+								</p>
 								<form autoComplete="off">
 									<TextField
 										label="Enter the OTP"
 										name="otp"
+										style={{
+											width: "100%",
+											marginBottom: "5%",
+										}}
 									/>
 								</form>
 							</DialogContent>
 							<DialogActions>
-								<Button
-									color="secondary"
-									style={{
-										float: "left",
-										position: "absolute",
-										left: 30,
-									}}
-								>
-									Resend
-								</Button>
-								<Button
-									color="secondary"
-									style={{ outline: "none" }}
-								>
-									Change Email
-								</Button>
+								<Button color="secondary">Resend</Button>
 
 								<Button
 									color="secondary"
@@ -235,79 +259,6 @@ const ClubSignin = () => {
 									Done
 								</Button>
 							</DialogActions>
-						</Dialog>
-						<Dialog
-							aria-labelledby="form-dialog-title"
-							style={{ fontSize: "1.6rem" }}
-						>
-							<DialogContent>
-								<p>Enter new E-mail</p>
-								<form autoComplete="off">
-									<TextField name="email" />
-								</form>
-							</DialogContent>
-							<DialogActions>
-								<Button
-									color="secondary"
-									style={{ outline: "none" }}
-								>
-									Done
-								</Button>
-							</DialogActions>
-						</Dialog>
-						<Dialog aria-labelledby="form-dialog-title">
-							<div
-								style={{
-									display: "flex",
-									flexDirection: "column",
-									alignItems: "center",
-								}}
-							>
-								<p style={{ fontSize: "15px" }}>
-									Choose where to send the reset code
-								</p>
-								<Button
-									variant="contained"
-									style={{
-										marginTop: "1rem",
-										textTransform: "capitalize",
-										border: "1px solid #E45044",
-										backgroundColor: "#E45044",
-										color: "white",
-										fontFamily: "Source Sans Pro",
-										height: "48px",
-										width: "188px",
-										borderRadius: "10px",
-										fontSize: "18px",
-										fontWeight: "600",
-										lineHeight: "150%",
-										outline: "none",
-									}}
-								>
-									Email
-								</Button>
-
-								<Button
-									variant="contained"
-									style={{
-										marginTop: "1rem",
-										textTransform: "capitalize",
-										border: "1px solid #E45044",
-										backgroundColor: "#E45044",
-										color: "white",
-										fontFamily: "Source Sans Pro",
-										height: "48px",
-										width: "188px",
-										borderRadius: "10px",
-										fontSize: "18px",
-										fontWeight: "600",
-										lineHeight: "150%",
-										outline: "none",
-									}}
-								>
-									Phone
-								</Button>
-							</div>
 						</Dialog>
 					</form>
 				</Grid>
