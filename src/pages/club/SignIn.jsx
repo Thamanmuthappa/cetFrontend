@@ -14,6 +14,7 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
 	media: {
@@ -69,8 +70,23 @@ const ClubSignin = () => {
 
 	const [otpModal, setOtpModal] = useState(false);
 
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
 	const handleFormSubmit = async () => {
-		setOtpModal(true);
+		const url = `${process.env.REACT_APP_BACKEND_URL}/student/login`;
+		const data = {
+			email,
+			password,
+		};
+
+		try {
+			await Axios.post(url, data).then((res) => {
+				console.log(res);
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -83,17 +99,19 @@ const ClubSignin = () => {
 				backgroundPosition: "top",
 			}}
 		>
-			<img
-				src="/assets/Group2.png"
-				style={{
-					textAlign: "left",
-					width: "10rem",
-					height: "auto",
-					position: "absolute",
-					left: "7rem",
-					top: "3rem",
-				}}
-			/>
+			<Link to="/">
+				<img
+					src="/assets/Group2.png"
+					style={{
+						textAlign: "left",
+						width: "10rem",
+						height: "auto",
+						position: "absolute",
+						left: "7rem",
+						top: "3rem",
+					}}
+				/>
+			</Link>
 			<Grid
 				container
 				alignItems="center"
@@ -143,6 +161,10 @@ const ClubSignin = () => {
 									<Grid item xs={12}>
 										<TextField
 											name="email"
+											value={email}
+											onChange={(e) =>
+												setEmail(e.target.value)
+											}
 											label="Email *"
 											variant="outlined"
 											type="email"
@@ -160,6 +182,10 @@ const ClubSignin = () => {
 									<Grid item xs={12}>
 										<TextField
 											name="password"
+											value={password}
+											onChange={(e) =>
+												setPassword(e.target.value)
+											}
 											label="Password *"
 											variant="outlined"
 											type="password"
@@ -194,7 +220,9 @@ const ClubSignin = () => {
 													Sign Up
 												</Link>
 
-												<Link>Forgot Password</Link>
+												<Link to="/">
+													Forgot Password
+												</Link>
 											</span>
 										</p>
 									</Grid>
