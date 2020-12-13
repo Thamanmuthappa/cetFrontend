@@ -7,11 +7,14 @@ import {
 	DialogContent,
 	Grid,
 	makeStyles,
+	MenuItem,
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
 	media: {
@@ -63,6 +66,33 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = () => {
 	const classes = useStyles();
+	const { register, handleSubmit, errors } = useForm();
+	const [open, setOpen] = useState(false);
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPass] = useState("");
+	const [type, setType] = useState("");
+
+	const handleFormSubmit = async () => {
+		const url = `${process.env.REACT_APP_BACKEND_URL}/club/signup`;
+		const data = {
+			email,
+			password,
+			name,
+			type,
+		};
+
+		console.log(data);
+
+		try {
+			await Axios.post(url, data).then((res) => {
+				console.log(res);
+				setOpen(true);
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<div
@@ -76,7 +106,7 @@ const SignUp = () => {
 		>
 			<img
 				src="/assets/Group2.png"
-				alt="logo"
+				alt="CET"
 				style={{
 					textAlign: "left",
 					width: "10rem",
@@ -93,7 +123,7 @@ const SignUp = () => {
 				spacing={0}
 			>
 				<Grid item container sm={12} md={6}>
-					<form>
+					<form onSubmit={handleSubmit(handleFormSubmit)}>
 						<Card className={classes.root}>
 							<CardContent className={classes.cardContent}>
 								<Grid
@@ -129,7 +159,18 @@ const SignUp = () => {
 											label="Name *"
 											variant="outlined"
 											type="text"
-											id="batch-name"
+											value={name}
+											onChange={(e) => {
+												setName(e.target.value);
+											}}
+											inputRef={register({
+												required: true,
+											})}
+											error={errors.name}
+											helperText={
+												errors.name &&
+												"Name is required"
+											}
 											className="form-input"
 										/>
 									</Grid>
@@ -139,8 +180,19 @@ const SignUp = () => {
 											label="Email *"
 											variant="outlined"
 											type="email"
-											id="batch-name"
+											value={email}
+											onChange={(e) => {
+												setEmail(e.target.value);
+											}}
 											className="form-input"
+											inputRef={register({
+												required: true,
+											})}
+											error={errors.email}
+											helperText={
+												errors.email &&
+												"Email is required"
+											}
 										/>
 									</Grid>
 									<Grid item xs={6}>
@@ -149,7 +201,23 @@ const SignUp = () => {
 											label="Password *"
 											variant="outlined"
 											type="password"
-											id="batch-name"
+											value={password}
+											onChange={(e) => {
+												setPass(e.target.value);
+											}}
+											inputRef={register({
+												required: true,
+												minLength: 8,
+											})}
+											error={errors.password}
+											helperText={
+												(errors.password?.type ===
+													"required" &&
+													"Password is required") ||
+												(errors.password?.type ===
+													"minLength" &&
+													"Password should be at least 8 characters long!")
+											}
 											className="form-input"
 										/>
 									</Grid>
@@ -159,19 +227,38 @@ const SignUp = () => {
 											label="Retype Password *"
 											variant="outlined"
 											type="password"
-											id="batch-name"
+											inputRef={register({
+												validate: (value) =>
+													value === password ||
+													"The passwords do not match",
+											})}
 											className="form-input"
+											error={errors.rpassword}
+											helperText={
+												errors.rpassword &&
+												"The passwords do not match"
+											}
 										/>
 									</Grid>
 									<Grid item xs={12}>
 										<TextField
 											name="type"
+											select
+											value={type}
+											onChange={(e) => {
+												setType(e.target.value);
+											}}
 											label="Club Category *"
 											variant="outlined"
-											type="text"
-											id="batch-name"
+											inputRef={register({
+												required: true,
+											})}
 											className="form-input"
-										/>
+										>
+											<MenuItem value="Technical">
+												Technical
+											</MenuItem>
+										</TextField>
 									</Grid>
 									<Grid item xs={12}></Grid>
 
@@ -218,131 +305,45 @@ const SignUp = () => {
 								<br />
 							</CardContent>
 						</Card>
-						<Dialog
-							style={{ fontSize: "1.6rem" }}
-							aria-labelledby="form-dialog-title"
-						>
-							<DialogContent>
-								<p>Enter the OTP you received on your email</p>
-								<form autoComplete="off">
-									<TextField
-										id="standard-basic"
-										label="Enter the OTP"
-										name="otp"
-									/>
-								</form>
-							</DialogContent>
-							<DialogActions>
-								<Button
-									color="secondary"
-									style={{
-										float: "left",
-										position: "absolute",
-										left: 30,
-									}}
-								>
-									Resend
-								</Button>
-								<Button
-									color="secondary"
-									style={{ outline: "none" }}
-								>
-									Change Email
-								</Button>
-
-								<Button
-									color="secondary"
-									style={{ outline: "none" }}
-								>
-									Done
-								</Button>
-							</DialogActions>
-						</Dialog>
-						<Dialog
-							aria-labelledby="form-dialog-title"
-							style={{ fontSize: "1.6rem" }}
-						>
-							<DialogContent>
-								<p>Enter new E-mail</p>
-								<form autoComplete="off">
-									<TextField
-										id="standard-basic"
-										name="email"
-									/>
-								</form>
-							</DialogContent>
-							<DialogActions>
-								<Button
-									color="secondary"
-									style={{ outline: "none" }}
-								>
-									Done
-								</Button>
-							</DialogActions>
-						</Dialog>
-						<Dialog aria-labelledby="form-dialog-title">
-							<div
-								style={{
-									display: "flex",
-									flexDirection: "column",
-									alignItems: "center",
-								}}
-							>
-								<p style={{ fontSize: "15px" }}>
-									Choose where to send the reset code
-								</p>
-								<Button
-									variant="contained"
-									style={{
-										marginTop: "1rem",
-										textTransform: "capitalize",
-										border: "1px solid #E45044",
-										backgroundColor: "#E45044",
-										color: "white",
-										fontFamily: "Source Sans Pro",
-										height: "48px",
-										width: "188px",
-										borderRadius: "10px",
-										fontSize: "18px",
-										fontWeight: "600",
-										lineHeight: "150%",
-										outline: "none",
-									}}
-								>
-									Email
-								</Button>
-
-								<Button
-									variant="contained"
-									style={{
-										marginTop: "1rem",
-										textTransform: "capitalize",
-										border: "1px solid #E45044",
-										backgroundColor: "#E45044",
-										color: "white",
-										fontFamily: "Source Sans Pro",
-										height: "48px",
-										width: "188px",
-										borderRadius: "10px",
-										fontSize: "18px",
-										fontWeight: "600",
-										lineHeight: "150%",
-										outline: "none",
-									}}
-								>
-									Phone
-								</Button>
-							</div>
-						</Dialog>
 					</form>
 				</Grid>
+				<Dialog
+					style={{ fontSize: "1.6rem" }}
+					aria-labelledby="form-dialog-title"
+					open={open}
+				>
+					<DialogContent>
+						<p>Enter the OTP you received on your email</p>
+						<form autoComplete="off">
+							<TextField
+								name="otp"
+								label="Enter OTP"
+								variant="outlined"
+								type="otp"
+								id="batch-name"
+								className="form-input"
+							/>
+						</form>
+					</DialogContent>
+					<DialogActions>
+						<Button
+							color="secondary"
+							style={{
+								float: "left",
+								position: "absolute",
+								left: 30,
+							}}
+						>
+							Resend
+						</Button>
+
+						<Button color="secondary" style={{ outline: "none" }}>
+							Done
+						</Button>
+					</DialogActions>
+				</Dialog>
 				<Grid item xs={6} style={{ textAlign: "center" }}>
-					<img
-						src="/assets/celebration.png"
-						alt="celebration"
-						// width="70%"
-						height="auto"
-					/>
+					<img src="/assets/celebration.png" alt="" height="auto" />
 				</Grid>
 			</Grid>
 		</div>
