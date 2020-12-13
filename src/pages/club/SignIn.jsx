@@ -156,7 +156,7 @@ const Signin = () => {
 											Don't have an account?{" "}
 											<span style={{ color: "#E45044" }}>
 												<Link
-													to="/createaccount"
+													to="/club/signup"
 													style={{
 														marginRight: "10px",
 													}}
