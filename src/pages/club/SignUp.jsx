@@ -11,9 +11,10 @@ import {
     TextField,
     Typography,
 } from "@material-ui/core";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -65,13 +66,32 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = () => {
     const classes = useStyles();
-    const { register, handleSubmit, errors, watch } = useForm();
+    const { register, handleSubmit, errors } = useForm();
     const [open, setOpen] = useState(false);
-    const password = useRef({});
-    password.current = watch("password", "");
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPass] = useState('');
+    const [type, setType] = useState('');
 
-    const handleFormSubmit = () => {
-        setOpen(true);
+    const handleFormSubmit = async () => {
+        const url = `${process.env.REACT_APP_BACKEND_URL}/club/signup`;
+        const data = {
+            email,
+            password,
+            name,
+            type
+        };
+
+        console.log(data);
+
+        try {
+            await Axios.post(url, data).then((res) => {
+                console.log(res);
+                setOpen(true);
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -139,6 +159,8 @@ const SignUp = () => {
                                             label="Name *"
                                             variant="outlined"
                                             type="text"
+                                            value={name}
+                                            onChange={(e) => { setName(e.target.value) }}
                                             inputRef={register({
                                                 required: true,
                                             })}
@@ -156,6 +178,8 @@ const SignUp = () => {
                                             label="Email *"
                                             variant="outlined"
                                             type="email"
+                                            value={email}
+                                            onChange={(e) => { setEmail(e.target.value) }}
                                             className="form-input"
                                             inputRef={register({
                                                 required: true,
@@ -173,6 +197,8 @@ const SignUp = () => {
                                             label="Password *"
                                             variant="outlined"
                                             type="password"
+                                            value={password}
+                                            onChange={(e) => { setPass(e.target.value) }}
                                             inputRef={register({
                                                 required: true,
                                                 minLength: 8
@@ -197,7 +223,7 @@ const SignUp = () => {
                                             type="password"
                                             inputRef={register({
                                                 validate: value =>
-                                                    value === password.current || "The passwords do not match"
+                                                    value === password || "The passwords do not match"
                                             })}
                                             className="form-input"
                                             error={errors.rpassword}
@@ -208,16 +234,13 @@ const SignUp = () => {
                                         <TextField
                                             name="type"
                                             select
+                                            value={type}
+                                            onChange={(e) => { setType(e.target.value) }}
                                             label="Club Category *"
                                             variant="outlined"
                                             inputRef={register({
                                                 required: true,
                                             })}
-                                            error={errors.type}
-                                            helperText={
-                                                errors.type &&
-                                                "Field is required"
-                                            }
                                             className="form-input"
                                         >
                                             <MenuItem value="Technical">Technical</MenuItem>

@@ -102,6 +102,7 @@ const ClubSignin = () => {
 			<Link to="/">
 				<img
 					src="/assets/Group2.png"
+					alt="CET"
 					style={{
 						textAlign: "left",
 						width: "10rem",
@@ -122,7 +123,7 @@ const ClubSignin = () => {
 					<Grid item xs={6} style={{ textAlign: "center" }}>
 						<img
 							src="/assets/celebration.png"
-							// width="70%"
+							alt=""
 							height="auto"
 						/>
 					</Grid>
