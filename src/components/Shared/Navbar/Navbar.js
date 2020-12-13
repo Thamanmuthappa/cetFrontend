@@ -6,7 +6,12 @@ const Navbar = ({ location }) => {
 	return (
 		<AppBar
 			position="static"
-			style={{ backgroundColor: "#fdf9f9", zIndex: "100" }}
+			style={{
+				backgroundColor: "#fdf9f9",
+				zIndex: "1400",
+
+				position: "relative",
+			}}
 			elevation={2}
 		>
 			<Toolbar>
