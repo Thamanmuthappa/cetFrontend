@@ -76,6 +76,7 @@ const SignUp = () => {
 		>
 			<img
 				src="/assets/Group2.png"
+				alt="logo"
 				style={{
 					textAlign: "left",
 					width: "10rem",
@@ -122,7 +123,7 @@ const SignUp = () => {
 											Sign Up for your account!
 										</Typography>
 									</Grid>
-                                    <Grid item xs={12}>
+									<Grid item xs={12}>
 										<TextField
 											name="name"
 											label="Name *"
@@ -152,7 +153,7 @@ const SignUp = () => {
 											className="form-input"
 										/>
 									</Grid>
-                                    <Grid item xs={6}>
+									<Grid item xs={6}>
 										<TextField
 											name="rpassword"
 											label="Retype Password *"
@@ -162,7 +163,7 @@ const SignUp = () => {
 											className="form-input"
 										/>
 									</Grid>
-                                    <Grid item xs={12}>
+									<Grid item xs={12}>
 										<TextField
 											name="type"
 											label="Club Category *"
@@ -335,14 +336,15 @@ const SignUp = () => {
 						</Dialog>
 					</form>
 				</Grid>
-                <Grid item xs={6} style={{ textAlign: "center" }}>
+				<Grid item xs={6} style={{ textAlign: "center" }}>
 					<img
 						src="/assets/celebration.png"
+						alt="celebration"
 						// width="70%"
 						height="auto"
 					/>
 				</Grid>
-            </Grid>
+			</Grid>
 		</div>
 	);
 };

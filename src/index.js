@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 const theme = createMuiTheme({
+	typography: {
+		fontFamily: "Source Sans Pro",
+	},
 	palette: {
 		primary: {
 			main: "#E45044",
