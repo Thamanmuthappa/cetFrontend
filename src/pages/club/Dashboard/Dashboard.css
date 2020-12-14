@@ -1,10 +1,15 @@
+.dashboard {
+	height: 100vh;
+	overflow: hidden;
+}
+
 .dashboard-drawer {
 	width: 240px !important;
 }
 
 .dash-main {
 	margin-left: 70px;
-	padding-top: 10px;
+	height: calc(100vh - 64px);
 }
 
 .sidebar-item {

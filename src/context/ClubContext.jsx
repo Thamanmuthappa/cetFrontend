@@ -1,14 +1,18 @@
-import React, { createContext, useEffect, useReducer } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
+import Loading from "../pages/Loading";
 
 export const ClubContext = createContext();
 
 const initialState = {
 	isLoggedIn: false,
 	clubDetails: {},
+	testsCreated: [],
 };
 
 const ClubContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(clubReducer, initialState);
+
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const token = localStorage.getItem("clubAuthToken");
@@ -16,6 +20,8 @@ const ClubContextProvider = ({ children }) => {
 		if (token) {
 			setLoginTrue();
 		}
+
+		setLoading(false);
 	}, []);
 
 	const setLoginTrue = () => {
@@ -31,6 +37,10 @@ const ClubContextProvider = ({ children }) => {
 		setLoginTrue,
 		setClubDetails,
 	};
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	return (
 		<ClubContext.Provider value={values}>{children}</ClubContext.Provider>

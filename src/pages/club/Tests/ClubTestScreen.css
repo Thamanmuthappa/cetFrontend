@@ -1,0 +1,21 @@
+.club-dash-tests {
+	height: 100%;
+}
+
+.club-dash-test-bar {
+	height: 10%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.club-test-list {
+	height: calc(100vh - 64px - 10%);
+}
+
+.no-tests-div {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

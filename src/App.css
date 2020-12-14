@@ -18,3 +18,7 @@
 	width: 100% !important;
 	background-color: #fdf9f9 !important;
 }
+
+.light-text {
+	color: rgb(173, 173, 173);
+}
