@@ -13,6 +13,7 @@ import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import { ClubContext } from "../../context/ClubContext";
+import Background from "../../hoc/Background/Background";
 
 const useStyles = makeStyles((theme) => ({
 	media: {

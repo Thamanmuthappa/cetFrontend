@@ -8,27 +8,27 @@ import { ClubContext } from "../../../context/ClubContext";
 import { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
-	const { isLoggedIn } = useContext(ClubContext);
-	const [selectedTab, setSelectedTab] = useState(0);
+  const { isLoggedIn } = useContext(ClubContext);
+  const [selectedTab, setSelectedTab] = useState(0);
 
-	const history = useHistory();
+  const history = useHistory();
 
-	useEffect(() => {
-		if (!isLoggedIn) {
-			history.push("/club/signin");
-		}
-	}, [isLoggedIn]);
+  useEffect(() => {
+    if (!isLoggedIn) {
+      history.push("/club/signin");
+    }
+  }, [isLoggedIn]);
 
-	return (
-		<div className="dashboard">
-			<Navbar location="Dashboard" />
-			<ClubSidebar setSelectedTab={setSelectedTab} />
-			<div className="dash-main">
-				{selectedTab === 0 ? <ClubTestScreen /> : null}
-				{selectedTab === 2 ? <ClubProfile /> : null}
-			</div>
-		</div>
-	);
+  return (
+    <div className='dashboard'>
+      <Navbar location='Dashboard' />
+      <ClubSidebar setSelectedTab={setSelectedTab} />
+      <div className='dash-main'>
+        {selectedTab === 0 ? <ClubTestScreen /> : null}
+        {selectedTab === 2 ? <ClubProfile /> : null}
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;
