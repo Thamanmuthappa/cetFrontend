@@ -53,7 +53,11 @@ const ClubSidebar = ({ setSelectedTab }) => {
 			<div className={classes.toolbar}></div>
 			<List>
 				<Tooltip title="Tests" placement="right" arrow>
-					<ListItem button onClick={() => setSelectedTab(0)}>
+					<ListItem
+						button
+						onClick={() => setSelectedTab(0)}
+						className="sidebar-item"
+					>
 						<ListItemIcon>
 							<ListIcon fontSize="large" />
 						</ListItemIcon>
@@ -62,7 +66,11 @@ const ClubSidebar = ({ setSelectedTab }) => {
 				</Tooltip>
 				<Divider />
 				<Tooltip title="Results" placement="right" arrow>
-					<ListItem button onClick={() => setSelectedTab(1)}>
+					<ListItem
+						button
+						onClick={() => setSelectedTab(1)}
+						className="sidebar-item"
+					>
 						<ListItemIcon>
 							<Book fontSize="large" />
 						</ListItemIcon>
@@ -71,7 +79,11 @@ const ClubSidebar = ({ setSelectedTab }) => {
 				</Tooltip>
 				<Divider />
 				<Tooltip title="Profile" placement="right" arrow>
-					<ListItem button onClick={() => setSelectedTab(2)}>
+					<ListItem
+						button
+						onClick={() => setSelectedTab(2)}
+						className="sidebar-item"
+					>
 						<ListItemIcon>
 							<Person fontSize="large" />
 						</ListItemIcon>

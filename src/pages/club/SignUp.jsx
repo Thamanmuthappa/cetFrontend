@@ -75,6 +75,7 @@ const SignUp = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPass] = useState("");
 	const [type, setType] = useState("");
+	const [clubCode, setClubCode] = useState("");
 	const [otp, setOTP] = useState("");
 
 	const handleFormSubmit = async () => {
@@ -84,6 +85,7 @@ const SignUp = () => {
 			password,
 			name,
 			type,
+			clubCode,
 		};
 
 		console.log(data);
@@ -304,7 +306,27 @@ const SignUp = () => {
 											</MenuItem>
 										</TextField>
 									</Grid>
-									<Grid item xs={12}></Grid>
+									<Grid item xs={12}>
+										<TextField
+											name="clubCode"
+											label="Invite Code *"
+											variant="outlined"
+											type="test"
+											value={clubCode}
+											onChange={(e) =>
+												setClubCode(e.target.value)
+											}
+											inputRef={register({
+												required: true,
+											})}
+											className="form-input"
+											error={errors.clubCode}
+											helperText={
+												errors.clubCode &&
+												"Invite Code is required"
+											}
+										/>
+									</Grid>
 
 									<Grid item xs={12}>
 										<p style={{ textAlign: "center" }}>
