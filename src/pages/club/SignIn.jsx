@@ -11,10 +11,11 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
+import { ClubContext } from "../../context/ClubContext";
 
 const useStyles = makeStyles((theme) => ({
 	media: {
@@ -66,10 +67,17 @@ const useStyles = makeStyles((theme) => ({
 
 const ClubSignin = () => {
 	const classes = useStyles();
+
+	const { isLoggedIn, setClubDetails, setLoginTrue } = useContext(
+		ClubContext
+	);
+
 	const { register, handleSubmit, errors } = useForm();
 
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	const [redirect, setRedirect] = useState(false);
 
 	const handleFormSubmit = async () => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/login`;
@@ -82,11 +90,23 @@ const ClubSignin = () => {
 			await Axios.post(url, data).then((res) => {
 				console.log(res);
 				localStorage.setItem("clubAuthToken", res.data.token);
+				setClubDetails(res.data.clubDetails);
+				setLoginTrue();
 			});
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		if (isLoggedIn) {
+			setRedirect(true);
+		}
+	}, [isLoggedIn]);
+
+	if (redirect) {
+		return <Redirect to="/club/dashboard" />;
+	}
 
 	return (
 		<div

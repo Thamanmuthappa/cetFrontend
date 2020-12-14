@@ -1,0 +1,55 @@
+import React, { createContext, useEffect, useReducer } from "react";
+
+export const ClubContext = createContext();
+
+const initialState = {
+	isLoggedIn: false,
+	clubDetails: {},
+};
+
+const ClubContextProvider = ({ children }) => {
+	const [state, dispatch] = useReducer(clubReducer, initialState);
+
+	useEffect(() => {
+		const token = localStorage.getItem("clubAuthToken");
+
+		if (token) {
+			setLoginTrue();
+		}
+	}, []);
+
+	const setLoginTrue = () => {
+		dispatch({ type: "SET_LOGIN_TRUE" });
+	};
+
+	const setClubDetails = (details) => {
+		dispatch({ type: "SET_CLUB_DETAILS", payload: details });
+	};
+
+	const values = {
+		...state,
+		setLoginTrue,
+		setClubDetails,
+	};
+
+	return (
+		<ClubContext.Provider value={values}>{children}</ClubContext.Provider>
+	);
+};
+
+export default ClubContextProvider;
+
+const clubReducer = (state, action) => {
+	switch (action.type) {
+		case "SET_LOGIN_TRUE":
+			return {
+				...state,
+				isLoggedIn: true,
+			};
+		case "SET_CLUB_DETAILS":
+			return {
+				...state,
+				clubDetails: action.payload,
+			};
+	}
+};
