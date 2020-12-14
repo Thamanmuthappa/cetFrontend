@@ -85,7 +85,6 @@ const ClubSignin = () => {
 
 		try {
 			await Axios.post(url, data).then((res) => {
-				console.log(res);
 				localStorage.setItem("clubAuthToken", res.data.token);
 				setClubDetails(res.data.clubDetails);
 				setLoginTrue(res.data.token);

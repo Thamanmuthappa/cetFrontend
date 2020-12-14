@@ -1,0 +1,28 @@
+.create-test-page {
+	background-color: #f5f5f5;
+	min-height: 100vh;
+}
+
+.create-test-main {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	background-color: white;
+	height: calc(100vh - 64px) !important;
+	margin: 0 25% !important;
+	padding: 2% 5%;
+}
+
+.create-test-form {
+	width: 100%;
+	margin-top: 2%;
+}
+
+.test-create-input {
+	width: 100% !important;
+	margin: 10px 0 !important;
+}
+
+.date-time-picker-section {
+	margin: 20px 0 !important;
+}
