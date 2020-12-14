@@ -22,3 +22,7 @@
 .light-text {
 	color: rgb(173, 173, 173);
 }
+
+a {
+	text-decoration: none !important;
+}

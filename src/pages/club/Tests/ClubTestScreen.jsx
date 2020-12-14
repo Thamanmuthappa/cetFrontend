@@ -1,6 +1,7 @@
 import { Button, Container, Divider, Typography } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ClubContext } from "../../../context/ClubContext";
 import "./ClubTestScreen.css";
 
@@ -10,9 +11,11 @@ const ClubTestScreen = () => {
 	return (
 		<Container className="club-dash-tests">
 			<div className="club-dash-test-bar">
-				<Button variant="contained" color="primary">
-					<Add /> Create Test
-				</Button>
+				<Link to="/club/createTest">
+					<Button variant="contained" color="primary">
+						<Add /> Create Test
+					</Button>
+				</Link>
 			</div>
 			<Divider />
 			<div className="club-test-list">
