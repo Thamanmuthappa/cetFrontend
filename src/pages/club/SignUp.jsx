@@ -379,7 +379,9 @@ const SignUp = () => {
 					open={open}
 				>
 					<DialogContent>
-						<p>Enter the OTP you received on your email</p>
+						<p style={{ fontSize: "1.1rem" }}>
+							Enter the OTP you received on your email
+						</p>
 						<form autoComplete="off">
 							<TextField
 								name="otp"
@@ -398,11 +400,6 @@ const SignUp = () => {
 					<DialogActions>
 						<Button
 							color="secondary"
-							style={{
-								float: "left",
-								position: "absolute",
-								left: 30,
-							}}
 							disabled={disable}
 							onClick={resendVerificationEmail}
 						>
@@ -411,7 +408,7 @@ const SignUp = () => {
 
 						<Button
 							color="secondary"
-							style={{ outline: "none" }}
+							type="submit"
 							onClick={handleOTPSubmit}
 						>
 							Done
@@ -425,7 +422,7 @@ const SignUp = () => {
 						setSOpen(false);
 					}}
 				>
-					Account Sucessfully Created
+					<p>Account Sucessfully Created</p>
 				</Snackbar>
 				<Grid item xs={6} style={{ textAlign: "center" }}>
 					<img src="/assets/celebration.png" alt="" height="auto" />

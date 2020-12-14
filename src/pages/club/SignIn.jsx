@@ -72,7 +72,7 @@ const ClubSignin = () => {
 	const [password, setPassword] = useState("");
 
 	const handleFormSubmit = async () => {
-		const url = `${process.env.REACT_APP_BACKEND_URL}/student/login`;
+		const url = `${process.env.REACT_APP_BACKEND_URL}/club/login`;
 		const data = {
 			email,
 			password,
@@ -81,12 +81,12 @@ const ClubSignin = () => {
 		try {
 			await Axios.post(url, data).then((res) => {
 				console.log(res);
+				localStorage.setItem("clubAuthToken", res.data.token);
 			});
 		} catch (error) {
 			console.log(error);
 		}
 	};
-
 
 	return (
 		<div
