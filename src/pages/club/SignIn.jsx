@@ -88,7 +88,7 @@ const ClubSignin = () => {
 				console.log(res);
 				localStorage.setItem("clubAuthToken", res.data.token);
 				setClubDetails(res.data.clubDetails);
-				setLoginTrue();
+				setLoginTrue(res.data.token);
 			});
 		} catch (error) {
 			console.log(error);

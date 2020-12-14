@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useReducer, useState } from "react";
+import { fetchAdminProfile } from "../API/GET";
 import Loading from "../pages/Loading";
 
 export const ClubContext = createContext();
@@ -18,14 +19,23 @@ const ClubContextProvider = ({ children }) => {
 		const token = localStorage.getItem("clubAuthToken");
 
 		if (token) {
-			setLoginTrue();
+			setLoginTrue(token);
+		} else {
+			setLoading(false);
+		}
+	}, []);
+
+	const setLoginTrue = async (token) => {
+		const profile = await fetchAdminProfile(token);
+
+		if (profile) {
+			dispatch({ type: "SET_LOGIN_TRUE" });
+			setClubDetails(profile);
+		} else {
+			localStorage.clear();
 		}
 
 		setLoading(false);
-	}, []);
-
-	const setLoginTrue = () => {
-		dispatch({ type: "SET_LOGIN_TRUE" });
 	};
 
 	const setClubDetails = (details) => {
