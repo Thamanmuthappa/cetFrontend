@@ -2,7 +2,7 @@ import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import React from "react";
 import "./Navbar.css";
 
-const Navbar = ({ location }) => {
+const Navbar = ({ location, home }) => {
 	return (
 		<AppBar
 			position="static"
