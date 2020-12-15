@@ -1,5 +1,6 @@
 import { AppBar, Toolbar, Typography } from "@material-ui/core";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = ({ location, home }) => {
@@ -15,7 +16,13 @@ const Navbar = ({ location, home }) => {
 			elevation={2}
 		>
 			<Toolbar>
-				<img src="/assets/Group2.png" alt="logo" className="nav-img" />
+				<Link to="/club/dashboard">
+					<img
+						src="/assets/Group2.png"
+						alt="logo"
+						className="nav-img"
+					/>
+				</Link>
 				<Typography variant="h5" className="nav-brand">
 					{location}
 				</Typography>

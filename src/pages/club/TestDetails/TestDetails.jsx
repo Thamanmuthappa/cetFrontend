@@ -8,7 +8,9 @@ import {
 import { Add } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { fetchTestDetails, fetchTestDomains } from "../../../API/GET";
+import DomainAddModal from "../../../components/Club/DomainAddModal";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
+import Loading from "../../Loading";
 import "./TestDetails.css";
 
 const TestDetails = (props) => {
@@ -18,7 +20,10 @@ const TestDetails = (props) => {
 	const [testDetails, setTestDetails] = useState({});
 	const [testDomains, setTestDomains] = useState([]);
 
+	const [addDomainOpen, setAddDomain] = useState(false);
+
 	const getDetails = async () => {
+		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 		const details = await fetchTestDetails(id, token);
 		const domains = await fetchTestDomains(id, token);
@@ -32,6 +37,10 @@ const TestDetails = (props) => {
 	useEffect(() => {
 		getDetails();
 	}, []);
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	return (
 		<div className="test-details-page">
@@ -53,7 +62,7 @@ const TestDetails = (props) => {
 									{testDetails.roundType}
 								</p>
 								<p>
-									<strong>Duration:</strong>{" "}
+									<strong>Total Duration:</strong>{" "}
 									{testDetails.duration}
 								</p>
 							</Grid>
@@ -87,6 +96,7 @@ const TestDetails = (props) => {
 							variant="contained"
 							className="custom-action-btn"
 							color="primary"
+							onClick={() => setAddDomain(true)}
 						>
 							<Add /> Add a new domain
 						</Button>
@@ -101,8 +111,14 @@ const TestDetails = (props) => {
 						) : null}
 					</div>
 				</div>
-				<Divider />
+				{/* <Divider /> */}
 			</Container>
+			<DomainAddModal
+				open={addDomainOpen}
+				handleClose={() => setAddDomain(false)}
+				id={id}
+				refresh={getDetails}
+			/>
 		</div>
 	);
 };
