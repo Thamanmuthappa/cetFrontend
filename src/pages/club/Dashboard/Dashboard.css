@@ -1,17 +1,17 @@
 .dashboard {
-	height: 100vh;
-	overflow: hidden;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 .dashboard-drawer {
-	width: 240px !important;
+  width: 240px !important;
 }
 
 .dash-main {
-	margin-left: 70px;
-	height: calc(100vh - 64px);
+  margin-left: 70px;
+  height: calc(100vh - 64px);
 }
 
 .sidebar-item {
-	padding: 20px 16px !important;
+  padding: 20px 16px !important;
 }
