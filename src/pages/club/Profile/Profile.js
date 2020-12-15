@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
-	Box,
-	Paper,
-	Avatar,
-	Container,
-	Button,
-	Card,
-	CardContent,
-	Grid,
-	Hidden,
-	makeStyles,
-	TextField,
-	Typography,
+  
+  Paper,
+  Avatar,
+  Container,
+  Button,
+  
+  Grid,
+  makeStyles,
+  TextField,
+  Typography,
 } from "@material-ui/core";
 // club avatar ,club banner ,socoial links, images
 
