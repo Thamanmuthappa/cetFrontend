@@ -6,6 +6,7 @@ import ClubSidebar from "../../../components/Club/Sidebar";
 import ClubTestScreen from "../Tests/ClubTestScreen";
 import { ClubContext } from "../../../context/ClubContext";
 import { useHistory } from "react-router-dom";
+import Results from "../Results/Results";
 
 const Dashboard = () => {
   const { isLoggedIn } = useContext(ClubContext);
@@ -25,6 +26,7 @@ const Dashboard = () => {
       <ClubSidebar setSelectedTab={setSelectedTab} />
       <div className='dash-main'>
         {selectedTab === 0 ? <ClubTestScreen /> : null}
+        {selectedTab === 1 ? <Results /> : null}
         {selectedTab === 2 ? <ClubProfile /> : null}
       </div>
     </div>
