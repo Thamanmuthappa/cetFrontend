@@ -7,8 +7,10 @@ import {
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { fetchTestDetails, fetchTestDomains } from "../../../API/GET";
 import DomainAddModal from "../../../components/Club/DomainAddModal";
+import ClubDomainTile from "../../../components/Club/DomainTile/ClubDomainTile";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
 import Loading from "../../Loading";
 import "./TestDetails.css";
@@ -108,7 +110,23 @@ const TestDetails = (props) => {
 									No domains created
 								</Typography>
 							</div>
-						) : null}
+						) : (
+							<div className="test-page-domains-list">
+								<Grid container spacing={3}>
+									{testDomains.map((domain) => (
+										<Grid item xs={12} sm={3}>
+											<Link
+												to={`/club/test/${id}/${domain._id}`}
+											>
+												<ClubDomainTile
+													title={domain.domainName}
+												/>
+											</Link>
+										</Grid>
+									))}
+								</Grid>
+							</div>
+						)}
 					</div>
 				</div>
 				{/* <Divider /> */}

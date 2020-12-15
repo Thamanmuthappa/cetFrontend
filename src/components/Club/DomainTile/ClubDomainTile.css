@@ -1,0 +1,23 @@
+.club-domain-tile {
+	width: 200px;
+	height: 200px;
+	border-radius: 10px;
+	background: linear-gradient(to bottom, #f85032 0%, #f16f5c 50%, #f6290c 51%, #f02f17 71%, #e73827 100%);
+	color: white;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.2s ease-in-out;
+	/* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+	box-shadow: 0 9px 12px 1px rgba(0, 0, 0, 0.14), 0 3px 16px 2px rgba(0, 0, 0, 0.12), 0 5px 6px -3px rgba(0, 0, 0, 0.20);
+}
+
+.tile-title {
+	font-size: 1.4rem;
+}
+
+.club-domain-tile:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
