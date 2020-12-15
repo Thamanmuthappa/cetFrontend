@@ -1,0 +1,10 @@
+.create-question-form {
+	margin-top: 3%;
+}
+
+.create-question-form form {}
+
+.create-question-text-input {
+	width: 70% !important;
+	margin: 3% 0;
+}

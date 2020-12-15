@@ -116,7 +116,10 @@ const TestDetails = (props) => {
 									{testDomains.map((domain) => (
 										<Grid item xs={12} sm={3}>
 											<Link
-												to={`/club/test/${id}/${domain._id}`}
+												to={{
+													pathname: `/club/test/${id}/${domain._id}`,
+													state: { domain },
+												}}
 											>
 												<ClubDomainTile
 													title={domain.domainName}
