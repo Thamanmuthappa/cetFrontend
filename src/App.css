@@ -26,3 +26,10 @@
 a {
 	text-decoration: none !important;
 }
+
+.custom-action-btn {
+	font-weight: bold !important;
+	border-radius: 50px !important;
+	padding-left: 50px !important;
+	padding-right: 50px !important;
+}

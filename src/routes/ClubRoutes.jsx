@@ -5,7 +5,7 @@ import CreateTest from "../pages/club/CreateTest/CreateTest";
 import Dashboard from "../pages/club/Dashboard/Dashboard";
 import ClubSignin from "../pages/club/SignIn";
 import SignUp from "../pages/club/SignUp";
-import Profile from "../pages/club/Profile/Profile";
+import TestDetails from "../pages/club/TestDetails/TestDetails";
 
 const ClubRoutes = () => {
 	return (
@@ -15,6 +15,7 @@ const ClubRoutes = () => {
 				<Route exact path="/club/signup" component={SignUp} />
 				<Route exact path="/club/createTest" component={CreateTest} />
 				<Route exact path="/club/dashboard" component={Dashboard} />
+				<Route exact path="/club/test/:id" component={TestDetails} />
 			</Switch>
 		</ClubContextProvider>
 	);

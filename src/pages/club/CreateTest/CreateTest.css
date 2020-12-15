@@ -15,7 +15,7 @@
 
 .create-test-form {
 	width: 100%;
-	margin-top: 2%;
+	margin-top: 4%;
 }
 
 .test-create-input {
@@ -25,4 +25,17 @@
 
 .date-time-picker-section {
 	margin: 20px 0 !important;
+}
+
+.create-test-btn-div {
+	margin: 4% 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (max-width: 815px) {
+	.create-test-main {
+		margin: 0 0 !important;
+	}
 }

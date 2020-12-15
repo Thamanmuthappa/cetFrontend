@@ -1,4 +1,6 @@
 import {
+	Button,
+	CircularProgress,
 	Divider,
 	FormControlLabel,
 	Grid,
@@ -14,9 +16,11 @@ import Navbar from "../../../components/Shared/Navbar/Navbar";
 import "./CreateTest.css";
 import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
+import Axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const CreateTest = () => {
-	const { register, handleSubmit, errors } = useForm();
+	const { register, handleSubmit } = useForm();
 	const [formDetails, setFormDetails] = useState({
 		roundNumber: 1,
 		roundType: "",
@@ -27,6 +31,17 @@ const CreateTest = () => {
 		scheduledEndDate: new Date(),
 		graded: true,
 	});
+
+	const [loading, setLoading] = useState(false);
+
+	const history = useHistory();
+
+	const handleDurationChange = (e, val) => {
+		setFormDetails((prevState) => ({
+			...prevState,
+			duration: val,
+		}));
+	};
 
 	const handleSlider = (event) => {
 		setFormDetails((prevState) => ({
@@ -43,22 +58,44 @@ const CreateTest = () => {
 	};
 
 	const handleDateChange = (event) => {
-		console.log(event);
 		setFormDetails((prevState) => ({
 			...prevState,
 			scheduledForDate: event.toDate(),
 		}));
 	};
 	const handleEndDateChange = (event) => {
-		console.log(event);
 		setFormDetails((prevState) => ({
 			...prevState,
 			scheduledEndDate: event.toDate(),
 		}));
 	};
 
-	const createTest = () => {
-		console.log(formDetails);
+	const createTest = async () => {
+		setLoading(true);
+		const details = JSON.parse(JSON.stringify(formDetails));
+
+		details.scheduledForDate = new Date(details.scheduledForDate).getTime();
+		details.scheduledEndDate = new Date(details.scheduledEndDate).getTime();
+
+		console.log(details);
+
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/create`;
+		const token = localStorage.getItem("clubAuthToken");
+
+		try {
+			await Axios.post(url, details, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}).then((res) => {
+				console.log(res);
+				setLoading(false);
+
+				history.push(`/club/test/${res.data.testDetails._id}`);
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -75,19 +112,35 @@ const CreateTest = () => {
 					className="create-test-form"
 					onSubmit={handleSubmit(createTest)}
 				>
-					<FormControlLabel
-						control={
-							<Switch
-								name="graded"
-								size="medium"
-								onChange={handleSlider}
-								checked={formDetails.graded}
+					<Grid container spacing={3}>
+						<Grid item xs={6}>
+							<TextField
+								name="maxMarks"
+								type="number"
+								label="Maximum marks"
+								variant="outlined"
+								className="test-create-input"
+								value={formDetails.maxMarks}
+								onChange={(e) => handleFormChange(e)}
+								inputRef={register({ required: true })}
 							/>
-						}
-						label="Graded"
-						labelPlacement="start"
-						style={{ margin: "20px 0" }}
-					/>
+						</Grid>
+						<Grid item xs={6}>
+							<FormControlLabel
+								control={
+									<Switch
+										name="graded"
+										size="medium"
+										onChange={handleSlider}
+										checked={formDetails.graded}
+									/>
+								}
+								label="Graded"
+								labelPlacement="start"
+								style={{ margin: "20px 0" }}
+							/>
+						</Grid>
+					</Grid>
 					<Grid container spacing={3}>
 						<Grid item xs={12} sm={6}>
 							<TextField
@@ -107,6 +160,9 @@ const CreateTest = () => {
 								label="Round type"
 								variant="outlined"
 								className="test-create-input"
+								value={formDetails.roundType}
+								onChange={(e) => handleFormChange(e)}
+								inputRef={register({ required: true })}
 							/>
 						</Grid>
 					</Grid>
@@ -134,7 +190,7 @@ const CreateTest = () => {
 							marks
 							min={10}
 							max={60}
-							onChange={(e) => handleFormChange(e)}
+							onChange={handleDurationChange}
 						/>
 					</div>
 					<Divider />
@@ -151,6 +207,7 @@ const CreateTest = () => {
 										className="test-create-input"
 										format="DD MMMM YYYY | hh:mm a"
 										minDate={new Date()}
+										inputRef={register({ required: true })}
 									/>
 								</Grid>
 								<Grid item xs={12} sm={6}>
@@ -163,11 +220,30 @@ const CreateTest = () => {
 										className="test-create-input"
 										format="DD MMMM YYYY | hh:mm a"
 										minDate={new Date()}
+										inputRef={register({ required: true })}
 									/>
 								</Grid>
 							</Grid>
 						</div>
 					</MuiPickersUtilsProvider>
+					<div className="create-test-btn-div">
+						<Button
+							type="submit"
+							variant="contained"
+							color="primary"
+							className="custom-action-btn"
+							disabled={loading}
+						>
+							{!loading ? (
+								"Create Test"
+							) : (
+								<CircularProgress
+									size={20}
+									style={{ padding: "3px 10px" }}
+								/>
+							)}
+						</Button>
+					</div>
 				</form>
 			</div>
 		</div>
