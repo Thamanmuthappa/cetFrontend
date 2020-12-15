@@ -1,10 +1,8 @@
 .create-question-form {
-	margin-top: 3%;
+	margin-top: 50px;
 }
-
-.create-question-form form {}
 
 .create-question-text-input {
 	width: 70% !important;
-	margin: 3% 0;
+	margin: 30px 0 !important;
 }

@@ -72,7 +72,12 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 					<Typography variant="h6" style={{ flex: 1 }}>
 						Add a Question
 					</Typography>
-					<Button color="inherit" className="dialog-top-btn">
+					<Button
+						color="inherit"
+						className="dialog-top-btn"
+						type="submit"
+						form={`create-question-${selectedType}`}
+					>
 						Create
 					</Button>
 				</Toolbar>
@@ -81,16 +86,15 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 				<Toolbar />
 				<List>
 					{questionTypes.map((type) => (
-						<>
+						<div key={type.id}>
 							<ListItem
 								button
-								key={type.id}
 								className="add-question-drawer-item"
 							>
 								<ListItemText primary={type.name} />
 							</ListItem>
 							<Divider />
-						</>
+						</div>
 					))}
 				</List>
 			</Drawer>
