@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useReducer, useState } from "react";
-import { fetchAdminProfile } from "../API/GET";
+import { fetchAdminProfile, fetchAllTests } from "../API/GET";
 import Loading from "../pages/Loading";
 
 export const ClubContext = createContext();
@@ -31,6 +31,9 @@ const ClubContextProvider = ({ children }) => {
 		if (profile) {
 			dispatch({ type: "SET_LOGIN_TRUE" });
 			setClubDetails(profile);
+
+			const tests = await fetchAllTests(token);
+			setClubTests(tests);
 		} else {
 			localStorage.clear();
 		}
@@ -40,6 +43,11 @@ const ClubContextProvider = ({ children }) => {
 
 	const setClubDetails = (details) => {
 		dispatch({ type: "SET_CLUB_DETAILS", payload: details });
+	};
+
+	const setClubTests = (tests) => {
+		console.log(tests);
+		dispatch({ type: "SET_CLUB_TESTS", payload: tests });
 	};
 
 	const values = {
@@ -70,6 +78,11 @@ const clubReducer = (state, action) => {
 			return {
 				...state,
 				clubDetails: action.payload,
+			};
+		case "SET_CLUB_TESTS":
+			return {
+				...state,
+				testsCreated: action.payload,
 			};
 	}
 };

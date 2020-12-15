@@ -20,6 +20,26 @@ export const fetchAdminProfile = async (token) => {
 	return final;
 };
 
+export const fetchAllTests = async (token) => {
+	const url = `${process.env.REACT_APP_BACKEND_URL}/test/allTestsOfAClub`;
+
+	let final;
+
+	try {
+		await Axios.get(url, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}).then((res) => {
+			final = res.data.tests;
+		});
+	} catch (error) {
+		console.log(error);
+	}
+
+	return final;
+};
+
 export const fetchTestDetails = async (id, token) => {
 	const url = `${process.env.REACT_APP_BACKEND_URL}/test/details?testId=${id}`;
 

@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const DomainAddModal = ({ open, handleClose, id, refresh }) => {
-	const { register, handleSubmit, errors } = useForm();
+	const { register, handleSubmit } = useForm();
 	const [formValues, setFormValues] = useState({
 		testId: id,
 		domainName: "",
