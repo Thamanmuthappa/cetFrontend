@@ -1,0 +1,21 @@
+.testBox {
+  margin-right: 20px;
+  height: 100%;
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.testPap {
+  position: relative;
+  width: 12rem;
+  height: 12rem;
+  border-radius: 10px;
+  opacity: 0.8;
+  transition: transform 10s;
+}
+.testPap:hover {
+  transform: scale(1.2);
+}

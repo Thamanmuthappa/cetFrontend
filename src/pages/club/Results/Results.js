@@ -9,6 +9,7 @@ import {
   makeStyles,
   Grid,
 } from "@material-ui/core";
+import TestBox from "../../../components/TestBox/Testbox";
 import { red, green, yellow } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "40px",
     minHeight: "80vh",
   },
+  colorCode: {
+    width: "20px",
+    height: "20px",
+    display: "inline-block",
+    marginRight: "20px",
+  },
 }));
 
 const Results = () => {
@@ -25,6 +32,10 @@ const Results = () => {
   console.log(testsCreated);
 
   const classes = useStyles();
+
+  let tests = testsCreated.map((data, i) => (
+    <TestBox key={i} index={i} data={data} />
+  ));
 
   return (
     <Container>
@@ -40,44 +51,11 @@ const Results = () => {
               }}>
               Results
             </Typography>
-            <div style={{ flex: "1" }}></div>
-            <div style={{ display: "flex" }}>
-              <div>
-                <Typography
-                  variant='h5'
-                  style={{
-                    fontFamily: "Source Sans Pro",
-                    fontWeight: "600",
-                    backgroundColor: green[500],
-                  }}>
-                  Published
-                </Typography>
-              </div>
-              <div>
-                <Typography
-                  variant='h5'
-                  style={{
-                    fontFamily: "Source Sans Pro",
-                    fontWeight: "600",
-                    backgroundColor: yellow[500],
-                  }}>
-                  Finalized
-                </Typography>
-              </div>
-              <div>
-                <Typography
-                  variant='h5'
-                  style={{
-                    fontFamily: "Source Sans Pro",
-                    fontWeight: "600",
-                    backgroundColor: red[500],
-                  }}>
-                  Unfinalized
-                </Typography>
-              </div>
-            </div>
           </div>
           <Divider />
+          <Grid container item spacing={3} style={{ textAlign: "center",marginTop: "40px", }}>
+            {tests}
+          </Grid>
         </Container>
       </Paper>
     </Container>
