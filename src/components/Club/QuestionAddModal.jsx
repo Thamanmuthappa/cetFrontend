@@ -18,6 +18,8 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import CreateSingleCorrect from "./QuestionForms/CreateSingleCorrect";
 import CreateShortQuestion from "./QuestionForms/CreateShortQuestion";
+import CreateLongQuestion from "./QuestionForms/CreateLongQuestion";
+import CreateMultipleCorrect from "./QuestionForms/CreateMultipleCorrect";
 
 const useStyle = makeStyles((theme) => ({
 	drawer: {
@@ -109,8 +111,20 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 							domainId={domainId}
 						/>
 					) : null}
+					{selectedType === 2 ? (
+						<CreateMultipleCorrect
+							testId={testId}
+							domainId={domainId}
+						/>
+					) : null}
 					{selectedType === 3 ? (
 						<CreateShortQuestion
+							testId={testId}
+							domainId={domainId}
+						/>
+					) : null}
+					{selectedType === 4 ? (
+						<CreateLongQuestion
 							testId={testId}
 							domainId={domainId}
 						/>
