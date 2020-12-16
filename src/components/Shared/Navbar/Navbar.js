@@ -6,7 +6,7 @@ import "./Navbar.css";
 const Navbar = ({ location, home }) => {
 	return (
 		<AppBar
-			position="static"
+			className="navbar"
 			style={{
 				backgroundColor: "#fdf9f9",
 				zIndex: "1400",

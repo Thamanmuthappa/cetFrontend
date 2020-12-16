@@ -1,6 +1,15 @@
-import { Button, Container, Divider, Grid, Tooltip } from "@material-ui/core";
+import {
+	Button,
+	CircularProgress,
+	Container,
+	Divider,
+	Grid,
+	Tooltip,
+	Typography,
+} from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
+import { fetchQuestionsInDomain } from "../../../API/GET";
 import QuestionAddModal from "../../../components/Club/QuestionAddModal";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
 import "./DomainDetails.css";
@@ -13,15 +22,30 @@ const DomainDetails = (props) => {
 	const [loading, setLoading] = useState(true);
 	const [questionAdd, setQuestionAdd] = useState(false);
 
+	const [questions, setQuestions] = useState([]);
+	const [questionsLoading, setQuesLoading] = useState(true);
+
+	const getQuestions = async () => {
+		const token = localStorage.getItem("clubAuthToken");
+		const questions = await fetchQuestionsInDomain(testId, domainId, token);
+
+		console.log(questions);
+
+		setQuestions(questions);
+		setQuesLoading(false);
+	};
+
 	// const getDomainDetails = async () => {
 	// 	const details = await fetchD;
 	// };
 
-	// useEffect(() => {
-	// 	if (!domainDetails) {
-	// 		getDomainDetails();
-	// 	}
-	// }, []);
+	useEffect(() => {
+		// if (!domainDetails) {
+		// 	getDomainDetails();
+		// }
+
+		getQuestions();
+	}, []);
 
 	return (
 		<>
@@ -82,6 +106,23 @@ const DomainDetails = (props) => {
 							>
 								<Add /> Add a new question
 							</Button>
+						</div>
+						<div className="domain-page-question-list">
+							{questionsLoading ? (
+								<div className="questions-loading">
+									<CircularProgress color="primary" />
+									Getting Questions...
+								</div>
+							) : questions.length === 0 ? (
+								<div className="test-page-no-domains">
+									<Typography
+										variant="h2"
+										className="light-text"
+									>
+										No questions created
+									</Typography>
+								</div>
+							) : null}
 						</div>
 					</div>
 				</Container>

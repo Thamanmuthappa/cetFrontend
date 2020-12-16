@@ -21,3 +21,11 @@
 	padding-top: 80px;
 	overflow: auto;
 }
+
+.questions-loading {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+}
