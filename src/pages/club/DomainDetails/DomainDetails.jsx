@@ -12,18 +12,24 @@ import {
 } from "@material-ui/core";
 import { Add, ExpandMore } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
-import { fetchQuestionsInDomain } from "../../../API/GET";
+import {
+	fetchQuestionsInDomain,
+	fetchSingleDomainDetails,
+} from "../../../API/GET";
 import QuestionAddModal from "../../../components/Club/QuestionAddModal";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
 import "./DomainDetails.css";
 import "../../../components/Club/QuestionsDisplay/QuestionsDisplay.css";
 import QuestionsDisplay from "../../../components/Club/QuestionsDisplay/QuestionsDisplay";
+import Loading from "../../Loading";
 
 const DomainDetails = (props) => {
 	const testId = props.match.params.id;
 	const domainId = props.match.params.domainId;
 
-	const [domainDetails] = useState(props.location.state.domain);
+	const [domainDetails, setDomainDetails] = useState(
+		props.location.state?.domain
+	);
 	const [loading, setLoading] = useState(true);
 	const [questionAdd, setQuestionAdd] = useState(false);
 
@@ -41,9 +47,13 @@ const DomainDetails = (props) => {
 		setQuesLoading(false);
 	};
 
-	// const getDomainDetails = async () => {
-	// 	const details = await fetchD;
-	// };
+	const getDomainDetails = async () => {
+		const token = localStorage.getItem("clubAuthToken");
+		const details = await fetchSingleDomainDetails(domainId, token);
+
+		setDomainDetails(details);
+		setLoading(false);
+	};
 
 	const handleModalClose = () => {
 		getQuestions();
@@ -51,12 +61,16 @@ const DomainDetails = (props) => {
 	};
 
 	useEffect(() => {
-		// if (!domainDetails) {
-		// 	getDomainDetails();
-		// }
+		if (!domainDetails) {
+			getDomainDetails();
+		}
 
 		getQuestions();
 	}, []);
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	return (
 		<>
