@@ -9,6 +9,7 @@ import {
 	makeStyles,
 	Grid,
 } from "@material-ui/core";
+import TestBox from "../../../components/TestBox/Testbox";
 import { red, green, yellow } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,66 +26,33 @@ const Results = () => {
 
 	const classes = useStyles();
 
-	return (
-		<Container>
-			<Paper elevation={3} className={classes.contPaper}>
-				<Container>
-					<div style={{ display: "flex" }}>
-						<Typography
-							gutterBottom
-							variant="h2"
-							style={{
-								fontFamily: "Source Sans Pro",
-								fontWeight: "600",
-							}}
-						>
-							Results
-						</Typography>
-						<div style={{ flex: "1" }}></div>
-						<div style={{ display: "flex" }}>
-							<div>
-								<Typography
-									variant="h5"
-									style={{
-										fontFamily: "Source Sans Pro",
-										fontWeight: "600",
-										backgroundColor: green[500],
-									}}
-								>
-									Published
-								</Typography>
-							</div>
-							<div>
-								<Typography
-									variant="h5"
-									style={{
-										fontFamily: "Source Sans Pro",
-										fontWeight: "600",
-										backgroundColor: yellow[500],
-									}}
-								>
-									Finalized
-								</Typography>
-							</div>
-							<div>
-								<Typography
-									variant="h5"
-									style={{
-										fontFamily: "Source Sans Pro",
-										fontWeight: "600",
-										backgroundColor: red[500],
-									}}
-								>
-									Unfinalized
-								</Typography>
-							</div>
-						</div>
-					</div>
-					<Divider />
-				</Container>
-			</Paper>
-		</Container>
-	);
+  let tests = testsCreated.map((data, i) => (
+    <TestBox key={i} index={i} data={data} />
+  ));
+
+  return (
+    <Container>
+      <Paper elevation={3} className={classes.contPaper}>
+        <Container>
+          <div style={{ display: "flex" }}>
+            <Typography
+              gutterBottom
+              variant='h2'
+              style={{
+                fontFamily: "Source Sans Pro",
+                fontWeight: "600",
+              }}>
+              Results
+            </Typography>
+          </div>
+          <Divider />
+          <Grid container item spacing={3} style={{ textAlign: "center",marginTop: "40px", }}>
+            {tests}
+          </Grid>
+        </Container>
+      </Paper>
+    </Container>
+  );
 };
 
 export default Results;

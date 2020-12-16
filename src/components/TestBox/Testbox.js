@@ -1,23 +1,35 @@
 import React from "react";
-import {
-  
-  
-  Avatar,
- 
-  makeStyles,
-  
-} from "@material-ui/core";
+import "./TestBox.css";
+import { Grid, Paper, Typography } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
- 
-  
-  
-}));
 const Testbox = (props) => {
+  console.log(props.data);
+
   return (
-    <Avatar variant='square' >
-      {props.children}
-    </Avatar>
+    <Grid item>
+      <Paper
+        className='testPap'
+        style={{
+          backgroundColor: "red",
+        }}>
+        <div className='testBox'>
+          <div>
+            <Typography variant='h4' style={{
+          color: "white",
+        }}>
+              Test : {props.data.roundNumber}
+            </Typography>
+          </div>
+          <div>
+            <Typography variant='h5' style={{
+          color: "white",
+        }}>
+              Round Type : {props.data.roundType}
+            </Typography>
+          </div>
+        </div>
+      </Paper>
+    </Grid>
   );
 };
 
