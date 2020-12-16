@@ -1,4 +1,7 @@
 import {
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
 	Button,
 	CircularProgress,
 	Container,
@@ -7,12 +10,14 @@ import {
 	Tooltip,
 	Typography,
 } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import { Add, ExpandMore } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { fetchQuestionsInDomain } from "../../../API/GET";
 import QuestionAddModal from "../../../components/Club/QuestionAddModal";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
 import "./DomainDetails.css";
+import "../../../components/Club/QuestionsDisplay/QuestionsDisplay.css";
+import QuestionsDisplay from "../../../components/Club/QuestionsDisplay/QuestionsDisplay";
 
 const DomainDetails = (props) => {
 	const testId = props.match.params.id;
@@ -128,7 +133,26 @@ const DomainDetails = (props) => {
 										No questions created
 									</Typography>
 								</div>
-							) : null}
+							) : (
+								<div className="domain-questions">
+									{questions.map((question, i) => (
+										<Accordion key={i} elevation={4}>
+											<AccordionSummary
+												expandIcon={<ExpandMore />}
+												aria-controls="question-content"
+											>
+												{question.description}
+											</AccordionSummary>
+											<AccordionDetails>
+												<QuestionsDisplay
+													questionType={question.type}
+													question={question}
+												/>
+											</AccordionDetails>
+										</Accordion>
+									))}
+								</div>
+							)}
 						</div>
 					</div>
 				</Container>
