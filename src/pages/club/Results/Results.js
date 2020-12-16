@@ -9,8 +9,8 @@ import {
 	makeStyles,
 	Grid,
 } from "@material-ui/core";
-import TestBox from "../../../components/TestBox/Testbox";
-import { red, green, yellow } from "@material-ui/core/colors";
+import "../../../components/Club/TestTile/TestTile.css";
+import ClubTestTile from "../../../components/Club/TestTile/TestTile";
 
 const useStyles = makeStyles((theme) => ({
 	contPaper: {
@@ -26,33 +26,37 @@ const Results = () => {
 
 	const classes = useStyles();
 
-  let tests = testsCreated.map((data, i) => (
-    <TestBox key={i} index={i} data={data} />
-  ));
+	let tests = testsCreated.map((data, i) => (
+		<Grid item sm={6} md={3}>
+			<ClubTestTile key={i} test={data} />
+		</Grid>
+	));
 
-  return (
-    <Container>
-      <Paper elevation={3} className={classes.contPaper}>
-        <Container>
-          <div style={{ display: "flex" }}>
-            <Typography
-              gutterBottom
-              variant='h2'
-              style={{
-                fontFamily: "Source Sans Pro",
-                fontWeight: "600",
-              }}>
-              Results
-            </Typography>
-          </div>
-          <Divider />
-          <Grid container item spacing={3} style={{ textAlign: "center",marginTop: "40px", }}>
-            {tests}
-          </Grid>
-        </Container>
-      </Paper>
-    </Container>
-  );
+	return (
+		<Container>
+			<div style={{ display: "flex" }}>
+				<Typography
+					gutterBottom
+					variant="h2"
+					style={{
+						fontFamily: "Source Sans Pro",
+						fontWeight: "600",
+					}}
+				>
+					Results
+				</Typography>
+			</div>
+			<Divider />
+			<Grid
+				container
+				item
+				spacing={3}
+				style={{ textAlign: "center", margin: "3% 4%" }}
+			>
+				{tests}
+			</Grid>
+		</Container>
+	);
 };
 
 export default Results;
