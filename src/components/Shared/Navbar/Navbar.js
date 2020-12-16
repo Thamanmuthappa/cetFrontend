@@ -1,9 +1,20 @@
-import { AppBar, Toolbar, Typography } from "@material-ui/core";
-import React from "react";
-import { Link } from "react-router-dom";
+import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
+import React, { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { ClubContext } from "../../../context/ClubContext";
 import "./Navbar.css";
 
 const Navbar = ({ location, home }) => {
+	const history = useHistory();
+
+	const { setLoginFalse } = useContext(ClubContext);
+
+	const handleLogout = () => {
+		setLoginFalse();
+
+		history.push("/club/signin");
+	};
+
 	return (
 		<AppBar
 			className="navbar"
@@ -23,10 +34,21 @@ const Navbar = ({ location, home }) => {
 						className="nav-img"
 					/>
 				</Link>
-				<Typography variant="h5" className="nav-brand">
+				<Typography
+					variant="h5"
+					className="nav-brand"
+					style={{ flex: 1 }}
+				>
 					{location}
 				</Typography>
 				{/* <Avatar alt="SB" /> */}
+				<Button
+					variant="container"
+					className="logout-btn-nav"
+					onClick={handleLogout}
+				>
+					LogOut
+				</Button>
 			</Toolbar>
 		</AppBar>
 	);
