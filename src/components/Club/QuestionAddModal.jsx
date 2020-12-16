@@ -17,6 +17,7 @@ import { Close } from "@material-ui/icons";
 import React, { useState } from "react";
 import clsx from "clsx";
 import CreateSingleCorrect from "./QuestionForms/CreateSingleCorrect";
+import CreateShortQuestion from "./QuestionForms/CreateShortQuestion";
 
 const useStyle = makeStyles((theme) => ({
 	drawer: {
@@ -90,6 +91,7 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 							<ListItem
 								button
 								className="add-question-drawer-item"
+								onClick={() => setSelectedType(type.id)}
 							>
 								<ListItemText primary={type.name} />
 							</ListItem>
@@ -101,7 +103,18 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 			<div className="create-question-area">
 				<Typography variant="h4">Enter Question details</Typography>
 				<div className="create-question-display">
-					{selectedType === 1 ? <CreateSingleCorrect /> : null}
+					{selectedType === 1 ? (
+						<CreateSingleCorrect
+							testId={testId}
+							domainId={domainId}
+						/>
+					) : null}
+					{selectedType === 3 ? (
+						<CreateShortQuestion
+							testId={testId}
+							domainId={domainId}
+						/>
+					) : null}
 				</div>
 			</div>
 		</Dialog>

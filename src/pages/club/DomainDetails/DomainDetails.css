@@ -19,4 +19,5 @@
 .create-question-area {
 	padding-left: 300px;
 	padding-top: 80px;
+	overflow: auto;
 }
