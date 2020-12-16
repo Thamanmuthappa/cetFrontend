@@ -7,6 +7,7 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
+import { postQuestionInDomain } from "../../../API/POST";
 
 const optionsArr = [
 	{ option: { text: "", isCorrect: true } },
@@ -47,6 +48,7 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 
 		setQuestion(curr);
 		setCurrentSelected(i);
+		console.log(optionsArr);
 	};
 
 	const handleFormChange = (e) => {
@@ -56,8 +58,24 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 		}));
 	};
 
-	const submit = () => {
+	const resetModal = () => {
+		const curr = JSON.parse(JSON.stringify(question));
+		curr.questionMarks = 0;
+		curr.description = "";
+		curr.options = optionsArr;
+
+		setQuestion(curr);
+	};
+
+	const submit = async () => {
 		console.log(question);
+		const token = localStorage.getItem("clubAuthToken");
+
+		const result = await postQuestionInDomain(question, token);
+
+		if (result) {
+			resetModal();
+		}
 	};
 
 	return (

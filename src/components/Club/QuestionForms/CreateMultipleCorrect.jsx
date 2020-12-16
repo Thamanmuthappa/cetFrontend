@@ -7,6 +7,7 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
+import { postQuestionInDomain } from "../../../API/POST";
 
 const optionsArr = [
 	{ option: { text: "", isCorrect: true } },
@@ -66,10 +67,25 @@ const CreateMultipleCorrect = ({ testId, domainId }) => {
 		}));
 	};
 
-	const submit = () => {
-		console.log(question);
+	const resetModal = () => {
+		const curr = JSON.parse(JSON.stringify(question));
+		curr.questionMarks = 0;
+		curr.description = "";
+		curr.options = optionsArr;
+
+		setQuestion(curr);
 	};
 
+	const submit = async () => {
+		console.log(question);
+		const token = localStorage.getItem("clubAuthToken");
+
+		const result = await postQuestionInDomain(question, token);
+
+		if (result) {
+			resetModal();
+		}
+	};
 	return (
 		<div className="create-question-form">
 			<Typography variant="h6" className="light-text">

@@ -26,6 +26,7 @@ const DomainDetails = (props) => {
 	const [questionsLoading, setQuesLoading] = useState(true);
 
 	const getQuestions = async () => {
+		setQuesLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 		const questions = await fetchQuestionsInDomain(testId, domainId, token);
 
@@ -38,6 +39,11 @@ const DomainDetails = (props) => {
 	// const getDomainDetails = async () => {
 	// 	const details = await fetchD;
 	// };
+
+	const handleModalClose = () => {
+		getQuestions();
+		setQuestionAdd(false);
+	};
 
 	useEffect(() => {
 		// if (!domainDetails) {
@@ -129,7 +135,7 @@ const DomainDetails = (props) => {
 			</div>
 			<QuestionAddModal
 				open={questionAdd}
-				handleClose={() => setQuestionAdd(false)}
+				handleClose={handleModalClose}
 				testId={testId}
 				domainId={domainId}
 			/>

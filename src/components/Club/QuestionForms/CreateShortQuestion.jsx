@@ -2,6 +2,7 @@ import { Divider, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
+import { postQuestionInDomain } from "../../../API/POST";
 
 const CreateShortQuestion = ({ testId, domainId }) => {
 	const { register, handleSubmit } = useForm();
@@ -21,8 +22,22 @@ const CreateShortQuestion = ({ testId, domainId }) => {
 		}));
 	};
 
-	const submit = () => {
+	const resetModal = () => {
+		const curr = JSON.parse(JSON.stringify(question));
+		curr.questionMarks = 0;
+		curr.description = "";
+		setQuestion(curr);
+	};
+
+	const submit = async () => {
 		console.log(question);
+		const token = localStorage.getItem("clubAuthToken");
+
+		const result = await postQuestionInDomain(question, token);
+
+		if (result) {
+			resetModal();
+		}
 	};
 
 	return (
