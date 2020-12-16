@@ -1,12 +1,11 @@
 import React from "react";
-
-import "./ClubDomainTile.css";
+import "./TestTile.css";
 
 const ClubTestTile = ({ test }) => {
-	const { name };
+	const { roundNumber } = test;
 	return (
-		<div className="club-domain-tile">
-			<span className="tile-title">{title}</span>
+		<div className="club-test-tile">
+			<span className="tile-title">Round: #{roundNumber}</span>
 		</div>
 	);
 };
