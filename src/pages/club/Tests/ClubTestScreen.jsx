@@ -41,17 +41,16 @@ const ClubTestScreen = () => {
 				) : (
 					<div className="club-tests-display">
 						<Grid container spacing={2}>
-							{testsCreated.map((test) => (
-								<>
-									<Grid
-										item
-										sm={6}
-										md={3}
-										onClick={() => handleTestClick(test)}
-									>
-										<ClubTestTile test={test} />
-									</Grid>
-								</>
+							{testsCreated.map((test, i) => (
+								<Grid
+									key={i}
+									item
+									sm={6}
+									md={3}
+									onClick={() => handleTestClick(test)}
+								>
+									<ClubTestTile test={test} />
+								</Grid>
 							))}
 						</Grid>
 					</div>

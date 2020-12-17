@@ -42,11 +42,7 @@ const Navbar = ({ location, home }) => {
 					{location}
 				</Typography>
 				{/* <Avatar alt="SB" /> */}
-				<Button
-					variant="container"
-					className="logout-btn-nav"
-					onClick={handleLogout}
-				>
+				<Button className="logout-btn-nav" onClick={handleLogout}>
 					LogOut
 				</Button>
 			</Toolbar>
