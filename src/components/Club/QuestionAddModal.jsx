@@ -10,9 +10,11 @@ import {
 	ListItemText,
 	makeStyles,
 	Slide,
+	Snackbar,
 	Toolbar,
 	Typography,
 } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
 import { Close } from "@material-ui/icons";
 import React, { useState } from "react";
 import clsx from "clsx";
@@ -65,6 +67,12 @@ const QuestionAddModal = ({
 
 	const [selectedType, setSelectedType] = useState(1);
 	const [adding, setAdding] = useState(false);
+
+	const [questionSnack, setQuestionSnack] = useState(false);
+
+	const snackOps = {
+		setQuestionSnack,
+	};
 
 	return (
 		<Dialog
@@ -119,6 +127,7 @@ const QuestionAddModal = ({
 							domainId={domainId}
 							setLoading={setAdding}
 							addMarks={addMarks}
+							snackOps={snackOps}
 						/>
 					) : null}
 					{selectedType === 2 ? (
@@ -127,6 +136,7 @@ const QuestionAddModal = ({
 							domainId={domainId}
 							setLoading={setAdding}
 							addMarks={addMarks}
+							snackOps={snackOps}
 						/>
 					) : null}
 					{selectedType === 3 ? (
@@ -135,6 +145,7 @@ const QuestionAddModal = ({
 							domainId={domainId}
 							setLoading={setAdding}
 							addMarks={addMarks}
+							snackOps={snackOps}
 						/>
 					) : null}
 					{selectedType === 4 ? (
@@ -143,10 +154,20 @@ const QuestionAddModal = ({
 							domainId={domainId}
 							setLoading={setAdding}
 							addMarks={addMarks}
+							snackOps={snackOps}
 						/>
 					) : null}
 				</div>
 			</div>
+			<Snackbar
+				open={questionSnack}
+				autoHideDuration={5000}
+				onClose={() => setQuestionSnack(false)}
+			>
+				<Alert variant="filled" severity="success">
+					Question added successfully!
+				</Alert>
+			</Snackbar>
 		</Dialog>
 	);
 };

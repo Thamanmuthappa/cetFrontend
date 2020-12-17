@@ -184,7 +184,7 @@ const ClubSignin = () => {
 									<Grid item xs={12}>
 										<TextField
 											name="email"
-											value={email}
+											defaultValue={email}
 											onChange={(e) =>
 												setEmail(e.target.value)
 											}
@@ -205,7 +205,7 @@ const ClubSignin = () => {
 									<Grid item xs={12}>
 										<TextField
 											name="password"
-											value={password}
+											defaultValue={password}
 											onChange={(e) =>
 												setPassword(e.target.value)
 											}
@@ -219,12 +219,8 @@ const ClubSignin = () => {
 											})}
 											error={errors.password}
 											helperText={
-												(errors.password?.type ===
-													"required" &&
-													"Password is required") ||
-												(errors.password?.type ===
-													"minLength" &&
-													"Password should be at least 8 characters long!")
+												errors.password &&
+												"Password should be at least 8 characters long!"
 											}
 										/>
 									</Grid>

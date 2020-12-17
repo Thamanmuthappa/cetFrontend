@@ -16,7 +16,13 @@ const optionsArr = [
 	{ option: { text: "", isCorrect: false } },
 ];
 
-const CreateMultipleCorrect = ({ testId, domainId, setLoading, addMarks }) => {
+const CreateMultipleCorrect = ({
+	testId,
+	domainId,
+	setLoading,
+	addMarks,
+	snackOps,
+}) => {
 	const { register, handleSubmit } = useForm();
 
 	const [question, setQuestion] = useState({
@@ -29,6 +35,8 @@ const CreateMultipleCorrect = ({ testId, domainId, setLoading, addMarks }) => {
 	});
 
 	const [currentSelected, setCurrentSelected] = useState([0]);
+
+	const { setQuestionSnack } = snackOps;
 
 	const handleOptionChange = (e, i) => {
 		const curr = JSON.parse(JSON.stringify(question));
@@ -85,6 +93,7 @@ const CreateMultipleCorrect = ({ testId, domainId, setLoading, addMarks }) => {
 
 		if (result) {
 			addMarks(question.questionMarks);
+			setQuestionSnack(true);
 			resetModal();
 		}
 

@@ -4,7 +4,13 @@ import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
 import { postQuestionInDomain } from "../../../API/POST";
 
-const CreateShortQuestion = ({ testId, domainId, setLoading, addMarks }) => {
+const CreateShortQuestion = ({
+	testId,
+	domainId,
+	setLoading,
+	addMarks,
+	snackOps,
+}) => {
 	const { register, handleSubmit } = useForm();
 
 	const [question, setQuestion] = useState({
@@ -14,6 +20,8 @@ const CreateShortQuestion = ({ testId, domainId, setLoading, addMarks }) => {
 		questionMarks: 0,
 		description: "",
 	});
+
+	const { setQuestionSnack } = snackOps;
 
 	const handleFormChange = (e) => {
 		setQuestion((prevState) => ({
@@ -38,6 +46,7 @@ const CreateShortQuestion = ({ testId, domainId, setLoading, addMarks }) => {
 
 		if (result) {
 			addMarks(question.questionMarks);
+			setQuestionSnack(true);
 			resetModal();
 		}
 		setLoading(false);
