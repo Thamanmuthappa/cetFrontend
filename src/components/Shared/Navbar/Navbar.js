@@ -22,26 +22,32 @@ const Navbar = ({ location, home }) => {
         backgroundColor: "#fdf9f9",
         zIndex: "1400",
 
-        position: "relative",
-      }}
-      elevation={2}>
-      <Toolbar>
-        <Link to='/club/dashboard'>
-          <img src='/assets/Group2.png' alt='logo' className='nav-img' />
-        </Link>
-        <Typography variant='h5' className='nav-brand' style={{ flex: 1 }}>
-          {location}
-        </Typography>
-        {/* <Avatar alt="SB" /> */}
-        <Button
-          variant='contained'
-          className='logout-btn-nav'
-          onClick={handleLogout}>
-          LogOut
-        </Button>
-      </Toolbar>
-    </AppBar>
-  );
+				position: "relative",
+			}}
+			elevation={2}
+		>
+			<Toolbar>
+				<Link to="/club/dashboard">
+					<img
+						src="/assets/Group2.png"
+						alt="logo"
+						className="nav-img"
+					/>
+				</Link>
+				<Typography
+					variant="h5"
+					className="nav-brand"
+					style={{ flex: 1 }}
+				>
+					{location}
+				</Typography>
+				{/* <Avatar alt="SB" /> */}
+				<Button className="logout-btn-nav" onClick={handleLogout}>
+					LogOut
+				</Button>
+			</Toolbar>
+		</AppBar>
+	);
 };
 
 export default Navbar;

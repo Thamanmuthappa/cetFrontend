@@ -63,6 +63,8 @@ const DomainDetails = (props) => {
 	useEffect(() => {
 		if (!domainDetails) {
 			getDomainDetails();
+		} else {
+			setLoading(false);
 		}
 
 		getQuestions();
