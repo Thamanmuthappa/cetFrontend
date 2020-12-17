@@ -327,7 +327,6 @@ const SignUp = () => {
 											}
 										/>
 									</Grid>
-
 									<Grid item xs={12}>
 										<p style={{ textAlign: "center" }}>
 											Already have an account?{" "}
@@ -425,7 +424,7 @@ const SignUp = () => {
 					<p>Account Sucessfully Created</p>
 				</Snackbar>
 				<Grid item xs={6} style={{ textAlign: "center" }}>
-					<img src="/assets/celebration.png" alt="" height="auto" />
+					<img src="/assets/celebration.jpg" alt="" height="auto" />
 				</Grid>
 			</Grid>
 		</div>
