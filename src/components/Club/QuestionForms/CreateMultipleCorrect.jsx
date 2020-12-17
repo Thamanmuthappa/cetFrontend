@@ -16,7 +16,7 @@ const optionsArr = [
 	{ option: { text: "", isCorrect: false } },
 ];
 
-const CreateMultipleCorrect = ({ testId, domainId, setLoading }) => {
+const CreateMultipleCorrect = ({ testId, domainId, setLoading, addMarks }) => {
 	const { register, handleSubmit } = useForm();
 
 	const [question, setQuestion] = useState({
@@ -84,6 +84,7 @@ const CreateMultipleCorrect = ({ testId, domainId, setLoading }) => {
 		const result = await postQuestionInDomain(question, token);
 
 		if (result) {
+			addMarks(question.questionMarks);
 			resetModal();
 		}
 

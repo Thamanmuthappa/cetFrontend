@@ -54,7 +54,13 @@ const questionTypes = [
 	},
 ];
 
-const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
+const QuestionAddModal = ({
+	open,
+	handleClose,
+	testId,
+	domainId,
+	addMarks,
+}) => {
 	const classes = useStyle();
 
 	const [selectedType, setSelectedType] = useState(1);
@@ -112,6 +118,7 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 							testId={testId}
 							domainId={domainId}
 							setLoading={setAdding}
+							addMarks={addMarks}
 						/>
 					) : null}
 					{selectedType === 2 ? (
@@ -119,6 +126,7 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 							testId={testId}
 							domainId={domainId}
 							setLoading={setAdding}
+							addMarks={addMarks}
 						/>
 					) : null}
 					{selectedType === 3 ? (
@@ -126,6 +134,7 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 							testId={testId}
 							domainId={domainId}
 							setLoading={setAdding}
+							addMarks={addMarks}
 						/>
 					) : null}
 					{selectedType === 4 ? (
@@ -133,6 +142,7 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 							testId={testId}
 							domainId={domainId}
 							setLoading={setAdding}
+							addMarks={addMarks}
 						/>
 					) : null}
 				</div>
