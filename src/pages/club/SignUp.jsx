@@ -11,6 +11,7 @@ import {
 	TextField,
 	Typography,
 	Snackbar,
+	CircularProgress,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -75,17 +76,18 @@ const SignUp = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPass] = useState("");
 	const [type, setType] = useState("");
-	const [clubCode, setClubCode] = useState("");
 	const [otp, setOTP] = useState("");
 
+	const [loading, setLoading] = useState(false);
+
 	const handleFormSubmit = async () => {
+		setLoading(true);
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/signup`;
 		const data = {
 			email,
 			password,
 			name,
 			type,
-			clubCode,
 		};
 
 		console.log(data);
@@ -94,10 +96,12 @@ const SignUp = () => {
 			await Axios.post(url, data).then((res) => {
 				console.log(res);
 				setOpen(true);
+				setLoading(false);
 				setTimeout(setDisabled(false), 60000);
 			});
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
 	};
 
@@ -306,27 +310,6 @@ const SignUp = () => {
 											</MenuItem>
 										</TextField>
 									</Grid>
-									<Grid item xs={12}>
-										<TextField
-											name="clubCode"
-											label="Invite Code *"
-											variant="outlined"
-											type="test"
-											value={clubCode}
-											onChange={(e) =>
-												setClubCode(e.target.value)
-											}
-											inputRef={register({
-												required: true,
-											})}
-											className="form-input"
-											error={errors.clubCode}
-											helperText={
-												errors.clubCode &&
-												"Invite Code is required"
-											}
-										/>
-									</Grid>
 
 									<Grid item xs={12}>
 										<p style={{ textAlign: "center" }}>
@@ -362,8 +345,18 @@ const SignUp = () => {
 												lineHeight: "150%",
 												outline: "none",
 											}}
+											disabled={loading}
 										>
-											Sign Up
+											{!loading ? (
+												"Sign Up"
+											) : (
+												<CircularProgress
+													size={20}
+													style={{
+														color: "white",
+													}}
+												/>
+											)}
 										</Button>
 									</Grid>
 								</Grid>

@@ -2,6 +2,7 @@ import {
 	Button,
 	Card,
 	CardContent,
+	CircularProgress,
 	Grid,
 	Hidden,
 	makeStyles,
@@ -76,7 +77,10 @@ const ClubSignin = () => {
 
 	const [redirect, setRedirect] = useState(false);
 
+	const [loading, setLoading] = useState(false);
+
 	const handleFormSubmit = async () => {
+		setLoading(true);
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/login`;
 		const data = {
 			email,
@@ -88,9 +92,11 @@ const ClubSignin = () => {
 				localStorage.setItem("clubAuthToken", res.data.token);
 				setClubDetails(res.data.clubDetails);
 				setLoginTrue(res.data.token);
+				setLoading(false);
 			});
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
 	};
 
@@ -262,8 +268,18 @@ const ClubSignin = () => {
 												lineHeight: "150%",
 												outline: "none",
 											}}
+											disabled={loading}
 										>
-											Sign In
+											{!loading ? (
+												"Sign In"
+											) : (
+												<CircularProgress
+													size={20}
+													style={{
+														color: "white",
+													}}
+												/>
+											)}
 										</Button>
 									</Grid>
 								</Grid>

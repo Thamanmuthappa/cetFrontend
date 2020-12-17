@@ -16,7 +16,7 @@ const optionsArr = [
 	{ option: { text: "", isCorrect: false } },
 ];
 
-const CreateMultipleCorrect = ({ testId, domainId }) => {
+const CreateMultipleCorrect = ({ testId, domainId, setLoading }) => {
 	const { register, handleSubmit } = useForm();
 
 	const [question, setQuestion] = useState({
@@ -78,6 +78,7 @@ const CreateMultipleCorrect = ({ testId, domainId }) => {
 
 	const submit = async () => {
 		console.log(question);
+		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 
 		const result = await postQuestionInDomain(question, token);
@@ -85,6 +86,8 @@ const CreateMultipleCorrect = ({ testId, domainId }) => {
 		if (result) {
 			resetModal();
 		}
+
+		setLoading(false);
 	};
 	return (
 		<div className="create-question-form">

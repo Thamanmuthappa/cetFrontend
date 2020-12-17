@@ -58,6 +58,7 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 	const classes = useStyle();
 
 	const [selectedType, setSelectedType] = useState(1);
+	const [adding, setAdding] = useState(false);
 
 	return (
 		<Dialog
@@ -80,6 +81,7 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 						className="dialog-top-btn"
 						type="submit"
 						form={`create-question-${selectedType}`}
+						disabled={adding}
 					>
 						Create
 					</Button>
@@ -109,24 +111,28 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 						<CreateSingleCorrect
 							testId={testId}
 							domainId={domainId}
+							setLoading={setAdding}
 						/>
 					) : null}
 					{selectedType === 2 ? (
 						<CreateMultipleCorrect
 							testId={testId}
 							domainId={domainId}
+							setLoading={setAdding}
 						/>
 					) : null}
 					{selectedType === 3 ? (
 						<CreateShortQuestion
 							testId={testId}
 							domainId={domainId}
+							setLoading={setAdding}
 						/>
 					) : null}
 					{selectedType === 4 ? (
 						<CreateLongQuestion
 							testId={testId}
 							domainId={domainId}
+							setLoading={setAdding}
 						/>
 					) : null}
 				</div>

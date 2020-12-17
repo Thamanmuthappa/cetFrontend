@@ -16,7 +16,7 @@ const optionsArr = [
 	{ option: { text: "", isCorrect: false } },
 ];
 
-const CreateSingleCorrect = ({ testId, domainId }) => {
+const CreateSingleCorrect = ({ testId, domainId, setLoading }) => {
 	const { register, handleSubmit } = useForm();
 
 	const [question, setQuestion] = useState({
@@ -69,6 +69,7 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 
 	const submit = async () => {
 		console.log(question);
+		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 
 		const result = await postQuestionInDomain(question, token);
@@ -76,6 +77,7 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 		if (result) {
 			resetModal();
 		}
+		setLoading(false);
 	};
 
 	return (

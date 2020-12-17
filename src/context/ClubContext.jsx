@@ -55,11 +55,16 @@ const ClubContextProvider = ({ children }) => {
 		dispatch({ type: "SET_CLUB_TESTS", payload: tests });
 	};
 
+	const addTest = (test) => {
+		dispatch({ type: "ADD_TEST", payload: test });
+	};
+
 	const values = {
 		...state,
 		setLoginTrue,
 		setLoginFalse,
 		setClubDetails,
+		addTest,
 	};
 
 	if (loading) {
@@ -94,6 +99,11 @@ const clubReducer = (state, action) => {
 			return {
 				...state,
 				testsCreated: action.payload,
+			};
+		case "ADD_TEST":
+			return {
+				...state,
+				testsCreated: [...state.testsCreated, action.payload],
 			};
 	}
 };
