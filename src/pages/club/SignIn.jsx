@@ -2,6 +2,7 @@ import {
 	Button,
 	Card,
 	CardContent,
+	CircularProgress,
 	Grid,
 	Hidden,
 	makeStyles,
@@ -76,7 +77,10 @@ const ClubSignin = () => {
 
 	const [redirect, setRedirect] = useState(false);
 
+	const [loading, setLoading] = useState(false);
+
 	const handleFormSubmit = async () => {
+		setLoading(true);
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/login`;
 		const data = {
 			email,
@@ -88,9 +92,11 @@ const ClubSignin = () => {
 				localStorage.setItem("clubAuthToken", res.data.token);
 				setClubDetails(res.data.clubDetails);
 				setLoginTrue(res.data.token);
+				setLoading(false);
 			});
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
 	};
 
@@ -178,7 +184,7 @@ const ClubSignin = () => {
 									<Grid item xs={12}>
 										<TextField
 											name="email"
-											value={email}
+											defaultValue={email}
 											onChange={(e) =>
 												setEmail(e.target.value)
 											}
@@ -199,7 +205,7 @@ const ClubSignin = () => {
 									<Grid item xs={12}>
 										<TextField
 											name="password"
-											value={password}
+											defaultValue={password}
 											onChange={(e) =>
 												setPassword(e.target.value)
 											}
@@ -213,12 +219,8 @@ const ClubSignin = () => {
 											})}
 											error={errors.password}
 											helperText={
-												(errors.password?.type ===
-													"required" &&
-													"Password is required") ||
-												(errors.password?.type ===
-													"minLength" &&
-													"Password should be at least 8 characters long!")
+												errors.password &&
+												"Password should be at least 8 characters long!"
 											}
 										/>
 									</Grid>
@@ -262,8 +264,18 @@ const ClubSignin = () => {
 												lineHeight: "150%",
 												outline: "none",
 											}}
+											disabled={loading}
 										>
-											Sign In
+											{!loading ? (
+												"Sign In"
+											) : (
+												<CircularProgress
+													size={20}
+													style={{
+														color: "white",
+													}}
+												/>
+											)}
 										</Button>
 									</Grid>
 								</Grid>

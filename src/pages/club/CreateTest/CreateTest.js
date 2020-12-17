@@ -10,7 +10,7 @@ import {
 	Typography,
 } from "@material-ui/core";
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
 import "./CreateTest.css";
@@ -18,6 +18,7 @@ import { DateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
+import { ClubContext } from "../../../context/ClubContext";
 
 const CreateTest = () => {
 	const { register, handleSubmit } = useForm();
@@ -25,23 +26,17 @@ const CreateTest = () => {
 		roundNumber: 1,
 		roundType: "",
 		instructions: "",
-		duration: 0,
-		maxMarks: 0,
+
 		scheduledForDate: new Date(),
 		scheduledEndDate: new Date(),
 		graded: true,
 	});
 
+	const { addTest } = useContext(ClubContext);
+
 	const [loading, setLoading] = useState(false);
 
 	const history = useHistory();
-
-	const handleDurationChange = (e, val) => {
-		setFormDetails((prevState) => ({
-			...prevState,
-			duration: val,
-		}));
-	};
 
 	const handleSlider = (event) => {
 		setFormDetails((prevState) => ({
@@ -90,7 +85,7 @@ const CreateTest = () => {
 			}).then((res) => {
 				console.log(res);
 				setLoading(false);
-
+				addTest(res.data.testDetails);
 				history.push(`/club/test/${res.data.testDetails._id}`);
 			});
 		} catch (error) {
@@ -113,18 +108,6 @@ const CreateTest = () => {
 					onSubmit={handleSubmit(createTest)}
 				>
 					<Grid container spacing={3}>
-						<Grid item xs={6}>
-							<TextField
-								name="maxMarks"
-								type="number"
-								label="Maximum marks"
-								variant="outlined"
-								className="test-create-input"
-								value={formDetails.maxMarks}
-								onChange={(e) => handleFormChange(e)}
-								inputRef={register({ required: true })}
-							/>
-						</Grid>
 						<Grid item xs={6}>
 							<FormControlLabel
 								control={
@@ -177,22 +160,7 @@ const CreateTest = () => {
 						onChange={(e) => handleFormChange(e)}
 						inputRef={register({ required: true })}
 					/>
-					<div className="duration-select">
-						<Typography id="duration-select" gutterBottom>
-							Duration
-						</Typography>
-						<Slider
-							name="duration"
-							defaultValue={10}
-							aria-labelledby="discrete-slider"
-							valueLabelDisplay="auto"
-							step={5}
-							marks
-							min={10}
-							max={60}
-							onChange={handleDurationChange}
-						/>
-					</div>
+
 					<Divider />
 					<MuiPickersUtilsProvider utils={MomentUtils}>
 						<div className="date-time-picker-section">

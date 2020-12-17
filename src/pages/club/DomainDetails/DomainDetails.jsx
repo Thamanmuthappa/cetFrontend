@@ -47,6 +47,13 @@ const DomainDetails = (props) => {
 		setQuesLoading(false);
 	};
 
+	const addMarksToDomain = (marks) => {
+		setDomainDetails((prevState) => ({
+			...prevState,
+			domainMarks: Number(prevState.domainMarks) + Number(marks),
+		}));
+	};
+
 	const getDomainDetails = async () => {
 		const token = localStorage.getItem("clubAuthToken");
 		const details = await fetchSingleDomainDetails(domainId, token);
@@ -178,6 +185,7 @@ const DomainDetails = (props) => {
 				handleClose={handleModalClose}
 				testId={testId}
 				domainId={domainId}
+				addMarks={addMarksToDomain}
 			/>
 		</>
 	);

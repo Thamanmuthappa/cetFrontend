@@ -39,6 +39,7 @@ const DomainAddModal = ({ open, handleClose, id, refresh }) => {
 	};
 
 	const handleFormSubmit = async () => {
+		setLoading(true);
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/add`;
 		const token = localStorage.getItem("clubAuthToken");
 
@@ -49,6 +50,7 @@ const DomainAddModal = ({ open, handleClose, id, refresh }) => {
 				},
 			}).then((res) => {
 				console.log(res);
+				setLoading(false);
 				handleClose();
 				refresh();
 			});

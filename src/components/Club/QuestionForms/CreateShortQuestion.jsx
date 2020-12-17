@@ -4,7 +4,13 @@ import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
 import { postQuestionInDomain } from "../../../API/POST";
 
-const CreateShortQuestion = ({ testId, domainId }) => {
+const CreateShortQuestion = ({
+	testId,
+	domainId,
+	setLoading,
+	addMarks,
+	snackOps,
+}) => {
 	const { register, handleSubmit } = useForm();
 
 	const [question, setQuestion] = useState({
@@ -14,6 +20,8 @@ const CreateShortQuestion = ({ testId, domainId }) => {
 		questionMarks: 0,
 		description: "",
 	});
+
+	const { setQuestionSnack } = snackOps;
 
 	const handleFormChange = (e) => {
 		setQuestion((prevState) => ({
@@ -31,13 +39,17 @@ const CreateShortQuestion = ({ testId, domainId }) => {
 
 	const submit = async () => {
 		console.log(question);
+		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 
 		const result = await postQuestionInDomain(question, token);
 
 		if (result) {
+			addMarks(question.questionMarks);
+			setQuestionSnack(true);
 			resetModal();
 		}
+		setLoading(false);
 	};
 
 	return (

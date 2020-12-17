@@ -4,8 +4,16 @@ import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
 import { postQuestionInDomain } from "../../../API/POST";
 
-const CreateLongQuestion = ({ testId, domainId }) => {
+const CreateLongQuestion = ({
+	testId,
+	domainId,
+	setLoading,
+	addMarks,
+	snackOps,
+}) => {
 	const { register, handleSubmit } = useForm();
+
+	const { setQuestionSnack } = snackOps;
 
 	const [question, setQuestion] = useState({
 		type: "longAnswer",
@@ -31,13 +39,18 @@ const CreateLongQuestion = ({ testId, domainId }) => {
 
 	const submit = async () => {
 		console.log(question);
+		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 
 		const result = await postQuestionInDomain(question, token);
 
 		if (result) {
+			addMarks(question.questionMarks);
+			setQuestionSnack(true);
 			resetModal();
 		}
+
+		setLoading(false);
 	};
 
 	return (

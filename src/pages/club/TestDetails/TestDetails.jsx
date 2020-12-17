@@ -63,10 +63,6 @@ const TestDetails = (props) => {
 									<strong>Round Type:</strong>{" "}
 									{testDetails.roundType}
 								</p>
-								<p>
-									<strong>Total Duration:</strong>{" "}
-									{testDetails.duration}
-								</p>
 							</Grid>
 							<Grid item xs={6} sm={3}>
 								<p>

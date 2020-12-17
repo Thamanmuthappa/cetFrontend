@@ -16,7 +16,13 @@ const optionsArr = [
 	{ option: { text: "", isCorrect: false } },
 ];
 
-const CreateSingleCorrect = ({ testId, domainId }) => {
+const CreateSingleCorrect = ({
+	testId,
+	domainId,
+	setLoading,
+	addMarks,
+	snackOps,
+}) => {
 	const { register, handleSubmit } = useForm();
 
 	const [question, setQuestion] = useState({
@@ -29,6 +35,8 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 	});
 
 	const [currentSelected, setCurrentSelected] = useState(0);
+
+	const { setQuestionSnack } = snackOps;
 
 	const handleOptionChange = (e, i) => {
 		const curr = JSON.parse(JSON.stringify(question));
@@ -69,13 +77,17 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 
 	const submit = async () => {
 		console.log(question);
+		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 
 		const result = await postQuestionInDomain(question, token);
 
 		if (result) {
+			addMarks(question.questionMarks);
+			setQuestionSnack(true);
 			resetModal();
 		}
+		setLoading(false);
 	};
 
 	return (
