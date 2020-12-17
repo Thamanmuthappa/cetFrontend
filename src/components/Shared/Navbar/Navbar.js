@@ -5,22 +5,22 @@ import { ClubContext } from "../../../context/ClubContext";
 import "./Navbar.css";
 
 const Navbar = ({ location, home }) => {
-	const history = useHistory();
+  const history = useHistory();
 
-	const { setLoginFalse } = useContext(ClubContext);
+  const { setLoginFalse } = useContext(ClubContext);
 
-	const handleLogout = () => {
-		setLoginFalse();
+  const handleLogout = () => {
+    setLoginFalse();
 
-		history.push("/club/signin");
-	};
+    history.push("/club/signin");
+  };
 
-	return (
-		<AppBar
-			className="navbar"
-			style={{
-				backgroundColor: "#fdf9f9",
-				zIndex: "1400",
+  return (
+    <AppBar
+      className='navbar'
+      style={{
+        backgroundColor: "#fdf9f9",
+        zIndex: "1400",
 
 				position: "relative",
 			}}

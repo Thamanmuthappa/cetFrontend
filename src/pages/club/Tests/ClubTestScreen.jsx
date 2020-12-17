@@ -1,9 +1,9 @@
 import {
-	Button,
-	Container,
-	Divider,
-	Grid,
-	Typography,
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Typography,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import React, { useContext } from "react";
@@ -13,13 +13,13 @@ import { ClubContext } from "../../../context/ClubContext";
 import "./ClubTestScreen.css";
 
 const ClubTestScreen = () => {
-	const { testsCreated } = useContext(ClubContext);
+  const { testsCreated } = useContext(ClubContext);
 
-	const history = useHistory();
+  const history = useHistory();
 
-	const handleTestClick = (test) => {
-		history.push(`/club/test/${test._id}`);
-	};
+  const handleTestClick = (test) => {
+    history.push(`/club/test/${test._id}`);
+  };
 
 	return (
 		<Container className="club-dash-tests">

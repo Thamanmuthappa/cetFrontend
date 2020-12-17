@@ -143,7 +143,7 @@ const ClubSignin = () => {
 				<Hidden mdDown>
 					<Grid item xs={6} style={{ textAlign: "center" }}>
 						<img
-							src="/assets/celebration.png"
+							src="/assets/celebration.jpg"
 							alt="celebration"
 							// width="70%"
 							height="auto"

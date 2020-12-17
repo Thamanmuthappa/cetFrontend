@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap");
+
+
 /* 
 .form-input {
 	padding: 12px 20px !important;
@@ -15,21 +17,21 @@
 */
 
 .form-input {
-	width: 100% !important;
-	background-color: #fdf9f9 !important;
+  width: 100% !important;
+  background-color: #fdf9f9 !important;
 }
 
 .light-text {
-	color: rgb(173, 173, 173);
+  color: rgb(173, 173, 173);
 }
 
 a {
-	text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 .custom-action-btn {
-	font-weight: bold !important;
-	border-radius: 50px !important;
-	padding-left: 50px !important;
-	padding-right: 50px !important;
+  font-weight: bold !important;
+  border-radius: 50px !important;
+  padding-left: 50px !important;
+  padding-right: 50px !important;
 }
