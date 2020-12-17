@@ -17,6 +17,9 @@ import { Close } from "@material-ui/icons";
 import React, { useState } from "react";
 import clsx from "clsx";
 import CreateSingleCorrect from "./QuestionForms/CreateSingleCorrect";
+import CreateShortQuestion from "./QuestionForms/CreateShortQuestion";
+import CreateLongQuestion from "./QuestionForms/CreateLongQuestion";
+import CreateMultipleCorrect from "./QuestionForms/CreateMultipleCorrect";
 
 const useStyle = makeStyles((theme) => ({
 	drawer: {
@@ -72,7 +75,12 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 					<Typography variant="h6" style={{ flex: 1 }}>
 						Add a Question
 					</Typography>
-					<Button color="inherit" className="dialog-top-btn">
+					<Button
+						color="inherit"
+						className="dialog-top-btn"
+						type="submit"
+						form={`create-question-${selectedType}`}
+					>
 						Create
 					</Button>
 				</Toolbar>
@@ -81,23 +89,46 @@ const QuestionAddModal = ({ open, handleClose, testId, domainId }) => {
 				<Toolbar />
 				<List>
 					{questionTypes.map((type) => (
-						<>
+						<div key={type.id}>
 							<ListItem
 								button
-								key={type.id}
 								className="add-question-drawer-item"
+								onClick={() => setSelectedType(type.id)}
 							>
 								<ListItemText primary={type.name} />
 							</ListItem>
 							<Divider />
-						</>
+						</div>
 					))}
 				</List>
 			</Drawer>
 			<div className="create-question-area">
 				<Typography variant="h4">Enter Question details</Typography>
 				<div className="create-question-display">
-					{selectedType === 1 ? <CreateSingleCorrect /> : null}
+					{selectedType === 1 ? (
+						<CreateSingleCorrect
+							testId={testId}
+							domainId={domainId}
+						/>
+					) : null}
+					{selectedType === 2 ? (
+						<CreateMultipleCorrect
+							testId={testId}
+							domainId={domainId}
+						/>
+					) : null}
+					{selectedType === 3 ? (
+						<CreateShortQuestion
+							testId={testId}
+							domainId={domainId}
+						/>
+					) : null}
+					{selectedType === 4 ? (
+						<CreateLongQuestion
+							testId={testId}
+							domainId={domainId}
+						/>
+					) : null}
 				</div>
 			</div>
 		</Dialog>

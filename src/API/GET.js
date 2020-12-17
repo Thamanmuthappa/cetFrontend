@@ -77,3 +77,41 @@ export const fetchTestDomains = async (id, token) => {
 
 	return final;
 };
+
+export const fetchQuestionsInDomain = async (testId, domainId, token) => {
+	const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/question/all?testId=${testId}&domainId=${domainId}`;
+
+	let final;
+	try {
+		await Axios.get(url, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}).then((res) => {
+			final = res.data.questions;
+		});
+	} catch (error) {
+		console.log(error);
+	}
+
+	return final;
+};
+
+export const fetchSingleDomainDetails = async (domainId, token) => {
+	const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/details?domainId=${domainId}`;
+
+	let final;
+	try {
+		await Axios.get(url, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		}).then((res) => {
+			final = res.data.domainDetails;
+		});
+	} catch (error) {
+		console.log(error);
+	}
+
+	return final;
+};

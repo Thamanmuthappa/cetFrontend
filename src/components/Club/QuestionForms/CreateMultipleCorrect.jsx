@@ -16,11 +16,11 @@ const optionsArr = [
 	{ option: { text: "", isCorrect: false } },
 ];
 
-const CreateSingleCorrect = ({ testId, domainId }) => {
+const CreateMultipleCorrect = ({ testId, domainId }) => {
 	const { register, handleSubmit } = useForm();
 
 	const [question, setQuestion] = useState({
-		type: "singleCorrect",
+		type: "multipleCorrect",
 		testId: testId,
 		domainId: domainId,
 		questionMarks: 0,
@@ -28,7 +28,7 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 		options: optionsArr,
 	});
 
-	const [currentSelected, setCurrentSelected] = useState(0);
+	const [currentSelected, setCurrentSelected] = useState([0]);
 
 	const handleOptionChange = (e, i) => {
 		const curr = JSON.parse(JSON.stringify(question));
@@ -39,16 +39,25 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 	};
 
 	const handleIsCorrectChange = (e, i) => {
-		if (i === currentSelected) return;
+		let change = true;
+
+		const ind = currentSelected.indexOf(i);
+
+		if (ind !== -1 && currentSelected.length === 1) return;
+		else if (ind !== -1) {
+			change = false;
+			const curr = JSON.parse(JSON.stringify(currentSelected));
+			curr.splice(ind, 1);
+			setCurrentSelected(curr);
+		}
 
 		const curr = JSON.parse(JSON.stringify(question));
 
-		curr.options[currentSelected].option.isCorrect = false;
-		curr.options[i].option.isCorrect = true;
+		curr.options[i].option.isCorrect = change;
+
+		if (ind === -1) setCurrentSelected((prev) => [...prev, i]);
 
 		setQuestion(curr);
-		setCurrentSelected(i);
-		console.log(optionsArr);
 	};
 
 	const handleFormChange = (e) => {
@@ -77,13 +86,12 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 			resetModal();
 		}
 	};
-
 	return (
 		<div className="create-question-form">
 			<Typography variant="h6" className="light-text">
-				Question type: <strong>Single Correct</strong>
+				Question type: <strong>Multiple Correct</strong>
 			</Typography>
-			<form id="create-question-1" onSubmit={handleSubmit(submit)}>
+			<form id="create-question-2" onSubmit={handleSubmit(submit)}>
 				<TextField
 					multiline
 					rows={4}
@@ -146,4 +154,4 @@ const CreateSingleCorrect = ({ testId, domainId }) => {
 	);
 };
 
-export default CreateSingleCorrect;
+export default CreateMultipleCorrect;

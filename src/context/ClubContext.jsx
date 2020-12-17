@@ -41,6 +41,11 @@ const ClubContextProvider = ({ children }) => {
 		setLoading(false);
 	};
 
+	const setLoginFalse = async () => {
+		localStorage.clear();
+		dispatch({ type: "SET_LOGIN_FALSE" });
+	};
+
 	const setClubDetails = (details) => {
 		dispatch({ type: "SET_CLUB_DETAILS", payload: details });
 	};
@@ -53,6 +58,7 @@ const ClubContextProvider = ({ children }) => {
 	const values = {
 		...state,
 		setLoginTrue,
+		setLoginFalse,
 		setClubDetails,
 	};
 
@@ -73,6 +79,11 @@ const clubReducer = (state, action) => {
 			return {
 				...state,
 				isLoggedIn: true,
+			};
+		case "SET_LOGIN_FALSE":
+			return {
+				...state,
+				isLoggedIn: false,
 			};
 		case "SET_CLUB_DETAILS":
 			return {

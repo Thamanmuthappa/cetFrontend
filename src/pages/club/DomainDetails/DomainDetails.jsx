@@ -1,27 +1,76 @@
-import { Button, Container, Divider, Grid, Tooltip } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import {
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
+	Button,
+	CircularProgress,
+	Container,
+	Divider,
+	Grid,
+	Tooltip,
+	Typography,
+} from "@material-ui/core";
+import { Add, ExpandMore } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
+import {
+	fetchQuestionsInDomain,
+	fetchSingleDomainDetails,
+} from "../../../API/GET";
 import QuestionAddModal from "../../../components/Club/QuestionAddModal";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
 import "./DomainDetails.css";
+import "../../../components/Club/QuestionsDisplay/QuestionsDisplay.css";
+import QuestionsDisplay from "../../../components/Club/QuestionsDisplay/QuestionsDisplay";
+import Loading from "../../Loading";
 
 const DomainDetails = (props) => {
 	const testId = props.match.params.id;
 	const domainId = props.match.params.domainId;
 
-	const [domainDetails] = useState(props.location.state.domain);
+	const [domainDetails, setDomainDetails] = useState(
+		props.location.state?.domain
+	);
 	const [loading, setLoading] = useState(true);
 	const [questionAdd, setQuestionAdd] = useState(false);
 
-	// const getDomainDetails = async () => {
-	// 	const details = await fetchD;
-	// };
+	const [questions, setQuestions] = useState([]);
+	const [questionsLoading, setQuesLoading] = useState(true);
 
-	// useEffect(() => {
-	// 	if (!domainDetails) {
-	// 		getDomainDetails();
-	// 	}
-	// }, []);
+	const getQuestions = async () => {
+		setQuesLoading(true);
+		const token = localStorage.getItem("clubAuthToken");
+		const questions = await fetchQuestionsInDomain(testId, domainId, token);
+
+		console.log(questions);
+
+		setQuestions(questions);
+		setQuesLoading(false);
+	};
+
+	const getDomainDetails = async () => {
+		const token = localStorage.getItem("clubAuthToken");
+		const details = await fetchSingleDomainDetails(domainId, token);
+
+		setDomainDetails(details);
+		setLoading(false);
+	};
+
+	const handleModalClose = () => {
+		getQuestions();
+		setQuestionAdd(false);
+	};
+
+	useEffect(() => {
+		if (!domainDetails) {
+			getDomainDetails();
+		}
+
+		getQuestions();
+	}, []);
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	return (
 		<>
@@ -83,12 +132,48 @@ const DomainDetails = (props) => {
 								<Add /> Add a new question
 							</Button>
 						</div>
+						<div className="domain-page-question-list">
+							{questionsLoading ? (
+								<div className="questions-loading">
+									<CircularProgress color="primary" />
+									Getting Questions...
+								</div>
+							) : questions.length === 0 ? (
+								<div className="test-page-no-domains">
+									<Typography
+										variant="h2"
+										className="light-text"
+									>
+										No questions created
+									</Typography>
+								</div>
+							) : (
+								<div className="domain-questions">
+									{questions.map((question, i) => (
+										<Accordion key={i} elevation={4}>
+											<AccordionSummary
+												expandIcon={<ExpandMore />}
+												aria-controls="question-content"
+											>
+												{question.description}
+											</AccordionSummary>
+											<AccordionDetails>
+												<QuestionsDisplay
+													questionType={question.type}
+													question={question}
+												/>
+											</AccordionDetails>
+										</Accordion>
+									))}
+								</div>
+							)}
+						</div>
 					</div>
 				</Container>
 			</div>
 			<QuestionAddModal
 				open={questionAdd}
-				handleClose={() => setQuestionAdd(false)}
+				handleClose={handleModalClose}
 				testId={testId}
 				domainId={domainId}
 			/>
