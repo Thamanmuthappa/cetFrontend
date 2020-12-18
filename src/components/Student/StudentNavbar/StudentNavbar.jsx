@@ -1,18 +1,14 @@
 import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
-import React, { useContext } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import { ClubContext } from "../../../context/ClubContext";
-import "./Navbar.css";
 
-const Navbar = ({ location }) => {
+const StudentNavbar = ({ location }) => {
 	const history = useHistory();
 
-	const { setLoginFalse } = useContext(ClubContext);
-
 	const handleLogout = () => {
-		setLoginFalse();
+		// setLoginFalse();
 
-		history.push("/club/signin");
+		history.push("/student/signin");
 	};
 
 	return (
@@ -27,7 +23,7 @@ const Navbar = ({ location }) => {
 			elevation={2}
 		>
 			<Toolbar>
-				<Link to={`/club/dashboard`}>
+				<Link to={`/student/dashboard`}>
 					<img
 						src="/assets/Group2.png"
 						alt="logo"
@@ -50,4 +46,4 @@ const Navbar = ({ location }) => {
 	);
 };
 
-export default Navbar;
+export default StudentNavbar;
