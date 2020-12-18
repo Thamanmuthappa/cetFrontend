@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 		height: "150px",
 	},
 	contPaper: {
+		width: "80%",
 		borderRadius: "20px",
 		marginTop: "10px",
 		paddingBottom: "40px",
@@ -117,7 +118,13 @@ const ClubProfile = () => {
 		return <div>Error: {error.message}</div>;
 	} else if (data) {
 		return (
-			<Container>
+			<Container
+				style={{
+					display: "flex",
+					justifyContent: "center",
+					alignItems: "center",
+				}}
+			>
 				<Paper elevation={3} className={classes.contPaper}>
 					<Grid container>
 						<img
