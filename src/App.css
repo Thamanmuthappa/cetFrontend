@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap");
 
-
 /* 
 .form-input {
 	padding: 12px 20px !important;
@@ -34,4 +33,14 @@ a {
   border-radius: 50px !important;
   padding-left: 50px !important;
   padding-right: 50px !important;
+}
+
+::-moz-selection {
+  background: #E31E43;
+  color: #fff;
+}
+
+::selection {
+  background: #E31E43;
+  color: #fff;
 }

@@ -46,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
 		outline: "none",
 		padding: " 1.2rem 5rem",
 		transition: "all .4s",
-		border: "1px solid #E45044",
-		backgroundColor: "#E45044",
+		border: "1px solid #E31E43",
+		backgroundColor: "#E31E43",
 		"&:hover": {
-			backgroundColor: "#E45044",
+			backgroundColor: "#E31E43",
 			transform: "scale(1.05)",
 		},
 	},
