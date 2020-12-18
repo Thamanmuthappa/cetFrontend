@@ -1,4 +1,10 @@
-import { Divider, TextField, Typography } from "@material-ui/core";
+import {
+	Divider,
+	FormControlLabel,
+	Switch,
+	TextField,
+	Typography,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
@@ -23,6 +29,9 @@ const CreateLongQuestion = ({
 		description: "",
 	});
 
+	const [media, setMedia] = useState(null);
+	const [isMedia, setIsMedia] = useState(false);
+
 	const handleFormChange = (e) => {
 		setQuestion((prevState) => ({
 			...prevState,
@@ -35,6 +44,7 @@ const CreateLongQuestion = ({
 		curr.questionMarks = 0;
 		curr.description = "";
 		setQuestion(curr);
+		setMedia(null);
 	};
 
 	const submit = async () => {
@@ -42,7 +52,17 @@ const CreateLongQuestion = ({
 		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 
-		const result = await postQuestionInDomain(question, token);
+		const data = new FormData();
+
+		for (let key in question) {
+			data.append(key, question[key]);
+		}
+
+		if (isMedia) {
+			data.append("media", media);
+		}
+
+		const result = await postQuestionInDomain(data, token);
 
 		if (result) {
 			addMarks(question.questionMarks);
@@ -80,6 +100,31 @@ const CreateLongQuestion = ({
 					value={question.questionMarks}
 					onChange={handleFormChange}
 				/>
+				<br />
+				<div className="media-switch">
+					<FormControlLabel
+						control={
+							<Switch
+								checked={isMedia}
+								onChange={(e) => setIsMedia(e.target.checked)}
+							/>
+						}
+						label="Add Media (Image/Audio/Video): "
+						labelPlacement="start"
+					/>
+				</div>
+				<div
+					style={{ display: isMedia ? "block" : "none" }}
+					className="add-media-section"
+				>
+					<input
+						type="file"
+						name="media"
+						onChange={(e) => setMedia(e.target.files[0])}
+						accept=".jpg,.jpeg,.png,.mp3,.wav,.mp4,.mkv,.mov"
+						ref={register({ required: isMedia })}
+					/>
+				</div>
 			</form>
 		</div>
 	);

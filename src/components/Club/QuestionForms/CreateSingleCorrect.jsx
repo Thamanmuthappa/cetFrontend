@@ -1,6 +1,7 @@
 import {
 	Checkbox,
 	FormControlLabel,
+	Switch,
 	TextField,
 	Typography,
 } from "@material-ui/core";
@@ -35,6 +36,9 @@ const CreateSingleCorrect = ({
 	});
 
 	const [currentSelected, setCurrentSelected] = useState(0);
+
+	const [media, setMedia] = useState(null);
+	const [isMedia, setIsMedia] = useState(false);
 
 	const { setQuestionSnack } = snackOps;
 
@@ -73,6 +77,7 @@ const CreateSingleCorrect = ({
 		curr.options = optionsArr;
 
 		setQuestion(curr);
+		setMedia(null);
 	};
 
 	const submit = async () => {
@@ -80,13 +85,29 @@ const CreateSingleCorrect = ({
 		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 
-		const result = await postQuestionInDomain(question, token);
+		const data = new FormData();
+
+		for (let key in question) {
+			if (key === "options") {
+				continue;
+			}
+			data.append(key, question[key]);
+		}
+
+		data.append("options", JSON.stringify(question.options));
+
+		if (isMedia) {
+			data.append("media", media);
+		}
+
+		const result = await postQuestionInDomain(data, token);
 
 		if (result) {
 			addMarks(question.questionMarks);
 			setQuestionSnack(true);
 			resetModal();
 		}
+
 		setLoading(false);
 	};
 
@@ -153,6 +174,31 @@ const CreateSingleCorrect = ({
 					onChange={handleFormChange}
 					className="create-question-marks-field"
 				/>
+				<br />
+				<div className="media-switch">
+					<FormControlLabel
+						control={
+							<Switch
+								checked={isMedia}
+								onChange={(e) => setIsMedia(e.target.checked)}
+							/>
+						}
+						label="Add Media (Image/Audio/Video): "
+						labelPlacement="start"
+					/>
+				</div>
+				<div
+					style={{ display: isMedia ? "block" : "none" }}
+					className="add-media-section"
+				>
+					<input
+						type="file"
+						name="media"
+						onChange={(e) => setMedia(e.target.files[0])}
+						accept=".jpg,.jpeg,.png,.mp3,.wav,.mp4,.mkv,.mov"
+						ref={register({ required: isMedia })}
+					/>
+				</div>
 			</form>
 		</div>
 	);
