@@ -1,14 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import Temp from "../pages/Student/AllDomains/AllDomains";
 
 const StudentRoutes = () => {
-	return (
-		<Switch>
-			<Route exact path="/student/signin">
-				Hello Student signin
-			</Route>
-		</Switch>
-	);
+  return (
+    <Switch>
+      <Route path='/student/temp' component={Temp} />
+      <Route exact path='/student/signin'>
+        Hello Student signin
+      </Route>
+    </Switch>
+  );
 };
 
 export default StudentRoutes;
