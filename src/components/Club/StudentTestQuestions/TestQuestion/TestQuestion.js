@@ -76,7 +76,7 @@ const TestQuestion = (props) => {
         }
         if (props.question.questionId.options[x]._id === correctId) {
           correct += props.question.questionId.options[x].option.text;
-          marked += ", ";
+          correct += ", ";
         }
       }
     }
