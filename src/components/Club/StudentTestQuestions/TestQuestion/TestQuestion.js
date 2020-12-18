@@ -109,11 +109,25 @@ const TestQuestion = (props) => {
       </Grid>
     );
   } else if (props.question.questionType === "longAnswer") {
-    <Grid container>
-      
-    </Grid>
+    ans = (
+      <Grid container>
+        <Grid container item>
+          <Grid item xs={12}>
+            {props.question.answers}
+          </Grid>
+        </Grid>
+      </Grid>
+    );
   } else if (props.question.questionType === "shortAnswer") {
-
+    ans = (
+      <Grid container>
+        <Grid container item>
+          <Grid item xs={12}>
+            {props.question.answers}
+          </Grid>
+        </Grid>
+      </Grid>
+    );
   }
   return (
     <Container>
