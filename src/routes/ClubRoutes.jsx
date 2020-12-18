@@ -8,6 +8,7 @@ import SignUp from "../pages/club/SignUp";
 import TestDetails from "../pages/club/TestDetails/TestDetails";
 import DomainDetails from "../pages/club/DomainDetails/DomainDetails";
 import ResultsTestDetails from "../pages/club/Results/ResultsTestDetails/ResultsTestDetails";
+import ResultsTestDomains from '../pages/club/Results/ResultsTestDomains/ResultTestDomains'
 
 const ClubRoutes = () => {
   return (
@@ -27,6 +28,11 @@ const ClubRoutes = () => {
           exact
           path='/club/test/:id/:domainId'
           component={DomainDetails}
+        />
+        <Route
+          exact
+          path='/club/Results/test/:id/:domainId'
+          component={ResultsTestDomains}
         />
       </Switch>
     </ClubContextProvider>

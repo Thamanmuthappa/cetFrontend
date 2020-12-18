@@ -83,15 +83,7 @@ const TestDetails = (props) => {
           <h1>
             <u>Test Domains</u>
           </h1>
-          <div className='test-page-domain-top' style={{ textAlign: "right" }}>
-            <Button
-              variant='contained'
-              className='custom-action-btn'
-              color='primary'
-              onClick={() => setAddDomain(true)}>
-              <Add /> Add a new domain
-            </Button>
-          </div>
+
           <div className='test-page-domain-list'>
             {testDomains.length === 0 ? (
               <div className='test-page-no-domains'>
@@ -106,7 +98,7 @@ const TestDetails = (props) => {
                     <Grid item xs={12} sm={3}>
                       <Link
                         to={{
-                          pathname: `/club/test/${id}/${domain._id}`,
+                          pathname: `/club/results/test/${id}/${domain._id}`,
                           state: { domain },
                         }}>
                         <ClubDomainTile title={domain.domainName} />
