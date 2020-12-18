@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 const ClubProfile = () => {
 	const classes = useStyles();
 
-	const { clubDetails } = useContext(ClubContext);
+	const { clubDetails, setFeatured } = useContext(ClubContext);
 
 	const [error, setError] = useState(null);
 	const [data, setData] = useState(clubDetails.club);
@@ -52,10 +52,40 @@ const ClubProfile = () => {
 
 	const handleFeaturedChange = async (e) => {
 		setFeatureLoading(true);
+		const curr = data.featured;
+
+		const url = `${process.env.REACT_APP_BACKEND_URL}/club/feature`;
+		const token = localStorage.getItem("clubAuthToken");
+
+		const patch = {
+			featured: !curr,
+		};
+
+		try {
+			await axios
+				.patch(url, patch, {
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				})
+				.then((res) => {
+					console.log(res);
+					setFeatured(!curr);
+
+					setData((prevState) => ({
+						...prevState,
+						featured: !curr,
+					}));
+				});
+		} catch (error) {
+			console.log(error);
+		}
+
+		setFeatureLoading(false);
 	};
 
 	useEffect(() => {
-		console.log(data);
+		console.log(clubDetails);
 	}, []);
 
 	useEffect(() => {

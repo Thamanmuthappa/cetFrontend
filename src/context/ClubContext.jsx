@@ -59,12 +59,17 @@ const ClubContextProvider = ({ children }) => {
 		dispatch({ type: "ADD_TEST", payload: test });
 	};
 
+	const setFeatured = (featured) => {
+		dispatch({ type: "SET_FEATURED", payload: featured });
+	};
+
 	const values = {
 		...state,
 		setLoginTrue,
 		setLoginFalse,
 		setClubDetails,
 		addTest,
+		setFeatured,
 	};
 
 	if (loading) {
@@ -104,6 +109,16 @@ const clubReducer = (state, action) => {
 			return {
 				...state,
 				testsCreated: [...state.testsCreated, action.payload],
+			};
+		case "SET_FEATURED":
+			return {
+				...state,
+				clubDetails: {
+					club: {
+						...state.clubDetails.club,
+						featured: action.payload,
+					},
+				},
 			};
 	}
 };
