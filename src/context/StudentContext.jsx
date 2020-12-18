@@ -44,6 +44,11 @@ const StudentContextProvider = ({ children }) => {
 		setLoading(false);
 	};
 
+	const setLoginFalse = () => {
+		localStorage.clear();
+		dispatch({ type: "SET_LOGIN_FALSE" });
+	};
+
 	const setStudentDetails = (profile) => {
 		dispatch({ type: "SET_STUDENT_PROFILE", payload: profile });
 	};
@@ -51,6 +56,7 @@ const StudentContextProvider = ({ children }) => {
 	const value = {
 		...state,
 		setLoginTrue,
+		setLoginFalse,
 		setStudentDetails,
 	};
 
@@ -73,6 +79,11 @@ const studentReducer = (state, action) => {
 			return {
 				...state,
 				isLoggedIn: true,
+			};
+		case "SET_LOGIN_FALSE":
+			return {
+				...state,
+				isLoggedIn: false,
 			};
 		case "SET_STUDENT_PROFILE":
 			return {
