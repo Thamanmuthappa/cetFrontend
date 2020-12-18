@@ -10,7 +10,7 @@ import {
   Tooltip,
   Typography,
 } from "@material-ui/core";
-import { Add, ExpandMore } from "@material-ui/icons";
+import { ExpandMore } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import {
   fetchSubmissionsForDomain,
@@ -20,8 +20,8 @@ import QuestionAddModal from "../../../../components/Club/QuestionAddModal";
 import Navbar from "../../../../components/Shared/Navbar/Navbar";
 import "../../DomainDetails/DomainDetails.css";
 import "../../../../components/Club/QuestionsDisplay/QuestionsDisplay.css";
-import QuestionsDisplay from "../../../../components/Club/QuestionsDisplay/QuestionsDisplay";
 import Loading from "../../../Loading";
+import StudentTestDetails from "../../../../components/Club/StudentTestQuestions/StudentTestQuestions";
 
 const DomainDetails = (props) => {
   const testId = props.match.params.id;
@@ -73,7 +73,6 @@ const DomainDetails = (props) => {
   if (loading) {
     return <Loading />;
   }
-
   return (
     <>
       <div className='domain-details-page'>
@@ -117,14 +116,14 @@ const DomainDetails = (props) => {
           <Divider />
           <div className='test-page-domain'>
             <h1>
-              <u>Studentsgi</u>
+              <u>Students</u>
             </h1>
 
             <div className='domain-page-question-list'>
               {questionsLoading ? (
                 <div className='questions-loading'>
                   <CircularProgress color='primary' />
-                  Getting Questions...
+                  Getting students...
                 </div>
               ) : questions.length === 0 ? (
                 <div className='test-page-no-domains'>
@@ -139,13 +138,11 @@ const DomainDetails = (props) => {
                       <AccordionSummary
                         expandIcon={<ExpandMore />}
                         aria-controls='question-content'>
-                        {question.description}
+                        {question.studentId.name}
                       </AccordionSummary>
                       <AccordionDetails>
-                        <QuestionsDisplay
-                          questionType={question.type}
-                          question={question}
-                        />
+                        <Divider />
+                        <StudentTestDetails details={question.responses} />
                       </AccordionDetails>
                     </Accordion>
                   ))}
