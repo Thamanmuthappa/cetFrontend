@@ -13,6 +13,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 import { ClubContext } from "../../context/ClubContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ClubSignin = () => {
+	const [error, setError] = useState(false);
+	const [errorText, setErrorText] = useState("");
+
 	const classes = useStyles();
 
 	const { isLoggedIn, setClubDetails, setLoginTrue } = useContext(
@@ -96,6 +101,14 @@ const ClubSignin = () => {
 			});
 		} catch (error) {
 			console.log(error);
+			if (error.response.status === 409) {
+					setErrorText("Account already exists...");
+				} else if (error.response.status === 400) {
+					setErrorText("Looks like you didn't enter all details.");
+				} else {
+					setErrorText("Oops looks like something is wrong!");
+				}
+				setError(true);
 			setLoading(false);
 		}
 	};

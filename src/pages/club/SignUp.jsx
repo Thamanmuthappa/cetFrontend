@@ -87,7 +87,7 @@ const SignUp = () => {
 			email,
 			password,
 			name,
-			type,
+			type
 		};
 
 		console.log(data);
