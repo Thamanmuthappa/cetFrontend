@@ -134,7 +134,7 @@ const CreateSingleCorrect = ({
 				</Typography>
 				<div className="options-form" style={{ marginBottom: 30 }}>
 					{question.options.map((option, i) => (
-						<div style={{ display: "flex", alignItems: "center" }}>
+						<div style={{ display: "flex", alignItems: "center" }} key={i}>
 							<TextField
 								name={`Option ${i + 1}`}
 								variant="outlined"
@@ -153,6 +153,7 @@ const CreateSingleCorrect = ({
 										onChange={(e) =>
 											handleIsCorrectChange(e, i)
 										}
+										key={i}
 									/>
 								}
 								label="Is Correct?"
