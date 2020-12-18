@@ -1,0 +1,16 @@
+.profile-modal {
+	padding: 3% !important;
+}
+
+.dropzone {
+	background-color: rgb(187, 187, 187);
+	padding: 1%;
+	padding-top: 5%;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.drop-icon {
+	color: rgb(110, 110, 110) !important;
+	font-size: 7rem !important;
+}
