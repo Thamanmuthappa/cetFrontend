@@ -12,8 +12,11 @@ import {
 	FormControlLabel,
 	Switch,
 	Tooltip,
+	Snackbar,
 } from "@material-ui/core";
 import { ClubContext } from "../../../context/ClubContext";
+import { Alert } from "@material-ui/lab";
+import { patchProfile } from "../../../API/PATCH";
 // club avatar ,club banner ,socoial links, images
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const ClubProfile = () => {
 	const classes = useStyles();
 
-	const { clubDetails, setFeatured } = useContext(ClubContext);
+	const { clubDetails, setFeatured, getProfile } = useContext(ClubContext);
 
 	const [error, setError] = useState(null);
 	const [data, setData] = useState(clubDetails.club);
@@ -42,6 +45,8 @@ const ClubProfile = () => {
 	const [disabled, setDisabled] = useState(true);
 
 	const [featureLoading, setFeatureLoading] = useState(false);
+	const [featureSuccess, setFeatureSuccess] = useState(false);
+	const [profileSuccess, setProfileSuccess] = useState(false);
 
 	const handleProfileChange = (e) => {
 		setData((prevState) => ({
@@ -70,6 +75,7 @@ const ClubProfile = () => {
 				})
 				.then((res) => {
 					console.log(res);
+					setFeatureSuccess(true);
 					setFeatured(!curr);
 
 					setData((prevState) => ({
@@ -84,17 +90,28 @@ const ClubProfile = () => {
 		setFeatureLoading(false);
 	};
 
-	useEffect(() => {
-		console.log(clubDetails);
-	}, []);
+	const updateProfile = async () => {
+		setDisabled(true);
+		const token = localStorage.getItem("clubAuthToken");
+
+		const res = await patchProfile(data, token);
+
+		if (res) {
+			getProfile(token);
+			setProfileSuccess(true);
+		}
+
+		setDisabled(false);
+	};
 
 	useEffect(() => {
-		if (data === clubDetails.club) {
+		console.log(data, clubDetails.club);
+		if (JSON.stringify(data) === JSON.stringify(clubDetails.club)) {
 			setDisabled(true);
 		} else {
 			setDisabled(false);
 		}
-	}, [data]);
+	}, [data, clubDetails]);
 
 	if (error) {
 		return <div>Error: {error.message}</div>;
@@ -194,10 +211,31 @@ const ClubProfile = () => {
 												onChange={handleProfileChange}
 											/>
 										</Grid>
+										<Grid item xs={6}>
+											<TextField
+												name="website"
+												className={classes.input}
+												label="Club Website Link"
+												variant="outlined"
+												value={data.website}
+												onChange={handleProfileChange}
+											/>
+										</Grid>
+										<Grid item xs={6}>
+											<TextField
+												name="mobileNumber"
+												className={classes.input}
+												label="Club Contact Number"
+												variant="outlined"
+												value={data.mobileNumber}
+												onChange={handleProfileChange}
+											/>
+										</Grid>
 										<Grid item xs={12}>
 											<Button
 												variant="contained"
 												color="primary"
+												onClick={updateProfile}
 												disabled={disabled}
 											>
 												Save Changes
@@ -244,10 +282,35 @@ const ClubProfile = () => {
 						</Grid>
 					</Container>
 				</Paper>
+				<Snackbar
+					autoHideDuration={4000}
+					onClose={() => setFeatureSuccess(false)}
+					open={featureSuccess}
+				>
+					<Alert
+						severity="success"
+						variant="filled"
+						onClose={() => setFeatureSuccess(false)}
+					>
+						Your profile was successfully made{" "}
+						{data.featured ? "public" : "private"}!
+					</Alert>
+				</Snackbar>
+				<Snackbar
+					autoHideDuration={4000}
+					onClose={() => setProfileSuccess(false)}
+					open={profileSuccess}
+				>
+					<Alert
+						severity="success"
+						variant="filled"
+						onClose={() => setProfileSuccess(false)}
+					>
+						Your profile was successfully updated!
+					</Alert>
+				</Snackbar>
 			</Container>
 		);
-	} else {
-		return <ul>Loading...</ul>;
 	}
 };
 

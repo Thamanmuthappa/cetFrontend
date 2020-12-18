@@ -63,6 +63,13 @@ const ClubContextProvider = ({ children }) => {
 		dispatch({ type: "SET_FEATURED", payload: featured });
 	};
 
+	const getProfile = async (token) => {
+		const profile = await fetchAdminProfile(token);
+		if (profile) {
+			setClubDetails(profile);
+		}
+	};
+
 	const values = {
 		...state,
 		setLoginTrue,
@@ -70,6 +77,7 @@ const ClubContextProvider = ({ children }) => {
 		setClubDetails,
 		addTest,
 		setFeatured,
+		getProfile,
 	};
 
 	if (loading) {
