@@ -83,7 +83,7 @@ function Landing() {
 		>
 			<Grid container spacing={2}>
 				<Grid item xs={12} style={{ textAlign: "center" }}>
-					<img src="/assets/biglogo.png" alt="logo" width="200px" />
+					<img src="/assets/greydoor.png" alt="logo" height="200px" />
 				</Grid>
 				<Grid item xs={12}>
 					<h4 className={classes.header1}>

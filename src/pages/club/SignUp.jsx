@@ -308,6 +308,21 @@ const SignUp = () => {
 											<MenuItem value="Technical">
 												Technical
 											</MenuItem>
+											<MenuItem value="Social Outreach">
+											Social Outreach
+											</MenuItem>
+											<MenuItem value="Arts and Culturals">
+											Arts and Culturals
+											</MenuItem>
+											<MenuItem value="Health and Wellness">
+											Health and Wellness
+											</MenuItem>
+											<MenuItem value="Literature">
+											Literature
+											</MenuItem>
+											<MenuItem value="Other">
+											Other
+											</MenuItem>
 										</TextField>
 									</Grid>
 									<Grid item xs={12}>

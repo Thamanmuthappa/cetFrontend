@@ -169,7 +169,7 @@ const ClubSignin = () => {
 												fontWeight: "600",
 											}}
 										>
-											Welcome Back!!
+											Welcome Back!
 										</Typography>
 									</Grid>
 									<Grid item xs={12}>
