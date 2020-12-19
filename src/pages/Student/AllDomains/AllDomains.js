@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carousel from "react-material-ui-carousel";
-import { Paper, Button, Grid } from "@material-ui/core";
+import ClubCarousel from "../../../components/Student/ClubCarousel/ClubCarousel";
+import {
+  Paper,
+  Button,
+  Grid,
+  Container,
+  Typography,
+  Divider,
+} from "@material-ui/core";
 
 const AllDomains = () => {
   const [clubs, setClubs] = useState();
@@ -21,32 +29,74 @@ const AllDomains = () => {
         setErr(error);
       });
   }, []);
-  console.log(clubs);
+
+  const clubsMap = (arr) => {
+    let x = arr.map((club) => <ClubCarousel club={club} />);
+    return x;
+  };
 
   if (err) {
     return <div>err</div>;
   } else if (clubs) {
     let techClubs = [];
+    let artsClubs = [];
+    let socialClubs = [];
+    let healthClubs = [];
+    let litClubs = [];
+    let otherClubs = [];
     for (let x in clubs.clubs) {
-      if (x.type.toLowerCase() === "technical") {
-        techClubs.push(x);
+      if (clubs.clubs[x].type.toLowerCase() === "technical") {
+        techClubs.push(clubs.clubs[x]);
+      }
+      if (clubs.clubs[x].type.toLowerCase() === "arts and culture") {
+        artsClubs.push(clubs.clubs[x]);
+      }
+      if (clubs.clubs[x].type.toLowerCase() === "social outreach") {
+        socialClubs.push(clubs.clubs[x]);
+      }
+      if (clubs.clubs[x].type.toLowerCase() === "health and wellness") {
+        healthClubs.push(clubs.clubs[x]);
+      }
+      if (clubs.clubs[x].type.toLowerCase() === "literature") {
+        litClubs.push(clubs.clubs[x]);
+      }
+      if (clubs.clubs[x].type.toLowerCase() === "other") {
+        otherClubs.push(clubs.clubs[x]);
       }
     }
+
     console.log(techClubs);
-    return <Grid container></Grid>;
+    return (
+      <Container>
+        <div style={{ display: "flex" }}>
+          <Typography
+            gutterBottom
+            variant='h2'
+            style={{
+              fontFamily: "Source Sans Pro",
+              fontWeight: "600",
+            }}>
+            Featured CLubs
+          </Typography>
+        </div>
+        <Divider />
+        <Grid container style={{ marginTop: "20px" }}>
+          <Typography
+            gutterBottom
+            variant='h3'
+            style={{
+              fontFamily: "Source Sans Pro",
+              fontWeight: "600",
+            }}>
+            Technical
+          </Typography>
+          {clubsMap(techClubs)}
+        </Grid>
+      </Container>
+    );
   } else {
     return <div>loading</div>;
   }
 };
-function Ite(props) {
-  return (
-    <Paper>
-      <h2>dccd</h2>
-      <p>dsaad</p>
-
-      <Button className='CheckButton'>Check it out!</Button>
-    </Paper>
-  );
-}
 
 export default AllDomains;
