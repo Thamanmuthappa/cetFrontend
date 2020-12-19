@@ -9,6 +9,7 @@ import {
   Typography,
   Divider,
 } from "@material-ui/core";
+import Navbar from "";
 
 const AllDomains = () => {
   const [clubs, setClubs] = useState();

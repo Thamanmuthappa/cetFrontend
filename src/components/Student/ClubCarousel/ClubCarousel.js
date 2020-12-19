@@ -41,14 +41,14 @@ const useStyles = makeStyles((theme) => ({
 
 const ClubCarousel = (props) => {
   const classes = useStyles();
-  console.log(props.club);
+  console.log(props.club.clubAvatar);
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className={classes.root}>
         <CardHeader
           avatar={
             <Avatar
-              scr={props.club.clubAvatar}
+              src={props.club.clubAvatar}
               aria-label='recipe'
               className={classes.avatar}
             />
