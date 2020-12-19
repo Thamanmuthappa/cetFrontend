@@ -47,3 +47,11 @@ a {
 .org-website-link:hover {
   cursor: pointer !important;
 }
+
+.profile-section-container .MuiAvatar-img {
+  object-fit: contain !important;
+}
+
+.profile-banner {
+  height: 200px !important;
+}

@@ -80,14 +80,19 @@ const OrgProfile = (props) => {
 				justifyContent: "center",
 				alignItems: "center",
 			}}
-			className="org-profile-container"
+			className="org-profile-container profile-section-container"
 		>
 			<div className={classes.contPaper}>
 				<Grid container>
 					<img
-						src="/assets/bannerIMG.jpg"
+						src={
+							data.clubBanner
+								? data.clubBanner
+								: "/assets/bannerIMG.jpg"
+						}
 						width="100%"
 						alt="banner img"
+						className="profile-banner"
 					></img>
 				</Grid>
 				<Container>
@@ -95,7 +100,11 @@ const OrgProfile = (props) => {
 						<Grid container justify="center">
 							<Avatar
 								alt="Club logo"
-								src="/assets/avatar.jpeg"
+								src={
+									data.clubAvatar
+										? data.clubAvatar
+										: "/assets/avatar.jpeg"
+								}
 								className={classes.avatar}
 							/>
 						</Grid>

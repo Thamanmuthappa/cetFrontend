@@ -6,7 +6,7 @@ import Dropzone from "react-dropzone";
 import Axios from "axios";
 import { ClubContext } from "../../../context/ClubContext";
 
-const UpdateProfilePhoto = ({ open, onClose, id, updateImages }) => {
+const UpdateBannerPhoto = ({ open, onClose, id, updateImages }) => {
 	const [file, setFile] = useState(null);
 
 	const [loading, setLoading] = useState(false);
@@ -17,9 +17,9 @@ const UpdateProfilePhoto = ({ open, onClose, id, updateImages }) => {
 		setFile(acceptedFiles[0]);
 	};
 
-	const handleDpUpdate = async () => {
+	const handleBannerUpdate = async () => {
 		setLoading(true);
-		const url = `${process.env.REACT_APP_BACKEND_URL}/club/avatar`;
+		const url = `${process.env.REACT_APP_BACKEND_URL}/club/banner`;
 		const token = localStorage.getItem("clubAuthToken");
 
 		if (file === null) {
@@ -30,7 +30,7 @@ const UpdateProfilePhoto = ({ open, onClose, id, updateImages }) => {
 
 		const data = new FormData();
 
-		data.append("avatar", file, id);
+		data.append("banner", file, id);
 
 		try {
 			await Axios.put(url, data, {
@@ -53,7 +53,7 @@ const UpdateProfilePhoto = ({ open, onClose, id, updateImages }) => {
 		<Dialog open={open} onClose={onClose} fullWidth>
 			<div style={{ textAlign: "center" }} className="profile-modal">
 				<Typography variant="h4" style={{ marginBottom: "10px" }}>
-					Update Profile Photo
+					Update Banner Photo
 				</Typography>
 				<div className="dropzone">
 					<h3
@@ -93,7 +93,7 @@ const UpdateProfilePhoto = ({ open, onClose, id, updateImages }) => {
 					variant="contained"
 					className="custom-action-btn"
 					style={{ marginTop: "30px" }}
-					onClick={handleDpUpdate}
+					onClick={handleBannerUpdate}
 					disabled={loading}
 				>
 					Upload Photo
@@ -103,4 +103,4 @@ const UpdateProfilePhoto = ({ open, onClose, id, updateImages }) => {
 	);
 };
 
-export default UpdateProfilePhoto;
+export default UpdateBannerPhoto;
