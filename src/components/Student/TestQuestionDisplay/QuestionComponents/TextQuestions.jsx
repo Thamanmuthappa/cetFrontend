@@ -1,5 +1,6 @@
 import { Grid, TextField } from "@material-ui/core";
 import React from "react";
+import QuestionMedia from "./QuestionMedia";
 
 const TextQuestions = ({ type, question, index, answers, setAnswers }) => {
 	const handleAnswerChange = (e) => {
@@ -19,10 +20,11 @@ const TextQuestions = ({ type, question, index, answers, setAnswers }) => {
 							Q. {index + 1}
 						</span>
 					</Grid>
-					<Grid item xs={11}>
+					<Grid item xs={6}>
 						<div className="question-description">
 							{question.description}
 						</div>
+
 						<div className="question-input">
 							<TextField
 								placeholder="Enter your answer here"
@@ -36,6 +38,9 @@ const TextQuestions = ({ type, question, index, answers, setAnswers }) => {
 								onChange={handleAnswerChange}
 							/>
 						</div>
+					</Grid>
+					<Grid item xs={5}>
+						<QuestionMedia question={question} />
 					</Grid>
 				</Grid>
 			</div>

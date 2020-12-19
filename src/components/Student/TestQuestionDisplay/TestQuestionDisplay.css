@@ -19,3 +19,19 @@
 .question-input {
 	margin-top: 30px;
 }
+
+.question-media-div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.question-img {
+	max-width: 300px;
+	max-height: 300px;
+}
+
+.question-video {
+	max-width: 500px;
+	max-height: 300px;
+}
