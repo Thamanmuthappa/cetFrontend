@@ -12,6 +12,8 @@ import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import ErrorPage from "./ErrorPage";
 import Loading from "./Loading";
+import { black } from "color-name";
+import "./ClubProfile.css";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -26,10 +28,16 @@ const useStyles = makeStyles((theme) => ({
 	},
 	input: {
 		width: "100%",
+		border: "none",
 	},
 	website: {
 		"&:hover": {
 			cursor: "pointer",
+		},
+	},
+	root: {
+		"&.MuiInputBase-input.Mui-disabled": {
+			color: "#000000",
 		},
 	},
 }));

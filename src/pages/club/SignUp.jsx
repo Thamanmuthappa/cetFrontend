@@ -105,8 +105,10 @@ const SignUp = () => {
             } );
         } catch ( error ) {
             console.log( error );
-            if ( error.response.status === 409 || error.response.status === 401 ) {
+            if ( error.response.status === 409 ) {
                 alert( "Account already exists..." );
+            } else if ( error.response.status === 401 ) {
+                alert( "This email hasn't been whitelisted. Please contact CodeChef-VIT to be a part of CET." );
             } else if ( error.response.status === 400 ) {
                 alert( "Looks like you didn't enter all details." );
             } else {
@@ -185,17 +187,19 @@ const SignUp = () => {
                     backgroundPosition: "top"
                 }
         }>
-            <img src="/assets/Group2.png" alt="CET"
-                style={
-                    {
-                        textAlign: "left",
-                        width: "10rem",
-                        height: "auto",
-                        position: "absolute",
-                        left: "7rem",
-                        top: "4rem"
-                    }
-                }/>
+            <Link to="/">
+                <img src="/assets/Group2.png" alt="logo"
+                    style={
+                        {
+                            textAlign: "left",
+                            width: "10rem",
+                            height: "auto",
+                            position: "absolute",
+                            left: "7rem",
+                            top: "3rem"
+                        }
+                    }/>
+            </Link>
             <Grid container alignItems="center"
                 className={
                     classes.gridContainer
@@ -233,7 +237,7 @@ const SignUp = () => {
                                     <Grid item
                                         xs={12}>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            Sign Up for your account!
+                                            Signup for an account!
                                         </Typography>
                                     </Grid>
                                     <Grid item
