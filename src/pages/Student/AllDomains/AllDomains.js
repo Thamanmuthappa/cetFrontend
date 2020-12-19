@@ -24,7 +24,8 @@ const AllDomains = () => {
   console.log(clubs);
 
   if (err) {
-    return <div>err</div>;
+    console.log(err);
+    alert("Something went wrong. Please try again.")
   } else if (clubs) {
     let techClubs = [];
     for (let x in clubs.clubs) {
