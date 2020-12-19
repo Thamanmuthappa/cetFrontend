@@ -23,13 +23,15 @@ const SingleCorrect = ({ question, index, answers, setAnswers }) => {
 		// console.log(curr);
 	};
 
+	const isMedia = question.media;
+
 	return (
 		<div className="single-correct-question">
 			<Grid container spacing={0}>
 				<Grid item xs={1}>
 					<span style={{ marginRight: "30px" }}>Q. {index + 1}</span>
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={isMedia ? 6 : 11}>
 					<div className="question-description">
 						{question.description}
 					</div>

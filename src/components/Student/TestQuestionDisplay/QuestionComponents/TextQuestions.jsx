@@ -11,6 +11,8 @@ const TextQuestions = ({ type, question, index, answers, setAnswers }) => {
 		setAnswers(curr);
 	};
 
+	const isMedia = question.media;
+
 	return (
 		<div>
 			<div className="single-correct-question">
@@ -20,7 +22,7 @@ const TextQuestions = ({ type, question, index, answers, setAnswers }) => {
 							Q. {index + 1}
 						</span>
 					</Grid>
-					<Grid item xs={6}>
+					<Grid item xs={isMedia ? 6 : 11}>
 						<div className="question-description">
 							{question.description}
 						</div>

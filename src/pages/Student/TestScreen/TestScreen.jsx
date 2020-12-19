@@ -90,6 +90,8 @@ const TestScreen = (props) => {
 			domainId,
 		};
 
+		console.log(data);
+
 		try {
 			await Axios.post(url, data, {
 				headers: {
@@ -104,20 +106,20 @@ const TestScreen = (props) => {
 			});
 		} catch (error) {
 			setError(true);
-			console.log(error);
+			console.log(error.response);
 		}
 
 		setLoading(false);
 	};
 
 	useEffect(() => {
-		// setup();
+		setup();
 
 		//For testing with API, uncomment above line and comment below lines
 
-		const ansObject = createAnsObject(testDetails);
-		setAnswers(ansObject);
-		setLoading(false);
+		// const ansObject = createAnsObject(testDetails);
+		// setAnswers(ansObject);
+		// setLoading(false);
 	}, []);
 
 	if (loading) {
