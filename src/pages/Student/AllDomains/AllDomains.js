@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Carousel from "react-material-ui-carousel";
 import ClubCarousel from "../../../components/Student/ClubCarousel/ClubCarousel";
 import {
   Paper,
@@ -37,8 +36,9 @@ const AllDomains = () => {
 
   if (err) {
     console.log(err);
-    alert("Something went wrong. Please try again.")
+    alert("Something went wrong. Please try again.");
   } else if (clubs) {
+    console.log(clubs);
     let techClubs = [];
     let artsClubs = [];
     let socialClubs = [];
@@ -91,8 +91,68 @@ const AllDomains = () => {
             }}>
             Technical
           </Typography>
-          {clubsMap(techClubs)}
         </Grid>
+        <Grid container>{clubsMap(techClubs)}</Grid>
+        <Grid container style={{ marginTop: "20px" }}>
+          <Typography
+            gutterBottom
+            variant='h3'
+            style={{
+              fontFamily: "Source Sans Pro",
+              fontWeight: "600",
+            }}>
+            Arts and Culture
+          </Typography>
+        </Grid>
+        <Grid container>{clubsMap(artsClubs)}</Grid>
+        <Grid container style={{ marginTop: "20px" }}>
+          <Typography
+            gutterBottom
+            variant='h3'
+            style={{
+              fontFamily: "Source Sans Pro",
+              fontWeight: "600",
+            }}>
+            Social Outreach
+          </Typography>
+        </Grid>
+        <Grid container>{clubsMap(socialClubs)}</Grid>
+        <Grid container style={{ marginTop: "20px" }}>
+          <Typography
+            gutterBottom
+            variant='h3'
+            style={{
+              fontFamily: "Source Sans Pro",
+              fontWeight: "600",
+            }}>
+            Health and Wellness
+          </Typography>
+        </Grid>
+        <Grid container>{clubsMap(healthClubs)}</Grid>
+        <Grid container style={{ marginTop: "20px" }}>
+          <Typography
+            gutterBottom
+            variant='h3'
+            style={{
+              fontFamily: "Source Sans Pro",
+              fontWeight: "600",
+            }}>
+            literature
+          </Typography>
+        </Grid>
+        <Grid container>{clubsMap(litClubs)}</Grid>
+        <Grid container style={{ marginTop: "20px" }}>
+          <Typography
+            gutterBottom
+            variant='h3'
+            style={{
+              fontFamily: "Source Sans Pro",
+              fontWeight: "600",
+            }}>
+            Other
+          </Typography>
+        </Grid>
+        <Grid container>{clubsMap(otherClubs)}</Grid>
       </Container>
     );
   } else {
