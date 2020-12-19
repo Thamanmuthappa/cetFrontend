@@ -23,3 +23,9 @@
 .student-questions-display {
 	padding-top: 30px;
 }
+
+.submit-fab {
+	position: fixed;
+	bottom: 50px;
+	left: 50px;
+}

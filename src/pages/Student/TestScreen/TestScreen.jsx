@@ -1,4 +1,12 @@
-import { Container, Divider, Grid, Typography } from "@material-ui/core";
+import {
+	Container,
+	Divider,
+	Fab,
+	Grid,
+	Tooltip,
+	Typography,
+} from "@material-ui/core";
+import { Done } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
@@ -27,7 +35,8 @@ const TestScreen = () => {
 			const curr = {
 				questionId: question.questionId,
 				questionType: question.questionType,
-				answers: [""],
+				answers:
+					question.questionType === "multipleCorrect" ? [] : [""],
 			};
 
 			obj.submissions.push(curr);
@@ -103,6 +112,15 @@ const TestScreen = () => {
 					))}
 				</div>
 			</Container>
+			<Tooltip title="Submit Test">
+				<Fab
+					color="primary"
+					aria-label="submit-test"
+					className="submit-fab"
+				>
+					<Done />
+				</Fab>
+			</Tooltip>
 		</div>
 	);
 };

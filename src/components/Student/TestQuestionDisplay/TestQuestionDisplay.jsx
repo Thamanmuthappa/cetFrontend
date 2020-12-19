@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import MultipleCorrect from "./QuestionComponents/MultipleCorrect";
 import SingleCorrect from "./QuestionComponents/SingleCorrect";
+import TextQuestions from "./QuestionComponents/TextQuestions";
 import "./TestQuestionDisplay.css";
 
 const TestQuestionDisplay = ({ question, index, answers, setAnswers }) => {
@@ -15,12 +17,21 @@ const TestQuestionDisplay = ({ question, index, answers, setAnswers }) => {
 					setAnswers={setAnswers}
 				/>
 			) : type === "multipleCorrect" ? (
-				"Multiple Correct"
-			) : type === "shortAnswer" ? (
-				"Short Answer"
-			) : type === "longAnswer" ? (
-				"Long Answer"
-			) : null}
+				<MultipleCorrect
+					question={question}
+					index={index}
+					answers={answers}
+					setAnswers={setAnswers}
+				/>
+			) : (
+				<TextQuestions
+					type={type}
+					question={question}
+					index={index}
+					answers={answers}
+					setAnswers={setAnswers}
+				/>
+			)}
 		</div>
 	);
 };

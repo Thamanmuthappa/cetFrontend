@@ -1,25 +1,34 @@
 import {
+	Checkbox,
 	FormControl,
 	FormControlLabel,
+	FormGroup,
 	FormLabel,
 	Grid,
-	Radio,
-	RadioGroup,
 } from "@material-ui/core";
 import React from "react";
 
-const SingleCorrect = ({ question, index, answers, setAnswers }) => {
-	const handleOptionChange = (e) => {
+const MultipleCorrect = ({ question, index, answers, setAnswers }) => {
+	const isChecked = (id) => {
+		if (answers.submissions[index].answers.indexOf(id) !== -1) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	const handleCheckboxChange = (e, id) => {
 		const curr = JSON.parse(JSON.stringify(answers));
 
-		if (e.target.value === curr.submissions[index].answers[0]) {
-			curr.submissions[index].answers[0] = "";
+		if (isChecked(id)) {
+			const ind = curr.submissions[index].answers.indexOf(id);
+			curr.submissions[index].answers.splice(ind, 1);
 		} else {
-			curr.submissions[index].answers[0] = e.target.value;
+			curr.submissions[index].answers.push(id);
 		}
 
 		setAnswers(curr);
-		// console.log(curr);
+		console.log(curr);
 	};
 
 	return (
@@ -35,24 +44,29 @@ const SingleCorrect = ({ question, index, answers, setAnswers }) => {
 					<div className="question-options">
 						<FormControl component="fieldset">
 							<FormLabel component="legend">
-								Options (Single Correct)
+								Options (Multiple Correct)
 							</FormLabel>
-							<RadioGroup
-								value={answers.submissions[index].answers[0]}
-							>
+							<FormGroup>
 								{question.options.map((option, i) => (
 									<FormControlLabel
 										control={
-											<Radio
-												onClick={handleOptionChange}
+											<Checkbox
+												checked={isChecked(
+													option.optionId
+												)}
+												onChange={(e) =>
+													handleCheckboxChange(
+														e,
+														option.optionId
+													)
+												}
 											/>
 										}
-										value={option.optionId}
 										label={option.text}
 										key={i}
 									/>
 								))}
-							</RadioGroup>
+							</FormGroup>
 						</FormControl>
 					</div>
 				</Grid>
@@ -61,4 +75,4 @@ const SingleCorrect = ({ question, index, answers, setAnswers }) => {
 	);
 };
 
-export default SingleCorrect;
+export default MultipleCorrect;
