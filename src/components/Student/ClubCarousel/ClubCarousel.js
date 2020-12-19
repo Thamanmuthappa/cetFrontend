@@ -58,7 +58,7 @@ const ClubCarousel = (props) => {
         <CardMedia
           className={classes.media}
           image={props.club.clubBanner}
-          title='Paella dish'
+          title={props.club.name}
         />
         <CardContent style={{ height: "65px" }}>
           <Typography
@@ -71,7 +71,7 @@ const ClubCarousel = (props) => {
         </CardContent>
         <CardActions disableSpacing>
           <Link to={"/org/" + props.club.username}>
-            <IconButton aria-label='share'>
+            <IconButton aria-label='share' style={{ fontSize: "15px" }}>
               Know More
               <DoubleArrowIcon />
             </IconButton>

@@ -1,8 +1,21 @@
 .question-display-box {
 	border-radius: 10px;
-	width: 100%;
 	height: 100%;
 	border: 1px solid #ccc;
 	min-height: 50px;
 	padding: 3%;
+	margin: 20px 0;
+}
+
+.question-description {
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+
+.question-options {
+	margin-top: 30px;
+}
+
+.question-input {
+	margin-top: 30px;
 }

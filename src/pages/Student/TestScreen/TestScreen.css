@@ -1,5 +1,10 @@
+.test-page {
+	background-color: #f5f5f5;
+}
+
 .test-container {
 	padding-top: 2%;
+	background-color: white;
 }
 
 .test-timer-grid {
@@ -17,4 +22,10 @@
 
 .student-questions-display {
 	padding-top: 30px;
+}
+
+.submit-fab {
+	position: fixed;
+	bottom: 50px;
+	left: 50px;
 }
