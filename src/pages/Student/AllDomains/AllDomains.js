@@ -9,7 +9,6 @@ import {
   Typography,
   Divider,
 } from "@material-ui/core";
-import Navbar from "";
 
 const AllDomains = () => {
   const [clubs, setClubs] = useState();
@@ -78,7 +77,7 @@ const AllDomains = () => {
               fontFamily: "Source Sans Pro",
               fontWeight: "600",
             }}>
-            Featured CLubs
+            Featured Clubs
           </Typography>
         </div>
         <Divider />
