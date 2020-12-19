@@ -1,0 +1,20 @@
+.test-container {
+	padding-top: 2%;
+}
+
+.test-timer-grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 10%;
+	padding: 20px 0 !important;
+}
+
+.test-time-remaining {
+	position: sticky;
+	top: 10px;
+}
+
+.student-questions-display {
+	padding-top: 30px;
+}

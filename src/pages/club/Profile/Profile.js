@@ -13,10 +13,13 @@ import {
 	Switch,
 	Tooltip,
 	Snackbar,
+	IconButton,
 } from "@material-ui/core";
 import { ClubContext } from "../../../context/ClubContext";
 import { Alert } from "@material-ui/lab";
 import { patchProfile } from "../../../API/PATCH";
+import { AccountCircle, AspectRatio } from "@material-ui/icons";
+import UpdateProfilePhoto from "../../../components/Club/ProfileModals/UpdateProfilePhoto";
 // club avatar ,club banner ,socoial links, images
 
 const useStyles = makeStyles((theme) => ({
@@ -48,6 +51,9 @@ const ClubProfile = () => {
 	const [featureLoading, setFeatureLoading] = useState(false);
 	const [featureSuccess, setFeatureSuccess] = useState(false);
 	const [profileSuccess, setProfileSuccess] = useState(false);
+
+	const [dpModal, setDpModal] = useState(false);
+	const [bannerModal, setBannerModal] = useState(false);
 
 	const handleProfileChange = (e) => {
 		setData((prevState) => ({
@@ -131,7 +137,7 @@ const ClubProfile = () => {
 							src="/assets/bannerIMG.jpg"
 							width="100%"
 							alt="banner img"
-						></img>
+						/>
 					</Grid>
 					<Container>
 						<Grid container spacing={7}>
@@ -160,31 +166,65 @@ const ClubProfile = () => {
 							</Grid>
 							<Grid item container xs={12}>
 								<form style={{ width: "100%" }}>
-									<Tooltip
-										title={
-											<span style={{ fontSize: "1rem" }}>
-												Turning this ON will make your
-												profile public for the students
-												on CET.
-											</span>
-										}
-										arrow
-									>
-										<FormControlLabel
-											control={
-												<Switch
-													checked={data.featured}
-													disabled={featureLoading}
-													onChange={
-														handleFeaturedChange
+									<Grid container spacing={3}>
+										<Grid item xs={6}>
+											<Tooltip
+												title={
+													<span
+														style={{
+															fontSize: "1rem",
+														}}
+													>
+														Turning this ON will
+														make your profile public
+														for the students on CET.
+													</span>
+												}
+												arrow
+											>
+												<FormControlLabel
+													control={
+														<Switch
+															checked={
+																data.featured
+															}
+															disabled={
+																featureLoading
+															}
+															onChange={
+																handleFeaturedChange
+															}
+														/>
 													}
+													label="Feature your club"
+													labelPlacement="start"
+													style={{
+														marginBottom: "20px",
+													}}
 												/>
-											}
-											label="Feature your club"
-											labelPlacement="start"
-											style={{ marginBottom: "20px" }}
-										/>
-									</Tooltip>
+											</Tooltip>
+										</Grid>
+										<Grid
+											item
+											xs={6}
+											style={{ textAlign: "right" }}
+										>
+											<Tooltip title="Update profile photo">
+												<IconButton
+													onClick={() =>
+														setDpModal(true)
+													}
+												>
+													<AccountCircle />
+												</IconButton>
+											</Tooltip>
+											<Tooltip title="Update banner">
+												<IconButton>
+													<AspectRatio />
+												</IconButton>
+											</Tooltip>
+										</Grid>
+									</Grid>
 									<Grid container spacing={3}>
 										<Grid item xs={6}>
 											<TextField
@@ -251,44 +291,13 @@ const ClubProfile = () => {
 									</Grid>
 								</form>
 							</Grid>
-							{/* <Grid item xs={9}>
-                <div>
-                  <Typography
-                    gutterBottom
-                    variant='h5'
-                    style={{
-                      fontFamily: "Source Sans Pro",
-                      fontWeight: "600",
-                    }}>
-                    name : {data.club.name}
-                  </Typography>
-                </div>
-                <div>
-                  <Typography
-                    gutterBottom
-                    variant='h5'
-                    style={{
-                      fontFamily: "Source Sans Pro",
-                      fontWeight: "600",
-                    }}>
-                    type : {data.club.type}
-                  </Typography>
-                </div>
-                <div>
-                  <Typography
-                    gutterBottom
-                    variant='h5'
-                    style={{
-                      fontFamily: "Source Sans Pro",
-                      fontWeight: "600",
-                    }}>
-                    description :
-                  </Typography>
-                </div>
-              </Grid> */}
 						</Grid>
 					</Container>
 				</Paper>
+				<UpdateProfilePhoto
+					open={dpModal}
+					onClose={() => setDpModal(false)}
+				/>
 				<Snackbar
 					autoHideDuration={4000}
 					onClose={() => setFeatureSuccess(false)}

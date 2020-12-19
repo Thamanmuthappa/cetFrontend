@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+<p align="center"><a href="https://www.codechefvit.com" target="_blank"><img src="https://s3.amazonaws.com/codechef_shared/sites/all/themes/abessive/logo-3.png" title="CodeChef-VIT" alt="Codechef-VIT"></a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Common Entry Test : Frontend
 
-## Available Scripts
+> <Subtitle>
+> One stop solution to make club and chapter recruitments in VIT simpler and hassle free.
 
-In the project directory, you can run:
+---
+[![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://cet-portalLICENSE.codechefvit.com)
 
-### `yarn start`
+<p align="center">
+<img src="https://i.ibb.co/VppxmWZ/cet.png" alt="Common-Entry-Test" width="250px"/>
+</p>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What is Common Entry Test ?
+Common Entry Test is an assistive technology that helps make applying to clubs and chapters in VIT much easier and hassle free.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Why Common Entry Test ?
+1. No other system matches the diversity of clubs and chapters accessible through our portal. Explore and apply to clubs and chapters in VIT.
+2. There is no need to repeat your applicant details for every club or chapter on your list. Enter your information one time and use it to apply to multiple clubs and chapters.
+3. Our system alerts you when important dates are approaching. Manage your deadlines and view application progress in one convenient dashboard.
+4. Save time by reducing the time you spend on tedious recruitment tests by giving just one standardised test and spend it with your friends and enjoy college life.
 
-### `yarn test`
+## Features
+1. Reduce redundancy.
+2. Well updated and informative.
+3. Easy to use.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Important Links
+- [CET Landing Page Repo](https://github.com/CodeChefVIT/Common-Entry-Test)
+- [CET Landing Page](https://cet.codechefvit.com)
+- [CET Frontend Repo](https://github.com/CodeChefVIT/cetFrontend)
+- [CET Backend Repo](https://github.com/CodeChefVIT/cetBackend)
+- [CET Frontend](https://cet-portal.codechefvit.com) 
+- [CET API](https://cet-dev-api.herokuapp.com/) 
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Contributors
+- <a href="https://github.com/Sarthakbh321">Sarthak Bhardwaj</a>
+- <a href="https://github.com/shashtag">Shashwat Gupta</a>
+- <a href="https://github.com/akshatvg">Akshat Gupta</a>
+- <a href="https://github.com/gvinayakgupta">Vinayak Gupta</a>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are greatly appreciated.
 
-### `yarn eject`
+1. Fork the Project
+2. Create your Feature Branch 
+3. Commit your Changes 
+4. Push to the Branch 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## License
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="center">
+	With :heart: by <a href="https://www.codechefvit.com" target="_blank">CodeChef-VIT</a>
+</p>

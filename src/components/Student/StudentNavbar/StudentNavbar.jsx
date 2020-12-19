@@ -1,12 +1,15 @@
 import { AppBar, Button, Toolbar, Typography } from "@material-ui/core";
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { StudentContext } from "../../../context/StudentContext";
 
 const StudentNavbar = ({ location }) => {
 	const history = useHistory();
 
+	const { setLoginFalse } = useContext(StudentContext);
+
 	const handleLogout = () => {
-		// setLoginFalse();
+		setLoginFalse();
 
 		history.push("/student/signin");
 	};

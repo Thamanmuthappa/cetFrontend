@@ -27,7 +27,7 @@ const Mobile = () => {
             <h4 style={
                 { fontFamily: 'Source Sans Pro' }
             }>
-                Please use a laptop or desktop for the test.
+                Please use a laptop or desktop to use CET.
             </h4>
         </div>
     )

@@ -190,7 +190,7 @@ const ClubSignin = () => {
                                     <Grid item
                                         xs={12}>
                                         <Typography variant="body2" color="textSecondary" component="p">
-                                            Sign In with your account!
+                                            Sign in to your account
                                         </Typography>
                                     </Grid>
                                     <Grid item
