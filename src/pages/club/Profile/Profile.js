@@ -21,6 +21,7 @@ import { patchProfile } from "../../../API/PATCH";
 import { AccountCircle, AspectRatio } from "@material-ui/icons";
 import UpdateProfilePhoto from "../../../components/Club/ProfileModals/UpdateProfilePhoto";
 // club avatar ,club banner ,socoial links, images
+import UpdateBannerPhoto from "../../../components/Club/ProfileModals/UpdateBannerPhoto";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -111,8 +112,16 @@ const ClubProfile = () => {
 		setDisabled(false);
 	};
 
-	useEffect(() => {
+	const updateImages = () => {
+		setData((prevState) => ({
+			...prevState,
+			clubAvatar: clubDetails.club.clubAvatar,
+			clubBanner: clubDetails.club.clubBanner,
+		}));
 		console.log(data, clubDetails.club);
+	};
+
+	useEffect(() => {
 		if (JSON.stringify(data) === JSON.stringify(clubDetails.club)) {
 			setDisabled(true);
 		} else {
@@ -130,13 +139,20 @@ const ClubProfile = () => {
 					justifyContent: "center",
 					alignItems: "center",
 				}}
+				className="profile-section-container"
 			>
 				<Paper elevation={3} className={classes.contPaper}>
 					<Grid container>
 						<img
-							src="/assets/bannerIMG.jpg"
 							width="100%"
 							alt="banner img"
+							src={
+								data.clubBanner
+									? data.clubBanner
+									: "/assets/bannerIMG.jpg"
+							}
+							className="profile-banner"
+							key={Date.now()}
 						/>
 					</Grid>
 					<Container>
@@ -144,8 +160,13 @@ const ClubProfile = () => {
 							<Grid container justify="center">
 								<Avatar
 									alt="Club logo"
-									src="/assets/avatar.jpeg"
+									src={
+										data.clubAvatar
+											? data.clubAvatar
+											: "/assets/avatar.jpeg"
+									}
 									className={classes.avatar}
+									key={Date.now()}
 								/>
 							</Grid>
 							<Grid
@@ -219,7 +240,11 @@ const ClubProfile = () => {
 												</IconButton>
 											</Tooltip>
 											<Tooltip title="Update banner">
-												<IconButton>
+												<IconButton
+													onClick={() =>
+														setBannerModal(true)
+													}
+												>
 													<AspectRatio />
 												</IconButton>
 											</Tooltip>
@@ -297,6 +322,14 @@ const ClubProfile = () => {
 				<UpdateProfilePhoto
 					open={dpModal}
 					onClose={() => setDpModal(false)}
+					id={data._id}
+					updateImages={updateImages}
+				/>
+				<UpdateBannerPhoto
+					open={bannerModal}
+					onClose={() => setBannerModal(false)}
+					id={data._id}
+					updateImages={updateImages}
 				/>
 				<Snackbar
 					autoHideDuration={4000}
