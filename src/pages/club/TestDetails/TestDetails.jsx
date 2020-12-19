@@ -6,6 +6,7 @@ import {
 	DialogTitle,
 	Divider,
 	Grid,
+	Snackbar,
 	Typography,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
@@ -18,6 +19,7 @@ import ClubDomainTile from "../../../components/Club/DomainTile/ClubDomainTile";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
 import Loading from "../../Loading";
 import "./TestDetails.css";
+import { Alert } from "@material-ui/lab";
 
 const TestDetails = (props) => {
 	const id = props.match.params.id;
@@ -30,6 +32,7 @@ const TestDetails = (props) => {
 
 	const [confirmPublish, setConfirmPublish] = useState(false);
 	const [confirmBtnLoading, setConfirmBtnLoading] = useState(false);
+	const [publishSnack, setPublishSnack] = useState(false);
 
 	const handlePublish = async () => {
 		setConfirmBtnLoading(true);
@@ -49,6 +52,7 @@ const TestDetails = (props) => {
 				console.log(res);
 
 				setConfirmPublish(false);
+				setPublishSnack(true);
 			});
 		} catch (error) {
 			console.log(error.response);
@@ -210,6 +214,15 @@ const TestDetails = (props) => {
 					</Button>
 				</DialogActions>
 			</Dialog>
+			<Snackbar
+				open={publishSnack}
+				autoHideDuration={5000}
+				onClose={() => setPublishSnack(false)}
+			>
+				<Alert variant="filled" severity="success">
+					Test published!
+				</Alert>
+			</Snackbar>
 		</div>
 	);
 };
