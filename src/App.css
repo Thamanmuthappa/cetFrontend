@@ -35,12 +35,12 @@ a {
 }
 
 ::-moz-selection {
-  background: #E31E43;
+  background: #e31e43;
   color: #fff;
 }
 
 ::selection {
-  background: #E31E43;
+  background: #e31e43;
   color: #fff;
 }
 
@@ -54,4 +54,12 @@ a {
 
 .profile-banner {
   height: 200px !important;
+}
+
+.card-text-stud-dash {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
