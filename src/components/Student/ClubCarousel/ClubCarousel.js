@@ -14,6 +14,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import {
   Paper,
   Button,
@@ -22,6 +23,7 @@ import {
   Typography,
   Divider,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,12 +70,12 @@ const ClubCarousel = (props) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label='add to favorites'>
-            <FavoriteIcon />
-          </IconButton>
-          <IconButton aria-label='share'>
-            <ShareIcon />
-          </IconButton>
+          <Link to={"/org/" + props.club.username}>
+            <IconButton aria-label='share'>
+              Know More
+              <DoubleArrowIcon />
+            </IconButton>
+          </Link>
         </CardActions>
       </Card>
     </Grid>
