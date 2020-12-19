@@ -25,7 +25,7 @@
 }
 
 .submit-fab {
-	position: fixed;
-	bottom: 50px;
-	left: 50px;
+	position: fixed !important;
+	bottom: 20px !important;
+	left: 30px !important;
 }

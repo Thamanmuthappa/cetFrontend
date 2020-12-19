@@ -7,6 +7,7 @@ import {
 	Typography,
 } from "@material-ui/core";
 import { Done } from "@material-ui/icons";
+import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
@@ -15,7 +16,7 @@ import Loading from "../../Loading";
 import { dummyTest } from "./dummyTest";
 import "./TestScreen.css";
 
-const TestScreen = () => {
+const TestScreen = (props) => {
 	const [testDetails, setTestDetails] = useState(dummyTest);
 	const [timeRemaining, setTimeRemaining] = useState(
 		dummyTest.domainDetails.domainDuration
@@ -23,6 +24,28 @@ const TestScreen = () => {
 
 	const [answers, setAnswers] = useState({});
 	const [loading, setLoading] = useState(true);
+
+	const [error, setError] = useState(false);
+
+	const testId = props.match.params.testId;
+	const domainId = props.match.params.domainId;
+
+	const submitTest = async () => {
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/submit`;
+		const token = localStorage.getItem("studentAuthToken");
+
+		try {
+			await Axios.post(url, answers, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}).then((res) => {
+				console.log(res);
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const createAnsObject = (testDetails) => {
 		const obj = {};
@@ -45,15 +68,49 @@ const TestScreen = () => {
 		return obj;
 	};
 
+	const setup = async () => {
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/attempt`;
+		const token = localStorage.getItem("studentAuthToken");
+
+		const data = {
+			testId,
+			domainId,
+		};
+
+		try {
+			await Axios.post(url, data, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}).then((res) => {
+				console.log(res);
+				const details = res.data;
+				setTestDetails(details);
+				const ansObject = createAnsObject(details);
+				setAnswers(ansObject);
+			});
+		} catch (error) {
+			setError(true);
+			console.log(error);
+		}
+
+		setLoading(false);
+	};
+
 	useEffect(() => {
+		// setup();
+
+		//For testing with API, uncomment above line and comment below lines
+
 		const ansObject = createAnsObject(testDetails);
 		setAnswers(ansObject);
-		console.log(ansObject);
 		setLoading(false);
 	}, []);
 
 	if (loading) {
 		return <Loading />;
+	} else if (error) {
+		return "There was some error";
 	}
 
 	return (
