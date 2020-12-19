@@ -9,7 +9,7 @@ import {
   Typography,
   Divider,
 } from "@material-ui/core";
-import Navbar from "../";
+import NavbarStud from "../../../hoc/NavbarStud/NavbarStud";
 
 const AllDomains = () => {
   const [clubs, setClubs] = useState();
