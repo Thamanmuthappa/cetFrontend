@@ -77,7 +77,7 @@ const AllDomains = () => {
               fontFamily: "Source Sans Pro",
               fontWeight: "600",
             }}>
-            Featured CLubs
+            Featured Clubs
           </Typography>
         </div>
         <Divider />
