@@ -1,5 +1,9 @@
 import {
+	Button,
 	Container,
+	Dialog,
+	DialogActions,
+	DialogTitle,
 	Divider,
 	Fab,
 	Grid,
@@ -15,22 +19,31 @@ import TestQuestionDisplay from "../../../components/Student/TestQuestionDisplay
 import Loading from "../../Loading";
 import { dummyTest } from "./dummyTest";
 import "./TestScreen.css";
+import Countdown from "react-countdown";
 
 const TestScreen = (props) => {
 	const [testDetails, setTestDetails] = useState(dummyTest);
-	const [timeRemaining, setTimeRemaining] = useState(
-		dummyTest.domainDetails.domainDuration
-	);
 
 	const [answers, setAnswers] = useState({});
 	const [loading, setLoading] = useState(true);
+
+	const [confirmSubmit, setConfirmSubmit] = useState(false);
 
 	const [error, setError] = useState(false);
 
 	const testId = props.match.params.testId;
 	const domainId = props.match.params.domainId;
 
+	const minsToMilli = (mins) => {
+		return mins * 60 * 1000;
+	};
+
+	const handleTimeout = () => {
+		submitTest();
+	};
+
 	const submitTest = async () => {
+		setLoading(true);
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/submit`;
 		const token = localStorage.getItem("studentAuthToken");
 
@@ -148,8 +161,22 @@ const TestScreen = (props) => {
 							<div className="test-time-remaining">
 								<Typography variant="h4" color="primary">
 									<strong>
-										{timeRemaining} minutes remaining!{" "}
-										{/* TODO: MAKE DYNAMIC */}
+										<Countdown
+											daysInHours
+											date={
+												Date.now() +
+												minsToMilli(
+													testDetails.domainDetails
+														.domainDuration
+												)
+											}
+											onComplete={handleTimeout}
+										>
+											<span>Time Up!</span>
+										</Countdown>
+
+										{/* {timeRemaining} minutes remaining!{" "}
+										TODO: MAKE DYNAMIC */}
 									</strong>
 								</Typography>
 							</div>
@@ -174,10 +201,35 @@ const TestScreen = (props) => {
 					color="primary"
 					aria-label="submit-test"
 					className="submit-fab"
+					onClick={() => setConfirmSubmit(true)}
 				>
 					<Done />
 				</Fab>
 			</Tooltip>
+			<Dialog
+				open={confirmSubmit}
+				onClose={() => setConfirmSubmit(false)}
+				fullWidth
+			>
+				<DialogTitle>
+					Are you sure you want to submit this domain test?
+				</DialogTitle>
+				<DialogActions>
+					<Button
+						variant="contained"
+						onClick={() => setConfirmSubmit(false)}
+					>
+						Cancel
+					</Button>
+					<Button
+						variant="contained"
+						color="primary"
+						onClick={submitTest}
+					>
+						Submit
+					</Button>
+				</DialogActions>
+			</Dialog>
 		</div>
 	);
 };

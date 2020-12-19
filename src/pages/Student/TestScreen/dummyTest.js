@@ -19,7 +19,7 @@ export const dummyTest = {
 		domainName: "Technical",
 		domainDescription: "This is the tech domain",
 		domainInstructions: "Answer all questions",
-		domainDuration: 60,
+		domainDuration: 30,
 		domainMarks: 26,
 	},
 	questions: [
