@@ -7,6 +7,7 @@ import {
 	Grid,
 } from "@material-ui/core";
 import React from "react";
+import QuestionMedia from "./QuestionMedia";
 
 const MultipleCorrect = ({ question, index, answers, setAnswers }) => {
 	const isChecked = (id) => {
@@ -31,16 +32,19 @@ const MultipleCorrect = ({ question, index, answers, setAnswers }) => {
 		console.log(curr);
 	};
 
+	const isMedia = question.media;
+
 	return (
 		<div className="single-correct-question">
 			<Grid container spacing={0}>
 				<Grid item xs={1}>
 					<span style={{ marginRight: "30px" }}>Q. {index + 1}</span>
 				</Grid>
-				<Grid item xs={11}>
+				<Grid item xs={isMedia ? 6 : 11}>
 					<div className="question-description">
 						{question.description}
 					</div>
+
 					<div className="question-options">
 						<FormControl component="fieldset">
 							<FormLabel component="legend">
@@ -69,6 +73,9 @@ const MultipleCorrect = ({ question, index, answers, setAnswers }) => {
 							</FormGroup>
 						</FormControl>
 					</div>
+				</Grid>
+				<Grid item xs={5}>
+					<QuestionMedia question={question} />
 				</Grid>
 			</Grid>
 		</div>

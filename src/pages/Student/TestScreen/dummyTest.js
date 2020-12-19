@@ -19,7 +19,7 @@ export const dummyTest = {
 		domainName: "Technical",
 		domainDescription: "This is the tech domain",
 		domainInstructions: "Answer all questions",
-		domainDuration: 60,
+		domainDuration: 30,
 		domainMarks: 26,
 	},
 	questions: [
@@ -28,6 +28,13 @@ export const dummyTest = {
 			questionType: "singleCorrect",
 			questionMarks: 1,
 			description: "Select the correct option",
+			media: {
+				ext: "png",
+				mimetype: "image/png",
+				type: "image",
+				url:
+					"https://cet-prod.s3.ap-south-1.amazonaws.com/media/question/1608374481943_Akshat%20Gupta.png",
+			},
 			options: [
 				{
 					optionId: "5fc90976e7c24a4af4d5e122",
@@ -52,6 +59,13 @@ export const dummyTest = {
 			questionType: "singleCorrect",
 			questionMarks: 1,
 			description: "This is an mcq with one correct answer",
+			media: {
+				ext: "quicktime",
+				mimetype: "video/quicktime",
+				type: "video",
+				url:
+					"https://cet-prod.s3.ap-south-1.amazonaws.com/media/question/1608409399109_Screen%20Recording%202020-12-20%20at%201.51.58%20AM.mov",
+			},
 			options: [
 				{
 					optionId: "5fc90976e7c24a4af4d5e126",

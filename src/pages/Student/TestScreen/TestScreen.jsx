@@ -1,5 +1,9 @@
 import {
+	Button,
 	Container,
+	Dialog,
+	DialogActions,
+	DialogTitle,
 	Divider,
 	Fab,
 	Grid,
@@ -7,6 +11,7 @@ import {
 	Typography,
 } from "@material-ui/core";
 import { Done } from "@material-ui/icons";
+import Axios from "axios";
 import React, { useEffect, useState } from "react";
 
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
@@ -14,15 +19,46 @@ import TestQuestionDisplay from "../../../components/Student/TestQuestionDisplay
 import Loading from "../../Loading";
 import { dummyTest } from "./dummyTest";
 import "./TestScreen.css";
+import Countdown from "react-countdown";
 
-const TestScreen = () => {
+const TestScreen = (props) => {
 	const [testDetails, setTestDetails] = useState(dummyTest);
-	const [timeRemaining, setTimeRemaining] = useState(
-		dummyTest.domainDetails.domainDuration
-	);
 
 	const [answers, setAnswers] = useState({});
 	const [loading, setLoading] = useState(true);
+
+	const [confirmSubmit, setConfirmSubmit] = useState(false);
+
+	const [error, setError] = useState(false);
+
+	const testId = props.match.params.testId;
+	const domainId = props.match.params.domainId;
+
+	const minsToMilli = (mins) => {
+		return mins * 60 * 1000;
+	};
+
+	const handleTimeout = () => {
+		submitTest();
+	};
+
+	const submitTest = async () => {
+		setLoading(true);
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/submit`;
+		const token = localStorage.getItem("studentAuthToken");
+
+		try {
+			await Axios.post(url, answers, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}).then((res) => {
+				console.log(res);
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	const createAnsObject = (testDetails) => {
 		const obj = {};
@@ -45,15 +81,51 @@ const TestScreen = () => {
 		return obj;
 	};
 
-	useEffect(() => {
-		const ansObject = createAnsObject(testDetails);
-		setAnswers(ansObject);
-		console.log(ansObject);
+	const setup = async () => {
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/attempt`;
+		const token = localStorage.getItem("studentAuthToken");
+
+		const data = {
+			testId,
+			domainId,
+		};
+
+		console.log(data);
+
+		try {
+			await Axios.post(url, data, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}).then((res) => {
+				console.log(res);
+				const details = res.data;
+				setTestDetails(details);
+				const ansObject = createAnsObject(details);
+				setAnswers(ansObject);
+			});
+		} catch (error) {
+			setError(true);
+			console.log(error.response);
+		}
+
 		setLoading(false);
+	};
+
+	useEffect(() => {
+		setup();
+
+		//For testing with API, uncomment above line and comment below lines
+
+		// const ansObject = createAnsObject(testDetails);
+		// setAnswers(ansObject);
+		// setLoading(false);
 	}, []);
 
 	if (loading) {
 		return <Loading />;
+	} else if (error) {
+		return "There was some error";
 	}
 
 	return (
@@ -91,8 +163,22 @@ const TestScreen = () => {
 							<div className="test-time-remaining">
 								<Typography variant="h4" color="primary">
 									<strong>
-										{timeRemaining} minutes remaining!{" "}
-										{/* TODO: MAKE DYNAMIC */}
+										<Countdown
+											daysInHours
+											date={
+												Date.now() +
+												minsToMilli(
+													testDetails.domainDetails
+														.domainDuration
+												)
+											}
+											onComplete={handleTimeout}
+										>
+											<span>Time Up!</span>
+										</Countdown>
+
+										{/* {timeRemaining} minutes remaining!{" "}
+										TODO: MAKE DYNAMIC */}
 									</strong>
 								</Typography>
 							</div>
@@ -117,10 +203,35 @@ const TestScreen = () => {
 					color="primary"
 					aria-label="submit-test"
 					className="submit-fab"
+					onClick={() => setConfirmSubmit(true)}
 				>
 					<Done />
 				</Fab>
 			</Tooltip>
+			<Dialog
+				open={confirmSubmit}
+				onClose={() => setConfirmSubmit(false)}
+				fullWidth
+			>
+				<DialogTitle>
+					Are you sure you want to submit this domain test?
+				</DialogTitle>
+				<DialogActions>
+					<Button
+						variant="contained"
+						onClick={() => setConfirmSubmit(false)}
+					>
+						Cancel
+					</Button>
+					<Button
+						variant="contained"
+						color="primary"
+						onClick={submitTest}
+					>
+						Submit
+					</Button>
+				</DialogActions>
+			</Dialog>
 		</div>
 	);
 };

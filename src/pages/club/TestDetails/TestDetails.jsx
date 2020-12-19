@@ -1,11 +1,15 @@
 import {
 	Button,
 	Container,
+	Dialog,
+	DialogActions,
+	DialogTitle,
 	Divider,
 	Grid,
 	Typography,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
+import Axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchTestDetails, fetchTestDomains } from "../../../API/GET";
@@ -23,6 +27,35 @@ const TestDetails = (props) => {
 	const [testDomains, setTestDomains] = useState([]);
 
 	const [addDomainOpen, setAddDomain] = useState(false);
+
+	const [confirmPublish, setConfirmPublish] = useState(false);
+	const [confirmBtnLoading, setConfirmBtnLoading] = useState(false);
+
+	const handlePublish = async () => {
+		setConfirmBtnLoading(true);
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/publish`;
+		const token = localStorage.getItem("clubAuthToken");
+
+		const data = {
+			testId: id,
+		};
+
+		try {
+			await Axios.patch(url, data, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}).then((res) => {
+				console.log(res);
+
+				setConfirmPublish(false);
+			});
+		} catch (error) {
+			console.log(error.response);
+		}
+
+		setConfirmBtnLoading(false);
+	};
 
 	const getDetails = async () => {
 		setLoading(true);
@@ -64,7 +97,7 @@ const TestDetails = (props) => {
 									{testDetails.roundType}
 								</p>
 							</Grid>
-							<Grid item xs={6} sm={3}>
+							<Grid item xs={5}>
 								<p>
 									<strong>Start Time:</strong>{" "}
 									{new Date(
@@ -77,6 +110,23 @@ const TestDetails = (props) => {
 										testDetails.scheduledEndDate
 									).toLocaleString()}
 								</p>
+							</Grid>
+							<Grid
+								item
+								xs={3}
+								style={{
+									display: "flex",
+									justifyContent: "flex-end",
+								}}
+							>
+								<Button
+									color="primary"
+									variant="contained"
+									disabled={testDetails.published}
+									onClick={() => setConfirmPublish(true)}
+								>
+									Publish Test
+								</Button>
 							</Grid>
 						</Grid>
 					</div>
@@ -141,6 +191,25 @@ const TestDetails = (props) => {
 				id={id}
 				refresh={getDetails}
 			/>
+			<Dialog
+				open={confirmPublish}
+				onClose={() => setConfirmPublish(false)}
+			>
+				<DialogTitle>
+					Are you sure you want to publish this test?
+				</DialogTitle>
+				<DialogActions>
+					<Button variant="outlined">Cancel</Button>
+					<Button
+						color="primary"
+						variant="contained"
+						onClick={handlePublish}
+						disabled={confirmBtnLoading}
+					>
+						Publish
+					</Button>
+				</DialogActions>
+			</Dialog>
 		</div>
 	);
 };
