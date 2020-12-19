@@ -1,8 +1,9 @@
 import { Container, Divider, Grid, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
 import TestQuestionDisplay from "../../../components/Student/TestQuestionDisplay/TestQuestionDisplay";
+import Loading from "../../Loading";
 import { dummyTest } from "./dummyTest";
 import "./TestScreen.css";
 
@@ -11,6 +12,40 @@ const TestScreen = () => {
 	const [timeRemaining, setTimeRemaining] = useState(
 		dummyTest.domainDetails.domainDuration
 	);
+
+	const [answers, setAnswers] = useState({});
+	const [loading, setLoading] = useState(true);
+
+	const createAnsObject = (testDetails) => {
+		const obj = {};
+		obj.domainId = testDetails.domainDetails._id;
+		obj.testId = testDetails.testDetails._id;
+		obj.clubId = testDetails.clubDetails._id;
+		obj.submissions = [];
+
+		testDetails.questions.map((question) => {
+			const curr = {
+				questionId: question.questionId,
+				questionType: question.questionType,
+				answers: [""],
+			};
+
+			obj.submissions.push(curr);
+		});
+
+		return obj;
+	};
+
+	useEffect(() => {
+		const ansObject = createAnsObject(testDetails);
+		setAnswers(ansObject);
+		console.log(ansObject);
+		setLoading(false);
+	}, []);
+
+	if (loading) {
+		return <Loading />;
+	}
 
 	return (
 		<div className="test-page">
@@ -57,8 +92,14 @@ const TestScreen = () => {
 					</Grid>
 				</div>
 				<div className="student-questions-display">
-					{testDetails.questions.map((question) => (
-						<TestQuestionDisplay question={question} />
+					{testDetails.questions.map((question, i) => (
+						<TestQuestionDisplay
+							question={question}
+							index={i}
+							answers={answers}
+							setAnswers={setAnswers}
+							key={i}
+						/>
 					))}
 				</div>
 			</Container>
