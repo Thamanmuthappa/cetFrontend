@@ -14,10 +14,10 @@ function App() {
 	return (
 		<div className="App">
 			<BreakpointProvider>
-				<Breakpoint large down>
+				<Breakpoint medium down>
 					<Mobile />
 				</Breakpoint>
-				<Breakpoint xlarge up>
+				<Breakpoint large up>
 					<Router>
 						<Switch>
 							<Route exact path="/" component={Landing} />
