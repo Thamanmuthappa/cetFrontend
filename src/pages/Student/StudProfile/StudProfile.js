@@ -135,9 +135,9 @@ const StudProfile = () => {
                       </Grid>
                       <Grid item xs={6}>
                         <TextField
-                          name='github'
+                          name='social'
                           className={classes.input}
-                          label='GitHub'
+                          label='GitHub/LinkedIn/Resume'
                           variant='outlined'
                           value={studData.website}
                           onChange={handleProfileChange}
