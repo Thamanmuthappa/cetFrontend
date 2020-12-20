@@ -159,7 +159,7 @@ const StudProfile = () => {
                         <Button
                           variant='contained'
                           color='primary'
-                          // onClick={updateProfile}
+                          onClick={updateProfile}
                           disabled={disabled}>
                           Save Changes
                         </Button>
