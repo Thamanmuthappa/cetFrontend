@@ -43,7 +43,7 @@ const ClubCarousel = (props) => {
   const classes = useStyles();
   console.log(props.club.clubAvatar);
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={4} style={{ marginBottom: "20px" }}>
       <Card className={classes.root}>
         <CardHeader
           avatar={
