@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ClubProfile = () => {
+const StudProfile = () => {
   const classes = useStyles();
 
   const { studentProfile } = useContext(StudentContext);
@@ -43,7 +43,7 @@ const ClubProfile = () => {
 
   const [error, setError] = useState(null);
   const [studData, setStudData] = useState(studentProfile.student);
-
+  console.log(studData);
   const [disabled, setDisabled] = useState(true);
 
   const handleProfileChange = (e) => {
@@ -55,13 +55,13 @@ const ClubProfile = () => {
 
   const updateProfile = async () => {
     setDisabled(true);
-    const token = localStorage.getItem("clubAuthToken");
+    const token = localStorage.getItem("studentAuthToken");
 
     const res = await patchStudProfile(studData, token);
 
     // if (res) {
     //   getProfile(token);
-    //   setProfileSuccess(true);
+    // setProfileSuccess(true);
     // }
 
     setDisabled(false);
@@ -188,8 +188,9 @@ const ClubProfile = () => {
         </Container>
       </NavbarStud>
     );
+  } else {
+    return <div></div>;
   }
-  return <div></div>;
 };
 
-export default ClubProfile;
+export default StudProfile;

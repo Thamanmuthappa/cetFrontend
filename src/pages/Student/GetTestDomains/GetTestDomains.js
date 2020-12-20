@@ -1,164 +1,111 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  CircularProgress,
-  Container,
-  Divider,
-  Grid,
-  Tooltip,
-  Typography,
-} from "@material-ui/core";
-import { ExpandMore } from "@material-ui/icons";
+import { Container, Divider, Grid, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import {
-  fetchSubmissionsForDomain,
-  fetchSingleDomainDetails,
-} from "../../../../API/GET";
-import QuestionAddModal from "../../../../components/Club/QuestionAddModal";
-import Navbar from "../../../../components/Shared/Navbar/Navbar";
-import "../../DomainDetails/DomainDetails.css";
-import "../../../../components/Club/QuestionsDisplay/QuestionsDisplay.css";
-import Loading from "../../../Loading";
-import StudentTestDetails from "../../../../components/Club/StudentTestQuestions/StudentTestQuestions";
+import { Link } from "react-router-dom";
+import { fetchTestDetails, fetchTestDomains } from "../../../API/GET";
+import ClubDomainTile from "../../../components/Club/DomainTile/ClubDomainTile";
+import Navbar from "../../../components/Shared/Navbar/Navbar";
+import Loading from "../../Loading";
+// import "../../TestDetails/TestDetails";
 
-const DomainDetails = (props) => {
-  const testId = props.match.params.id;
-  const domainId = props.match.params.domainId;
-
-  const [domainDetails, setDomainDetails] = useState(
-    props.location.state?.domain,
-  );
+const TestDetails = (props) => {
+  const id = props.match.params.id;
   const [loading, setLoading] = useState(true);
-  const [questionAdd, setQuestionAdd] = useState(false);
 
-  const [questions, setQuestions] = useState([]);
-  const [questionsLoading, setQuesLoading] = useState(true);
+  const [testDetails, setTestDetails] = useState({});
+  const [testDomains, setTestDomains] = useState([]);
 
-  const getQuestions = async () => {
-    setQuesLoading(true);
+  const [addDomainOpen, setAddDomain] = useState(false);
+
+  const getDetails = async () => {
+    setLoading(true);
     const token = localStorage.getItem("clubAuthToken");
-    const questions = await fetchSubmissionsForDomain(domainId, token);
+    const details = await fetchTestDetails(id, token);
+    const domains = await fetchTestDomains(id, token);
 
-    console.log(questions);
-
-    setQuestions(questions);
-    setQuesLoading(false);
-  };
-
-  const getDomainDetails = async () => {
-    const token = localStorage.getItem("clubAuthToken");
-    const details = await fetchSingleDomainDetails(domainId, token);
-
-    setDomainDetails(details);
+    console.log(details, domains);
+    setTestDetails(details);
+    setTestDomains(domains);
     setLoading(false);
   };
 
-  const handleModalClose = () => {
-    getQuestions();
-    setQuestionAdd(false);
-  };
-
   useEffect(() => {
-    if (!domainDetails) {
-      getDomainDetails();
-    } else {
-      setLoading(false);
-    }
-
-    getQuestions();
+    getDetails();
   }, []);
 
   if (loading) {
     return <Loading />;
   }
+
   return (
-    <>
-      <div className='domain-details-page'>
-        <Navbar location='Domain Name' />
-        <Container className='test-details-container'>
-          <div className='test-info'>
-            <h1>
-              <u>Domain Details</u>
-            </h1>
-            <div style={{ color: "#666666" }}>
-              <Grid container spacing={3}>
-                <Grid item xs={6} sm={4}>
-                  <p>
-                    <strong>Domain Name:</strong> {domainDetails.domainName}
-                  </p>
-
-                  <p>
-                    <strong>Domain Duration:</strong>{" "}
-                    {domainDetails.domainDuration} minutes
-                  </p>
-                  <p>
-                    <Tooltip
-                      title='Marks are automatically added based on questions'
-                      arrow>
-                      <span>
-                        <strong>Domain Marks:</strong>{" "}
-                        {domainDetails.domainMarks}
-                      </span>
-                    </Tooltip>
-                  </p>
-                </Grid>
-                <Grid item xs={6} sm={7}>
-                  <p>
-                    <strong>Domain Description:</strong>{" "}
-                    {domainDetails.domainDescription}
-                  </p>
-                </Grid>
+    <div className='test-details-page'>
+      <Navbar location='Test Details' />
+      <Container className='test-details-container'>
+        <div className='test-info'>
+          <h1>
+            <u>Test Details</u>
+          </h1>
+          <div style={{ color: "#666666" }}>
+            <Grid container spacing={3}>
+              <Grid item xs={6} sm={3}>
+                <p>
+                  <strong>Round Number:</strong> {testDetails.roundNumber}
+                </p>
+                <p>
+                  <strong>Round Type:</strong> {testDetails.roundType}
+                </p>
+                <p>
+                  <strong>Total Duration:</strong> {testDetails.duration}
+                </p>
               </Grid>
-            </div>
+              <Grid item xs={6} sm={3}>
+                <p>
+                  <strong>Start Time:</strong>{" "}
+                  {new Date(testDetails.scheduledForDate).toLocaleString()}
+                </p>
+                <p>
+                  <strong>End Time:</strong>{" "}
+                  {new Date(testDetails.scheduledEndDate).toLocaleString()}
+                </p>
+              </Grid>
+            </Grid>
           </div>
-          <Divider />
-          <div className='test-page-domain'>
-            <h1>
-              <u>Students</u>
-            </h1>
+        </div>
+        <Divider />
+        <div className='test-page-domain'>
+          <h1>
+            <u>Test Domains</u>
+          </h1>
 
-            <div className='domain-page-question-list'>
-              {questionsLoading ? (
-                <div className='questions-loading'>
-                  <CircularProgress color='primary' />
-                  Getting students...
-                </div>
-              ) : questions.length === 0 ? (
-                <div className='test-page-no-domains'>
-                  <Typography variant='h2' className='light-text'>
-                    No Students Attempted
-                  </Typography>
-                </div>
-              ) : (
-                <div className='domain-questions'>
-                  {questions.map((question, i) => (
-                    <Accordion key={i} elevation={4}>
-                      <AccordionSummary
-                        expandIcon={<ExpandMore />}
-                        aria-controls='question-content'>
-                        {question.studentId.name}
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Divider />
-                        <StudentTestDetails details={question.responses} />
-                      </AccordionDetails>
-                    </Accordion>
+          <div className='test-page-domain-list'>
+            {testDomains.length === 0 ? (
+              <div className='test-page-no-domains'>
+                <Typography variant='h2' className='light-text'>
+                  No domains created
+                </Typography>
+              </div>
+            ) : (
+              <div className='test-page-domains-list'>
+                <Grid container spacing={3}>
+                  {testDomains.map((domain) => (
+                    <Grid item xs={12} sm={3}>
+                      <Link
+                        to={{
+                          pathname: `/club/results/test/${id}/${domain._id}`,
+                          state: { domain },
+                        }}>
+                        <ClubDomainTile title={domain.domainName} />
+                      </Link>
+                    </Grid>
                   ))}
-                </div>
-              )}
-            </div>
+                </Grid>
+              </div>
+            )}
           </div>
-        </Container>
-      </div>
-      <QuestionAddModal
-        open={questionAdd}
-        handleClose={handleModalClose}
-        testId={testId}
-        domainId={domainId}
-      />
-    </>
+        </div>
+        {/* <Divider /> */}
+      </Container>
+    </div>
   );
 };
 
-export default DomainDetails;
+export default TestDetails;
