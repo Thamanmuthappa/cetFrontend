@@ -18,6 +18,9 @@ const StudentRoutes = () => {
 					path="/student/club/:clubId"
 					component={ClubTestsList}
 				/>
+				<Route exact path="/student/test/domains/:testId">
+					Hello Hello
+				</Route>
 				<Route
 					exact
 					path="/student/test/:testId/:domainId"
