@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import NavbarStud from "../../../hoc/NavbarStud/NavbarStud";
 
 import {
@@ -10,11 +9,6 @@ import {
   makeStyles,
   TextField,
   Typography,
-  FormControlLabel,
-  Switch,
-  Tooltip,
-  Snackbar,
-  IconButton,
 } from "@material-ui/core";
 import { StudentContext } from "../../../context/StudentContext";
 import { patchStudProfile } from "../../../API/PATCH";
@@ -36,10 +30,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StudProfile = () => {
-  const classes = useStyles();
-
   const { studentProfile } = useContext(StudentContext);
-  console.log(studentProfile);
+
+  const classes = useStyles();
+  console.log(StudentContext);
+  console.log("cssd");
+
+  // console.log(studentProfile);
 
   const [error, setError] = useState(null);
   const [studData, setStudData] = useState(studentProfile.student);
