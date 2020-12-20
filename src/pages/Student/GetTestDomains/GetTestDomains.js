@@ -75,6 +75,15 @@ const GetTestDomains = (props) => {
 			});
 		} catch (error) {
 			console.log(error.response);
+			if (error.response.status === 409) {
+				alert("You have already attempted this domain 🤫");
+			} else if (error.response.status === 401) {
+				alert(
+					"You haven't logged in 🤫"
+				);
+			} else {
+				alert("Oops looks like something is wrong!");
+			}
 			setStartDisable(false);
 		}
 	};
@@ -150,24 +159,24 @@ const GetTestDomains = (props) => {
 								</Typography>
 							</div>
 						) : (
-							<div className="test-page-domains-list">
-								<Grid container spacing={3}>
-									{testDomains.map((domain) => (
-										<Grid item xs={12} sm={3}>
-											<div
-												onClick={() =>
-													handleDomainClick(domain)
-												}
-											>
-												<ClubDomainTile
-													title={domain.domainName}
-												/>
-											</div>
-										</Grid>
-									))}
-								</Grid>
-							</div>
-						)}
+								<div className="test-page-domains-list">
+									<Grid container spacing={3}>
+										{testDomains.map((domain) => (
+											<Grid item xs={12} sm={3}>
+												<div
+													onClick={() =>
+														handleDomainClick(domain)
+													}
+												>
+													<ClubDomainTile
+														title={domain.domainName}
+													/>
+												</div>
+											</Grid>
+										))}
+									</Grid>
+								</div>
+							)}
 					</div>
 				</div>
 				{/* <Divider /> */}
