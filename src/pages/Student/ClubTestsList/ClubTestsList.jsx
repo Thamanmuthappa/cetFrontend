@@ -69,6 +69,7 @@ const ClubTestsList = (props) => {
 			});
 		} catch (error) {
 			console.log(error);
+			setStartDisabled(false);
 		}
 	};
 

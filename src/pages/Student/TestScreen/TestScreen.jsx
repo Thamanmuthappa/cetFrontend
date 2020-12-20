@@ -20,6 +20,7 @@ import Loading from "../../Loading";
 import { dummyTest } from "./dummyTest";
 import "./TestScreen.css";
 import Countdown from "react-countdown";
+import { useHistory } from "react-router-dom";
 
 const TestScreen = (props) => {
 	const [testDetails, setTestDetails] = useState(dummyTest);
@@ -31,8 +32,9 @@ const TestScreen = (props) => {
 
 	const [error, setError] = useState(false);
 
-	const testId = props.match.params.testId;
-	const domainId = props.match.params.domainId;
+	const [startedAt, setStartedAt] = useState(Date.now() * 100000);
+
+	const history = useHistory();
 
 	const minsToMilli = (mins) => {
 		return mins * 60 * 1000;
@@ -47,16 +49,27 @@ const TestScreen = (props) => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/submit`;
 		const token = localStorage.getItem("studentAuthToken");
 
+		const final = JSON.parse(JSON.stringify(answers));
+
+		final.timeTaken = (Date.now() - startedAt) / 60000;
+
+		console.log(final);
+
 		try {
-			await Axios.post(url, answers, {
+			await Axios.post(url, final, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
 			}).then((res) => {
 				console.log(res);
+				history.push({
+					pathname: `/student/test/domains/${answers.testId}`,
+					state: { details: props.location.state.testDetails },
+				});
 			});
 		} catch (error) {
 			console.log(error);
+			setLoading(false);
 		}
 	};
 
@@ -81,45 +94,24 @@ const TestScreen = (props) => {
 		return obj;
 	};
 
-	const setup = async () => {
-		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/attempt`;
-		const token = localStorage.getItem("studentAuthToken");
-
-		const data = {
-			testId,
-			domainId,
-		};
-
-		console.log(data);
-
+	useEffect(() => {
 		try {
-			await Axios.post(url, data, {
-				headers: {
-					Authorization: `Bearer ${token}`,
-				},
-			}).then((res) => {
-				console.log(res);
-				const details = res.data;
+			const details = props.location.state.details;
+
+			if (props.location.state.details) {
 				setTestDetails(details);
 				const ansObject = createAnsObject(details);
 				setAnswers(ansObject);
-			});
+				setStartedAt(props.location.state.startedAt);
+				console.log(props.location.state.startedAt);
+			} else {
+				setError(true);
+			}
 		} catch (error) {
 			setError(true);
-			console.log(error.response);
 		}
 
 		setLoading(false);
-	};
-
-	useEffect(() => {
-		setup();
-
-		//For testing with API, uncomment above line and comment below lines
-
-		// const ansObject = createAnsObject(testDetails);
-		// setAnswers(ansObject);
-		// setLoading(false);
 	}, []);
 
 	if (loading) {
@@ -166,7 +158,7 @@ const TestScreen = (props) => {
 										<Countdown
 											daysInHours
 											date={
-												Date.now() +
+												startedAt +
 												minsToMilli(
 													testDetails.domainDetails
 														.domainDuration

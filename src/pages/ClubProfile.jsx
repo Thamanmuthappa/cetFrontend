@@ -233,6 +233,7 @@ const OrgProfile = (props) => {
 											className="org-website-link"
 											rel="noreferrer"
 											target="_blank"
+											rel="noreferrer"
 										>
 											<Typography
 												style={{ color: "#494F55" }}
@@ -312,7 +313,11 @@ const OrgProfile = (props) => {
 					}}
 				>
 					<center>
-						<a href="https://www.codechefvit.com" target="_blank">
+						<a
+							href="https://www.codechefvit.com"
+							target="_blank"
+							rel="noreferrer"
+						>
 							<img
 								src="/assets/blacklogo.png"
 								alt="CodeChef-VIT"
@@ -327,6 +332,7 @@ const OrgProfile = (props) => {
 							href="https://www.codechefvit.com"
 							style={{ color: "#E31E43" }}
 							target="_blank"
+							rel="noreferrer"
 						>
 							CodeChef-VIT
 						</a>
