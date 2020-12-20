@@ -21,7 +21,7 @@ export const patchProfile = async (profile, token) => {
 };
 
 export const patchStudProfile = async (profile, token) => {
-	const url = `${process.env.REACT_APP_BACKEND_URL}/club/profile`;
+	const url = `${process.env.REACT_APP_BACKEND_URL}/student/profile`;
 
 	let final;
 
