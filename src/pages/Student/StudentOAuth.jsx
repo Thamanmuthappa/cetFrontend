@@ -5,11 +5,13 @@ import { Redirect } from "react-router-dom";
 
 const StudentOAuth = (props) => {
 	const token = props.match.params.token;
+	const loginCount = props.match.params.loginCount;
 	const { isLoggedIn, setLoginTrue } = useContext(StudentContext);
 
 	const [redirect, setRedirect] = useState(false);
 
 	useEffect(() => {
+		console.log(token);
 		if (token) {
 			setLoginTrue(token);
 		}
