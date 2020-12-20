@@ -36,8 +36,6 @@ const DomainDetails = ( props ) => {
         const token = localStorage.getItem( "clubAuthToken" );
         const questions = await fetchQuestionsInDomain( testId, domainId, token );
 
-        console.log( questions );
-
         setQuestions( questions );
         setQuesLoading( false );
     };

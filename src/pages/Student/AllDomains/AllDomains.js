@@ -706,10 +706,8 @@ const AllDomains = () => {
   };
 
   if (err) {
-    console.log(err);
     alert("Something went wrong. Please try again.");
   } else if (clubs) {
-    console.log(clubs);
     let techClubs = [];
     let artsClubs = [];
     let socialClubs = [];

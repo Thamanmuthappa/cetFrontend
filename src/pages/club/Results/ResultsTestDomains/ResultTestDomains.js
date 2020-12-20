@@ -41,8 +41,6 @@ const DomainDetails = (props) => {
     const token = localStorage.getItem("clubAuthToken");
     const questions = await fetchSubmissionsForDomain(domainId, token);
 
-    console.log(questions);
-
     setQuestions(questions);
     setQuesLoading(false);
   };

@@ -29,7 +29,6 @@ const MultipleCorrect = ({ question, index, answers, setAnswers }) => {
 		}
 
 		setAnswers(curr);
-		console.log(curr);
 	};
 
 	const isMedia = question.media;

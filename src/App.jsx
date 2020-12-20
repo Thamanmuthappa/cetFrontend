@@ -36,4 +36,6 @@ function App() {
 	);
 }
 
+console.clear();
+
 export default App;

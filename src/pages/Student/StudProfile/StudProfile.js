@@ -36,8 +36,6 @@ const StudProfile = () => {
 
 	const classes = useStyles();
 
-	// console.log(studentProfile);
-
 	const [error, setError] = useState(null);
 	const [studData, setStudData] = useState(studentProfile.student);
 
@@ -67,7 +65,6 @@ const StudProfile = () => {
 	};
 
 	useEffect(() => {
-		console.log(studData);
 		if (JSON.stringify(studData) === JSON.stringify(studentProfile.club)) {
 			setDisabled(true);
 		} else {

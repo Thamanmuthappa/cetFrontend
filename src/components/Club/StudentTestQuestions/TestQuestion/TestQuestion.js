@@ -14,7 +14,6 @@ import {
 } from "@material-ui/core";
 
 const TestQuestion = (props) => {
-  console.log(props.question);
   let ans = null;
 
   if (props.question.questionType === "singleCorrect") {

@@ -12,10 +12,8 @@ export const postQuestionInDomain = async (question, token) => {
 			},
 		}).then((res) => {
 			result = res;
-			console.log(res);
 		});
 	} catch (error) {
-		console.log(error);
 	}
 
 	return result;

@@ -29,8 +29,6 @@ const TestDetails = (props) => {
     const token = localStorage.getItem("clubAuthToken");
     const details = await fetchTestDetails(id, token);
     const domains = await fetchTestDomains(id, token);
-
-    console.log(details, domains);
     setTestDetails(details);
     setTestDomains(domains);
     setLoading(false);

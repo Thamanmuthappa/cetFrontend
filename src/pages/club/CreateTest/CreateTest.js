@@ -71,9 +71,6 @@ const CreateTest = () => {
 
 		details.scheduledForDate = new Date(details.scheduledForDate).getTime();
 		details.scheduledEndDate = new Date(details.scheduledEndDate).getTime();
-
-		console.log(details);
-
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/create`;
 		const token = localStorage.getItem("clubAuthToken");
 
@@ -83,13 +80,11 @@ const CreateTest = () => {
 					Authorization: `Bearer ${token}`,
 				},
 			}).then((res) => {
-				console.log(res);
 				setLoading(false);
 				addTest(res.data.testDetails);
 				history.push(`/club/test/${res.data.testDetails._id}`);
 			});
 		} catch (error) {
-			console.log(error);
 		}
 	};
 
@@ -205,11 +200,11 @@ const CreateTest = () => {
 							{!loading ? (
 								"Create Test"
 							) : (
-								<CircularProgress
-									size={20}
-									style={{ padding: "3px 10px" }}
-								/>
-							)}
+									<CircularProgress
+										size={20}
+										style={{ padding: "3px 10px" }}
+									/>
+								)}
 						</Button>
 					</div>
 				</form>

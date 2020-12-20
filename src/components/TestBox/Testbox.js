@@ -3,7 +3,6 @@ import "./TestBox.css";
 import { Grid, Paper, Typography } from "@material-ui/core";
 
 const Testbox = (props) => {
-  console.log(props.data);
 
   return (
     <Grid item>

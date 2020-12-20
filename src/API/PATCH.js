@@ -14,7 +14,6 @@ export const patchProfile = async (profile, token) => {
 			final = res;
 		});
 	} catch (error) {
-		console.log(error);
 	}
 
 	return final;
@@ -34,7 +33,6 @@ export const patchStudProfile = async (profile, token) => {
 			final = res;
 		});
 	} catch (error) {
-		console.log(error);
 	}
 
 	return final;

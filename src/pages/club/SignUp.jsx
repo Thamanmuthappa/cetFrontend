@@ -92,17 +92,13 @@ const SignUp = () => {
 			username,
 		};
 
-		console.log(data);
-
 		try {
 			await Axios.post(url, data).then((res) => {
-				console.log(res);
 				setOpen(true);
 				setLoading(false);
 				setTimeout(setDisabled(false), 60000);
 			});
 		} catch (error) {
-			console.log(error);
 			if (error.response.status === 409) {
 				alert("Account already exists...");
 			} else if (error.response.status === 401) {
@@ -125,16 +121,12 @@ const SignUp = () => {
 			emailVerificationCode: otp,
 		};
 
-		console.log(data);
-
 		try {
 			await Axios.post(url, data).then((res) => {
-				console.log(res);
 				setSOpen(true);
 				setOpen(false);
 			});
 		} catch (error) {
-			console.log(error);
 			if (
 				error.response.status === 409 ||
 				error.response.status === 401
@@ -155,16 +147,12 @@ const SignUp = () => {
 			email,
 		};
 
-		console.log(data);
-
 		try {
 			await Axios.post(url, data).then((res) => {
-				console.log(res);
 				setDisabled(true);
 				setTimeout(setDisabled(false), 60000);
 			});
 		} catch (error) {
-			console.log(error);
 			if (
 				error.response.status === 409 ||
 				error.response.status === 401

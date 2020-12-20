@@ -82,7 +82,6 @@ const ClubProfile = () => {
 					},
 				})
 				.then((res) => {
-					console.log(res);
 					setFeatureSuccess(true);
 					setFeatured(!curr);
 
@@ -92,7 +91,6 @@ const ClubProfile = () => {
 					}));
 				});
 		} catch (error) {
-			console.log(error);
 		}
 
 		setFeatureLoading(false);
@@ -118,7 +116,6 @@ const ClubProfile = () => {
 			clubAvatar: clubDetails.club.clubAvatar,
 			clubBanner: clubDetails.club.clubBanner,
 		}));
-		console.log(data, clubDetails.club);
 	};
 
 	useEffect(() => {

@@ -60,7 +60,6 @@ const CreateSingleCorrect = ({
 
 		setQuestion(curr);
 		setCurrentSelected(i);
-		console.log(optionsArr);
 	};
 
 	const handleFormChange = (e) => {
@@ -81,7 +80,6 @@ const CreateSingleCorrect = ({
 	};
 
 	const submit = async () => {
-		console.log(question);
 		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 
