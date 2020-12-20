@@ -9,6 +9,7 @@ const StudentOAuth = (props) => {
 	const { isLoggedIn, setLoginTrue } = useContext(StudentContext);
 
 	const [redirect, setRedirect] = useState(false);
+	const [profileRedirect, setProfileRedirect] = useState(false);
 
 	useEffect(() => {
 		console.log(token);
@@ -19,12 +20,18 @@ const StudentOAuth = (props) => {
 
 	useEffect(() => {
 		if (isLoggedIn) {
-			setRedirect(true);
+			if (loginCount === "0") {
+				setProfileRedirect(true);
+			} else {
+				setRedirect(true);
+			}
 		}
 	}, [isLoggedIn]);
 
 	if (redirect) {
 		return <Redirect to="/student/dashboard" />;
+	} else if (profileRedirect) {
+		return <Redirect to="/student/profile" />;
 	}
 
 	return <Loading />;

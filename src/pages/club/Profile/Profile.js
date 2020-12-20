@@ -199,6 +199,9 @@ const ClubProfile = () => {
 														Turning this ON will
 														make your profile public
 														for the students on CET.
+														(NOTE: TURN THIS ON ONLY
+														AFTER YOU HAVE FILLED
+														AND SAVED THE PROFILE)
 													</span>
 												}
 												arrow
