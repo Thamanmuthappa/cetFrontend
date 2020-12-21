@@ -165,7 +165,10 @@ const DomainDetails = ( props ) => {
                                         <Accordion key={i}
                                             elevation={4}>
                                             <AccordionSummary expandIcon={<ExpandMore/>}
-                                                aria-controls="question-content">
+                                                aria-controls="question-content"
+                                                style={
+                                                    { whiteSpace: "pre-wrap" }
+                                            }>
                                                 {
                                                 question.description
                                             } </AccordionSummary>

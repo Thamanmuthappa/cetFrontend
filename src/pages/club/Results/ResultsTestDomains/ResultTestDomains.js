@@ -28,7 +28,7 @@ const DomainDetails = (props) => {
   const domainId = props.match.params.domainId;
 
   const [domainDetails, setDomainDetails] = useState(
-    props.location.state?.domain,
+    props.location.state ?.domain,
   );
   const [loading, setLoading] = useState(true);
   const [questionAdd, setQuestionAdd] = useState(false);
@@ -130,22 +130,22 @@ const DomainDetails = (props) => {
                   </Typography>
                 </div>
               ) : (
-                <div className='domain-questions'>
-                  {questions.map((question, i) => (
-                    <Accordion key={i} elevation={4}>
-                      <AccordionSummary
-                        expandIcon={<ExpandMore />}
-                        aria-controls='question-content'>
-                        {question.studentId.name}
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Divider />
-                        <StudentTestDetails details={question.responses} />
-                      </AccordionDetails>
-                    </Accordion>
-                  ))}
-                </div>
-              )}
+                    <div className='domain-questions' style={{ whiteSpace: "pre-wrap" }}>
+                      {questions.map((question, i) => (
+                        <Accordion key={i} elevation={4}>
+                          <AccordionSummary
+                            expandIcon={<ExpandMore />}
+                            aria-controls='question-content'>
+                            {question.studentId.name}
+                          </AccordionSummary>
+                          <AccordionDetails>
+                            <Divider />
+                            <StudentTestDetails details={question.responses} />
+                          </AccordionDetails>
+                        </Accordion>
+                      ))}
+                    </div>
+                  )}
             </div>
           </div>
         </Container>
