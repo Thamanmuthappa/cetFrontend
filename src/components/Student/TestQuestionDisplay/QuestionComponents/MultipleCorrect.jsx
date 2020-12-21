@@ -40,7 +40,9 @@ const MultipleCorrect = ({ question, index, answers, setAnswers }) => {
 					<span style={{ marginRight: "30px" }}>Q. {index + 1}</span>
 				</Grid>
 				<Grid item xs={isMedia ? 6 : 11}>
-					<div className="question-description">
+					<div className="question-description" style={
+                                { whiteSpace: "pre-wrap" }
+                        }>
 						{question.description}
 					</div>
 

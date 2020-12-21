@@ -121,9 +121,15 @@ const TestScreen = ( props ) => {
     }
 
     return (
-        <div className="test-page">
+        <div className="test-page"
+            style={
+                { paddingBottom: "40px" }
+        }>
             <StudentNavbar location="Attempt test"/>
-            <Container className="test-container">
+            <Container className="test-container"
+                style={
+                    { paddingBottom: "40px" }
+            }>
                 <div className="student-test-details">
                     <Grid container
                         spacing={3}>
