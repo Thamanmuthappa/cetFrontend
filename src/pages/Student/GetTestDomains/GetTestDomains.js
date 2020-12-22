@@ -157,24 +157,24 @@ const GetTestDomains = (props) => {
 								</Typography>
 							</div>
 						) : (
-							<div className="test-page-domains-list">
-								<Grid container spacing={3}>
-									{testDomains.map((domain) => (
-										<Grid item xs={12} sm={3}>
-											<div
-												onClick={() =>
-													handleDomainClick(domain)
-												}
-											>
-												<ClubDomainTile
-													title={domain.domainName}
-												/>
-											</div>
-										</Grid>
-									))}
-								</Grid>
-							</div>
-						)}
+								<div className="test-page-domains-list">
+									<Grid container spacing={3}>
+										{testDomains.map((domain) => (
+											<Grid item xs={12} sm={3}>
+												<div
+													onClick={() =>
+														handleDomainClick(domain)
+													}
+												>
+													<ClubDomainTile
+														title={domain.domainName}
+													/>
+												</div>
+											</Grid>
+										))}
+									</Grid>
+								</div>
+							)}
 					</div>
 				</div>
 				{/* <Divider /> */}
@@ -194,6 +194,7 @@ const GetTestDomains = (props) => {
 						Start Domain
 					</Button>
 				</DialogActions>
+				P.S: You will lose all progress if you refresh the page or go back.
 			</Dialog>
 			<Snackbar
 				open={alreadyAttempted}
