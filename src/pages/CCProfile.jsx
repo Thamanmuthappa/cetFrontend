@@ -29,7 +29,8 @@ import EmailIcon from "@material-ui/icons/Email";
 const useStyles = makeStyles((theme) => ({
 	avatar: {
 		width: "150px",
-		height: "150px",
+        height: "150px",
+        marginTop:"60px"
 	},
 	contPaper: {
 		width: "100%",
@@ -231,7 +232,7 @@ const CCProfile = (props) => {
 														"#FFBC27",
 												}}
 											>
-												{data.website}{" "}
+												www.codechefvit.com{" "}
 											</a>{" "}
 										</div>
 									</Grid>

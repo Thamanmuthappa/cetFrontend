@@ -183,7 +183,7 @@ const GetTestDomains = (props) => {
 				<DialogTitle>
 					Are you sure you want to start this domain?
 				</DialogTitle>
-
+				<p style="font-size: 13px;">P.S: You will lose all progress if you refresh the page or go back.</p>
 				<DialogActions style={{ justifyContent: "center" }}>
 					<Button
 						color="primary"
@@ -194,7 +194,6 @@ const GetTestDomains = (props) => {
 						Start Domain
 					</Button>
 				</DialogActions>
-				P.S: You will lose all progress if you refresh the page or go back.
 			</Dialog>
 			<Snackbar
 				open={alreadyAttempted}
