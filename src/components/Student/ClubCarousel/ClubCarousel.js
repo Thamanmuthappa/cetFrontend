@@ -70,12 +70,21 @@ const ClubCarousel = (props) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <Link to={"/org/" + props.club.username} style={{ flex: "1" }}>
-            <IconButton aria-label='share' style={{ fontSize: "15px" }}>
-              Know More
+          {props.club.username === "codechefvit" ?
+            <Link to={"/us/" + props.club.username} style={{ flex: "1" }}>
+              <IconButton aria-label='share' style={{ fontSize: "15px" }}>
+                Know More
               <DoubleArrowIcon />
-            </IconButton>
-          </Link>
+              </IconButton>
+            </Link>
+            :
+            <Link to={"/org/" + props.club.username} style={{ flex: "1" }}>
+              <IconButton aria-label='share' style={{ fontSize: "15px" }}>
+                Know More
+              <DoubleArrowIcon />
+              </IconButton>
+            </Link>
+          }
           <Typography align="right" style={{ fontSize: "12px" }}>
             {
               props.club.numOfTestsPublished > 0

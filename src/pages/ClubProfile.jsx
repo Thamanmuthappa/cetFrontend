@@ -27,7 +27,6 @@ const useStyles = makeStyles( ( theme ) => ( {
     contPaper: {
         width: "100%",
         borderRadius: "20px",
-
         paddingBottom: "40px"
     },
     input: {
