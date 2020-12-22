@@ -9,31 +9,37 @@ import ClubRoutes from "./routes/ClubRoutes";
 import { Breakpoint, BreakpointProvider } from "react-socks";
 
 import OrgProfile from "./pages/ClubProfile";
+import CCProfile from "./pages/CCProfile";
 
 function App() {
-	return (
-		<div className="App">
-			<BreakpointProvider>
-				<Breakpoint medium down>
-					<Mobile />
-				</Breakpoint>
-				<Breakpoint large up>
-					<Router>
-						<Switch>
-							<Route exact path="/" component={Landing} />
-							<Route path="/student" component={StudentRoutes} />
-							<Route path="/club" component={ClubRoutes} />
-							<Route
-								path="/org/:username"
-								component={OrgProfile}
-							/>
-							<Route path="*" component={ErrorPage} />
-						</Switch>
-					</Router>
-				</Breakpoint>
-			</BreakpointProvider>
-		</div>
-	);
+    return (
+        <div className="App">
+            <BreakpointProvider>
+                <Breakpoint medium down>
+                    <Mobile/>
+                </Breakpoint>
+                <Breakpoint large up>
+                    <Router>
+                        <Switch>
+                            <Route exact path="/"
+                                component={Landing}/>
+                            <Route path="/student"
+                                component={StudentRoutes}/>
+                            <Route path="/club"
+                                component={ClubRoutes}/>
+                            <Route path="/us/codechefvit"
+                                component={CCProfile}/>
+                            <Route path="/org/:username"
+                                component={OrgProfile}/>
+                            <Route component={ErrorPage}/>
+                        </Switch>
+                    </Router>
+                </Breakpoint>
+            </BreakpointProvider>
+        </div>
+    );
 }
+
+// console.clear();
 
 export default App;

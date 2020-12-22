@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira&display=swap');
+
+@font-face {
+    font-family: Star Jedi;
+    src: url("../starjedi/Starjedi.ttf");
+}
+
+
+@font-face {
+    font-family: Star Jhol;
+    src: url("../starjedi/Starjhol.ttf");
+}

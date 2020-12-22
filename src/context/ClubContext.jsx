@@ -51,7 +51,6 @@ const ClubContextProvider = ({ children }) => {
 	};
 
 	const setClubTests = (tests) => {
-		console.log(tests);
 		dispatch({ type: "SET_CLUB_TESTS", payload: tests });
 	};
 

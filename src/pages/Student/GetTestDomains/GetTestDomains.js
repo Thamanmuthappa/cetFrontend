@@ -40,7 +40,6 @@ const GetTestDomains = (props) => {
 	const history = useHistory();
 
 	useEffect(() => {
-		console.log(data);
 		if (!data) {
 			setRedirect(true);
 		} else {
@@ -58,7 +57,6 @@ const GetTestDomains = (props) => {
 			domainId: currentSelected._id,
 		};
 
-		console.log(data);
 
 		try {
 			await Axios.post(url, data, {
@@ -66,7 +64,6 @@ const GetTestDomains = (props) => {
 					Authorization: `Bearer ${token}`,
 				},
 			}).then((res) => {
-				console.log(res);
 				const details = res.data;
 				history.push({
 					pathname: `/student/test/${id}/${data.domainId}`,
@@ -78,7 +75,6 @@ const GetTestDomains = (props) => {
 				});
 			});
 		} catch (error) {
-			console.log(error.response);
 			if (error.response.status === 409) {
 				setAlreadyAttempted(true);
 			} else if (error.response.status === 401) {
@@ -164,7 +160,7 @@ const GetTestDomains = (props) => {
 							<div className="test-page-domains-list">
 								<Grid container spacing={3}>
 									{testDomains.map((domain) => (
-										<Grid item xs={12} sm={3}>
+										<Grid item xs={12} sm={3} key={domain.domainName}>
 											<div
 												onClick={() =>
 													handleDomainClick(domain)

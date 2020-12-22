@@ -49,13 +49,11 @@ const DomainAddModal = ({ open, handleClose, id, refresh }) => {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => {
-        console.log(res);
         setLoading(false);
         handleClose();
         refresh();
       });
     } catch (error) {
-      console.log(error);
       setLoading(false);
     }
   };

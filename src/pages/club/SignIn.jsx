@@ -96,7 +96,6 @@ const ClubSignin = () => {
                 setLoading( false );
             } );
         } catch ( error ) {
-            console.log( error );
             if ( error.response.status === 409 || error.response.status === 401 ) {
                 alert( "Account already exists..." );
             } else if ( error.response.status === 400 ) {

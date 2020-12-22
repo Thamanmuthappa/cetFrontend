@@ -13,9 +13,7 @@ export const fetchAdminProfile = async (token) => {
     }).then((res) => {
       final = res.data;
     });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return final;
 };
@@ -33,9 +31,7 @@ export const fetchAllTests = async (token) => {
     }).then((res) => {
       final = res.data.tests;
     });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return final;
 };
@@ -52,9 +48,7 @@ export const fetchTestDetails = async (id, token) => {
     }).then((res) => {
       final = res.data.test;
     });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return final;
 };
@@ -71,9 +65,7 @@ export const fetchTestDomains = async (id, token) => {
     }).then((res) => {
       final = res.data.domains;
     });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return final;
 };
@@ -90,9 +82,7 @@ export const fetchQuestionsInDomain = async (testId, domainId, token) => {
     }).then((res) => {
       final = res.data.questions;
     });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return final;
 };
@@ -109,9 +99,7 @@ export const fetchSingleDomainDetails = async (domainId, token) => {
     }).then((res) => {
       final = res.data.domainDetails;
     });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return final;
 };
@@ -133,9 +121,7 @@ export const fetchSubmissionsForDomain = async (domainId, token) => {
     }).then((res) => {
       final = res.data.usersFinished;
     });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return final;
 };
@@ -153,9 +139,7 @@ export const fetchStudentProfile = async (token) => {
     }).then((res) => {
       final = res.data;
     });
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 
   return final;
 };

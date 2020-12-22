@@ -48,7 +48,6 @@ const CreateShortQuestion = ({
 	};
 
 	const submit = async () => {
-		console.log(question);
 		setLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
 

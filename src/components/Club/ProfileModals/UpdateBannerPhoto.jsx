@@ -26,8 +26,6 @@ const UpdateBannerPhoto = ({ open, onClose, id, updateImages }) => {
 			return;
 		}
 
-		console.log(id);
-
 		const data = new FormData();
 
 		data.append("banner", file, id);
@@ -38,14 +36,12 @@ const UpdateBannerPhoto = ({ open, onClose, id, updateImages }) => {
 					Authorization: `Bearer ${token}`,
 				},
 			}).then((res) => {
-				console.log(res);
 				setLoading(false);
 				getProfile(token);
 				onClose();
 				updateImages();
 			});
 		} catch (error) {
-			console.log(error);
 		}
 	};
 

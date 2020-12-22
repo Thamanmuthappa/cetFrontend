@@ -25,11 +25,8 @@ const useStyles = makeStyles((theme) => ({
 const Results = () => {
   const { testsCreated } = useContext(ClubContext);
   const history = useHistory();
-
-  console.log(testsCreated);
   const classes = useStyles();
   const testClickedHandler = (test) => {
-    console.log("hhb");
     history.push(`/club/results/test/${test._id}`);
   };
 

@@ -15,6 +15,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import {
   Paper,
   Button,
@@ -41,9 +42,8 @@ const useStyles = makeStyles((theme) => ({
 
 const ClubCarousel = (props) => {
   const classes = useStyles();
-  console.log(props.club.clubAvatar);
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={4} style={{ marginBottom: "20px" }}>
       <Card className={classes.root}>
         <CardHeader
           avatar={
@@ -70,12 +70,28 @@ const ClubCarousel = (props) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <Link to={"/org/" + props.club.username}>
-            <IconButton aria-label='share' style={{ fontSize: "15px" }}>
-              Know More
+          {props.club.username === "codechefvit" ?
+            <Link to={"/us/" + props.club.username} style={{ flex: "1" }}>
+              <IconButton aria-label='share' style={{ fontSize: "15px" }}>
+                Know More
               <DoubleArrowIcon />
-            </IconButton>
-          </Link>
+              </IconButton>
+            </Link>
+            :
+            <Link to={"/org/" + props.club.username} style={{ flex: "1" }}>
+              <IconButton aria-label='share' style={{ fontSize: "15px" }}>
+                Know More
+              <DoubleArrowIcon />
+              </IconButton>
+            </Link>
+          }
+          <Typography align="right" style={{ fontSize: "12px" }}>
+            {
+              props.club.numOfTestsPublished > 0
+                ? <EventAvailableIcon fontSize="small" style={{ marginTop: "7px", flex: "1", paddingRight: "7px" }} />
+                : "No Active Tests"
+            }
+          </Typography>
         </CardActions>
       </Card>
     </Grid>

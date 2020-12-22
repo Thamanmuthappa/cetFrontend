@@ -61,14 +61,12 @@ const ClubTestsList = (props) => {
 					Authorization: `Bearer ${token}`,
 				},
 			}).then((res) => {
-				console.log(res);
 				history.push({
 					pathname: `/student/test/domains/${data.testId}`,
 					state: { details: res.data },
 				});
 			});
 		} catch (error) {
-			console.log(error);
 			setStartDisabled(false);
 		}
 	};
@@ -85,10 +83,8 @@ const ClubTestsList = (props) => {
 			}).then((res) => {
 				setTests(res.data.tests);
 				setLoading(false);
-				console.log(res);
 			});
 		} catch (error) {
-			console.log(error);
 		}
 	};
 
@@ -173,5 +169,4 @@ const ClubTestsList = (props) => {
 		</>
 	);
 };
-
 export default ClubTestsList;
