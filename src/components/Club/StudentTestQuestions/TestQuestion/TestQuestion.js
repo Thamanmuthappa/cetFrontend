@@ -1,32 +1,20 @@
 import React from "react";
-import {
-  Grid,
-  Container,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Slider,
-  TextField,
-  Typography,
-  Divider,
-} from "@material-ui/core";
+import { Grid, Container, Typography } from "@material-ui/core";
 
 const TestQuestion = (props) => {
   console.log(props.question);
   let ans = null;
 
   if (props.question.questionType === "singleCorrect") {
-    let markedId = props.question.answers;
+    let markedId = props.question.answers[0];
+
     let marked = null;
-    let correctId = props.question.correctAnswer;
     let correct = null;
     for (let x in props.question.questionId.options) {
       if (props.question.questionId.options[x]._id === markedId) {
         marked = props.question.questionId.options[x].option.text;
       }
-      if (props.question.questionId.options[x]._id === correctId) {
+      if (props.question.questionId.options[x].option.isCorrect) {
         correct = props.question.questionId.options[x].option.text;
       }
     }
@@ -62,19 +50,17 @@ const TestQuestion = (props) => {
   } else if (props.question.questionType === "multipleCorrect") {
     let markedId;
     let marked = "";
-    let correctId;
     let correct = "";
 
     for (let y in props.question.answers) {
       markedId = props.question.answers[y];
-      correctId = props.question.correctAnswer[y];
 
       for (let x in props.question.questionId.options) {
         if (props.question.questionId.options[x]._id === markedId) {
           marked += props.question.questionId.options[x].option.text;
           marked += ", ";
         }
-        if (props.question.questionId.options[x]._id === correctId) {
+        if (props.question.questionId.options[x].option.isCorrect) {
           correct += props.question.questionId.options[x].option.text;
           correct += ", ";
         }

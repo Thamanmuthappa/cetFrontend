@@ -18,7 +18,7 @@ const StudentTestQuestions = (props) => {
 	));
 
 	useEffect(() => {
-		console.log(props.details);
+		// console.log(props.details);
 	}, []);
 
 	return (
