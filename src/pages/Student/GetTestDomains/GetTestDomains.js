@@ -160,7 +160,7 @@ const GetTestDomains = (props) => {
 							<div className="test-page-domains-list">
 								<Grid container spacing={3}>
 									{testDomains.map((domain) => (
-										<Grid item xs={12} sm={3}>
+										<Grid item xs={12} sm={3} key={domain.domainName}>
 											<div
 												onClick={() =>
 													handleDomainClick(domain)
