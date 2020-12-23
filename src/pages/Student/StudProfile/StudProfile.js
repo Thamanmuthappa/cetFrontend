@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import NavbarStud from "../../../hoc/NavbarStud/NavbarStud";
 
 import {
 	Paper,
@@ -14,6 +13,8 @@ import {
 import { StudentContext } from "../../../context/StudentContext";
 import { patchStudProfile } from "../../../API/PATCH";
 import { Alert } from "@material-ui/lab";
+import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
+import { fetchStudentProfile } from "../../../API/GET";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StudProfile = () => {
-	const { studentProfile } = useContext(StudentContext);
+	const { studentProfile, setStudentDetails } = useContext(StudentContext);
 
 	const classes = useStyles();
 
@@ -59,6 +60,11 @@ const StudProfile = () => {
 		if (res) {
 			// getProfile(token);
 			setProfileSuccess(true);
+			const profile = await fetchStudentProfile(token);
+
+			if (profile) {
+				setStudentDetails(profile);
+			}
 		}
 
 		setDisabled(false);
@@ -76,12 +82,14 @@ const StudProfile = () => {
 		return <div>Error: {error.message}</div>;
 	} else if (studData) {
 		return (
-			<NavbarStud>
+			<>
+				<StudentNavbar location="Profile" />
 				<Container
 					style={{
 						display: "flex",
 						justifyContent: "center",
 						alignItems: "center",
+						height: "calc(100vh - 64px)",
 					}}
 					className="profile-section-container"
 				>
@@ -105,6 +113,21 @@ const StudProfile = () => {
 									</Typography>
 								</Grid>
 								<Grid item container xs={12}>
+									<div
+										style={{
+											width: "100%",
+											textAlign: "center",
+											marginBottom: "30px",
+										}}
+									>
+										<Typography
+											variant="body1"
+											className="light-text"
+										>
+											Not filling the profile may result
+											in disqualification.
+										</Typography>
+									</div>
 									<form style={{ width: "100%" }}>
 										<Grid container spacing={3}>
 											<Grid item xs={6}>
@@ -149,11 +172,13 @@ const StudProfile = () => {
 											</Grid>
 											<Grid item xs={6}>
 												<TextField
-													name="social"
+													name="registrationNumber"
 													className={classes.input}
-													label="GitHub/LinkedIn/Resume"
+													label="VIT Registration Number"
 													variant="outlined"
-													value={studData.socials}
+													value={
+														studData.registrationNumber
+													}
 													onChange={
 														handleProfileChange
 													}
@@ -204,7 +229,7 @@ const StudProfile = () => {
 						</Alert>
 					</Snackbar>
 				</Container>
-			</NavbarStud>
+			</>
 		);
 	} else {
 		return <div></div>;

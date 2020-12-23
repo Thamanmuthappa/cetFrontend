@@ -41,6 +41,15 @@ const StudentNavbar = ({ location }) => {
 					{location}
 				</Typography>
 				{/* <Avatar alt="SB" /> */}
+				<Button
+					variant="contained"
+					color="primary"
+					style={{ marginRight: "20px", fontWeight: "bold" }}
+					component={Link}
+					to="/student/profile"
+				>
+					Profile
+				</Button>
 				<Button className="logout-btn-nav" onClick={handleLogout}>
 					LogOut
 				</Button>

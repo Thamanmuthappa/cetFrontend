@@ -1,3 +1,11 @@
 .student-test-list {
 	padding: 3%;
 }
+
+.modal-test-instructions {
+	background-color: #ccc;
+	color: #777;
+	padding: 20px 10px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
