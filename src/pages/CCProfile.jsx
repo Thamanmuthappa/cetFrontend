@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 			cursor: "pointer",
 		},
 	},
-}));
+}))
 
 const CCProfile = (props) => {
 	const classes = useStyles();
