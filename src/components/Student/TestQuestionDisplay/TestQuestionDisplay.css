@@ -21,17 +21,23 @@
 }
 
 .question-media-div {
+	margin-left: 30px !important;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .question-img {
-	max-width: 300px;
+	min-width: 400px;
+	min-height: 200px;
+	max-width: 400px;
 	max-height: 300px;
 }
 
 .question-video {
-	max-width: 500px;
+	min-width: 400px;
+	min-height: 200px;
+	max-width: 400px;
 	max-height: 300px;
 }
