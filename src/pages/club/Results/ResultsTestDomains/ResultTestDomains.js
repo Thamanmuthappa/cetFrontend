@@ -53,8 +53,6 @@ const DomainDetails = (props) => {
 			token
 		);
 
-		console.log(final);
-
 		setQuestions(final);
 		setShortlisted(shortlisted);
 		setQuesLoading(false);
@@ -70,7 +68,7 @@ const DomainDetails = (props) => {
 
 	const handleShortlistClick = (e, student) => {
 		e.stopPropagation();
-		console.log(student);
+
 		setSelectedStudent(student);
 		setShortlistModal(true);
 	};
@@ -89,7 +87,6 @@ const DomainDetails = (props) => {
 		if (!domainDetails) {
 			getDomainDetails();
 		} else {
-			console.log(domainDetails);
 			setLoading(false);
 		}
 

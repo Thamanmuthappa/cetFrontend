@@ -121,7 +121,6 @@ export const fetchSubmissionsForDomain = async (domainId, token) => {
 				Authorization: `Bearer ${token}`,
 			},
 		}).then((res) => {
-			console.log(res);
 			final = res.data.usersFinished;
 			shortlisted = res.data.shortlisedInDomain;
 		});

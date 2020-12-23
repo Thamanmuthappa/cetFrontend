@@ -40,14 +40,12 @@ const ShortlistModal = ({
 			remark: remark,
 		};
 
-		console.log(data);
 		try {
 			await Axios.patch(url, data, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 				},
 			}).then((res) => {
-				console.log(res);
 				setDisabled(false);
 				setSuccess(true);
 				refresh();
