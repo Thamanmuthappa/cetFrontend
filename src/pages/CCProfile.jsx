@@ -42,24 +42,7 @@ const useStyles = makeStyles((theme) => ({
 			cursor: "pointer",
 		},
 	},
-}));
-
-// const timeFunc=()=>{
-// 	var countDownDate = new Date("Dec 25, 2020 08:00:00").getTime();
-// 	var countdownfunction = setInterval(function() {
-// 	  var now = new Date().getTime();
-// 	  var distance = countDownDate - now;
-// 	  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-// 	  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-// 	  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-// 	  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-// 	  document.getElementById("timer").innerHTML= days + "d " + hours + "h "+ minutes + "m " + seconds + "s";
-// 	  if (distance < 0) {
-// 		clearInterval(countdownfunction);
-// 		document.getElementById("timer").innerHTML= `May The Code Be With You!`
-// 	  }
-// 	}, 1000);
-// }
+}))
 
 const CCProfile = (props) => {
 	const classes = useStyles();
@@ -310,16 +293,6 @@ const CCProfile = (props) => {
 												Apply Now
 											</Button>
 										</a>
-										{/* {timeFunc()}
-										<Typography id="timer" variant="h3" style=
-										{{
-											flex: 1,
-								color: "#FFBC27",
-								fontWeight: "bold",
-								paddingBottom:"50px"
-							}}>
-											Apply Now
-										</Typography> */}
 									</Grid>
 								</Grid>
 							</form>
