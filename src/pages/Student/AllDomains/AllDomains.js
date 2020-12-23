@@ -778,6 +778,20 @@ const AllDomains = () => {
                 fontFamily: "Source Sans Pro",
                 fontWeight: "600",
               }}>
+              Arts and Culture
+            </Typography>
+            <Grid container style={{ marginTop: "25px", marginBottom: "25px" }}>
+              {clubsMap(artsClubs)}
+            </Grid>
+          </Grid>
+          <Grid container style={{ marginTop: "40px" }}>
+            <Typography
+              gutterBottom
+              variant='h4'
+              style={{
+                fontFamily: "Source Sans Pro",
+                fontWeight: "600",
+              }}>
               Health and Wellness
             </Typography>
           </Grid>
@@ -811,20 +825,6 @@ const AllDomains = () => {
           </Grid>
           <Grid container style={{ marginTop: "25px", marginBottom: "25px" }}>
             {clubsMap(socialClubs)}
-          </Grid>
-          <Grid container style={{ marginTop: "40px" }}>
-            <Typography
-              gutterBottom
-              variant='h4'
-              style={{
-                fontFamily: "Source Sans Pro",
-                fontWeight: "600",
-              }}>
-              Arts and Culture
-            </Typography>
-            <Grid container style={{ marginTop: "25px", marginBottom: "25px" }}>
-              {clubsMap(artsClubs)}
-            </Grid>
           </Grid>
           <Grid container style={{ marginTop: "40px" }}>
             <Typography

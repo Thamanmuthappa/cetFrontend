@@ -330,8 +330,8 @@ const SignUp = () => {
 											<MenuItem value="Social Outreach">
 												Social Outreach
 											</MenuItem>
-											<MenuItem value="Arts and Culturals">
-												Arts and Culturals
+											<MenuItem value="Arts and Culture">
+												Arts and Culture
 											</MenuItem>
 											<MenuItem value="Health and Wellness">
 												Health and Wellness
