@@ -22,28 +22,14 @@ import "../components/Shared/Navbar/Navbar.css";
 const useStyles = makeStyles( ( theme ) => ( {
     avatar: {
         width: "150px",
-        height: "150px"
+        height: "150px",
+        marginTop: "-20px",
+        border: "2px solid #e31e43"
     },
     contPaper: {
         width: "100%",
         borderRadius: "20px",
         paddingBottom: "40px"
-    },
-    input: {
-        width: "100%",
-        border: "none"
-    },
-    inputBorder: {
-        width: "85%",
-        border: "1px solid #C4C4C4",
-        borderRadius: "5px",
-        padding: "20px"
-    },
-    inputBorderTA: {
-        width: "91%",
-        border: "1px solid #C4C4C4",
-        borderRadius: "5px",
-        padding: "30px"
     },
     website: {
         "&:hover": {
@@ -132,19 +118,24 @@ const OrgProfile = ( props ) => {
                         </Button>
                     </Toolbar>
                 </AppBar>
-                <Grid container>
-                    <img src={
-                            data.clubBanner ? data.clubBanner : "/assets/bannerIMG.jpg"
-                        }
-                        width="100%"
-                        alt=""
-                        className="profile-banner"></img>
-                </Grid>
+                <Container>
+                    <Grid container>
+                        <img src={
+                                data.clubBanner ? data.clubBanner : "/assets/bannerIMG.jpg"
+                            }
+                            width="100%"
+                            alt=""
+                            className="profile-banner"></img>
+                    </Grid>
+                </Container>
                 <Container>
                     <Grid container
                         spacing={7}>
-                        <Grid container justify="center">
-                            <Avatar alt="Club logo"
+                        <Grid container direction="row" justify="flex-end" alignItems="center"
+                            style={
+                                { marginRight: "80px" }
+                        }>
+                            <Avatar alt="Club Logo"
                                 src={
                                     data.clubAvatar ? data.clubAvatar : "/assets/avatar.jpeg"
                                 }
@@ -152,86 +143,87 @@ const OrgProfile = ( props ) => {
                                     classes.avatar
                                 }/>
                         </Grid>
-                        <Grid container
-                            style={
-                                { marginTop: "40px" }
-                            }
-                            justify="center">
-                            <Typography gutterBottom variant="h4"
-                                style={
-                                    {
-                                        fontFamily: "Source Sans Pro",
-                                        fontWeight: "600"
-                                    }
-                            }>
-                                Profile Page
-                            </Typography>
-                        </Grid>
                         <Grid item container
-                            xs={12}>
+                            xs={12}
+                            style={
+                                { marginTop: '30px' }
+                        }>
                             <form style={
                                 { width: "100%" }
                             }>
                                 <Grid container
-                                    spacing={3}>
+                                    spacing={3}
+                                    direction="row"
+                                    justify="space-between"
+                                    alignItems="center">
                                     <Grid item
                                         xs={6}>
                                         <Typography style={
-                                            { color: "#494F55" }
-                                        }>
-                                            Name
-                                        </Typography>
-                                        <div name="name"
-                                            className={
-                                                classes.inputBorder
+                                            {
+                                                color: "#000000",
+                                                fontSize: "20px",
+                                                fontWeight: "bolder"
                                             }
-                                            label="Name"
-                                            variant="outlined">
+                                        }>
+                                            <span style={
+                                                {
+                                                    color: "#E31E43",
+                                                    fontSize: "20px"
+                                                }
+                                            }>Name:&nbsp;&nbsp;
+                                            </span>
                                             {
                                             data.name
                                         }
-                                            {" "} </div>
+                                            {" "} </Typography>
                                     </Grid>
                                     <Grid item
                                         xs={6}>
                                         <Typography style={
-                                            { color: "#494F55" }
-                                        }>
-                                            Type
-                                        </Typography>
-                                        <div name="type"
-                                            className={
-                                                classes.inputBorder
+                                            {
+                                                color: "#000000",
+                                                fontSize: "20px",
+                                                fontWeight: "bolder"
                                             }
-                                            label="Type"
-                                            variant="outlined">
+                                        }>
+                                            <span style={
+                                                {
+                                                    color: "#E31E43",
+                                                    fontSize: "20px"
+                                                }
+                                            }>Type:&nbsp;&nbsp;
+                                            </span>
                                             {
                                             data.type
                                         }
-                                            {" "} </div>
+                                            {" "} </Typography>
                                     </Grid>
                                     <Grid item
                                         xs={12}>
                                         <Typography style={
-                                            { color: "#494F55" }
-                                        }>
-                                            Description
-                                        </Typography>
-                                        <div name="bio"
-                                            className={
-                                                classes.inputBorderTA
+                                            {
+                                                color: "#E31E43",
+                                                fontSize: "20px",
+                                                fontWeight: "bolder"
                                             }
-                                            label="Description"
-                                            multiline
-                                            rows={8}
-                                            variant="outlined">
+                                        }>
+                                            Description:
+                                        </Typography>
+                                        <div name="bio" label="Description" variant="outlined"
+                                            style={
+                                                {
+                                                    color: "#040404",
+                                                    marginTop: "10px",
+                                                    whiteSpace: "pre-wrap"
+                                                }
+                                        }>
                                             {
                                             data.bio
                                         }
                                             {" "} </div>
                                     </Grid>
                                     <Grid item
-                                        xs={6}>
+                                        xs={12}>
                                         <a href={
                                                 data.website
                                             }
@@ -239,39 +231,49 @@ const OrgProfile = ( props ) => {
                                             rel="noreferrer"
                                             target="_blank">
                                             <Typography style={
-                                                { color: "#494F55" }
-                                            }>
-                                                Organisation Link
-                                            </Typography>
-                                            <div name="website"
-                                                className={
-                                                    classes.inputBorder
-                                                }
-                                                label="Organisation Link"
-                                                variant="outlined">
                                                 {
-                                                data.website
-                                            }
-                                                {" "} </div>
+                                                    color: "#000000",
+                                                    fontSize: "20px",
+                                                    marginTop: "10px"
+                                                }
+                                            }>
+                                                <span style={
+                                                    {
+                                                        color: "#E31E43",
+                                                        fontSize: "20px",
+                                                        fontWeight: "bolder"
+                                                    }
+                                                }>Organisation Link:&nbsp;&nbsp;
+                                                </span>
+                                                <span style={
+                                                    { textDecoration: "underline" }
+                                                }>
+                                                    {
+                                                    data.website
+                                                }</span>
+                                                {" "} </Typography>
                                         </a>
                                     </Grid>
                                     <Grid item
-                                        xs={6}>
+                                        xs={12}>
                                         <Typography style={
-                                            { color: "#494F55" }
-                                        }>
-                                            Contact Number
-                                        </Typography>
-                                        <div name="mobileNumber"
-                                            className={
-                                                classes.inputBorder
+                                            {
+                                                color: "#000000",
+                                                fontSize: "20px",
+                                                fontWeight: "bolder"
                                             }
-                                            label="Contact Number"
-                                            variant="outlined">
+                                        }>
+                                            <span style={
+                                                {
+                                                    color: "#E31E43",
+                                                    fontSize: "20px"
+                                                }
+                                            }>Contact Number:&nbsp;&nbsp;
+                                            </span>
                                             {
                                             data.mobileNumber
                                         }
-                                            {" "} </div>
+                                            {" "} </Typography>
                                     </Grid>
                                     <Grid item
                                         xs={12}
@@ -288,7 +290,7 @@ const OrgProfile = ( props ) => {
                                             }
                                             rel="noreferrer"
                                             target="_blank">
-                                            <Button variant="contained" color="primary" className="custom-action-btn"
+                                            <Button variant="contained" color="primary"
                                                 style={
                                                     {
                                                         paddingTop: "15px",
@@ -298,12 +300,13 @@ const OrgProfile = ( props ) => {
                                                         backgroundColor: "#E31E43",
                                                         color: "white",
                                                         fontFamily: "Source Sans Pro",
-                                                        borderRadius: "10px",
+                                                        borderRadius: "6px",
                                                         fontSize: "18px",
                                                         fontWeight: "600",
                                                         lineHeight: "150%",
                                                         outline: "none",
-                                                        marginBottom: "40px"
+                                                        marginBottom: "40px",
+                                                        width: "181px"
                                                     }
                                             }>
                                                 Apply Now
@@ -315,6 +318,7 @@ const OrgProfile = ( props ) => {
                         </Grid>
                     </Grid>
                 </Container>
+                <Container>
                 <Grid style={
                     {
                         backgroundColor: "#FCF9F9",
@@ -342,6 +346,7 @@ const OrgProfile = ( props ) => {
                         </a>
                     </p>
                 </Grid>
+                </Container>
             </div>
         </div>
     );

@@ -90,22 +90,22 @@ const TestDetails = (props) => {
                 </Typography>
               </div>
             ) : (
-              <div className='test-page-domains-list'>
-                <Grid container spacing={3}>
-                  {testDomains.map((domain) => (
-                    <Grid item xs={12} sm={3}>
-                      <Link
-                        to={{
-                          pathname: `/club/results/test/${id}/${domain._id}`,
-                          state: { domain },
-                        }}>
-                        <ClubDomainTile title={domain.domainName} />
-                      </Link>
-                    </Grid>
-                  ))}
-                </Grid>
-              </div>
-            )}
+                <div className='test-page-domains-list'>
+                  <Grid container spacing={3}>
+                    {testDomains.map((domain) => (
+                      <Grid item xs={12} sm={3}>
+                        <Link
+                          to={{
+                            pathname: `/club/results/test/${id}/${domain._id}`,
+                            state: { domain },
+                          }}>
+                          <ClubDomainTile title={domain.domainName} />
+                        </Link>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </div>
+              )}
           </div>
         </div>
         {/* <Divider /> */}
