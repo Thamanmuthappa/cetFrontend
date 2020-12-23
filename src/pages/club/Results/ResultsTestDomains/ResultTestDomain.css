@@ -1,0 +1,4 @@
+.submission-summary .MuiAccordionSummary-content {
+	display: flex !important;
+	align-items: center !important;
+}
