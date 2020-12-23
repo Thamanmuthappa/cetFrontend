@@ -232,6 +232,7 @@ const DomainDetails = (props) => {
 					Successfully shortlisted student
 				</Alert>
 			</Snackbar>
+      
 		</>
 	);
 };
