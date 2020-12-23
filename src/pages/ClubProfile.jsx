@@ -318,6 +318,7 @@ const OrgProfile = ( props ) => {
                         </Grid>
                     </Grid>
                 </Container>
+                <Container>
                 <Grid style={
                     {
                         backgroundColor: "#FCF9F9",
@@ -345,6 +346,7 @@ const OrgProfile = ( props ) => {
                         </a>
                     </p>
                 </Grid>
+                </Container>
             </div>
         </div>
     );
