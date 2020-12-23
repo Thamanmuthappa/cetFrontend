@@ -14,6 +14,7 @@ import { StudentContext } from "../../../context/StudentContext";
 import { patchStudProfile } from "../../../API/PATCH";
 import { Alert } from "@material-ui/lab";
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
+import { fetchStudentProfile } from "../../../API/GET";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const StudProfile = () => {
-	const { studentProfile } = useContext(StudentContext);
+	const { studentProfile, setStudentDetails } = useContext(StudentContext);
 
 	const classes = useStyles();
 
@@ -59,6 +60,11 @@ const StudProfile = () => {
 		if (res) {
 			// getProfile(token);
 			setProfileSuccess(true);
+			const profile = await fetchStudentProfile(token);
+
+			if (profile) {
+				setStudentDetails(profile);
+			}
 		}
 
 		setDisabled(false);
