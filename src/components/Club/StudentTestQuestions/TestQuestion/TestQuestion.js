@@ -6,7 +6,6 @@ const TestQuestion = (props) => {
 
   if (props.question.questionType === "singleCorrect") {
     let markedId = props.question.answers[0];
-
     let marked = null;
     let correct = null;
     for (let x in props.question.questionId.options) {
@@ -19,7 +18,7 @@ const TestQuestion = (props) => {
     }
 
     ans = (
-      <Grid container>
+      <Grid container style={{ marginTop: "20px", marginBottom: "30px" }}>
         <Grid container item>
           <Grid item xs={12} sm={6}>
             a. {props.question.questionId.options[0].option.text}
@@ -36,12 +35,12 @@ const TestQuestion = (props) => {
             d. {props.question.questionId.options[3].option.text}
           </Grid>
         </Grid>
-        <Grid container item>
+        <Grid container item style={{ marginTop: "10px" }}>
           <Grid item xs={12} sm={6}>
-            marked answer : {marked}
+            <b>Marked Answer :</b> {marked}
           </Grid>
           <Grid item xs={12} sm={6}>
-            correct answer : {correct}
+            <b>Correct Answer :</b> {correct}
           </Grid>
         </Grid>
       </Grid>
@@ -66,7 +65,7 @@ const TestQuestion = (props) => {
       }
     }
     ans = (
-      <Grid container>
+      <Grid container style={{ marginTop: "20px", marginBottom: "30px" }}>
         <Grid container item>
           <Grid item xs={12} sm={6}>
             a. {props.question.questionId.options[0].option.text}
@@ -83,19 +82,19 @@ const TestQuestion = (props) => {
             d. {props.question.questionId.options[3].option.text}
           </Grid>
         </Grid>
-        <Grid container item>
+        <Grid container item style={{ marginTop: "10px" }}>
           <Grid item xs={12} sm={6}>
-            marked answer : {marked}
+            <b>Marked Answer(s) :</b> {marked}
           </Grid>
           <Grid item xs={12} sm={6}>
-            correct answer : {correct}
+            <b>Correct Answer(s) :</b> {correct}
           </Grid>
         </Grid>
       </Grid>
     );
   } else if (props.question.questionType === "longAnswer") {
     ans = (
-      <Grid container>
+      <Grid container style={{ marginTop: "20px", marginBottom: "30px" }}>
         <Grid container item>
           <Grid item xs={12}>
             {props.question.answers}
@@ -105,7 +104,7 @@ const TestQuestion = (props) => {
     );
   } else if (props.question.questionType === "shortAnswer") {
     ans = (
-      <Grid container>
+      <Grid container style={{ marginTop: "20px", marginBottom: "30px" }}>
         <Grid container item>
           <Grid item xs={12}>
             {props.question.answers}
@@ -117,7 +116,7 @@ const TestQuestion = (props) => {
   return (
     <Container>
       <Grid container>
-        <Typography>{"Q. " + props.question.questionId.description}</Typography>
+        <Typography variant="h6" style={{ fontWeight: "bolder" }}>{"Q. " + props.question.questionId.description}</Typography>
       </Grid>
       {ans}
     </Container>

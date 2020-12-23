@@ -22,7 +22,7 @@ const StudentTestQuestions = (props) => {
 	}, []);
 
 	return (
-		<div>
+		<div style={{ padding: "30px" }}>
 			{questions}
 			<Divider />
 		</div>

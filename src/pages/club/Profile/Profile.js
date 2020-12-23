@@ -135,6 +135,8 @@ const ClubProfile = () => {
 					display: "flex",
 					justifyContent: "center",
 					alignItems: "center",
+					marginBottom: "30px",
+					paddingBottom: "30px"
 				}}
 				className="profile-section-container"
 			>

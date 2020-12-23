@@ -307,7 +307,7 @@ const CCProfile = (props) => {
 							rel="noreferrer"
 						>
 							<img
-								src="/assets/goldCC.svg"
+								src="/assets/goldCC.png"
 								alt="CodeChef-VIT"
 								width="150px"
 								align="center"

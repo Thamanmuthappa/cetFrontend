@@ -140,7 +140,7 @@ const DomainDetails = (props) => {
                             aria-controls='question-content'>
                             {question.studentId.name}
                           </AccordionSummary>
-                          <AccordionDetails>
+                          <AccordionDetails style={{ padding: "10px" }}>
                             <Divider />
                             <StudentTestDetails details={question.responses} />
                           </AccordionDetails>
