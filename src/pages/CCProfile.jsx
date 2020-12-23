@@ -25,12 +25,13 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import EmailIcon from "@material-ui/icons/Email";
+import Countdown from "react-countdown";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
 		width: "150px",
-        height: "150px",
-        marginTop:"60px"
+		height: "150px",
+		marginTop: "60px",
 	},
 	contPaper: {
 		width: "100%",
@@ -50,6 +51,24 @@ const CCProfile = (props) => {
 	const [data, setData] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
+
+	const [date, setDate] = useState(new Date("Dec 25 2020 08:00:00"));
+
+	const timerRenderer = ({ days, hours, minutes, seconds }) => {
+		return (
+			<Typography
+				variant="h3"
+				style={{
+					flex: 1,
+					color: "#FFBC27",
+					fontWeight: "bold",
+					paddingBottom: "40px",
+				}}
+			>
+				{days} d {hours} h {minutes} m {seconds} s
+			</Typography>
+		);
+	};
 
 	const fetchProfile = async () => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/details/username?username=codechefvit`;
@@ -71,6 +90,7 @@ const CCProfile = (props) => {
 
 	useEffect(() => {
 		fetchProfile();
+		console.log(date.toLocaleString());
 	}, []);
 
 	if (loading) {
@@ -258,41 +278,50 @@ const CCProfile = (props) => {
 											textAlign: "center",
 										}}
 									>
-										<a
-											href={
-												data.typeOfPartner ===
-													"Micro" ||
-												data.typeOfPartner === "Nano"
-													? data.redirectURL
-													: `/student/club/${data._id}`
-											}
-											rel="noreferrer"
-											target="_blank"
+										<Countdown
+											date={date}
+											renderer={timerRenderer}
 										>
-											<Button
-												variant="contained"
-												color="primary"
-												style={{
-													paddingTop: "15px",
-													paddingBottom: "15px",
-													textTransform: "capitalize",
-													border: "1px solid #FFBC27",
-													backgroundColor: "#FFBC27",
-													color: "#000000",
-													fontWeight: "normal",
-													outline: "none",
-													marginBottom: "70px",
-													borderRadius: "0",
-													width: "180px",
-													fontFamily: "Star Jedi",
-													fontSize: "20px",
-													lineHeight: "145%",
-													letterSpacing: "0.01em",
-												}}
+											<a
+												href={
+													data.typeOfPartner ===
+														"Micro" ||
+													data.typeOfPartner ===
+														"Nano"
+														? data.redirectURL
+														: `/student/club/${data._id}`
+												}
+												rel="noreferrer"
+												target="_blank"
 											>
-												Apply Now
-											</Button>
-										</a>
+												<Button
+													variant="contained"
+													color="primary"
+													style={{
+														paddingTop: "15px",
+														paddingBottom: "15px",
+														textTransform:
+															"capitalize",
+														border:
+															"1px solid #FFBC27",
+														backgroundColor:
+															"#FFBC27",
+														color: "#000000",
+														fontWeight: "normal",
+														outline: "none",
+														marginBottom: "70px",
+														borderRadius: "0",
+														width: "180px",
+														fontFamily: "Star Jedi",
+														fontSize: "20px",
+														lineHeight: "145%",
+														letterSpacing: "0.01em",
+													}}
+												>
+													Apply Now
+												</Button>
+											</a>
+										</Countdown>
 									</Grid>
 								</Grid>
 							</form>
