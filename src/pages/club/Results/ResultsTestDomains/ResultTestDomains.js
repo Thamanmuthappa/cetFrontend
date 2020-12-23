@@ -24,6 +24,7 @@ import "../../../../components/Club/QuestionsDisplay/QuestionsDisplay.css";
 import Loading from "../../../Loading";
 import StudentTestQuestions from "../../../../components/Club/StudentTestQuestions/StudentTestQuestions";
 import "./ResultTestDomain.css";
+import ShortlistModal from "../../../../components/Club/ShortlistModal/ShortlistModal";
 
 const DomainDetails = (props) => {
 	const testId = props.match.params.id;
@@ -37,6 +38,9 @@ const DomainDetails = (props) => {
 
 	const [questions, setQuestions] = useState([]);
 	const [questionsLoading, setQuesLoading] = useState(true);
+
+	const [shortlistModal, setShortlistModal] = useState(false);
+	const [selectedStudent, setSelectedStudent] = useState(null);
 
 	const getQuestions = async () => {
 		setQuesLoading(true);
@@ -60,6 +64,13 @@ const DomainDetails = (props) => {
 	const handleModalClose = () => {
 		getQuestions();
 		setQuestionAdd(false);
+	};
+
+	const handleShortlistClick = (e, student) => {
+		e.stopPropagation();
+		console.log(student);
+		setSelectedStudent(student);
+		setShortlistModal(true);
 	};
 
 	useEffect(() => {
@@ -151,7 +162,14 @@ const DomainDetails = (props) => {
 												className="submission-summary"
 											>
 												<Tooltip title="Shortlist this student">
-													<IconButton>
+													<IconButton
+														onClick={(e) =>
+															handleShortlistClick(
+																e,
+																question
+															)
+														}
+													>
 														<Check />
 													</IconButton>
 												</Tooltip>
@@ -173,11 +191,12 @@ const DomainDetails = (props) => {
 					</div>
 				</Container>
 			</div>
-			<QuestionAddModal
-				open={questionAdd}
-				handleClose={handleModalClose}
-				testId={testId}
-				domainId={domainId}
+
+			<ShortlistModal
+				open={shortlistModal}
+				onClose={setShortlistModal}
+				selected={selectedStudent}
+				setSelected={setSelectedStudent}
 			/>
 		</>
 	);
