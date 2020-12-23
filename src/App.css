@@ -40,7 +40,7 @@ a {
 
 .profile-banner {
   margin-top: 50px;
-  height: 450px !important;
+  /* height: 450px !important; */
   border-radius: 12px;
 }
 
