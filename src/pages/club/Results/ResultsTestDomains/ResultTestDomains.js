@@ -3,6 +3,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   // Button,
+  TextField,
   CircularProgress,
   Container,
   Divider,
@@ -38,7 +39,6 @@ const DomainDetails = (props) => {
   const [loading, setLoading] = useState(true);
 
   const [questions, setQuestions] = useState([]);
-  const [questionspage, setQuestionspage] = useState([]);
   const [questionsLoading, setQuesLoading] = useState(true);
 
   const [shortlisted, setShortlisted] = useState([]);
@@ -46,7 +46,8 @@ const DomainDetails = (props) => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [successShortlist, setSuccessShortlist] = useState(false);
   const [page, setPage] = useState(1);
-  let qp = [];
+  const [searchTerm, setSearchTerm] = useState("");
+  // let qp = [];
 
   const handleChange = (event, value) => {
     setPage(value);
@@ -99,16 +100,19 @@ const DomainDetails = (props) => {
     getQuestions();
   }, []);
 
-  // console.log(questions);
+  const questSearch = () =>
+    questions.filter((question) => {
+      console.log(searchTerm.toLowerCase());
+      if (searchTerm === "") {
+        console.log(question.studentId.name.toLowerCase());
 
-  if (questions.length) {
-    // console.log("aadssa");
-    for (let i = 10 * page - 10; i < 10 * page && i < questions.length; i++) {
-      // console.log(questions[i]);
-      qp.push(questions[i]);
-    }
-    // console.log(qp);
-  }
+        return question;
+      } else if (
+        question.studentId.name.toLowerCase().includes(searchTerm.toLowerCase())
+      ) {
+        return question;
+      }
+    });
 
   if (loading) {
     return <Loading />;
@@ -145,9 +149,24 @@ const DomainDetails = (props) => {
           </div>
           <Divider />
           <div style={{ paddingBottom: "0px" }} className='test-page-domain'>
-            <h1>
-              <u>Students</u>
-            </h1>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div>
+                <h1>
+                  <u>Students</u>
+                </h1>
+              </div>
+              <div>
+                <TextField
+                  style={{ marginTop: "4px" }}
+                  label='Search'
+                  variant='outlined'
+                  size='small'
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                  }}
+                />
+              </div>
+            </div>
 
             <div className='domain-page-question-list'>
               {questionsLoading ? (
@@ -165,37 +184,42 @@ const DomainDetails = (props) => {
                 <div
                   className='domain-questions'
                   style={{ whiteSpace: "pre-wrap" }}>
-                  {qp.map((question, i) => (
-                    <Accordion key={i} elevation={4}>
-                      <AccordionSummary
-                        expandIcon={<ExpandMore />}
-                        aria-controls='question-content'
-                        className='submission-summary'>
-                        <Tooltip
-                          title={`Shortlist this student ${
-                            isShortlisted(question.studentId._id)
-                              ? "(Already shortlisted)"
-                              : null
-                          }`}>
-                          <IconButton
-                            onClick={(e) => handleShortlistClick(e, question)}>
-                            <Check
-                              style={{
-                                fill: isShortlisted(question.studentId._id)
-                                  ? "green"
-                                  : "red",
-                              }}
-                            />
-                          </IconButton>
-                        </Tooltip>
-                        {question.studentId.name}
-                      </AccordionSummary>
-                      <AccordionDetails style={{ padding: "10px" }}>
-                        <Divider />
-                        <StudentTestQuestions details={question.responses} />
-                      </AccordionDetails>
-                    </Accordion>
-                  ))}
+                  {questSearch()
+                    .slice(page * 10 - 10, page * 10)
+                    .map((question, i) => (
+                      <Accordion key={i} elevation={4}>
+                        {/* {console.log(question)} */}
+                        <AccordionSummary
+                          expandIcon={<ExpandMore />}
+                          aria-controls='question-content'
+                          className='submission-summary'>
+                          <Tooltip
+                            title={`Shortlist this student ${
+                              isShortlisted(question.studentId._id)
+                                ? "(Already shortlisted)"
+                                : null
+                            }`}>
+                            <IconButton
+                              onClick={(e) =>
+                                handleShortlistClick(e, question)
+                              }>
+                              <Check
+                                style={{
+                                  fill: isShortlisted(question.studentId._id)
+                                    ? "green"
+                                    : "red",
+                                }}
+                              />
+                            </IconButton>
+                          </Tooltip>
+                          {question.studentId.name}
+                        </AccordionSummary>
+                        <AccordionDetails style={{ padding: "10px" }}>
+                          <Divider />
+                          <StudentTestQuestions details={question.responses} />
+                        </AccordionDetails>
+                      </Accordion>
+                    ))}
                 </div>
               )}
             </div>
@@ -206,7 +230,7 @@ const DomainDetails = (props) => {
               justifyContent: "center",
               marginBottom: "50px",
             }}
-            count={Math.ceil(questions.length / 10)}
+            count={Math.ceil(questSearch().length / 10)}
             page={page}
             onChange={handleChange}
           />
