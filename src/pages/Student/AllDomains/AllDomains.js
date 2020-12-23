@@ -694,6 +694,13 @@ const AllDomains = () => {
       website: "https://www.thepcvit.com/",
       id: 90,
     },
+    {
+      category: "TECHNICAL",
+      subcategory: "-",
+      name: "SIAM VIT",
+      website: "https://www.siamvit.in",
+      id: 90,
+    },
   ];
 
   const clubsMap = (arr) => {
@@ -760,7 +767,7 @@ const AllDomains = () => {
               Technical
             </Typography>
           </Grid>
-          <Grid container style={{ marginTop: "40px", marginBottom: "40px" }}>
+          <Grid container style={{ marginTop: "25px", marginBottom: "25px" }}>
             {clubsMap(techClubs)}
           </Grid>
           <Grid container style={{ marginTop: "40px" }}>
@@ -774,7 +781,7 @@ const AllDomains = () => {
               Health and Wellness
             </Typography>
           </Grid>
-          <Grid container style={{ marginTop: "40px", marginBottom: "40px" }}>
+          <Grid container style={{ marginTop: "25px", marginBottom: "25px" }}>
             {clubsMap(healthClubs)}
           </Grid>
           <Grid container style={{ marginTop: "40px" }}>
@@ -788,7 +795,7 @@ const AllDomains = () => {
               Literature
             </Typography>
           </Grid>
-          <Grid container style={{ marginTop: "40px", marginBottom: "40px" }}>
+          <Grid container style={{ marginTop: "25px", marginBottom: "25px" }}>
             {clubsMap(litClubs)}
           </Grid>
           <Grid container style={{ marginTop: "40px" }}>
@@ -802,7 +809,7 @@ const AllDomains = () => {
               Social Outreach
             </Typography>
           </Grid>
-          <Grid container style={{ marginTop: "40px", marginBottom: "40px" }}>
+          <Grid container style={{ marginTop: "25px", marginBottom: "25px" }}>
             {clubsMap(socialClubs)}
           </Grid>
           <Grid container style={{ marginTop: "40px" }}>
@@ -815,7 +822,7 @@ const AllDomains = () => {
               }}>
               Arts and Culture
             </Typography>
-            <Grid container style={{ marginTop: "40px", marginBottom: "40px" }}>
+            <Grid container style={{ marginTop: "25px", marginBottom: "25px" }}>
               {clubsMap(artsClubs)}
             </Grid>
           </Grid>
@@ -827,13 +834,13 @@ const AllDomains = () => {
                 fontFamily: "Source Sans Pro",
                 fontWeight: "600",
               }}>
-              Other
+              Other Domains
             </Typography>
           </Grid>
-          <Grid container style={{ marginTop: "40px", marginBottom: "40px" }}>
+          <Grid container style={{ marginTop: "25px", marginBottom: "40px" }}>
             {clubsMap(otherClubs)}
           </Grid>
-          <div style={{ display: "flex", marginTop: "40px" }}>
+          <div style={{ display: "flex", marginTop: "80px" }}>
             <Typography
               gutterBottom
               variant='h3'

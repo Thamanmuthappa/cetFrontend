@@ -289,7 +289,7 @@ const ClubProfile = () => {
 											<TextField
 												name="website"
 												className={classes.input}
-												label="Club Website Link"
+												label="Organisation Link (URL)"
 												variant="outlined"
 												value={data.website}
 												onChange={handleProfileChange}
@@ -299,7 +299,7 @@ const ClubProfile = () => {
 											<TextField
 												name="mobileNumber"
 												className={classes.input}
-												label="Club Contact Number"
+												label="Contact Number"
 												variant="outlined"
 												value={data.mobileNumber}
 												onChange={handleProfileChange}

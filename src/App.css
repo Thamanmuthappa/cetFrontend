@@ -1,18 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap");
-/* 
-.form-input {
-	padding: 12px 20px !important;
-	border-radius: 10px !important;
-	background-color: #fffdfd !important;
-	border: 1px solid #dbc6ba !important;
-	margin-bottom: 40px !important;
-}
-
-.form-input:focus {
-	border: 2px solid#dbc6ba !important;
-} 
-
-*/
 
 .form-input {
   width: 100% !important;
@@ -49,11 +35,13 @@ a {
 }
 
 .profile-section-container .MuiAvatar-img {
-  object-fit: contain !important;
+  object-fit: contain !important
 }
 
 .profile-banner {
+  margin-top: 50px;
   height: 450px !important;
+  border-radius: 12px;
 }
 
 .card-text-stud-dash {
