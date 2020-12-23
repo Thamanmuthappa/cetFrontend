@@ -8,6 +8,7 @@ import {
 	Divider,
 	Grid,
 	IconButton,
+	Snackbar,
 	Tooltip,
 	Typography,
 } from "@material-ui/core";
@@ -25,6 +26,7 @@ import Loading from "../../../Loading";
 import StudentTestQuestions from "../../../../components/Club/StudentTestQuestions/StudentTestQuestions";
 import "./ResultTestDomain.css";
 import ShortlistModal from "../../../../components/Club/ShortlistModal/ShortlistModal";
+import { Alert } from "@material-ui/lab";
 
 const DomainDetails = (props) => {
 	const testId = props.match.params.id;
@@ -34,22 +36,27 @@ const DomainDetails = (props) => {
 		props.location.state?.domain
 	);
 	const [loading, setLoading] = useState(true);
-	const [questionAdd, setQuestionAdd] = useState(false);
 
 	const [questions, setQuestions] = useState([]);
 	const [questionsLoading, setQuesLoading] = useState(true);
 
+	const [shortlisted, setShortlisted] = useState([]);
 	const [shortlistModal, setShortlistModal] = useState(false);
 	const [selectedStudent, setSelectedStudent] = useState(null);
+	const [successShortlist, setSuccessShortlist] = useState(false);
 
 	const getQuestions = async () => {
 		setQuesLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
-		const questions = await fetchSubmissionsForDomain(domainId, token);
+		const { final, shortlisted } = await fetchSubmissionsForDomain(
+			domainId,
+			token
+		);
 
-		// console.log(questions);
+		console.log(final);
 
-		setQuestions(questions);
+		setQuestions(final);
+		setShortlisted(shortlisted);
 		setQuesLoading(false);
 	};
 
@@ -61,11 +68,6 @@ const DomainDetails = (props) => {
 		setLoading(false);
 	};
 
-	const handleModalClose = () => {
-		getQuestions();
-		setQuestionAdd(false);
-	};
-
 	const handleShortlistClick = (e, student) => {
 		e.stopPropagation();
 		console.log(student);
@@ -73,10 +75,21 @@ const DomainDetails = (props) => {
 		setShortlistModal(true);
 	};
 
+	const isShortlisted = (id) => {
+		const f = shortlisted.find((x) => x.studentId === id);
+
+		if (f) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	useEffect(() => {
 		if (!domainDetails) {
 			getDomainDetails();
 		} else {
+			console.log(domainDetails);
 			setLoading(false);
 		}
 
@@ -106,17 +119,6 @@ const DomainDetails = (props) => {
 									<p>
 										<strong>Domain Duration:</strong>{" "}
 										{domainDetails.domainDuration} minutes
-									</p>
-									<p>
-										<Tooltip
-											title="Marks are automatically added based on questions"
-											arrow
-										>
-											<span>
-												<strong>Domain Marks:</strong>{" "}
-												{domainDetails.domainMarks}
-											</span>
-										</Tooltip>
 									</p>
 								</Grid>
 								<Grid item xs={6} sm={7}>
@@ -161,7 +163,16 @@ const DomainDetails = (props) => {
 												aria-controls="question-content"
 												className="submission-summary"
 											>
-												<Tooltip title="Shortlist this student">
+												<Tooltip
+													title={`Shortlist this student ${
+														isShortlisted(
+															question.studentId
+																._id
+														)
+															? "(Already shortlisted)"
+															: null
+													}`}
+												>
 													<IconButton
 														onClick={(e) =>
 															handleShortlistClick(
@@ -170,7 +181,17 @@ const DomainDetails = (props) => {
 															)
 														}
 													>
-														<Check />
+														<Check
+															style={{
+																fill: isShortlisted(
+																	question
+																		.studentId
+																		._id
+																)
+																	? "green"
+																	: "red",
+															}}
+														/>
 													</IconButton>
 												</Tooltip>
 												{question.studentId.name}
@@ -194,10 +215,26 @@ const DomainDetails = (props) => {
 
 			<ShortlistModal
 				open={shortlistModal}
-				onClose={setShortlistModal}
+				onClose={() => setShortlistModal(false)}
 				selected={selectedStudent}
 				setSelected={setSelectedStudent}
+				domainId={domainId}
+				setSuccess={() => setSuccessShortlist(true)}
+				refresh={getQuestions}
 			/>
+			<Snackbar
+				open={successShortlist}
+				autoHideDuration={4000}
+				onClose={() => setSuccessShortlist(false)}
+			>
+				<Alert
+					variant="filled"
+					severity="success"
+					onClose={() => setSuccessShortlist(false)}
+				>
+					Successfully shortlisted student
+				</Alert>
+			</Snackbar>
 		</>
 	);
 };
