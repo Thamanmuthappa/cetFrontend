@@ -151,6 +151,10 @@ const ClubTestsList = (props) => {
 					{/* <div className="modal-test-instructions">
 						{currentSelected.instructions}
 					</div> */}
+					<div className="light-text" style={{ textAlign: "center" }}>
+						Time till start
+					</div>
+
 					<Typography variant="h6" color="primary">
 						<center>
 							<strong style={{ textAlign: "center" }}>
@@ -171,9 +175,13 @@ const ClubTestsList = (props) => {
 						</p>
 					</Typography>
 				</DialogContent>
-				<DialogActions style={{ justifyContent: "center" }}>
+				<DialogActions
+					style={{ justifyContent: "center", marginBottom: "20px" }}
+				>
 					{currentSelected.scheduledForDate > Date.now() ? (
 						<span className="light-text">Test not started yet</span>
+					) : currentSelected.scheduledEndDate < Date.now() ? (
+						<span className="light-text">Test ended!</span>
 					) : (
 						<Button
 							color="primary"

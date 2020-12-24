@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import ClubCarousel from "../../../components/Student/ClubCarousel/ClubCarousel";
 import Loading from "../../../pages/Loading";
@@ -16,11 +16,20 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import "../../../components/Shared/Navbar/Navbar.css";
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
+import { StudentContext } from "../../../context/StudentContext";
+import { useHistory } from "react-router-dom";
 
 const AllDomains = () => {
 	const [clubs, setClubs] = useState();
 	const [err, setErr] = useState();
+	const history = useHistory();
+
 	useEffect(() => {
+		if (!isLoggedIn) {
+			history.replace("/student/signin");
+			return;
+		}
+
 		var config = {
 			method: "get",
 			url: `${process.env.REACT_APP_BACKEND_URL}/club/allFeatured`,
@@ -35,6 +44,8 @@ const AllDomains = () => {
 				setErr(error);
 			});
 	}, []);
+
+	const { isLoggedIn } = useContext(StudentContext);
 
 	const columns = [
 		{ field: "id", headerName: "S. No.", flex: 1 },

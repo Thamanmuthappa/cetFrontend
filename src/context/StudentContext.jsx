@@ -1,92 +1,97 @@
 import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
+	createContext,
+	useContext,
+	useEffect,
+	useReducer,
+	useState,
 } from "react";
+import { useHistory } from "react-router-dom";
 import { fetchStudentProfile } from "../API/GET";
 import Loading from "../pages/Loading";
 
 export const StudentContext = createContext();
 
 const initialState = {
-  isLoggedIn: false,
-  studentProfile: {},
+	isLoggedIn: false,
+	studentProfile: {},
 };
 
 const StudentContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(studentReducer, initialState);
+	const [state, dispatch] = useReducer(studentReducer, initialState);
 
-  const [loading, setLoading] = useState(true);
+	const history = useHistory();
 
-  useEffect(() => {
-    const token = localStorage.getItem("studentAuthToken");
+	const [loading, setLoading] = useState(true);
 
-    if (token) {
-      setLoginTrue(token);
-    } else {
-      setLoading(false);
-    }
-  }, []);
+	useEffect(() => {
+		const token = localStorage.getItem("studentAuthToken");
 
-  const setLoginTrue = async (token) => {
-    const profile = await fetchStudentProfile(token);
+		if (token) {
+			setLoginTrue(token);
+		} else {
+			setLoading(false);
+		}
+	}, []);
 
-    if (profile) {
-      dispatch({ type: "SET_LOGIN_TRUE" });
-      setStudentDetails(profile);
-      localStorage.setItem("studentAuthToken", token);
-    } else {
-      localStorage.clear();
-    }
+	const setLoginTrue = async (token) => {
+		const profile = await fetchStudentProfile(token);
 
-    setLoading(false);
-  };
+		if (profile) {
+			dispatch({ type: "SET_LOGIN_TRUE" });
+			setStudentDetails(profile);
+			localStorage.setItem("studentAuthToken", token);
+		} else {
+			localStorage.clear();
+		}
 
-  const setLoginFalse = () => {
-    localStorage.clear();
-    dispatch({ type: "SET_LOGIN_FALSE" });
-  };
+		setLoading(false);
+	};
 
-  const setStudentDetails = (profile) => {
-    dispatch({ type: "SET_STUDENT_PROFILE", payload: profile });
-  };
+	const setLoginFalse = () => {
+		localStorage.clear();
+		dispatch({ type: "SET_LOGIN_FALSE" });
+	};
 
-  const value = {
-    ...state,
-    setLoginTrue,
-    setLoginFalse,
-    setStudentDetails,
-  };
+	const setStudentDetails = (profile) => {
+		dispatch({ type: "SET_STUDENT_PROFILE", payload: profile });
+	};
 
-  if (loading) {
-    return <Loading />;
-  }
+	const value = {
+		...state,
+		setLoginTrue,
+		setLoginFalse,
+		setStudentDetails,
+	};
 
-  return (
-    <StudentContext.Provider value={value}>{children}</StudentContext.Provider>
-  );
+	if (loading) {
+		return <Loading />;
+	}
+
+	return (
+		<StudentContext.Provider value={value}>
+			{children}
+		</StudentContext.Provider>
+	);
 };
 
 export default StudentContextProvider;
 
 const studentReducer = (state, action) => {
-  switch (action.type) {
-    case "SET_LOGIN_TRUE":
-      return {
-        ...state,
-        isLoggedIn: true,
-      };
-    case "SET_LOGIN_FALSE":
-      return {
-        ...state,
-        isLoggedIn: false,
-      };
-    case "SET_STUDENT_PROFILE":
-      return {
-        ...state,
-        studentProfile: action.payload,
-      };
-  }
+	switch (action.type) {
+		case "SET_LOGIN_TRUE":
+			return {
+				...state,
+				isLoggedIn: true,
+			};
+		case "SET_LOGIN_FALSE":
+			return {
+				...state,
+				isLoggedIn: false,
+			};
+		case "SET_STUDENT_PROFILE":
+			return {
+				...state,
+				studentProfile: action.payload,
+			};
+	}
 };
