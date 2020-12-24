@@ -188,7 +188,7 @@ const StudProfile = () => {
 												<TextField
 													name="bio"
 													className={classes.input}
-													label="Bio"
+													label="About You"
 													multiline
 													rows={8}
 													variant="outlined"

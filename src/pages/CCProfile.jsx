@@ -56,6 +56,19 @@ const CCProfile = (props) => {
 
 	const timerRenderer = ({ days, hours, minutes, seconds }) => {
 		return (
+			<div>
+			<Typography
+				variant="h5"
+				style={{
+					flex: 1,
+					color: "#FFBC27",
+					fontWeight: "bold",
+					paddingBottom: "20px",
+					fontFamily:"Star Jhol"
+				}}
+			>
+				Test Begins In
+			</Typography>
 			<Typography
 				variant="h3"
 				style={{
@@ -67,6 +80,7 @@ const CCProfile = (props) => {
 			>
 				{days} d {hours} h {minutes} m {seconds} s
 			</Typography>
+			</div>
 		);
 	};
 
@@ -211,7 +225,7 @@ const CCProfile = (props) => {
 												fontSize: "24px",
 											}}
 										>
-											Management&nbsp;&nbsp;&nbsp;&nbsp;Technical&nbsp;&nbsp;&nbsp;&nbsp;Design{" "}
+											Management&nbsp;&nbsp;&nbsp;&nbsp;Technical&nbsp;&nbsp;&nbsp;&nbsp;Design&nbsp;&nbsp;&nbsp;&nbsp;Editorial{" "}
 										</div>
 									</Grid>
 									<Grid item xs={12}>

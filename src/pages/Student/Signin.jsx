@@ -150,7 +150,7 @@ const StudentSignIn = () => {
                                 <Grid item
                                     xs={12}>
                                     <Typography variant="body2" color="textSecondary" component="p">
-                                        Sign in to your account
+                                        Please use your VIT email ID to login
                                     </Typography>
                                 </Grid>
                                 <Grid item
