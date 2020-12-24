@@ -38,3 +38,7 @@
 .test-page-domain {
 	padding-bottom: 3%;
 }
+
+.delete-domain-btn {
+	font-weight: bold !important;
+}
