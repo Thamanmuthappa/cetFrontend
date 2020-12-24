@@ -899,32 +899,90 @@ const AllDomains = () => {
 					</div>
 				</Container>
 				<Grid
+					container
 					style={{
 						backgroundColor: "#FCF9F9",
 						color: "#2C2D2D",
 						padding: "25px",
 					}}
 				>
-					<center>
-						<a href="https://www.codechefvit.com" target="_blank">
-							<img
-								src="/assets/blacklogo.png"
-								alt="CodeChef-VIT"
-								width="150px"
-								align="center"
-							/>
-						</a>
-					</center>
-					<p style={{ textAlign: "center" }}>
-						Imagined, Designed and Developed by{" "}
-						<a
-							href="https://www.codechefvit.com"
-							style={{ color: "#E31E43" }}
-							target="_blank"
-						>
-							CodeChef-VIT
-						</a>
-					</p>
+					<Grid
+						item
+						xs={4}
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							flexDirection: "column",
+						}}
+					>
+						<div>
+							<center>
+								<a
+									href="https://www.codechefvit.com"
+									target="_blank"
+									rel="noreferrer"
+								>
+									<img
+										src="/assets/blacklogo.png"
+										alt="CodeChef-VIT"
+										width="150px"
+										align="center"
+									/>
+								</a>
+							</center>
+
+							<p style={{ textAlign: "center" }}>
+								Imagined, Designed and Developed by{" "}
+								<a
+									href="https://www.codechefvit.com"
+									style={{ color: "#E31E43" }}
+									target="_blank"
+									rel="noreferrer"
+								>
+									CodeChef-VIT
+								</a>
+							</p>
+						</div>
+					</Grid>
+					<Grid item xs={4}></Grid>
+					<Grid
+						item
+						xs={4}
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							alignItems: "center",
+							flexDirection: "column",
+						}}
+					>
+						<center>
+							<a
+								href="https://vitspot.com"
+								target="_blank"
+								rel="noreferrer"
+							>
+								<img
+									src="/assets/vitspot.png"
+									alt="vitspot"
+									width="85px"
+									align="center"
+								/>
+							</a>
+						</center>
+
+						<p style={{ textAlign: "center" }}>
+							Powered by{" "}
+							<a
+								href="https://vitspot.com"
+								style={{ color: "#E31E43" }}
+								target="_blank"
+								rel="noreferrer"
+							>
+								VITspot
+							</a>
+						</p>
+					</Grid>
 				</Grid>
 			</>
 		);

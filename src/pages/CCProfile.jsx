@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 			cursor: "pointer",
 		},
 	},
-}))
+}));
 
 const CCProfile = (props) => {
 	const classes = useStyles();
@@ -362,12 +362,14 @@ const CCProfile = (props) => {
 					<center>
 						<Button
 							target="_blank"
+							rel="noreferrer"
 							href="https://github.com/CodeChefVIT"
 						>
 							<GitHubIcon style={{ color: "#FFBC27" }} />
 						</Button>
 						<Button
 							target="_blank"
+							rel="noreferrer"
 							href="https://www.instagram.com/codechefvit/"
 						>
 							<InstagramIcon style={{ color: "#FFBC27" }} />
@@ -377,24 +379,28 @@ const CCProfile = (props) => {
 						</Button>
 						<Button
 							target="_blank"
+							rel="noreferrer"
 							href="https://twitter.com/codechefvit"
 						>
 							<TwitterIcon style={{ color: "#FFBC27" }} />
 						</Button>
 						<Button
 							target="_blank"
+							rel="noreferrer"
 							href="https://www.youtube.com/c/CodeChefVIT"
 						>
 							<YouTubeIcon style={{ color: "#FFBC27" }} />
 						</Button>
 						<Button
 							target="_blank"
+							rel="noreferrer"
 							href="mailto:codechefvit@gmail.com"
 						>
 							<EmailIcon style={{ color: "#FFBC27" }} />
 						</Button>
 						<Button
 							target="_blank"
+							rel="noreferrer"
 							href="https://www.linkedin.com/company/codechef-vit-chapter"
 						>
 							<LinkedInIcon style={{ color: "#FFBC27" }} />

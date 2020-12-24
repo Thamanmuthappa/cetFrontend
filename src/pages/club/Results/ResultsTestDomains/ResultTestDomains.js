@@ -190,7 +190,7 @@ const DomainDetails = (props) => {
 					</div>
 					<Divider />
 					<div
-						style={{ paddingBottom: "0px" }}
+						style={{ paddingBottom: "0px", marginTop: "20px" }}
 						className="test-page-domain"
 					>
 						<div
