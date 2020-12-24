@@ -3,6 +3,7 @@ import {
 	Container,
 	Dialog,
 	DialogActions,
+	DialogContent,
 	DialogTitle,
 	Divider,
 	Grid,
@@ -57,7 +58,6 @@ const GetTestDomains = (props) => {
 			domainId: currentSelected._id,
 		};
 
-
 		try {
 			await Axios.post(url, data, {
 				headers: {
@@ -87,6 +87,7 @@ const GetTestDomains = (props) => {
 	};
 
 	const handleDomainClick = (domain) => {
+		console.log(domain);
 		setCurrentSelected(domain);
 		setConfirmStart(true);
 	};
@@ -157,40 +158,64 @@ const GetTestDomains = (props) => {
 								</Typography>
 							</div>
 						) : (
-								<div className="test-page-domains-list">
-									<Grid container spacing={3}>
-										{testDomains.map((domain) => (
-											<Grid item xs={12} sm={3} key={domain.domainName}>
-												<div
-													onClick={() =>
-														handleDomainClick(domain)
-													}
-												>
-													<ClubDomainTile
-														title={domain.domainName}
-													/>
-												</div>
-											</Grid>
-										))}
-									</Grid>
-								</div>
-							)}
+							<div className="test-page-domains-list">
+								<Grid container spacing={3}>
+									{testDomains.map((domain) => (
+										<Grid
+											item
+											xs={12}
+											sm={3}
+											key={domain.domainName}
+										>
+											<div
+												onClick={() =>
+													handleDomainClick(domain)
+												}
+											>
+												<ClubDomainTile
+													title={domain.domainName}
+												/>
+											</div>
+										</Grid>
+									))}
+								</Grid>
+							</div>
+						)}
 					</div>
 				</div>
 				{/* <Divider /> */}
 			</Container>
-			<Dialog open={confirmStart} onClose={handleModalClose}>
+			<Dialog open={confirmStart} onClose={handleModalClose} fullWidth>
 				<DialogTitle>
 					Are you sure you want to start this domain?
 				</DialogTitle>
-				<p style={
-                            {
-                                color: "black",
-								fontSize: "13px",
-								textAlign: "center"
-                            }
-                        }>P.S: You will lose all progress if you refresh the page or go back.</p>
-				<DialogActions style={{ justifyContent: "center" }}>
+				<DialogContent
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						flexDirection: "column",
+					}}
+				>
+					<div className="modal-test-instructions">
+						<strong>DOMAIN INSTRUCTIONS:</strong>
+						<br />
+						<br />
+						{currentSelected.domainInstructions}
+					</div>
+					<p
+						style={{
+							color: "black",
+							fontSize: "13px",
+							textAlign: "center",
+						}}
+					>
+						P.S: You will lose all progress if you refresh the page
+						or go back.
+					</p>
+				</DialogContent>
+				<DialogActions
+					style={{ justifyContent: "center", marginBottom: "20px" }}
+				>
 					<Button
 						color="primary"
 						variant="contained"

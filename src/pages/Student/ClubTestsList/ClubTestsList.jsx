@@ -148,11 +148,14 @@ const ClubTestsList = (props) => {
 						flexDirection: "column",
 					}}
 				>
-					{/* <div className="modal-test-instructions">
+					<div className="modal-test-instructions">
+						<strong>TEST INSTRUCTIONS:</strong>
+						<br />
+						<br />
 						{currentSelected.instructions}
-					</div> */}
+					</div>
 					<div className="light-text" style={{ textAlign: "center" }}>
-						Time till start
+						<strong>Time till start</strong>
 					</div>
 
 					<Typography variant="h6" color="primary">
