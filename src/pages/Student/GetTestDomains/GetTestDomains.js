@@ -87,7 +87,6 @@ const GetTestDomains = (props) => {
 	};
 
 	const handleDomainClick = (domain) => {
-		console.log(domain);
 		setCurrentSelected(domain);
 		setConfirmStart(true);
 	};

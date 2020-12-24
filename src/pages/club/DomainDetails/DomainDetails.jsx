@@ -80,12 +80,10 @@ const DomainDetails = (props) => {
 				},
 				data: data,
 			}).then((res) => {
-				console.log(res);
-
 				history.replace(`/club/test/${testId}`);
 			});
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			setDeleteLoading(false);
 		}
 	};
