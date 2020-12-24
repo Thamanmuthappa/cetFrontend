@@ -12,7 +12,7 @@ import {
 	Tooltip,
 	Typography,
 } from "@material-ui/core";
-import { Check, ExpandMore } from "@material-ui/icons";
+import { Check, ExpandMore, GetApp } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import {
 	fetchSubmissionsForDomain,
@@ -27,6 +27,7 @@ import StudentTestQuestions from "../../../../components/Club/StudentTestQuestio
 import "./ResultTestDomain.css";
 import ShortlistModal from "../../../../components/Club/ShortlistModal/ShortlistModal";
 import { Alert } from "@material-ui/lab";
+import jsonexport from "jsonexport";
 
 const DomainDetails = (props) => {
 	const testId = props.match.params.id;
@@ -45,6 +46,22 @@ const DomainDetails = (props) => {
 	const [selectedStudent, setSelectedStudent] = useState(null);
 	const [successShortlist, setSuccessShortlist] = useState(false);
 
+	const handleShortlistExport = () => {
+		jsonexport(shortlisted, (err, csv) => {
+			if (err) return console.log(err);
+
+			let csvContent = "data:text/csv;charset=utf-8," + csv;
+
+			const url = encodeURI(csvContent);
+			const link = document.createElement("a");
+			link.setAttribute("href", url);
+			link.setAttribute("download", `${domainDetails.domainName}.csv`);
+			document.body.appendChild(link);
+
+			link.click();
+		});
+	};
+
 	const getQuestions = async () => {
 		setQuesLoading(true);
 		const token = localStorage.getItem("clubAuthToken");
@@ -52,6 +69,8 @@ const DomainDetails = (props) => {
 			domainId,
 			token
 		);
+
+		console.log(shortlisted);
 
 		setQuestions(final);
 		setShortlisted(shortlisted);
@@ -74,7 +93,7 @@ const DomainDetails = (props) => {
 	};
 
 	const isShortlisted = (id) => {
-		const f = shortlisted.find((x) => x.studentId === id);
+		const f = shortlisted.find((x) => x.studentId._id === id);
 
 		if (f) {
 			return true;
@@ -118,11 +137,31 @@ const DomainDetails = (props) => {
 										{domainDetails.domainDuration} minutes
 									</p>
 								</Grid>
-								<Grid item xs={6} sm={7}>
+								<Grid item xs={6} sm={4}>
 									<p>
 										<strong>Domain Description:</strong>{" "}
 										{domainDetails.domainDescription}
 									</p>
+								</Grid>
+								<Grid
+									item
+									xs={6}
+									sm={4}
+									style={{
+										display: "flex",
+										justifyContent: "flex-end",
+										alignItems: "flex-end",
+									}}
+								>
+									<Button
+										variant="contained"
+										className="csv-download-btn"
+										onClick={handleShortlistExport}
+										disabled={questionsLoading}
+									>
+										<GetApp />
+										Export shortlisted to CSV
+									</Button>
 								</Grid>
 							</Grid>
 						</div>
@@ -167,7 +206,7 @@ const DomainDetails = (props) => {
 																._id
 														)
 															? "(Already shortlisted)"
-															: null
+															: ""
 													}`}
 												>
 													<IconButton

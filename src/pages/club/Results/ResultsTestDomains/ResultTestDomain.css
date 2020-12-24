@@ -2,3 +2,12 @@
 	display: flex !important;
 	align-items: center !important;
 }
+
+.csv-download-btn {
+	background-color: green !important;
+	color: white !important;
+	font-weight: bold !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
