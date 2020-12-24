@@ -2,7 +2,8 @@ import {
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
-	Button,
+	// Button,
+	TextField,
 	CircularProgress,
 	Container,
 	Divider,
@@ -11,6 +12,7 @@ import {
 	Snackbar,
 	Tooltip,
 	Typography,
+	Button,
 } from "@material-ui/core";
 import { Check, ExpandMore, GetApp } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
@@ -26,7 +28,7 @@ import Loading from "../../../Loading";
 import StudentTestQuestions from "../../../../components/Club/StudentTestQuestions/StudentTestQuestions";
 import "./ResultTestDomain.css";
 import ShortlistModal from "../../../../components/Club/ShortlistModal/ShortlistModal";
-import { Alert } from "@material-ui/lab";
+import { Alert, Pagination } from "@material-ui/lab";
 import jsonexport from "jsonexport";
 
 const DomainDetails = (props) => {
@@ -45,6 +47,13 @@ const DomainDetails = (props) => {
 	const [shortlistModal, setShortlistModal] = useState(false);
 	const [selectedStudent, setSelectedStudent] = useState(null);
 	const [successShortlist, setSuccessShortlist] = useState(false);
+	const [page, setPage] = useState(1);
+	const [searchTerm, setSearchTerm] = useState("");
+	// let qp = [];
+
+	const handleChange = (event, value) => {
+		setPage(value);
+	};
 
 	const handleShortlistExport = () => {
 		jsonexport(shortlisted, (err, csv) => {
@@ -69,9 +78,6 @@ const DomainDetails = (props) => {
 			domainId,
 			token
 		);
-
-		console.log(shortlisted);
-
 		setQuestions(final);
 		setShortlisted(shortlisted);
 		setQuesLoading(false);
@@ -111,6 +117,22 @@ const DomainDetails = (props) => {
 
 		getQuestions();
 	}, []);
+
+	const questSearch = () =>
+		questions.filter((question) => {
+			console.log(searchTerm.toLowerCase());
+			if (searchTerm === "") {
+				console.log(question.studentId.name.toLowerCase());
+
+				return question;
+			} else if (
+				question.studentId.name
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase())
+			) {
+				return question;
+			}
+		});
 
 	if (loading) {
 		return <Loading />;
@@ -167,10 +189,33 @@ const DomainDetails = (props) => {
 						</div>
 					</div>
 					<Divider />
-					<div className="test-page-domain">
-						<h1>
-							<u>Students</u>
-						</h1>
+					<div
+						style={{ paddingBottom: "0px" }}
+						className="test-page-domain"
+					>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "space-between",
+							}}
+						>
+							<div>
+								<h1>
+									<u>Students</u>
+								</h1>
+							</div>
+							<div>
+								<TextField
+									style={{ marginTop: "4px" }}
+									label="Search"
+									variant="outlined"
+									size="small"
+									onChange={(e) => {
+										setSearchTerm(e.target.value);
+									}}
+								/>
+							</div>
+						</div>
 
 						<div className="domain-page-question-list">
 							{questionsLoading ? (
@@ -192,60 +237,76 @@ const DomainDetails = (props) => {
 									className="domain-questions"
 									style={{ whiteSpace: "pre-wrap" }}
 								>
-									{questions.map((question, i) => (
-										<Accordion key={i} elevation={4}>
-											<AccordionSummary
-												expandIcon={<ExpandMore />}
-												aria-controls="question-content"
-												className="submission-summary"
-											>
-												<Tooltip
-													title={`Shortlist this student ${
-														isShortlisted(
-															question.studentId
-																._id
-														)
-															? "(Already shortlisted)"
-															: ""
-													}`}
+									{questSearch()
+										.slice(page * 10 - 10, page * 10)
+										.map((question, i) => (
+											<Accordion key={i} elevation={4}>
+												{/* {console.log(question)} */}
+												<AccordionSummary
+													expandIcon={<ExpandMore />}
+													aria-controls="question-content"
+													className="submission-summary"
 												>
-													<IconButton
-														onClick={(e) =>
-															handleShortlistClick(
-																e,
+													<Tooltip
+														title={`Shortlist this student ${
+															isShortlisted(
 																question
+																	.studentId
+																	._id
 															)
-														}
+																? "(Already shortlisted)"
+																: null
+														}`}
 													>
-														<Check
-															style={{
-																fill: isShortlisted(
+														<IconButton
+															onClick={(e) =>
+																handleShortlistClick(
+																	e,
 																	question
-																		.studentId
-																		._id
 																)
-																	? "green"
-																	: "red",
-															}}
-														/>
-													</IconButton>
-												</Tooltip>
-												{question.studentId.name}
-											</AccordionSummary>
-											<AccordionDetails
-												style={{ padding: "10px" }}
-											>
-												<Divider />
-												<StudentTestQuestions
-													details={question.responses}
-												/>
-											</AccordionDetails>
-										</Accordion>
-									))}
+															}
+														>
+															<Check
+																style={{
+																	fill: isShortlisted(
+																		question
+																			.studentId
+																			._id
+																	)
+																		? "green"
+																		: "red",
+																}}
+															/>
+														</IconButton>
+													</Tooltip>
+													{question.studentId.name}
+												</AccordionSummary>
+												<AccordionDetails
+													style={{ padding: "10px" }}
+												>
+													<Divider />
+													<StudentTestQuestions
+														details={
+															question.responses
+														}
+													/>
+												</AccordionDetails>
+											</Accordion>
+										))}
 								</div>
 							)}
 						</div>
 					</div>
+					<Pagination
+						style={{
+							display: "flex",
+							justifyContent: "center",
+							marginBottom: "50px",
+						}}
+						count={Math.ceil(questSearch().length / 10)}
+						page={page}
+						onChange={handleChange}
+					/>
 				</Container>
 			</div>
 
