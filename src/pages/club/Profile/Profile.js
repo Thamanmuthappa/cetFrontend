@@ -22,6 +22,7 @@ import { AccountCircle, AspectRatio } from "@material-ui/icons";
 import UpdateProfilePhoto from "../../../components/Club/ProfileModals/UpdateProfilePhoto";
 // club avatar ,club banner ,socoial links, images
 import UpdateBannerPhoto from "../../../components/Club/ProfileModals/UpdateBannerPhoto";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -56,6 +57,8 @@ const ClubProfile = () => {
 	const [dpModal, setDpModal] = useState(false);
 	const [bannerModal, setBannerModal] = useState(false);
 
+	const { executeRecaptcha } = useGoogleReCaptcha();
+
 	const handleProfileChange = (e) => {
 		setData((prevState) => ({
 			...prevState,
@@ -70,8 +73,11 @@ const ClubProfile = () => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/feature`;
 		const token = localStorage.getItem("clubAuthToken");
 
+		const captcha = await executeRecaptcha();
+
 		const patch = {
 			featured: !curr,
+			captcha,
 		};
 
 		try {
@@ -90,8 +96,7 @@ const ClubProfile = () => {
 						featured: !curr,
 					}));
 				});
-		} catch (error) {
-		}
+		} catch (error) {}
 
 		setFeatureLoading(false);
 	};
@@ -100,7 +105,12 @@ const ClubProfile = () => {
 		setDisabled(true);
 		const token = localStorage.getItem("clubAuthToken");
 
-		const res = await patchProfile(data, token);
+		const captcha = await executeRecaptcha();
+
+		const toSend = JSON.parse(JSON.stringify(data));
+		toSend.captcha = captcha;
+
+		const res = await patchProfile(toSend, token);
 
 		if (res) {
 			getProfile(token);
@@ -136,7 +146,7 @@ const ClubProfile = () => {
 					justifyContent: "center",
 					alignItems: "center",
 					marginBottom: "30px",
-					paddingBottom: "30px"
+					paddingBottom: "30px",
 				}}
 				className="profile-section-container"
 			>

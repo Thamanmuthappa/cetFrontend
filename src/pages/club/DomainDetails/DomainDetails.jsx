@@ -28,6 +28,7 @@ import QuestionsDisplay from "../../../components/Club/QuestionsDisplay/Question
 import Loading from "../../Loading";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const DomainDetails = (props) => {
 	const testId = props.match.params.id;
@@ -46,6 +47,7 @@ const DomainDetails = (props) => {
 	const [deleteLoading, setDeleteLoading] = useState(false);
 
 	const history = useHistory();
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const getQuestions = async () => {
 		setQuesLoading(true);
@@ -68,9 +70,12 @@ const DomainDetails = (props) => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/delete`;
 		const token = localStorage.getItem("clubAuthToken");
 
+		const captcha = await executeRecaptcha();
+
 		const data = {
 			testId,
 			domainId,
+			captcha,
 		};
 
 		try {

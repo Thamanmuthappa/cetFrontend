@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const useStyles = makeStyles((theme) => ({
 	media: {
@@ -80,16 +81,19 @@ const SignUp = () => {
 	const [otp, setOTP] = useState("");
 
 	const [loading, setLoading] = useState(false);
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const handleFormSubmit = async () => {
 		setLoading(true);
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/signup`;
+		const captcha = await executeRecaptcha();
 		const data = {
 			email,
 			password,
 			name,
 			type,
 			username,
+			captcha,
 		};
 
 		try {
@@ -116,9 +120,11 @@ const SignUp = () => {
 
 	const handleOTPSubmit = async () => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/email/verify`;
+		const captcha = await executeRecaptcha();
 		const data = {
 			email,
 			emailVerificationCode: otp,
+			captcha,
 		};
 
 		try {
@@ -143,8 +149,10 @@ const SignUp = () => {
 
 	const resendVerificationEmail = async () => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/club/email/resendOTP`;
+		const captcha = await executeRecaptcha();
 		const data = {
 			email,
+			captcha,
 		};
 
 		try {

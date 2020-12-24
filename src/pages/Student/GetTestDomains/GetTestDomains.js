@@ -20,6 +20,7 @@ import Loading from "../../Loading";
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
 import Axios from "axios";
 import { Alert } from "@material-ui/lab";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const GetTestDomains = (props) => {
 	const id = props.match.params.testId;
@@ -37,6 +38,7 @@ const GetTestDomains = (props) => {
 	const [redirect, setRedirect] = useState(false);
 
 	const [alreadyAttempted, setAlreadyAttempted] = useState(false);
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const history = useHistory();
 
@@ -53,9 +55,12 @@ const GetTestDomains = (props) => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/attempt`;
 		const token = localStorage.getItem("studentAuthToken");
 
+		const captcha = await executeRecaptcha();
+
 		const data = {
 			testId: id,
 			domainId: currentSelected._id,
+			captcha,
 		};
 
 		try {
