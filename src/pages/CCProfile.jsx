@@ -292,10 +292,10 @@ const CCProfile = (props) => {
 											textAlign: "center",
 										}}
 									>
-										<Countdown
+										{/* <Countdown
 											date={date}
 											renderer={timerRenderer}
-										>
+										> */}
 											<a
 												href={
 													data.typeOfPartner ===
@@ -335,7 +335,7 @@ const CCProfile = (props) => {
 													Apply Now
 												</Button>
 											</a>
-										</Countdown>
+										{/* </Countdown> */}
 									</Grid>
 								</Grid>
 							</form>

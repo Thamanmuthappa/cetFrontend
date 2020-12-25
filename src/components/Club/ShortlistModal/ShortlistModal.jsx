@@ -52,7 +52,7 @@ const ShortlistModal = ({
 				handleClose();
 			});
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			setDisabled(false);
 		}
 	};

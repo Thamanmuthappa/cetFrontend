@@ -166,16 +166,16 @@ const ClubTestsList = (props) => {
 									style={{ textAlign: "center" }}
 								/>
 							</strong>
+							<p
+								style={{
+									color: "black",
+									fontSize: "13px",
+								}}
+							>
+								P.S: You will lose all progress if you refresh
+								the page or go back.
+							</p>
 						</center>
-						<p
-							style={{
-								color: "black",
-								fontSize: "13px",
-							}}
-						>
-							P.S: You will lose all progress if you refresh the
-							page or go back.
-						</p>
 					</Typography>
 				</DialogContent>
 				<DialogActions

@@ -15,7 +15,7 @@ const ClubRoutes = () => {
     <ClubContextProvider>
       <Switch>
         <Route exact path='/club/signin' component={ClubSignin} />
-        <Route exact path='/club/signup' component={SignUp} />
+        {/* <Route exact path='/club/signup' component={SignUp} /> */}
         <Route exact path='/club/createTest' component={CreateTest} />
         <Route exact path='/club/dashboard' component={Dashboard} />
         <Route exact path='/club/test/:id' component={TestDetails} />
