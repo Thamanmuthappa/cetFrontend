@@ -232,10 +232,10 @@ const TestDetails = (props) => {
         </Alert>
       </Snackbar>
       <Dialog open={confirmDelete} onClose={() => setConfirmDelete(false)}>
-        <DialogTitle>Are you sure you want to delete this domain?</DialogTitle>
+        <DialogTitle>Are you sure you want to delete this test?</DialogTitle>
         <DialogContent style={{ textAlign: "center" }}>
           <span className='light-text'>
-            All the submissions (if any) will also be Test.
+            All the submissions (if any) will also be lost.
           </span>
         </DialogContent>
         <DialogActions>
