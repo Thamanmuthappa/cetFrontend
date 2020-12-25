@@ -122,7 +122,6 @@ const DomainDetails = (props) => {
 		questions.filter((question) => {
 			console.log(searchTerm.toLowerCase());
 			if (searchTerm === "") {
-				console.log(question.studentId.name.toLowerCase());
 
 				return question;
 			} else if (
