@@ -147,18 +147,12 @@ const TestDetails = (props) => {
                   onClick={() => setConfirmPublish(true)}>
                   Publish Test
                 </Button>
-                {/* </Grid>
-              <Grid
-                item
-                xs={4}
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}> */}
+
                 <Button
                   color='primary'
                   variant='contained'
                   className='delete-domain-btn'
+                  style={{ marginLeft: "10px" }}
                   onClick={() => setConfirmDelete(true)}>
                   Delete Test
                 </Button>
