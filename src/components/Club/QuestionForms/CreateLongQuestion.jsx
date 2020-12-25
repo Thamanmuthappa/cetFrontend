@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
 import { postQuestionInDomain } from "../../../API/POST";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const CreateLongQuestion = ({
 	testId,
@@ -31,6 +32,7 @@ const CreateLongQuestion = ({
 
 	const [media, setMedia] = useState(null);
 	const [isMedia, setIsMedia] = useState(false);
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const handleFormChange = (e) => {
 		setQuestion((prevState) => ({
@@ -52,6 +54,9 @@ const CreateLongQuestion = ({
 		const token = localStorage.getItem("clubAuthToken");
 
 		const data = new FormData();
+
+		const captcha = await executeRecaptcha();
+		data.append("captcha", captcha);
 
 		for (let key in question) {
 			data.append(key, question[key]);

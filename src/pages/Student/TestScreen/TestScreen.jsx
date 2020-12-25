@@ -21,6 +21,7 @@ import { dummyTest } from "./dummyTest";
 import "./TestScreen.css";
 import Countdown from "react-countdown";
 import { useHistory } from "react-router-dom";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const TestScreen = (props) => {
 	const [testDetails, setTestDetails] = useState(dummyTest);
@@ -35,6 +36,7 @@ const TestScreen = (props) => {
 	const [startedAt, setStartedAt] = useState(Date.now() * 100000);
 
 	const history = useHistory();
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const minsToMilli = (mins) => {
 		return mins * 60 * 1000;
@@ -51,7 +53,10 @@ const TestScreen = (props) => {
 
 		const final = JSON.parse(JSON.stringify(answers));
 
+		const captcha = await executeRecaptcha();
+
 		final.timeTaken = (Date.now() - startedAt) / 60000;
+		final.captcha = captcha;
 
 		try {
 			await Axios.post(url, final, {
@@ -174,8 +179,6 @@ const TestScreen = (props) => {
 										>
 											<span>Time Up!</span>
 										</Countdown>
-										{/* {timeRemaining} minutes remaining!{" "}
-										TODO: MAKE DYNAMIC */}{" "}
 									</strong>
 								</Typography>
 							</div>

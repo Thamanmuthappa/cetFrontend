@@ -18,6 +18,7 @@ import { StudentContext } from "../../../context/StudentContext";
 import { Redirect, useHistory } from "react-router-dom";
 import Loading from "../../Loading";
 import Countdown from "react-countdown";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const ClubTestsList = (props) => {
 	const [tests, setTests] = useState([]);
@@ -32,6 +33,7 @@ const ClubTestsList = (props) => {
 	const [startDisabled, setStartDisabled] = useState(false);
 
 	const history = useHistory();
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const clubId = props.match.params.clubId;
 
@@ -51,8 +53,11 @@ const ClubTestsList = (props) => {
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/attempt`;
 		const token = localStorage.getItem("studentAuthToken");
 
+		const captcha = await executeRecaptcha();
+
 		const data = {
 			testId: test._id,
+			captcha,
 		};
 
 		try {

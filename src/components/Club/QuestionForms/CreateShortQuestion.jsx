@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
 import { postQuestionInDomain } from "../../../API/POST";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const CreateShortQuestion = ({
 	testId,
@@ -31,6 +32,7 @@ const CreateShortQuestion = ({
 	const [isMedia, setIsMedia] = useState(false);
 
 	const { setQuestionSnack } = snackOps;
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const handleFormChange = (e) => {
 		setQuestion((prevState) => ({
