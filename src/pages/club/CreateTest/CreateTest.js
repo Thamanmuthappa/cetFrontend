@@ -19,7 +19,6 @@ import MomentUtils from "@date-io/moment";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import { ClubContext } from "../../../context/ClubContext";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const CreateTest = () => {
 	const { register, handleSubmit } = useForm();
@@ -34,7 +33,6 @@ const CreateTest = () => {
 	});
 
 	const { addTest } = useContext(ClubContext);
-	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const [loading, setLoading] = useState(false);
 
@@ -71,11 +69,8 @@ const CreateTest = () => {
 		setLoading(true);
 		const details = JSON.parse(JSON.stringify(formDetails));
 
-		const captcha = await executeRecaptcha();
-
 		details.scheduledForDate = new Date(details.scheduledForDate).getTime();
 		details.scheduledEndDate = new Date(details.scheduledEndDate).getTime();
-		details.captcha = captcha;
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/create`;
 		const token = localStorage.getItem("clubAuthToken");
 
@@ -89,7 +84,8 @@ const CreateTest = () => {
 				addTest(res.data.testDetails);
 				history.push(`/club/test/${res.data.testDetails._id}`);
 			});
-		} catch (error) {}
+		} catch (error) {
+		}
 	};
 
 	return (
@@ -204,11 +200,11 @@ const CreateTest = () => {
 							{!loading ? (
 								"Create Test"
 							) : (
-								<CircularProgress
-									size={20}
-									style={{ padding: "3px 10px" }}
-								/>
-							)}
+									<CircularProgress
+										size={20}
+										style={{ padding: "3px 10px" }}
+									/>
+								)}
 						</Button>
 					</div>
 				</form>

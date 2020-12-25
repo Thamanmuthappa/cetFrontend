@@ -20,7 +20,6 @@ import Navbar from "../../../components/Shared/Navbar/Navbar";
 import Loading from "../../Loading";
 import "./TestDetails.css";
 import { Alert } from "@material-ui/lab";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const TestDetails = (props) => {
 	const id = props.match.params.id;
@@ -35,18 +34,13 @@ const TestDetails = (props) => {
 	const [confirmBtnLoading, setConfirmBtnLoading] = useState(false);
 	const [publishSnack, setPublishSnack] = useState(false);
 
-	const { executeRecaptcha } = useGoogleReCaptcha();
-
 	const handlePublish = async () => {
 		setConfirmBtnLoading(true);
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/publish`;
 		const token = localStorage.getItem("clubAuthToken");
 
-		const captcha = await executeRecaptcha();
-
 		const data = {
 			testId: id,
-			captcha,
 		};
 
 		try {

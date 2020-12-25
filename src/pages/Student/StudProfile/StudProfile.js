@@ -15,7 +15,6 @@ import { patchStudProfile } from "../../../API/PATCH";
 import { Alert } from "@material-ui/lab";
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
 import { fetchStudentProfile } from "../../../API/GET";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -45,8 +44,6 @@ const StudProfile = () => {
 
 	const [profileSuccess, setProfileSuccess] = useState(false);
 
-	const { executeRecaptcha } = useGoogleReCaptcha;
-
 	const handleProfileChange = (e) => {
 		setStudData((prevState) => ({
 			...prevState,
@@ -58,12 +55,7 @@ const StudProfile = () => {
 		setDisabled(true);
 		const token = localStorage.getItem("studentAuthToken");
 
-		const captcha = await executeRecaptcha();
-		const data = JSON.parse(JSON.stringify(studData));
-
-		data.captcha = captcha;
-
-		const res = await patchStudProfile(data, token);
+		const res = await patchStudProfile(studData, token);
 
 		if (res) {
 			// getProfile(token);

@@ -10,7 +10,6 @@ import {
 } from "@material-ui/core";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const ShortlistModal = ({
 	open,
@@ -30,20 +29,15 @@ const ShortlistModal = ({
 		onClose();
 	};
 
-	const { executeRecaptcha } = useGoogleReCaptcha();
-
 	const shortlist = async () => {
 		setDisabled(true);
 		const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/shortlist`;
 		const token = localStorage.getItem("clubAuthToken");
 
-		const captcha = await executeRecaptcha();
-
 		const data = {
 			domainId: domainId,
 			studentId: selected.studentId._id,
 			remark: remark,
-			captcha,
 		};
 
 		try {

@@ -9,7 +9,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
 import { postQuestionInDomain } from "../../../API/POST";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 const optionsArr = [
 	{ option: { text: "", isCorrect: true } },
@@ -42,7 +41,6 @@ const CreateSingleCorrect = ({
 	const [isMedia, setIsMedia] = useState(false);
 
 	const { setQuestionSnack } = snackOps;
-	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const handleOptionChange = (e, i) => {
 		const curr = JSON.parse(JSON.stringify(question));
@@ -134,10 +132,7 @@ const CreateSingleCorrect = ({
 				</Typography>
 				<div className="options-form" style={{ marginBottom: 30 }}>
 					{question.options.map((option, i) => (
-						<div
-							style={{ display: "flex", alignItems: "center" }}
-							key={i}
-						>
+						<div style={{ display: "flex", alignItems: "center" }} key={i}>
 							<TextField
 								name={`Option ${i + 1}`}
 								variant="outlined"
