@@ -96,7 +96,7 @@ const ClubSignin = () => {
                 setLoading( false );
             } );
         } catch ( error ) {
-            if ( error.response.status === 409 || error.response.status === 401 ) {
+            if ( error.response.status === 401 ) {
                 alert( "Account already exists..." );
             } else if ( error.response.status === 400 ) {
                 alert( "Looks like you didn't enter all details." );
@@ -237,7 +237,7 @@ const ClubSignin = () => {
                                     <Grid item
                                         xs={12}></Grid>
 
-                                    <Grid item
+                                    {/* <Grid item
                                         xs={12}>
                                         <p style={
                                             { textAlign: "center" }
@@ -254,7 +254,7 @@ const ClubSignin = () => {
                                                 </Link>
                                             </span>
                                         </p>
-                                    </Grid>
+                                    </Grid> */}
 
                                     <Grid item
                                         xs={12}>
