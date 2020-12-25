@@ -1,20 +1,24 @@
 import {
-  Button,
-  Container,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Divider,
-  Grid,
-  Snackbar,
-  Typography,
+	Button,
+	Container,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogTitle,
+	Divider,
+	Grid,
+	Snackbar,
+	Typography,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchTestDetails, fetchTestDomains } from "../../../API/GET";
+import {
+	fetchAllTests,
+	fetchTestDetails,
+	fetchTestDomains,
+} from "../../../API/GET";
 import DomainAddModal from "../../../components/Club/DomainAddModal";
 import ClubDomainTile from "../../../components/Club/DomainTile/ClubDomainTile";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
@@ -22,237 +26,279 @@ import Loading from "../../Loading";
 import "./TestDetails.css";
 import { Alert } from "@material-ui/lab";
 import { useHistory } from "react-router-dom";
+import { ClubContext } from "../../../context/ClubContext";
 
 const TestDetails = (props) => {
-  const id = props.match.params.id;
-  const [loading, setLoading] = useState(true);
+	const id = props.match.params.id;
+	const [loading, setLoading] = useState(true);
 
-  const [testDetails, setTestDetails] = useState({});
-  const [testDomains, setTestDomains] = useState([]);
+	const [testDetails, setTestDetails] = useState({});
+	const [testDomains, setTestDomains] = useState([]);
 
-  const [addDomainOpen, setAddDomain] = useState(false);
+	const [addDomainOpen, setAddDomain] = useState(false);
 
-  const [confirmPublish, setConfirmPublish] = useState(false);
-  const [confirmBtnLoading, setConfirmBtnLoading] = useState(false);
-  const [publishSnack, setPublishSnack] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
+	const [confirmPublish, setConfirmPublish] = useState(false);
+	const [confirmBtnLoading, setConfirmBtnLoading] = useState(false);
+	const [publishSnack, setPublishSnack] = useState(false);
+	const [confirmDelete, setConfirmDelete] = useState(false);
+	const [deleteLoading, setDeleteLoading] = useState(false);
 
-  const history = useHistory();
+	const history = useHistory();
+	const { setClubTests } = useContext(ClubContext);
 
-  const handlePublish = async () => {
-    setConfirmBtnLoading(true);
-    const url = `${process.env.REACT_APP_BACKEND_URL}/test/publish`;
-    const token = localStorage.getItem("clubAuthToken");
+	const handlePublish = async () => {
+		setConfirmBtnLoading(true);
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/publish`;
+		const token = localStorage.getItem("clubAuthToken");
 
-    const data = {
-      testId: id,
-    };
+		const data = {
+			testId: id,
+		};
 
-    try {
-      await Axios.patch(url, data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        setConfirmPublish(false);
-        setPublishSnack(true);
-      });
-    } catch (error) {}
+		try {
+			await Axios.patch(url, data, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			}).then((res) => {
+				setConfirmPublish(false);
+				setPublishSnack(true);
+			});
+		} catch (error) {}
 
-    setConfirmBtnLoading(false);
-  };
+		setConfirmBtnLoading(false);
+	};
 
-  const getDetails = async () => {
-    setLoading(true);
-    const token = localStorage.getItem("clubAuthToken");
-    const details = await fetchTestDetails(id, token);
-    const domains = await fetchTestDomains(id, token);
-    setTestDetails(details);
-    setTestDomains(domains);
-    setLoading(false);
-  };
+	const getDetails = async () => {
+		setLoading(true);
+		const token = localStorage.getItem("clubAuthToken");
+		const details = await fetchTestDetails(id, token);
+		const domains = await fetchTestDomains(id, token);
+		setTestDetails(details);
+		setTestDomains(domains);
+		setLoading(false);
+	};
 
-  useEffect(() => {
-    getDetails();
-  }, []);
+	useEffect(() => {
+		getDetails();
+	}, []);
 
-  const handleDelete = async () => {
-    setDeleteLoading(true);
-    const url = `${process.env.REACT_APP_BACKEND_URL}/test/delete`;
-    const token = localStorage.getItem("clubAuthToken");
+	const handleDelete = async () => {
+		setDeleteLoading(true);
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/delete`;
+		const token = localStorage.getItem("clubAuthToken");
 
-    const data = {
-      testId: id,
-    };
+		const data = {
+			testId: id,
+		};
 
-    try {
-      await Axios.delete(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        data: data,
-      }).then((res) => {
-        history.replace(`/club/dashboard`);
-      });
-    } catch (error) {
-      // console.log(error);
-      setDeleteLoading(false);
-    }
-  };
+		try {
+			await Axios.delete(url, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+				data: data,
+			}).then(async (res) => {
+				const tests = await fetchAllTests(token);
+				setClubTests(tests);
 
-  if (loading) {
-    return <Loading />;
-  }
+				history.replace("/club/dashboard");
+			});
+		} catch (error) {
+			// console.log(error);
+			setDeleteLoading(false);
+		}
+	};
 
-  return (
-    <div className='test-details-page'>
-      <Navbar location='Test Details' />
-      <Container className='test-details-container'>
-        <div className='test-info'>
-          <h1>
-            <u>Test Details</u>
-          </h1>
-          <div style={{ color: "#666666" }}>
-            <Grid container spacing={3}>
-              <Grid item xs={6} sm={3}>
-                <p>
-                  <strong>Round Number:</strong> {testDetails.roundNumber}
-                </p>
-                <p>
-                  <strong>Round Type:</strong> {testDetails.roundType}
-                </p>
-              </Grid>
-              <Grid item xs={5}>
-                <p>
-                  <strong>Start Time:</strong>{" "}
-                  {new Date(testDetails.scheduledForDate).toLocaleString()}
-                </p>
-                <p>
-                  <strong>End Time:</strong>{" "}
-                  {new Date(testDetails.scheduledEndDate).toLocaleString()}
-                </p>
-              </Grid>
-              <Grid
-                item
-                xs={3}
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                }}>
-                <Button
-                  color='primary'
-                  variant='contained'
-                  disabled={testDetails.published}
-                  onClick={() => setConfirmPublish(true)}>
-                  Publish Test
-                </Button>
+	if (loading) {
+		return <Loading />;
+	}
 
-                <Button
-                  color='primary'
-                  variant='contained'
-                  className='delete-domain-btn'
-                  style={{ marginLeft: "10px" }}
-                  onClick={() => setConfirmDelete(true)}>
-                  Delete Test
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </div>
-        <Divider />
-        <div className='test-page-domain'>
-          <h1>
-            <u>Test Domains</u>
-          </h1>
-          <div className='test-page-domain-top' style={{ textAlign: "right" }}>
-            <Button
-              variant='contained'
-              className='custom-action-btn'
-              color='primary'
-              onClick={() => setAddDomain(true)}>
-              <Add /> Add a new domain
-            </Button>
-          </div>
-          <div className='test-page-domain-list'>
-            {testDomains.length === 0 ? (
-              <div className='test-page-no-domains'>
-                <Typography variant='h2' className='light-text'>
-                  No domains created
-                </Typography>
-              </div>
-            ) : (
-              <div className='test-page-domains-list'>
-                <Grid container spacing={3}>
-                  {testDomains.map((domain, i) => (
-                    <Grid key={i} item xs={12} sm={3}>
-                      <Link
-                        to={{
-                          pathname: `/club/test/${id}/${domain._id}`,
-                          state: { domain },
-                        }}>
-                        <ClubDomainTile title={domain.domainName} />
-                      </Link>
-                    </Grid>
-                  ))}
-                </Grid>
-              </div>
-            )}
-          </div>
-        </div>
-        {/* <Divider /> */}
-      </Container>
-      <DomainAddModal
-        open={addDomainOpen}
-        handleClose={() => setAddDomain(false)}
-        id={id}
-        refresh={getDetails}
-      />
-      <Dialog open={confirmPublish} onClose={() => setConfirmPublish(false)}>
-        <DialogTitle>Are you sure you want to publish this test?</DialogTitle>
-        <DialogActions>
-          <Button variant='outlined' onClick={() => setConfirmPublish(false)}>
-            Cancel
-          </Button>
-          <Button
-            color='primary'
-            variant='contained'
-            onClick={handlePublish}
-            disabled={confirmBtnLoading}>
-            Publish
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Snackbar
-        open={publishSnack}
-        autoHideDuration={5000}
-        onClose={() => setPublishSnack(false)}>
-        <Alert variant='filled' severity='success'>
-          Test published!
-        </Alert>
-      </Snackbar>
-      <Dialog open={confirmDelete} onClose={() => setConfirmDelete(false)}>
-        <DialogTitle>Are you sure you want to delete this test?</DialogTitle>
-        <DialogContent style={{ textAlign: "center" }}>
-          <span className='light-text'>
-            All the submissions (if any) will also be lost.
-          </span>
-        </DialogContent>
-        <DialogActions>
-          <Button variant='outlined' onClick={() => setConfirmDelete(false)}>
-            Cancel
-          </Button>
-          <Button
-            color='primary'
-            variant='contained'
-            onClick={handleDelete}
-            disabled={deleteLoading}>
-            Delete
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+	return (
+		<div className="test-details-page">
+			<Navbar location="Test Details" />
+			<Container className="test-details-container">
+				<div className="test-info">
+					<h1>
+						<u>Test Details</u>
+					</h1>
+					<div style={{ color: "#666666" }}>
+						<Grid container spacing={3}>
+							<Grid item xs={6} sm={3}>
+								<p>
+									<strong>Round Number:</strong>{" "}
+									{testDetails.roundNumber}
+								</p>
+								<p>
+									<strong>Round Type:</strong>{" "}
+									{testDetails.roundType}
+								</p>
+							</Grid>
+							<Grid item xs={5}>
+								<p>
+									<strong>Start Time:</strong>{" "}
+									{new Date(
+										testDetails.scheduledForDate
+									).toLocaleString()}
+								</p>
+								<p>
+									<strong>End Time:</strong>{" "}
+									{new Date(
+										testDetails.scheduledEndDate
+									).toLocaleString()}
+								</p>
+							</Grid>
+							<Grid
+								item
+								xs={3}
+								style={{
+									display: "flex",
+									justifyContent: "flex-end",
+								}}
+							>
+								<Button
+									color="primary"
+									variant="contained"
+									disabled={testDetails.published}
+									onClick={() => setConfirmPublish(true)}
+									style={{ fontWeight: "bold" }}
+								>
+									Publish Test
+								</Button>
+
+								<Button
+									color="primary"
+									variant="contained"
+									className="delete-test-btn"
+									style={{ marginLeft: "10px" }}
+									onClick={() => setConfirmDelete(true)}
+								>
+									Delete Test
+								</Button>
+							</Grid>
+						</Grid>
+					</div>
+				</div>
+				<Divider />
+				<div className="test-page-domain">
+					<h1>
+						<u>Test Domains</u>
+					</h1>
+					<div
+						className="test-page-domain-top"
+						style={{ textAlign: "right" }}
+					>
+						<Button
+							variant="contained"
+							className="custom-action-btn"
+							color="primary"
+							onClick={() => setAddDomain(true)}
+						>
+							<Add /> Add a new domain
+						</Button>
+					</div>
+					<div className="test-page-domain-list">
+						{testDomains.length === 0 ? (
+							<div className="test-page-no-domains">
+								<Typography variant="h2" className="light-text">
+									No domains created
+								</Typography>
+							</div>
+						) : (
+							<div className="test-page-domains-list">
+								<Grid container spacing={3}>
+									{testDomains.map((domain, i) => (
+										<Grid key={i} item xs={12} sm={3}>
+											<Link
+												to={{
+													pathname: `/club/test/${id}/${domain._id}`,
+													state: { domain },
+												}}
+											>
+												<ClubDomainTile
+													title={domain.domainName}
+												/>
+											</Link>
+										</Grid>
+									))}
+								</Grid>
+							</div>
+						)}
+					</div>
+				</div>
+				{/* <Divider /> */}
+			</Container>
+			<DomainAddModal
+				open={addDomainOpen}
+				handleClose={() => setAddDomain(false)}
+				id={id}
+				refresh={getDetails}
+				clubId={testDetails.clubId}
+			/>
+			<Dialog
+				open={confirmPublish}
+				onClose={() => setConfirmPublish(false)}
+			>
+				<DialogTitle>
+					Are you sure you want to publish this test?
+				</DialogTitle>
+				<DialogActions>
+					<Button
+						variant="outlined"
+						onClick={() => setConfirmPublish(false)}
+					>
+						Cancel
+					</Button>
+					<Button
+						color="primary"
+						variant="contained"
+						onClick={handlePublish}
+						disabled={confirmBtnLoading}
+					>
+						Publish
+					</Button>
+				</DialogActions>
+			</Dialog>
+			<Snackbar
+				open={publishSnack}
+				autoHideDuration={5000}
+				onClose={() => setPublishSnack(false)}
+			>
+				<Alert variant="filled" severity="success">
+					Test published!
+				</Alert>
+			</Snackbar>
+			<Dialog
+				open={confirmDelete}
+				onClose={() => setConfirmDelete(false)}
+			>
+				<DialogTitle>
+					Are you sure you want to delete this test?
+				</DialogTitle>
+				<DialogContent style={{ textAlign: "center" }}>
+					<span className="light-text">
+						All the submissions (if any) will also be lost.
+					</span>
+				</DialogContent>
+				<DialogActions>
+					<Button
+						variant="outlined"
+						onClick={() => setConfirmDelete(false)}
+					>
+						Cancel
+					</Button>
+					<Button
+						color="primary"
+						variant="contained"
+						onClick={handleDelete}
+						disabled={deleteLoading}
+					>
+						Delete
+					</Button>
+				</DialogActions>
+			</Dialog>
+		</div>
+	);
 };
 
 export default TestDetails;

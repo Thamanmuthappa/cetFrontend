@@ -74,6 +74,7 @@ const ClubContextProvider = ({ children }) => {
 		setLoginTrue,
 		setLoginFalse,
 		setClubDetails,
+		setClubTests,
 		addTest,
 		setFeatured,
 		getProfile,

@@ -22,17 +22,17 @@ import { ClubContext } from "../../../context/ClubContext";
 
 const CreateTest = () => {
 	const { register, handleSubmit } = useForm();
+	const { addTest, clubDetails } = useContext(ClubContext);
+
 	const [formDetails, setFormDetails] = useState({
+		clubId: clubDetails.club._id,
 		roundNumber: 1,
 		roundType: "",
 		instructions: "",
-
 		scheduledForDate: new Date(),
 		scheduledEndDate: new Date(),
 		graded: true,
 	});
-
-	const { addTest } = useContext(ClubContext);
 
 	const [loading, setLoading] = useState(false);
 
@@ -84,8 +84,7 @@ const CreateTest = () => {
 				addTest(res.data.testDetails);
 				history.push(`/club/test/${res.data.testDetails._id}`);
 			});
-		} catch (error) {
-		}
+		} catch (error) {}
 	};
 
 	return (
@@ -200,11 +199,11 @@ const CreateTest = () => {
 							{!loading ? (
 								"Create Test"
 							) : (
-									<CircularProgress
-										size={20}
-										style={{ padding: "3px 10px" }}
-									/>
-								)}
+								<CircularProgress
+									size={20}
+									style={{ padding: "3px 10px" }}
+								/>
+							)}
 						</Button>
 					</div>
 				</form>
