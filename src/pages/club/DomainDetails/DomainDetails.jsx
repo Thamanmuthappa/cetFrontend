@@ -156,7 +156,7 @@ const DomainDetails = (props) => {
 								</Grid>
 								<Grid
 									item
-									xs={4}
+									xs={3}
 									style={{
 										display: "flex",
 										justifyContent: "flex-end",

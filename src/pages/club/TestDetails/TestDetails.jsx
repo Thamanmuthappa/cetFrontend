@@ -3,6 +3,7 @@ import {
 	Container,
 	Dialog,
 	DialogActions,
+	DialogContent,
 	DialogTitle,
 	Divider,
 	Grid,
@@ -11,15 +12,21 @@ import {
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchTestDetails, fetchTestDomains } from "../../../API/GET";
+import {
+	fetchAllTests,
+	fetchTestDetails,
+	fetchTestDomains,
+} from "../../../API/GET";
 import DomainAddModal from "../../../components/Club/DomainAddModal";
 import ClubDomainTile from "../../../components/Club/DomainTile/ClubDomainTile";
 import Navbar from "../../../components/Shared/Navbar/Navbar";
 import Loading from "../../Loading";
 import "./TestDetails.css";
 import { Alert } from "@material-ui/lab";
+import { useHistory } from "react-router-dom";
+import { ClubContext } from "../../../context/ClubContext";
 
 const TestDetails = (props) => {
 	const id = props.match.params.id;
@@ -33,6 +40,11 @@ const TestDetails = (props) => {
 	const [confirmPublish, setConfirmPublish] = useState(false);
 	const [confirmBtnLoading, setConfirmBtnLoading] = useState(false);
 	const [publishSnack, setPublishSnack] = useState(false);
+	const [confirmDelete, setConfirmDelete] = useState(false);
+	const [deleteLoading, setDeleteLoading] = useState(false);
+
+	const history = useHistory();
+	const { setClubTests } = useContext(ClubContext);
 
 	const handlePublish = async () => {
 		setConfirmBtnLoading(true);
@@ -62,7 +74,6 @@ const TestDetails = (props) => {
 		const token = localStorage.getItem("clubAuthToken");
 		const details = await fetchTestDetails(id, token);
 		const domains = await fetchTestDomains(id, token);
-
 		setTestDetails(details);
 		setTestDomains(domains);
 		setLoading(false);
@@ -71,6 +82,33 @@ const TestDetails = (props) => {
 	useEffect(() => {
 		getDetails();
 	}, []);
+
+	const handleDelete = async () => {
+		setDeleteLoading(true);
+		const url = `${process.env.REACT_APP_BACKEND_URL}/test/delete`;
+		const token = localStorage.getItem("clubAuthToken");
+
+		const data = {
+			testId: id,
+		};
+
+		try {
+			await Axios.delete(url, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+				data: data,
+			}).then(async (res) => {
+				const tests = await fetchAllTests(token);
+				setClubTests(tests);
+
+				history.replace("/club/dashboard");
+			});
+		} catch (error) {
+			// console.log(error);
+			setDeleteLoading(false);
+		}
+	};
 
 	if (loading) {
 		return <Loading />;
@@ -123,25 +161,19 @@ const TestDetails = (props) => {
 									variant="contained"
 									disabled={testDetails.published}
 									onClick={() => setConfirmPublish(true)}
+									style={{ fontWeight: "bold" }}
 								>
 									Publish Test
 								</Button>
-							</Grid>
-							<Grid
-								item
-								xs={4}
-								style={{
-									display: "flex",
-									justifyContent: "flex-end",
-								}}
-							>
+
 								<Button
 									color="primary"
 									variant="contained"
-									className="delete-domain-btn"
-									// onClick={() => setConfirmDelete(true)}
+									className="delete-test-btn"
+									style={{ marginLeft: "10px" }}
+									onClick={() => setConfirmDelete(true)}
 								>
-									Delete Domain
+									Delete Test
 								</Button>
 							</Grid>
 						</Grid>
@@ -236,6 +268,35 @@ const TestDetails = (props) => {
 					Test published!
 				</Alert>
 			</Snackbar>
+			<Dialog
+				open={confirmDelete}
+				onClose={() => setConfirmDelete(false)}
+			>
+				<DialogTitle>
+					Are you sure you want to delete this test?
+				</DialogTitle>
+				<DialogContent style={{ textAlign: "center" }}>
+					<span className="light-text">
+						All the submissions (if any) will also be lost.
+					</span>
+				</DialogContent>
+				<DialogActions>
+					<Button
+						variant="outlined"
+						onClick={() => setConfirmDelete(false)}
+					>
+						Cancel
+					</Button>
+					<Button
+						color="primary"
+						variant="contained"
+						onClick={handleDelete}
+						disabled={deleteLoading}
+					>
+						Delete
+					</Button>
+				</DialogActions>
+			</Dialog>
 		</div>
 	);
 };

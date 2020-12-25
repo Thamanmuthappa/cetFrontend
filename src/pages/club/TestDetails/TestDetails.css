@@ -27,3 +27,8 @@
 .test-page-domains-list {
 	margin: 7% 5%;
 }
+
+.delete-test-btn {
+	background-color: #e47944 !important;
+	font-weight: bold !important;
+}
