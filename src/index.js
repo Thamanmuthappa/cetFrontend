@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 const theme = createMuiTheme({
 	typography: {
@@ -28,11 +27,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
-			<GoogleReCaptchaProvider
-				reCaptchaKey={process.env.REACT_APP_RECAPTCHA_KEY}
-			>
-				<App />
-			</GoogleReCaptchaProvider>
+			<App />
 		</ThemeProvider>
 	</React.StrictMode>,
 	document.getElementById("root")
