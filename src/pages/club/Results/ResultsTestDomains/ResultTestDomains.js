@@ -55,6 +55,34 @@ const DomainDetails = (props) => {
 		setPage(value);
 	};
 
+	const handleResponseExport = () => {
+		const data = JSON.parse(JSON.stringify(questions));
+
+		data.map((response) => {
+			delete response._id;
+			delete response.studentId._id;
+
+			response.responses.map((curr) => {
+				delete curr._id;
+				delete curr.questionId._id;
+				delete curr.corrected;
+			});
+		});
+
+		jsonexport(data, (err, csv) => {
+			if (err) return console.log(err);
+
+			let csvContent = "data:text/csv;charset=utf-8," + csv;
+
+			const url = encodeURI(csvContent);
+			const link = document.createElement("a");
+			link.setAttribute("href", url);
+			link.setAttribute("download", `${domainDetails.domainName}.csv`);
+			document.body.appendChild(link);
+
+			link.click();
+		});
+	};
 	const handleShortlistExport = () => {
 		jsonexport(shortlisted, (err, csv) => {
 			if (err) return console.log(err);
@@ -78,6 +106,8 @@ const DomainDetails = (props) => {
 			domainId,
 			token
 		);
+
+		console.log(final);
 		setQuestions(final);
 		setShortlisted(shortlisted);
 		setQuesLoading(false);
@@ -173,8 +203,19 @@ const DomainDetails = (props) => {
 										display: "flex",
 										justifyContent: "flex-end",
 										alignItems: "flex-end",
+										flexDirection: "column",
 									}}
 								>
+									<Button
+										variant="contained"
+										className="csv-download-btn responses-btn"
+										onClick={handleResponseExport}
+										disabled={questionsLoading}
+										style={{ marginBottom: "20px" }}
+									>
+										<GetApp />
+										Export responses to CSV
+									</Button>
 									<Button
 										variant="contained"
 										className="csv-download-btn"
