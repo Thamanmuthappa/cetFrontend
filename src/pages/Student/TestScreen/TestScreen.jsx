@@ -61,7 +61,6 @@ const TestScreen = (props) => {
         },
       }).then((res) => {
         setLoading(false);
-
         setSubmitted(true);
       });
     } catch (error) {
@@ -168,7 +167,7 @@ const TestScreen = (props) => {
               setAnswers={setAnswers}
               key={i}
             />
-          ))}{" "}
+          ))}
         </div>
       </Container>
       <Tooltip title='Submit Test'>
@@ -196,7 +195,17 @@ const TestScreen = (props) => {
           </Button>
         </DialogActions>
       </Dialog>
-      <Dialog open={submitted} onClose={() => setSubmitted(false)} fullWidth>
+      <Dialog
+        open={submitted}
+        onClose={() => {
+          history.replace({
+            pathname: `/student/test/domains/${answers.testId}`,
+            state: {
+              details: props.location.state.testDetails,
+            },
+          });
+        }}
+        fullWidth>
         <DialogTitle>Test Submitted Successfully</DialogTitle>
         <DialogActions>
           <Button

@@ -55,6 +55,7 @@ const ClubProfile = () => {
   const [featureLoading, setFeatureLoading] = useState(false);
   const [featureSuccess, setFeatureSuccess] = useState(false);
   const [profileSuccess, setProfileSuccess] = useState(false);
+  const [profileFail, setProfileFail] = useState(false);
 
   const [dpModal, setDpModal] = useState(false);
   const [bannerModal, setBannerModal] = useState(false);
@@ -109,6 +110,8 @@ const ClubProfile = () => {
       getProfile(token);
       setProfileSuccess(true);
       setAskPassword(false);
+    } else {
+      setProfileFail(true);
     }
 
     setDisabled(false);
@@ -325,6 +328,17 @@ const ClubProfile = () => {
               variant='filled'
               onClose={() => setProfileSuccess(false)}>
               Your profile was successfully updated!
+            </Alert>
+          </Snackbar>
+          <Snackbar
+            autoHideDuration={4000}
+            onClose={() => setProfileFail(false)}
+            open={profileFail}>
+            <Alert
+              severity='error'
+              variant='filled'
+              onClose={() => setProfileFail(false)}>
+              Authentication Failed
             </Alert>
           </Snackbar>
         </Container>
