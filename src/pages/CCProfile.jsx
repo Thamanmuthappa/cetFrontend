@@ -296,7 +296,7 @@ const CCProfile = (props) => {
 											date={date}
 											renderer={timerRenderer}
 										> */}
-											<a
+											{/* <a
 												href={
 													data.typeOfPartner ===
 														"Micro" ||
@@ -334,8 +334,20 @@ const CCProfile = (props) => {
 												>
 													Apply Now
 												</Button>
-											</a>
+											</a> */}
 										{/* </Countdown> */}
+										<Typography
+				variant="h5"
+				style={{
+					flex: 1,
+					color: "#FFBC27",
+					fontWeight: "bold",
+					paddingBottom: "50px",
+					fontFamily:"Star Jhol"
+				}}
+			>
+				our recruitment tests have ended
+			</Typography>
 									</Grid>
 								</Grid>
 							</form>
