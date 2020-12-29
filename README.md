@@ -7,7 +7,7 @@
 > One stop solution to make club and chapter recruitments in VIT simpler and hassle free.
 
 ---
-[![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://cet-portalLICENSE.codechefvit.com)
+[![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://cet-portal.codechefvit.com)
 
 <p align="center">
 <img src="https://i.ibb.co/VppxmWZ/cet.png" alt="Common-Entry-Test" width="250px"/>
@@ -18,9 +18,11 @@ Common Entry Test is an assistive technology that helps make applying to clubs a
 
 ## Why Common Entry Test ?
 1. No other system matches the diversity of clubs and chapters accessible through our portal. Explore and apply to clubs and chapters in VIT.
-2. There is no need to repeat your applicant details for every club or chapter on your list. Enter your information one time and use it to apply to multiple clubs and chapters.
+2. There is no need to repeat your applicant details for every club or chapter on your list. Enter your information one time and use it to apply to multiple clubs, teams and chapters.
 3. Our system alerts you when important dates are approaching. Manage your deadlines and view application progress in one convenient dashboard.
 4. Save time by reducing the time you spend on tedious recruitment tests by giving just one standardised test and spend it with your friends and enjoy college life.
+5. Give a custom test by a club, team or chapter.
+6. As an organisation, you don't need to spend resources and time trying to make your own portal. We do it for you.
 
 ## Features
 1. Reduce redundancy.
@@ -33,7 +35,22 @@ Common Entry Test is an assistive technology that helps make applying to clubs a
 - [CET Frontend Repo](https://github.com/CodeChefVIT/cetFrontend)
 - [CET Backend Repo](https://github.com/CodeChefVIT/cetBackend)
 - [CET Frontend](https://cet-portal.codechefvit.com) 
-- [CET API](https://cet-dev-api.herokuapp.com/) 
+
+## Instructions to Run ⚛️
+```bash
+$ git clone https://github.com/CodeChefVIT/cetFrontend
+$ cd cetFrontend
+$ npm install
+```
+- Add environmental variables in the `.env` file.
+```bash
+$ npm start
+```
+
+## Environment Variables
+| Variable              | Key                                    |
+| --------------------- |:--------------------------------------:|
+| REACT_APP_BACKEND_URL | https://<API_URL>/api |
 
 
 ## Contributors
