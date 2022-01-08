@@ -106,12 +106,13 @@ const ClubTestsList = (props) => {
 	return (
 		<>
 			<StudentNavbar location="Tests Available" />
+			<div className="cont-col">
 			<Container className="club-dash-tests student-test-list">
 				<div>
-					<Typography variant="h3">Tests Available:</Typography>
+					<Typography variant="h3" style={{color:"#fff"}}>Tests Available:</Typography>
 				</div>
-				<Divider />
-				<div className="club-test-list" style={{ paddingTop: "3%" }}>
+				<Divider style={{background:"#F5F5F540"}}/>
+				<div className="club-test-list" style={{ paddingTop: "3%" , color: "#081220"}}>
 					{tests.length === 0 ? (
 						<div className="no-tests-div">
 							<Typography variant="h2" className="light-text">
@@ -137,8 +138,9 @@ const ClubTestsList = (props) => {
 					)}{" "}
 				</div>
 			</Container>
-			<Dialog open={startTestModal} onClose={handleModalClose}>
-				<DialogTitle>
+			</div>
+			<Dialog open={startTestModal} onClose={handleModalClose} style={{color:"#252D3A", overflow: "hidden"}}>
+				<DialogTitle style={{color:"#fff", background: "#252D3A"}}> 
 					Are you sure you want to start this test?
 				</DialogTitle>
 				<DialogContent
@@ -146,21 +148,24 @@ const ClubTestsList = (props) => {
 						display: "flex",
 						justifyContent: "center",
 						flexDirection: "column",
+						color:"#fff",
+						background: "#252D3A",
+						overflow: "hidden",
 					}}
 				>
-					<div className="modal-test-instructions">
-						<strong>TEST INSTRUCTIONS:</strong>
+					<div className="modal-test-instructions" style={{overflow: "hidden"}}>
+						<strong style={{color:"#fff"}}>TEST INSTRUCTIONS:</strong>
 						<br />
 						<br />
 						{currentSelected.instructions}
 					</div>
-					<div className="light-text" style={{ textAlign: "center" }}>
+					<div className="light-text" style={{ textAlign: "center", color:"#fff" }}>
 						<strong>Time till start</strong>
 					</div>
 
 					<Typography variant="h6" color="primary">
 						<center>
-							<strong style={{ textAlign: "center" }}>
+							<strong style={{ textAlign: "center", color:"#fff"}}>
 								<Countdown
 									date={currentSelected.scheduledForDate}
 									style={{ textAlign: "center" }}
@@ -170,6 +175,7 @@ const ClubTestsList = (props) => {
 								style={{
 									color: "black",
 									fontSize: "13px",
+									color:"#fff"
 								}}
 							>
 								P.S: You will lose all progress if you refresh
@@ -179,7 +185,7 @@ const ClubTestsList = (props) => {
 					</Typography>
 				</DialogContent>
 				<DialogActions
-					style={{ justifyContent: "center", marginBottom: "20px" }}
+					style={{ justifyContent: "center", background: "#252D3A"}}
 				>
 					{currentSelected.scheduledForDate > Date.now() ? (
 						<span className="light-text">Test not started yet</span>

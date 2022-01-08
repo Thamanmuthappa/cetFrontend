@@ -120,9 +120,9 @@ const TestDetails = (props) => {
 			<Container className="test-details-container">
 				<div className="test-info">
 					<h1>
-						<u>Test Details</u>
+						<a>Test Details</a>
 					</h1>
-					<div style={{ color: "#666666" }}>
+					<div >
 						<Grid container spacing={3}>
 							<Grid item xs={6} sm={3}>
 								<p>
@@ -159,6 +159,7 @@ const TestDetails = (props) => {
 								<Button
 									color="primary"
 									variant="contained"
+									className="publish-btn"
 									disabled={testDetails.published}
 									onClick={() => setConfirmPublish(true)}
 									style={{ fontWeight: "bold" }}
@@ -179,10 +180,10 @@ const TestDetails = (props) => {
 						</Grid>
 					</div>
 				</div>
-				<Divider />
+				<Divider style={{background:"#F5F5F540"}}/>
 				<div className="test-page-domain">
 					<h1>
-						<u>Test Domains</u>
+						<a>Test Domains</a>
 					</h1>
 					<div
 						className="test-page-domain-top"
@@ -193,6 +194,7 @@ const TestDetails = (props) => {
 							className="custom-action-btn"
 							color="primary"
 							onClick={() => setAddDomain(true)}
+							// style={{ marginRight: "8%" }}
 						>
 							<Add /> Add a new domain
 						</Button>

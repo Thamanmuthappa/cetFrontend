@@ -48,9 +48,9 @@ const TestDetails = (props) => {
       <Container className='test-details-container'>
         <div className='test-info'>
           <h1>
-            <u>Test Details</u>
+            <a>Test Details</a>
           </h1>
-          <div style={{ color: "#666666" }}>
+          <div style={{ color: "#fff" }}>
             <Grid container spacing={3}>
               <Grid item xs={6} sm={3}>
                 <p>
@@ -76,10 +76,10 @@ const TestDetails = (props) => {
             </Grid>
           </div>
         </div>
-        <Divider />
+        <Divider style={{background:"#F5F5F540"}}/>
         <div className='test-page-domain'>
           <h1>
-            <u>Test Domains</u>
+            <a>Test Domains</a>
           </h1>
 
           <div className='test-page-domain-list'>

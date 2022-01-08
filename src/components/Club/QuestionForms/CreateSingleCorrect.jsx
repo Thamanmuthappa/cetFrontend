@@ -4,11 +4,20 @@ import {
 	Switch,
 	TextField,
 	Typography,
+	makeStyles
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
 import { postQuestionInDomain } from "../../../API/POST";
+const useStyles = makeStyles((theme) => ({
+	input: {
+	  color: "#FFF",
+	},
+	label: {
+	  color: "#FFF",
+	},
+  }));
 
 const optionsArr = [
 	{ option: { text: "", isCorrect: true } },
@@ -36,7 +45,7 @@ const CreateSingleCorrect = ({
 	});
 
 	const [currentSelected, setCurrentSelected] = useState(0);
-
+	const classes = useStyles();
 	const [media, setMedia] = useState(null);
 	const [isMedia, setIsMedia] = useState(false);
 
@@ -111,23 +120,26 @@ const CreateSingleCorrect = ({
 
 	return (
 		<div className="create-question-form">
-			<Typography variant="h6" className="light-text">
+			<Typography variant="h6" style={{color: "#fff"}}>
 				Question type: <strong>Single Correct</strong>
 			</Typography>
-			<form id="create-question-1" onSubmit={handleSubmit(submit)}>
+			<form id="create-question-1" onSubmit={handleSubmit(submit)} style={{color: "#fff"}}>
 				<TextField
 					multiline
 					rows={4}
 					name="description"
 					variant="outlined"
 					label="Question Description"
+					color="#fff"
 					className="create-question-text-input"
 					inputRef={register({ required: true })}
 					value={question.description}
 					onChange={handleFormChange}
+					inputProps={{ className: classes.input }} 
+					inputLabelProps={{ style: { color: '#fff' },}}
 				/>{" "}
 				<br />
-				<Typography className="light-text">
+				<Typography style={{color: "#fff"}}>
 					<strong>OPTIONS:</strong>
 				</Typography>
 				<div className="options-form" style={{ marginBottom: 30 }}>
@@ -141,6 +153,8 @@ const CreateSingleCorrect = ({
 								onChange={(e) => handleOptionChange(e, i)}
 								className="create-option-field"
 								inputRef={register({ required: true })}
+								inputProps={{ className: classes.input }}
+								
 							/>
 							<FormControlLabel
 								control={

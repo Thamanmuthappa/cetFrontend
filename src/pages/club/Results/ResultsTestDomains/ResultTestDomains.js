@@ -174,9 +174,9 @@ const DomainDetails = (props) => {
 				<Container className="test-details-container">
 					<div className="test-info">
 						<h1>
-							<u>Domain Details</u>
+							<a>Domain Details</a>
 						</h1>
-						<div style={{ color: "#666666" }}>
+						<div style={{ color: "#fff" }}>
 							<Grid container spacing={3}>
 								<Grid item xs={6} sm={4}>
 									<p>
@@ -229,7 +229,7 @@ const DomainDetails = (props) => {
 							</Grid>
 						</div>
 					</div>
-					<Divider />
+					<Divider style={{background:"#F5F5F540"}}/>
 					<div
 						style={{ paddingBottom: "0px", marginTop: "20px" }}
 						className="test-page-domain"
@@ -242,7 +242,7 @@ const DomainDetails = (props) => {
 						>
 							<div>
 								<h1>
-									<u>Students</u>
+									<a>Students</a>
 								</h1>
 							</div>
 							<div>
@@ -325,7 +325,7 @@ const DomainDetails = (props) => {
 												<AccordionDetails
 													style={{ padding: "10px" }}
 												>
-													<Divider />
+													<Divider style={{background:"#F5F5F540"}}/>
 													<StudentTestQuestions
 														details={
 															question.responses

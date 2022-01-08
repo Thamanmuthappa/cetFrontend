@@ -25,6 +25,8 @@ import CreateMultipleCorrect from "./QuestionForms/CreateMultipleCorrect";
 const useStyle = makeStyles((theme) => ({
   drawer: {
     width: 200,
+    color: "white",
+    background: "#171717",
   },
 }));
 
@@ -78,14 +80,14 @@ const QuestionAddModal = ({
       onClose={handleClose}
       open={open}
       fullScreen
-      style={{ zIndex: 1500 }}
+      style={{ zIndex: 1500, background: "#081220" }}
       TransitionComponent={Transition}>
       <AppBar style={{ zIndex: 1401 }}>
         <Toolbar>
           <IconButton onClick={handleClose}>
             <Close style={{ fill: "white" }} />
           </IconButton>
-          <Typography variant='h6' style={{ flex: 1 }}>
+          <Typography variant='h6' style={{ flex: 1 , color: "white"}}>
             Add a Question
           </Typography>
           <Button
@@ -109,13 +111,13 @@ const QuestionAddModal = ({
                 onClick={() => setSelectedType(type.id)}>
                 <ListItemText primary={type.name} />
               </ListItem>
-              <Divider />
+              <Divider style={{background:"#F5F5F540"}}/>
             </div>
           ))}
         </List>
       </Drawer>
-      <div className='create-question-area'>
-        <Typography variant='h4'>Enter Question details</Typography>
+      <div className='create-question-area' style={{background: "#081220"}}>
+        <Typography variant='h4' style={{color: "#fff"}}>Enter Question details</Typography>
         <div className='create-question-display'>
           {selectedType === 1 ? (
             <CreateSingleCorrect

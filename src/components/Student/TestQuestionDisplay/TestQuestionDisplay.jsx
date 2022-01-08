@@ -8,7 +8,7 @@ const TestQuestionDisplay = ({ question, index, answers, setAnswers }) => {
 	const [type] = useState(question.questionType);
 
 	return (
-		<div className="question-display-box">
+		<div className="question-display-box" style={{color: "#081220" }}>
 			{type === "singleCorrect" ? (
 				<SingleCorrect
 					question={question}

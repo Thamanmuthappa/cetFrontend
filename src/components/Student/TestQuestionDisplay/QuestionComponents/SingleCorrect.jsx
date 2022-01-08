@@ -25,22 +25,22 @@ const SingleCorrect = ({ question, index, answers, setAnswers }) => {
 	const isMedia = question.media;
 
 	return (
-		<div className="single-correct-question">
+		<div className="single-correct-question" style={{color: "#081220" }}>
 			<Grid container spacing={0}>
-				<Grid item xs={1}>
-					<span style={{ marginRight: "30px" }}>Q. {index + 1}</span>
+				<Grid item xs={1} style={{color: "#fff"}}>
+					<span style={{ marginRight: "30px", color: "fff" }}>Q. {index + 1}</span>
 				</Grid>
 				<Grid item xs={isMedia ? 6 : 11}>
 					<div
 						className="question-description"
-						style={{ whiteSpace: "pre-wrap" }}
+						style={{ whiteSpace: "pre-wrap", color: "#fff" }}
 					>
 						{question.description}
 					</div>
 
 					<div className="question-options">
-						<FormControl component="fieldset">
-							<FormLabel component="legend">
+						<FormControl component="fieldset" style={{color: "#fff"}}>
+							<FormLabel component="legend" style={{color: "#fff"}}>
 								Options (Single Correct)
 							</FormLabel>
 							<RadioGroup
@@ -51,6 +51,7 @@ const SingleCorrect = ({ question, index, answers, setAnswers }) => {
 										control={
 											<Radio
 												onClick={handleOptionChange}
+												style={{color: "#1799E1"}}
 											/>
 										}
 										value={option.optionId}

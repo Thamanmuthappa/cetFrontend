@@ -16,16 +16,16 @@ const TextQuestions = ({ type, question, index, answers, setAnswers }) => {
 	return (
 		<div>
 			<div className="single-correct-question">
-				<Grid container spacing={0}>
-					<Grid item xs={1}>
-						<span style={{ marginRight: "30px" }}>
+				<Grid container spacing={0} style={{color: "#fff"}}>
+					<Grid item xs={1} style={{color: "#fff"}}>
+						<span style={{ marginRight: "30px",color: "#fff" }}>
 							Q. {index + 1}{" "}
 						</span>
 					</Grid>
 					<Grid item xs={isMedia ? 6 : 11}>
 						<div
 							className="question-description"
-							style={{ whiteSpace: "pre-wrap" }}
+							style={{ whiteSpace: "pre-wrap", color: "#fff" }}
 						>
 							{question.description}{" "}
 						</div>
@@ -39,7 +39,7 @@ const TextQuestions = ({ type, question, index, answers, setAnswers }) => {
 								multiline={type === "longAnswer"}
 								rows={6}
 								value={answers.submissions[index].answers[0]}
-								style={{ width: "100%" }}
+								style={{ width: "100%", color: "#fff"}}
 								onChange={handleAnswerChange}
 							/>
 						</div>

@@ -114,18 +114,19 @@ const TestScreen = (props) => {
   }
 
   return (
-    <div className='test-page' style={{ paddingBottom: "40px" }}>
+    <div className='test-page' style={{ paddingBottom: "40px", color: "#081220" }}>
       <StudentNavbar location='Attempt test' />
-      <Container className='test-container' style={{ paddingBottom: "40px" }}>
+      <div className="cont-colo">
+      <Container className='test-container' style={{ paddingBottom: "40px", color: "#081220"}}>
         <div className='student-test-details'>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} style={{ textAlign: "center" }}>
-              <Typography variant='h4' className='light-text'>
+            <Grid item xs={12} sm={6} style={{ textAlign: "center", color: "#fff" }}>
+              <Typography variant='h4' className='light-text' style={{color: "#fff"}}>
                 Club Name: <strong>{testDetails.clubDetails.name}</strong>
               </Typography>
             </Grid>
-            <Grid item xs={12} sm={6} style={{ textAlign: "center" }}>
-              <Typography variant='h4' className='light-text'>
+            <Grid item xs={12} sm={6} style={{ textAlign: "center", color: "#fff"}}>
+              <Typography variant='h4' className='light-text' style={{color: "#fff"}}>
                 Domain:{" "}
                 <strong> {testDetails.domainDetails.domainName} </strong>
               </Typography>
@@ -170,6 +171,7 @@ const TestScreen = (props) => {
           ))}
         </div>
       </Container>
+      </div>
       <Tooltip title='Submit Test'>
         <Fab
           color='primary'

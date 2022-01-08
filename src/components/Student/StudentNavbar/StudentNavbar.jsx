@@ -18,10 +18,11 @@ const StudentNavbar = ({ location }) => {
 		<AppBar
 			className="navbar"
 			style={{
-				backgroundColor: "#fdf9f9",
+				backgroundColor: "#081220",
 				zIndex: "1400",
 
 				position: "relative",
+				borderBottom: "1px solid #F5F5F540",
 			}}
 			elevation={2}
 		>
@@ -31,12 +32,13 @@ const StudentNavbar = ({ location }) => {
 						src="/assets/Group2.png"
 						alt="logo"
 						className="nav-img"
+						style={{width:"80%"}}
 					/>
 				</Link>
 				<Typography
 					variant="h5"
 					className="nav-brand"
-					style={{ flex: 1 }}
+					style={{ flex: 1 , marginLeft:"24px"}}
 				>
 					{location}
 				</Typography>

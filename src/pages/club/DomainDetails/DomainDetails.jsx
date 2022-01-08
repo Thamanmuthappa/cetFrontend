@@ -121,9 +121,9 @@ const DomainDetails = (props) => {
 				<Container className="test-details-container">
 					<div className="test-info">
 						<h1>
-							<u>Domain Details</u>
+							<a>Domain Details</a>
 						</h1>
-						<div style={{ color: "#666666" }}>
+						<div style={{ color: "#fff" }}>
 							<Grid container spacing={3}>
 								<Grid item xs={4}>
 									<p>
@@ -174,10 +174,10 @@ const DomainDetails = (props) => {
 							</Grid>
 						</div>
 					</div>
-					<Divider />
+					<Divider style={{background:"#F5F5F540"}}/>
 					<div className="test-page-domain">
 						<h1>
-							<u>Questions</u>
+							<a>Questions</a>
 						</h1>
 						<div
 							className="test-page-domain-top"
@@ -211,7 +211,7 @@ const DomainDetails = (props) => {
 							) : (
 								<div className="domain-questions">
 									{questions.map((question, i) => (
-										<Accordion key={i} elevation={4}>
+										<Accordion key={i} elevation={4} style={{color:"#fff", background: "linear-gradient(45deg, rgba(255, 255, 255, 0.078) 4.21%, rgba(255, 255, 255, 0) 100%)"}}>
 											<AccordionSummary
 												expandIcon={<ExpandMore />}
 												aria-controls="question-content"
@@ -221,10 +221,11 @@ const DomainDetails = (props) => {
 											>
 												{question.description}{" "}
 											</AccordionSummary>
-											<AccordionDetails>
+											<AccordionDetails style={{color:"#fff"}}>
 												<QuestionsDisplay
 													questionType={question.type}
 													question={question}
+													style={{color:"#fff"}}
 												/>
 											</AccordionDetails>
 										</Accordion>

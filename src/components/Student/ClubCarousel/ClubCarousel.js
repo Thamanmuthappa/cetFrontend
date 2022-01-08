@@ -29,6 +29,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    background: "#252D3A"
   },
   media: {
     height: 0,
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   avatar: {
-    backgroundColor: red[500],
+    backgroundColor: "white",
   },
 }));
 
@@ -54,6 +55,10 @@ const ClubCarousel = (props) => {
             />
           }
           title={props.club.name}
+          style={{
+            color: "#fff",
+          }
+          }
         />
         <CardMedia
           className={classes.media}
@@ -63,32 +68,35 @@ const ClubCarousel = (props) => {
         <CardContent style={{ height: "65px" }}>
           <Typography
             variant='body2'
-            color='textSecondary'
             component='p'
-            className='card-text-stud-dash'>
+            className='card-text-stud-dash'
+            style={{
+              color: "#fff",
+            }
+            }>
             {props.club.bio}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
           {props.club.username === "codechefvit" ?
-            <Link to={"/us/" + props.club.username} style={{ flex: "1" }}>
-              <IconButton aria-label='share' style={{ fontSize: "15px" }}>
+            <Link to={"/us/" + props.club.username} style={{ flex: "1"}}>
+              <IconButton aria-label='share' style={{ fontSize: "15px", color: "#fff"}}>
                 Know More
               <DoubleArrowIcon />
               </IconButton>
             </Link>
             :
             <Link to={"/org/" + props.club.username} style={{ flex: "1" }}>
-              <IconButton aria-label='share' style={{ fontSize: "15px" }}>
+              <IconButton aria-label='share' style={{ fontSize: "15px" , color: "#fff",}}>
                 Know More
               <DoubleArrowIcon />
               </IconButton>
             </Link>
           }
-          <Typography align="right" style={{ fontSize: "12px" }}>
+          <Typography align="right" style={{ fontSize: "12px" , color: "#fff"}}>
             {
               props.club.numOfTestsPublished > 0
-                ? <EventAvailableIcon fontSize="small" style={{ marginTop: "7px", flex: "1", paddingRight: "7px" }} />
+                ? <EventAvailableIcon fontSize="small" style={{ marginTop: "7px", flex: "1", paddingRight: "7px" , color: "#fff",}} />
                 : "No Active Tests"
             }
           </Typography>

@@ -26,9 +26,11 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: "20px",
 		marginTop: "10px",
 		paddingBottom: "40px",
+		background: "#252D3A",
 	},
 	input: {
 		width: "100%",
+		color: "#fff",
 	},
 }));
 
@@ -84,12 +86,14 @@ const StudProfile = () => {
 		return (
 			<>
 				<StudentNavbar location="Profile" />
+				<div className="cont-colour" style={{background: "#081220"}}>
 				<Container
 					style={{
 						display: "flex",
 						justifyContent: "center",
 						alignItems: "center",
 						height: "calc(100vh - 64px)",
+						background: "#081220",
 					}}
 					className="profile-section-container"
 				>
@@ -107,6 +111,7 @@ const StudProfile = () => {
 										style={{
 											fontFamily: "Source Sans Pro",
 											fontWeight: "600",
+											color: "#fff",
 										}}
 									>
 										Profile Page
@@ -118,17 +123,19 @@ const StudProfile = () => {
 											width: "100%",
 											textAlign: "center",
 											marginBottom: "30px",
+											color: "#fff",
 										}}
 									>
 										<Typography
 											variant="body1"
-											className="light-text"
+											// className="light-text"
+											color="#fff"
 										>
 											Not filling the profile may result
 											in disqualification.
 										</Typography>
 									</div>
-									<form style={{ width: "100%" }}>
+									<form style={{ width: "100%"}}>
 										<Grid container spacing={3}>
 											<Grid item xs={6}>
 												<TextField
@@ -140,6 +147,7 @@ const StudProfile = () => {
 													onChange={
 														handleProfileChange
 													}
+													style= {{color: "#fff"}}
 												/>
 											</Grid>
 
@@ -153,6 +161,7 @@ const StudProfile = () => {
 													onChange={
 														handleProfileChange
 													}
+													style={{color: "fff"}}
 												/>
 											</Grid>
 
@@ -161,6 +170,7 @@ const StudProfile = () => {
 													name="mobileNumber"
 													className={classes.input}
 													label="Contact Number"
+													color="#fff"
 													variant="outlined"
 													value={
 														studData.mobileNumber
@@ -176,6 +186,8 @@ const StudProfile = () => {
 													className={classes.input}
 													label="VIT Registration Number"
 													variant="outlined"
+													color="#fff"
+													background="#fff"
 													value={
 														studData.registrationNumber
 													}
@@ -191,6 +203,7 @@ const StudProfile = () => {
 													label="About You"
 													multiline
 													rows={8}
+													color="#fff"
 													variant="outlined"
 													value={studData.bio}
 													onChange={
@@ -229,6 +242,7 @@ const StudProfile = () => {
 						</Alert>
 					</Snackbar>
 				</Container>
+				</div>
 			</>
 		);
 	} else {

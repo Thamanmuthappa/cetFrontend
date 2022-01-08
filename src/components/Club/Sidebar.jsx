@@ -13,7 +13,7 @@ import clsx from "clsx";
 import { Book, Person } from "@material-ui/icons";
 import ListIcon from "@material-ui/icons/List";
 
-const drawerWidth = 70;
+const drawerWidth = 90;
 
 const useStyles = makeStyles((theme) => ({
 	drawer: {
@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(0, 1),
 		// necessary for content to be below app bar
 		...theme.mixins.toolbar,
+
 	},
 }));
 
@@ -49,6 +50,7 @@ const ClubSidebar = ({ setSelectedTab }) => {
 			classes={{
 				paper: clsx(classes.drawerClose),
 			}}
+			style={{background: "#171717"}}
 		>
 			<div className={classes.toolbar}></div>
 			<List>
@@ -58,39 +60,39 @@ const ClubSidebar = ({ setSelectedTab }) => {
 						onClick={() => setSelectedTab(0)}
 						className="sidebar-item"
 					>
-						<ListItemIcon>
-							<ListIcon fontSize="large" />
+						<ListItemIcon style={{ alignItems: "center", alignContent:"center", justifyContent: "center"}}> 
+							<ListIcon fontSize="large" style={{fill: "white", alignItems: "center", alignContent:"center", justifyContent: "center"}}/>
 						</ListItemIcon>
-						<ListItemText primary={"Tests"} />
+						{/* <ListItemText primary={"Tests"} /> */}
 					</ListItem>
 				</Tooltip>
-				<Divider />
+				<Divider style={{background:"#F5F5F540"}}/>
 				<Tooltip title="Results" placement="right" arrow>
 					<ListItem
 						button
 						onClick={() => setSelectedTab(1)}
 						className="sidebar-item"
 					>
-						<ListItemIcon>
-							<Book fontSize="large" />
+						<ListItemIcon style={{alignItems: "center", alignContent:"center", justifyContent: "center"}}>
+							<Book fontSize="large" style={{fill: "white"}}/>
 						</ListItemIcon>
-						<ListItemText primary={"Results"} />
+						{/* <ListItemText primary={"Results"} /> */}
 					</ListItem>
 				</Tooltip>
-				<Divider />
+				<Divider style={{background:"#F5F5F540"}}/>
 				<Tooltip title="Profile" placement="right" arrow>
 					<ListItem
 						button
 						onClick={() => setSelectedTab(2)}
 						className="sidebar-item"
 					>
-						<ListItemIcon>
-							<Person fontSize="large" />
+						<ListItemIcon style={{alignItems: "center", alignContent:"center", justifyContent: "center"}}>
+							<Person fontSize="large" style={{fill: "white"}} />
 						</ListItemIcon>
-						<ListItemText primary={"Profile"} />
+						{/* <ListItemText primary={"Profile"} /> */}
 					</ListItem>
 				</Tooltip>
-				<Divider />
+				<Divider style={{background:"#F5F5F540"}}/>
 			</List>
 		</Drawer>
 	);
