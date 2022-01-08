@@ -45,11 +45,14 @@ const Results = () => {
           style={{
             fontFamily: "Source Sans Pro",
             fontWeight: "600",
+            color: "#fff",
+            fontSize: "3rem",
+            marginTop: "1rem",
           }}>
           Results
         </Typography>
       </div>
-      <Divider />
+      <Divider style={{background:"#F5F5F540"}}/>
       <Grid
         container
         item

@@ -1,9 +1,10 @@
 .student-test-list {
 	padding: 3%;
+	background-color: #081220 !important;
 }
 
 .modal-test-instructions {
-	background-color: #ccc;
+	background-color: #081220;
 	color: #777;
 	padding: 20px 10px;
 	border-radius: 5px;
@@ -11,4 +12,15 @@
 	white-space: pre-wrap;
 	max-height: 250px !important;
 	overflow: scroll;
+}
+
+.club-dash-tests{
+	height: 100%;
+	background: #081220 !important;
+}
+
+.cont-col{
+	height: 100vh;
+	overflow-y: hidden;
+	background: #081220 !important;
 }

@@ -37,8 +37,8 @@ const ErrorPage = () => {
                 style={
                     {
                         textTransform: "capitalize",
-                        border: "1px solid #E31E43",
-                        backgroundColor: "#E31E43",
+                        border: "1px solid #1799E1",
+                        backgroundColor: "#1799E1",
                         color: "white",
                         fontFamily: "Source Sans Pro",
                         height: "48px",

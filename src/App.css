@@ -21,12 +21,12 @@ a {
 }
 
 ::-moz-selection {
-  background: #e31e43;
+  background: #1799E1;
   color: #fff;
 }
 
 ::selection {
-  background: #e31e43;
+  background: #1799E1;
   color: #fff;
 }
 

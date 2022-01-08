@@ -2,7 +2,7 @@
 	width: 170px;
 	height: 170px;
 	border-radius: 10px;
-	background: linear-gradient(to bottom, #f85032 0%, #f16f5c 50%, #f6290c 51%, #f02f17 71%, #e73827 100%);
+	background: linear-gradient(180deg, #1799E1 0%, #093966 100%);
 	color: white;
 	font-weight: bold;
 	display: flex;
@@ -22,4 +22,11 @@
 
 .tile-subtitle{
 	text-align: center;
+}
+
+.tile-subtitle{
+	color: white;
+	opacity: 0.8;
+	padding: 0.5em;
+
 }

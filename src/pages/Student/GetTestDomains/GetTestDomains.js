@@ -110,7 +110,7 @@ const GetTestDomains = (props) => {
 					<h1>
 						<u>Test Details</u>
 					</h1>
-					<div style={{ color: "#666666" }}>
+					<div style={{ color: "#fff" }}>
 						<Grid container spacing={3}>
 							<Grid item xs={6} sm={3}>
 								<p>
@@ -185,7 +185,7 @@ const GetTestDomains = (props) => {
 				{/* <Divider /> */}
 			</Container>
 			<Dialog open={confirmStart} onClose={handleModalClose} fullWidth>
-				<DialogTitle>
+				<DialogTitle style= {{color: "#fff", background: "#252D3A", borderColor: "#252D3A"}}>
 					Are you sure you want to start this domain?
 				</DialogTitle>
 				<DialogContent
@@ -193,9 +193,11 @@ const GetTestDomains = (props) => {
 						display: "flex",
 						justifyContent: "center",
 						flexDirection: "column",
+						color: "#fff",
+						background: "#252D3A"
 					}}
 				>
-					<div className="modal-test-instructions">
+					<div className="modal-test-instructions" style={{color: "#fff"}}>
 						<strong>DOMAIN INSTRUCTIONS:</strong>
 						<br />
 						<br />
@@ -206,6 +208,7 @@ const GetTestDomains = (props) => {
 							color: "black",
 							fontSize: "13px",
 							textAlign: "center",
+							color: "#fff",
 						}}
 					>
 						P.S: You will lose all progress if you refresh the page
@@ -213,7 +216,7 @@ const GetTestDomains = (props) => {
 					</p>
 				</DialogContent>
 				<DialogActions
-					style={{ justifyContent: "center", marginBottom: "20px" }}
+					style={{ justifyContent: "center", background: "#252D3A" }}
 				>
 					<Button
 						color="primary"

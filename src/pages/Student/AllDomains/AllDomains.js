@@ -756,8 +756,9 @@ const AllDomains = () => {
 		}
 		return (
 			<>
+				<div className="cont-color" style={{background: "#081220"}}>
 				<StudentNavbar location="Dashboard" />
-				<Container style={{ marginBottom: "40px" }}>
+				<Container style={{ marginBottom: "40px" , background: "#081220"}}>
 					<div style={{ display: "flex", marginTop: "40px" }}>
 						<Typography
 							gutterBottom
@@ -765,12 +766,13 @@ const AllDomains = () => {
 							style={{
 								fontFamily: "Source Sans Pro",
 								fontWeight: "600",
+								color: "#fff",
 							}}
 						>
 							Featured Organisations
 						</Typography>
 					</div>
-					<Divider />
+					<Divider style={{background: "#f5f5f540"}}/>
 					<Grid container style={{ marginTop: "40px" }}>
 						<Typography
 							gutterBottom
@@ -778,6 +780,7 @@ const AllDomains = () => {
 							style={{
 								fontFamily: "Source Sans Pro",
 								fontWeight: "600",
+								color: "#fff",
 							}}
 						>
 							Technical
@@ -796,6 +799,7 @@ const AllDomains = () => {
 							style={{
 								fontFamily: "Source Sans Pro",
 								fontWeight: "600",
+								color: "#fff",
 							}}
 						>
 							Arts and Culture
@@ -814,6 +818,7 @@ const AllDomains = () => {
 							style={{
 								fontFamily: "Source Sans Pro",
 								fontWeight: "600",
+								color: "#fff",
 							}}
 						>
 							Health and Wellness
@@ -832,6 +837,7 @@ const AllDomains = () => {
 							style={{
 								fontFamily: "Source Sans Pro",
 								fontWeight: "600",
+								color: "#fff",
 							}}
 						>
 							Literature
@@ -850,6 +856,7 @@ const AllDomains = () => {
 							style={{
 								fontFamily: "Source Sans Pro",
 								fontWeight: "600",
+								color: "#fff",
 							}}
 						>
 							Social Outreach
@@ -868,6 +875,7 @@ const AllDomains = () => {
 							style={{
 								fontFamily: "Source Sans Pro",
 								fontWeight: "600",
+								color: "#fff",
 							}}
 						>
 							Other Domains
@@ -886,18 +894,20 @@ const AllDomains = () => {
 							style={{
 								fontFamily: "Source Sans Pro",
 								fontWeight: "600",
+								color: "#fff",
 							}}
 						>
 							All Organisations
 						</Typography>
 					</div>
-					<Divider />
+					<Divider style={{background:"#F5F5F540"}}/>
 					<div
 						style={{
 							height: 700,
 							width: "100%",
 							marginTop: "40px",
 							marginBottom: "40px",
+							background: "#081220",
 						}}
 					>
 						<DataGrid
@@ -909,6 +919,7 @@ const AllDomains = () => {
 						/>
 					</div>
 				</Container>
+				</div>
 				<Grid
 					container
 					style={{
@@ -947,7 +958,7 @@ const AllDomains = () => {
 								Imagined, Designed and Developed by{" "}
 								<a
 									href="https://www.codechefvit.com"
-									style={{ color: "#E31E43" }}
+									style={{ color: "#1799E1" }}
 									target="_blank"
 									rel="noreferrer"
 								>
@@ -956,7 +967,7 @@ const AllDomains = () => {
 							</p>
 						</div>
 					</Grid>
-					<Grid item xs={4}></Grid>
+					{/* <Grid item xs={4}></Grid>
 					<Grid
 						item
 						xs={4}
@@ -986,14 +997,14 @@ const AllDomains = () => {
 							Powered by{" "}
 							<a
 								href="https://vitspot.com"
-								style={{ color: "#E31E43" }}
+								style={{ color: "#1799E1" }}
 								target="_blank"
 								rel="noreferrer"
 							>
 								VITspot
 							</a>
 						</p>
-					</Grid>
+					</Grid> */}
 				</Grid>
 			</>
 		);

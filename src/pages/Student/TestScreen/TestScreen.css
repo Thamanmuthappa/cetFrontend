@@ -5,7 +5,7 @@
 
 .test-container {
 	padding-top: 2%;
-	background-color: white;
+	background-color: #081220;
 	min-height: calc(100vh - 64px);
 }
 
@@ -30,4 +30,8 @@
 	position: fixed !important;
 	bottom: 20px !important;
 	left: 30px !important;
+}
+
+.cont-colo{
+	background: #081220 !important;
 }

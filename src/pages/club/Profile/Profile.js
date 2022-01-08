@@ -138,6 +138,7 @@ const ClubProfile = () => {
   } else if (data) {
     return (
       <>
+      <div className="contain-color">
         <Container
           style={{
             display: "flex",
@@ -145,9 +146,11 @@ const ClubProfile = () => {
             alignItems: "center",
             marginBottom: "30px",
             paddingBottom: "30px",
+            color: "#081220",
+            background: "#081220",
           }}
           className='profile-section-container'>
-          <Paper elevation={3} className={classes.contPaper}>
+          <Paper elevation={3} className={classes.contPaper} style= {{color: "#081220"}}>
             <Grid container>
               <img
                 width='100%'
@@ -342,6 +345,7 @@ const ClubProfile = () => {
             </Alert>
           </Snackbar>
         </Container>
+        </div>
         <Dialog
           open={askPassword}
           onClose={() => setAskPassword(false)}
