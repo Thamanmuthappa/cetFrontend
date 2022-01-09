@@ -50,7 +50,7 @@ const ClubSidebar = ({ setSelectedTab }) => {
 			classes={{
 				paper: clsx(classes.drawerClose),
 			}}
-			style={{background: "#171717"}}
+			// style={{background: "#171717"}}
 		>
 			<div className={classes.toolbar}></div>
 			<List>

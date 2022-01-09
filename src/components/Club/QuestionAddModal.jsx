@@ -26,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
   drawer: {
     width: 200,
     color: "white",
-    background: "#171717",
+    background: "#081220",
   },
 }));
 
@@ -118,6 +118,7 @@ const QuestionAddModal = ({
       </Drawer>
       <div className='create-question-area' style={{background: "#081220"}}>
         <Typography variant='h4' style={{color: "#fff"}}>Enter Question details</Typography>
+        <Divider style={{background:"#F5F5F540", marginTop: "1%", marginRight:"15%"}}/>
         <div className='create-question-display'>
           {selectedType === 1 ? (
             <CreateSingleCorrect

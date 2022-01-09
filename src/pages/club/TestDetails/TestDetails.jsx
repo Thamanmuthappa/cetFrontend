@@ -160,7 +160,7 @@ const TestDetails = (props) => {
 									color="primary"
 									variant="contained"
 									className="publish-btn"
-									disabled={testDetails.published}
+									// disabled={testDetails.published}
 									onClick={() => setConfirmPublish(true)}
 									style={{ fontWeight: "bold" }}
 								>
@@ -240,14 +240,16 @@ const TestDetails = (props) => {
 			<Dialog
 				open={confirmPublish}
 				onClose={() => setConfirmPublish(false)}
+				style={{color:"#252D3A"}}
 			>
-				<DialogTitle>
+				<DialogTitle style={{color: "white", background:"#252D3A"}}>
 					Are you sure you want to publish this test?
 				</DialogTitle>
-				<DialogActions>
+				<DialogActions style={{color: "white", background:"#252D3A"}}>
 					<Button
 						variant="outlined"
 						onClick={() => setConfirmPublish(false)}
+						style={{ color: "white" , background:"#252D3A"}}
 					>
 						Cancel
 					</Button>
@@ -270,22 +272,25 @@ const TestDetails = (props) => {
 					Test published!
 				</Alert>
 			</Snackbar>
+
 			<Dialog
 				open={confirmDelete}
 				onClose={() => setConfirmDelete(false)}
+				style={{color:"252D3A"}}
 			>
-				<DialogTitle>
+				<DialogTitle  style={{color: "white", background:"#252D3A"}}> 
 					Are you sure you want to delete this test?
 				</DialogTitle>
-				<DialogContent style={{ textAlign: "center" }}>
+				<DialogContent style={{ textAlign: "center",color: "white", background:"#252D3A"}}>
 					<span className="light-text">
 						All the submissions (if any) will also be lost.
 					</span>
 				</DialogContent>
-				<DialogActions>
+				<DialogActions  style={{color: "white", background:"#252D3A"}}>
 					<Button
 						variant="outlined"
 						onClick={() => setConfirmDelete(false)}
+						style={{color: "white", background:"#252D3A"}}
 					>
 						Cancel
 					</Button>

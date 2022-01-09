@@ -98,6 +98,8 @@ const OrgProfile = (props) => {
 						backgroundColor: "#081220",
 						zIndex: "1400",
 						position: "relative",
+						borderBottom: "1px solid #f5f5f540",
+						marginBottom: "30px",
 					}}
 					elevation={2}
 				>
@@ -107,12 +109,13 @@ const OrgProfile = (props) => {
 								src="/assets/Group2.png"
 								alt="logo"
 								className="nav-img"
+								style={{width: "80%"}}
 							/>
 						</Link>
 						<Typography
 							variant="h5"
 							className="nav-brand"
-							style={{ flex: 1 }}
+							style={{ flex: 1 , marginLeft: "24px"}}
 						>
 							Dashboard
 						</Typography>

@@ -133,11 +133,12 @@ const ClubSignin = () => {
 					alt="logo"
 					style={{
 						textAlign: "left",
-						width: "10rem",
+						width: "6%",
 						height: "auto",
 						position: "absolute",
 						left: "7rem",
 						top: "3rem",
+						
 					}}
 				/>
 			</Link>
@@ -150,10 +151,10 @@ const ClubSignin = () => {
 				<Hidden mdDown>
 					<Grid item xs={6} style={{ textAlign: "center" }}>
 						<img
-							src="/assets/celebration.jpg"
+							src="/assets/celebration.png"
 							alt="celebration"
-							// width="70%"
-							height="auto"
+							width="70%"
+							height="70%"
 						/>
 					</Grid>
 				</Hidden>
@@ -210,7 +211,7 @@ const ClubSignin = () => {
 												errors.email &&
 												"Email is required"
 											}
-											style={{ backgroundColor: "#252D3A" }}
+											// style={{ backgroundColor: "#252D3A" }}
 										/>
 									</Grid>
 									<Grid item xs={12}>

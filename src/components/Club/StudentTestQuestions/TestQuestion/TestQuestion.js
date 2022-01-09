@@ -58,10 +58,13 @@ const TestQuestion = (props) => {
           marked += props.question.questionId.options[x].option.text;
           marked += ", ";
         }
-        if (props.question.questionId.options[x].option.isCorrect) {
-          correct += props.question.questionId.options[x].option.text;
-          correct += ", ";
-        }
+      }
+    }
+    for (let x in props.question.questionId.options) {
+      if (props.question.questionId.options[x].option.isCorrect) {
+        correct += props.question.questionId.options[x].option.text;
+        correct += ", ";
+        console.log(correct);
       }
     }
     ans = (

@@ -1,5 +1,7 @@
 .create-question-form {
 	margin-top: 50px;
+	background: #081220 !important;
+	height: 100vh !important;
 }
 
 .create-question-text-input {

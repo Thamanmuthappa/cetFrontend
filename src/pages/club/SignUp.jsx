@@ -183,7 +183,7 @@ const SignUp = () => {
 					alt="logo"
 					style={{
 						textAlign: "left",
-						width: "10rem",
+						width: "7.5%",
 						height: "auto",
 						position: "absolute",
 						left: "7rem",
@@ -470,7 +470,7 @@ const SignUp = () => {
 					<p>Account Sucessfully Created</p>
 				</Snackbar>
 				<Grid item xs={6} style={{ textAlign: "center" }}>
-					<img src="/assets/celebration.jpg" alt="" height="auto" />
+					<img src="/assets/celebration.png" alt="" height="auto" />
 				</Grid>
 			</Grid>
 		</div>

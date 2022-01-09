@@ -114,7 +114,7 @@ const TestScreen = (props) => {
   }
 
   return (
-    <div className='test-page' style={{ paddingBottom: "40px", color: "#081220" }}>
+    <div className='test-page' style={{ paddingBottom: "40px", background: "#081220" }}>
       <StudentNavbar location='Attempt test' />
       <div className="cont-colo">
       <Container className='test-container' style={{ paddingBottom: "40px", color: "#081220"}}>
@@ -135,6 +135,7 @@ const TestScreen = (props) => {
               style={{
                 height: "1px",
                 width: "100%",
+                backgroundColor: "#f5f5f540",
               }}
             />
             <Grid item xs={12} className='test-timer-grid'>
@@ -156,7 +157,7 @@ const TestScreen = (props) => {
                 </Typography>
               </div>
             </Grid>
-            <Divider style={{ width: "100%" }} />
+            <Divider style={{ width: "100%" , background: "#f5f5f540"}} />
           </Grid>
         </div>
         <div className='student-questions-display'>
@@ -185,10 +186,10 @@ const TestScreen = (props) => {
         open={confirmSubmit}
         onClose={() => setConfirmSubmit(false)}
         fullWidth>
-        <DialogTitle>
+        <DialogTitle style={{color: "white", background:"#252D3A"}}>
           Are you sure you want to submit this domain test?
         </DialogTitle>
-        <DialogActions>
+        <DialogActions style={{color: "white", background:"#252D3A"}}>
           <Button variant='contained' onClick={() => setConfirmSubmit(false)}>
             Cancel
           </Button>
@@ -208,8 +209,8 @@ const TestScreen = (props) => {
           });
         }}
         fullWidth>
-        <DialogTitle>Test Submitted Successfully</DialogTitle>
-        <DialogActions>
+        <DialogTitle style={{color: "white", background:"#252D3A"}}>Test Submitted Successfully</DialogTitle>
+        <DialogActions style={{color: "white", background:"#252D3A"}}>
           <Button
             variant='contained'
             color='primary'

@@ -98,7 +98,7 @@ const StudentSignIn = () => {
                     style={
                         {
                             textAlign: "left",
-                            width: "10rem",
+                            width: "6%",
                             height: "auto",
                             position: "absolute",
                             left: "7rem",
@@ -117,9 +117,9 @@ const StudentSignIn = () => {
                         style={
                             { textAlign: "center" }
                     }>
-                        <img src="/assets/celebration.jpg" alt="celebration"
-                            // width="70%"
-                            height="auto"
+                        <img src="/assets/celebration.png" alt="celebration"
+                            width="70%"
+                            height="50%"
                         />
                     </Grid>
                 </Hidden>

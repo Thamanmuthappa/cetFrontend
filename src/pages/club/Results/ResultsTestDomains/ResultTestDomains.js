@@ -281,7 +281,7 @@ const DomainDetails = (props) => {
 									{questSearch()
 										.slice(page * 10 - 10, page * 10)
 										.map((question, i) => (
-											<Accordion key={i} elevation={4}>
+											<Accordion key={i} elevation={4}  style={{color:"#fff", background: "linear-gradient(45deg, rgba(255, 255, 255, 0.078) 4.21%, rgba(255, 255, 255, 0) 100%)", marginBottom:"0.5%"}}>
 												{/* {console.log(question)} */}
 												<AccordionSummary
 													expandIcon={<ExpandMore />}

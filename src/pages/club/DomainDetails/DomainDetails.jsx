@@ -211,7 +211,7 @@ const DomainDetails = (props) => {
 							) : (
 								<div className="domain-questions">
 									{questions.map((question, i) => (
-										<Accordion key={i} elevation={4} style={{color:"#fff", background: "linear-gradient(45deg, rgba(255, 255, 255, 0.078) 4.21%, rgba(255, 255, 255, 0) 100%)"}}>
+										<Accordion key={i} elevation={4} style={{color:"#fff", background: "linear-gradient(45deg, rgba(255, 255, 255, 0.078) 4.21%, rgba(255, 255, 255, 0) 100%)", marginBottom:"0.5%"}}>
 											<AccordionSummary
 												expandIcon={<ExpandMore />}
 												aria-controls="question-content"
@@ -247,18 +247,19 @@ const DomainDetails = (props) => {
 				open={confirmDelete}
 				onClose={() => setConfirmDelete(false)}
 			>
-				<DialogTitle>
+				<DialogTitle  style={{color: "white", background:"#252D3A"}}> 
 					Are you sure you want to delete this domain?
 				</DialogTitle>
-				<DialogContent style={{ textAlign: "center" }}>
+				<DialogContent style={{ textAlign: "center", color: "white", background:"#252D3A"}}>
 					<span className="light-text">
 						All the submissions (if any) will also be deleted.
 					</span>
 				</DialogContent>
-				<DialogActions>
+				<DialogActions  style={{color: "white", background:"#252D3A"}}>
 					<Button
 						variant="outlined"
 						onClick={() => setConfirmDelete(false)}
+						style={{color: "white", background:"#252D3A"}}
 					>
 						Cancel
 					</Button>
