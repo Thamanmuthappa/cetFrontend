@@ -108,7 +108,7 @@ const GetTestDomains = (props) => {
 			<Container className="test-details-container">
 				<div className="test-info">
 					<h1>
-						<u>Test Details</u>
+						<a>Test Details</a>
 					</h1>
 					<div style={{ color: "#fff" }}>
 						<Grid container spacing={3}>
@@ -143,10 +143,10 @@ const GetTestDomains = (props) => {
 						</Grid>
 					</div>
 				</div>
-				<Divider />
+				<Divider style={{background: "#f5f5f540"}}/>
 				<div className="test-page-domain">
 					<h1>
-						<u>Test Domains</u>
+						<a>Test Domains</a>
 					</h1>
 
 					<div className="test-page-domain-list">
@@ -194,10 +194,11 @@ const GetTestDomains = (props) => {
 						justifyContent: "center",
 						flexDirection: "column",
 						color: "#fff",
-						background: "#252D3A"
+						background: "#252D3A",
+						overflow: "hidden",
 					}}
 				>
-					<div className="modal-test-instructions" style={{color: "#fff"}}>
+					<div className="modal-test-instructions" style={{color: "#fff", overflow: "hidden"}}>
 						<strong>DOMAIN INSTRUCTIONS:</strong>
 						<br />
 						<br />

@@ -9,6 +9,7 @@ const Loading = () => {
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",
+				backgroundColor: "#081220",
 			}}
 		>
 			<CircularProgress color="primary" />

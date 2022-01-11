@@ -102,7 +102,6 @@ const ClubTestsList = (props) => {
 	} else if (loading) {
 		return <Loading />;
 	}
-
 	return (
 		<>
 			<StudentNavbar location="Tests Available" />
@@ -166,10 +165,13 @@ const ClubTestsList = (props) => {
 					<Typography variant="h6" color="primary">
 						<center>
 							<strong style={{ textAlign: "center", color:"#fff"}}>
-								<Countdown
+								{new Date(currentSelected.scheduledForDate).getTime()< Date.now()? "Already started!" :
+									<Countdown
 									date={currentSelected.scheduledForDate}
 									style={{ textAlign: "center" }}
 								/>
+								}
+								
 							</strong>
 							<p
 								style={{

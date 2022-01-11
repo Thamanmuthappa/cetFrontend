@@ -4,11 +4,22 @@ import {
 	Switch,
 	TextField,
 	Typography,
+	makeStyles
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./QuestionForms.css";
 import { postQuestionInDomain } from "../../../API/POST";
+
+const useStyles = makeStyles((theme) => ({
+	input: {
+	  color: "#FFF",
+	},
+	label: {
+	  color: "#FFF",
+	},
+  }));
+
 
 const CreateLongQuestion = ({
 	testId,
@@ -71,10 +82,11 @@ const CreateLongQuestion = ({
 
 		setLoading(false);
 	};
+	const classes = useStyles();
 
 	return (
 		<div className="create-question-form">
-			<Typography variant="h6" className="light-text">
+			<Typography variant="h6" style={{color: "#fff"}}>
 				Question type: <strong>Long Answer</strong>
 			</Typography>
 			<form id="create-question-4" onSubmit={handleSubmit(submit)}>
@@ -83,30 +95,41 @@ const CreateLongQuestion = ({
 					rows={4}
 					name="description"
 					variant="outlined"
-					label="Question Description"
+					placeholder="Question Description"
+					floatingLabelStyle="white"
 					className="create-question-text-input"
 					inputRef={register({ required: true })}
 					value={question.description}
 					onChange={handleFormChange}
+					inputProps={{ className: classes.input }} 
+					InputLabelProps={{ style: { color: '#fff' },}}
 				/>{" "}
 				<br />
+				<Typography style={{color: "white"}}>
+					<strong>Marks:</strong>
+				</Typography>
 				<TextField
 					name="questionMarks"
 					type="number"
+					floatingLabelStyle="white"
 					variant="outlined"
-					label="Question Marks"
+					// label="Question Marks"
 					inputRef={register({ required: true })}
 					value={question.questionMarks}
 					onChange={handleFormChange}
+					inputProps={{ className: classes.input }} 
+					InputLabelProps={{ style: { color: '#fff' },}}
 				/>
 				<br />
-				<div className="media-switch">
+				<div className="media-switch" style={{marginLeft:"-1.25%"}}>
 					<FormControlLabel
+						style={{ color: "#fff" }}
 						control={
 							<Switch
 								checked={isMedia}
 								onChange={(e) => setIsMedia(e.target.checked)}
 							/>
+							
 						}
 						label="Add Media (Image/Audio/Video): "
 						labelPlacement="start"
@@ -115,6 +138,7 @@ const CreateLongQuestion = ({
 				<div
 					style={{ display: isMedia ? "block" : "none" }}
 					className="add-media-section"
+					
 				>
 					<input
 						type="file"
@@ -122,6 +146,7 @@ const CreateLongQuestion = ({
 						onChange={(e) => setMedia(e.target.files[0])}
 						accept=".jpg,.jpeg,.png,.mp3,.wav,.mp4,.mkv,.mov"
 						ref={register({ required: isMedia })}
+						style={{ color: "#fff" }}
 					/>
 				</div>
 			</form>

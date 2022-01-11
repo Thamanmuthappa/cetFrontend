@@ -8,7 +8,9 @@ import {
 	TextField,
 	Typography,
 } from "@material-ui/core";
+import './DomainAddModal.css'
 import Axios from "axios";
+
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -61,11 +63,12 @@ const DomainAddModal = ({ open, handleClose, id, refresh, clubId }) => {
 
 	return (
 		<Dialog onClose={handleClose} open={open} fullWidth>
-			<DialogTitle>Add a Domain</DialogTitle>
-			<DialogContent>
+			<DialogTitle style={{color: "white", background:"#252D3A"}}>Add a Domain</DialogTitle>
+			<DialogContent style={{color: "white", background:"#252D3A"}}>
 				<form
 					id="add-domain-form"
 					onSubmit={handleSubmit(handleFormSubmit)}
+					style={{color: "white", background:"#252D3A"}}
 				>
 					<TextField
 						variant="outlined"
@@ -118,7 +121,7 @@ const DomainAddModal = ({ open, handleClose, id, refresh, clubId }) => {
 					</div>
 				</form>
 			</DialogContent>
-			<DialogActions>
+			<DialogActions style={{color: "white", background:"#252D3A"}}>
 				<Button
 					variant="contained"
 					color="primary"

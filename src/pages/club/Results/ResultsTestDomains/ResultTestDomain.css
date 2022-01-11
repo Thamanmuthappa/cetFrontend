@@ -1,4 +1,4 @@
-.submission-summary .MuiAccordionSummary-content {
+.submission-summary .MuiAccordionSummary-content-348 {
 	display: flex !important;
 	align-items: center !important;
 }
@@ -10,6 +10,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 19rem;
+	height: 3rem;
 }
 
 .responses-btn {

@@ -1,6 +1,7 @@
 .domain-details-page {
 	background-color: #081220;
 	height: 100% !important;
+	overflow: hidden;
 }
 
 .domain-details-page h1 {
@@ -42,8 +43,9 @@
 .delete-domain-btn {
 	font-weight: bold !important;
 	background-color: #FF2211  !important;
-	width: 8.5rem;
-	height: 4.5rem;
+	width: 10rem;
+	height: 3.5rem;
+
 }
 
 .MuiTypography-displayBlock  {

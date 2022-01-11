@@ -7,12 +7,25 @@ import ErrorPage from "./pages/ErrorPage";
 import StudentRoutes from "./routes/StudentRoutes";
 import ClubRoutes from "./routes/ClubRoutes";
 import { Breakpoint, BreakpointProvider } from "react-socks";
-
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import OrgProfile from "./pages/ClubProfile";
 import CCProfile from "./pages/CCProfile";
 
+const theme = createTheme({
+    palette: {
+        type: "dark",
+        primary: {
+            main: "#1799E1",
+        }
+    },
+    typography: {
+        fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    }
+  });
+
 function App() {
     return (
+        <ThemeProvider theme={theme}>
         <div className="App">
             <BreakpointProvider>
                 <Breakpoint medium down>
@@ -37,6 +50,7 @@ function App() {
                 </Breakpoint>
             </BreakpointProvider>
         </div>
+        </ThemeProvider>
     );
 }
 

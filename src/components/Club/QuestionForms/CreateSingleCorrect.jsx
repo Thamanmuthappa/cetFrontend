@@ -166,6 +166,7 @@ const CreateSingleCorrect = ({
 											handleIsCorrectChange(e, i)
 										}
 										key={i}
+										style={{ color: "#1799E1" }}
 									/>
 								}
 								label="Is Correct?"
@@ -174,26 +175,27 @@ const CreateSingleCorrect = ({
 						</div>
 					))}
 				</div>
-				<Typography className="light-text">
+				<Typography className="white-text">
 					<strong>Marks:</strong>
 				</Typography>
 				<TextField
 					name="questionMarks"
 					type="number"
 					variant="outlined"
-					label="Question Marks"
 					inputRef={register({ required: true })}
 					value={question.questionMarks}
 					onChange={handleFormChange}
 					className="create-question-marks-field"
+					inputProps={{ className: classes.input }}
 				/>
 				<br />
-				<div className="media-switch">
+				<div className="media-switch" style={{marginLeft:"-1.25%"}}>
 					<FormControlLabel
 						control={
 							<Switch
 								checked={isMedia}
 								onChange={(e) => setIsMedia(e.target.checked)}
+								style={{ color: "#1799E1" }}
 							/>
 						}
 						label="Add Media (Image/Audio/Video): "

@@ -15,7 +15,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
-import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import {
   Paper,
   Button,
@@ -29,7 +29,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
-    background: "#252D3A"
+    background: "#252D3A",
   },
   media: {
     height: 0,
@@ -50,15 +50,14 @@ const ClubCarousel = (props) => {
           avatar={
             <Avatar
               src={props.club.clubAvatar}
-              aria-label='recipe'
+              aria-label="recipe"
               className={classes.avatar}
             />
           }
           title={props.club.name}
           style={{
             color: "#fff",
-          }
-          }
+          }}
         />
         <CardMedia
           className={classes.media}
@@ -67,38 +66,57 @@ const ClubCarousel = (props) => {
         />
         <CardContent style={{ height: "65px" }}>
           <Typography
-            variant='body2'
-            component='p'
-            className='card-text-stud-dash'
+            variant="body2"
+            component="p"
+            className="card-text-stud-dash"
             style={{
               color: "#fff",
-            }
-            }>
+            }}
+          >
             {props.club.bio}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          {props.club.username === "codechefvit" ?
-            <Link to={"/us/" + props.club.username} style={{ flex: "1"}}>
-              <IconButton aria-label='share' style={{ fontSize: "15px", color: "#fff"}}>
-                Know More
-              <DoubleArrowIcon />
-              </IconButton>
+          {props.club.username === "codechefvit" ? (
+            <Link to={"/us/" + props.club.username} style={{ flex: "1" }}>
+              <Button variant="text" endIcon={<DoubleArrowIcon />}>
+              Know More
+              </Button>
             </Link>
-            :
+          ) : (
             <Link to={"/org/" + props.club.username} style={{ flex: "1" }}>
-              <IconButton aria-label='share' style={{ fontSize: "15px" , color: "#fff",}}>
+              <Button variant="text" endIcon={<DoubleArrowIcon />}>
+              Know More
+              </Button>
+              {/* <IconButton
+                aria-label="share"
+                style={{ fontSize: "15px", color: "#fff" }}
+              >
                 Know More
-              <DoubleArrowIcon />
-              </IconButton>
+                <DoubleArrowIcon />
+              </IconButton> */}
             </Link>
-          }
-          <Typography align="right" style={{ fontSize: "12px" , color: "#fff"}}>
-            {
-              props.club.numOfTestsPublished > 0
-                ? <EventAvailableIcon fontSize="small" style={{ marginTop: "7px", flex: "1", paddingRight: "7px" , color: "#fff",}} />
-                : "No Active Tests"
-            }
+          )}
+          <Typography align="right" style={{ fontSize: "12px", color: "#fff", marginRight: "5px"}}>
+            {props.club.numOfTestsPublished > 0 ? (
+              // <EventAvailableIcon
+              //   fontSize="small"
+              //   style={{
+              //     marginTop: "7px",
+              //     flex: "1",
+              //     paddingRight: "7px",
+              //     color: "#fff",
+              //   }}
+              // />
+              <span style={{ color: "#4BB543", fontWeight:"bold", letterSpacing:"1px", textTransform:"uppercase"}}>
+              Tests Available
+              </span>
+            ) : (
+              <span style={{ color: "#FF501B", fontWeight:"bold", letterSpacing:"1px", textTransform:"uppercase"}}>
+              No Tests Available
+              </span>
+              
+            )}
           </Typography>
         </CardActions>
       </Card>

@@ -72,7 +72,7 @@ function Landing() {
 	return (
 		<div
 			style={{
-				// backgroundImage: "url(assets/longbg.png)",
+				backgroundImage: "url(/assets/homebg.png)",
 				height: "100vh",
 				width: "calc(100vw - 15px)",
 				backgroundPosition: "bottom",

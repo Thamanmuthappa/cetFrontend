@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     marginTop: "10px",
     paddingBottom: "40px",
+    background: "#252D3A"
   },
   input: {
     width: "100%",
@@ -156,7 +157,7 @@ const ClubProfile = () => {
                 width='100%'
                 alt='banner img'
                 src={
-                  data.clubBanner ? data.clubBanner : "/assets/bannerIMG.jpg"
+                  data.clubBanner ? data.clubBanner : "/assets/bannerIMG.png"
                 }
                 className='profile-banner'
                 key={Date.now()}
@@ -181,6 +182,7 @@ const ClubProfile = () => {
                     style={{
                       fontFamily: "Source Sans Pro",
                       fontWeight: "600",
+                      color: "#fff",
                     }}>
                     Profile Page
                   </Typography>
@@ -213,6 +215,7 @@ const ClubProfile = () => {
                             labelPlacement='start'
                             style={{
                               marginBottom: "20px",
+                              color: "#fff",
                             }}
                           />
                         </Tooltip>
