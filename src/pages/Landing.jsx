@@ -72,7 +72,7 @@ function Landing() {
 	return (
 		<div
 			style={{
-				backgroundImage: "url(/assets/homebg.png)",
+				background: "url('/assets/homebg.png'),#081220",
 				height: "100vh",
 				width: "calc(100vw - 15px)",
 				backgroundPosition: "bottom",
@@ -81,7 +81,6 @@ function Landing() {
 				display: "flex",
 				alignItems: "center",
 				alignContent: "center",
-				background: "#081220",
 			}}
 		>
 			<Grid container spacing={2}>
