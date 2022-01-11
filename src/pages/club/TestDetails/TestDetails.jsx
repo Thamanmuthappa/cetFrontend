@@ -182,18 +182,20 @@ const TestDetails = (props) => {
 				</div>
 				<Divider style={{background:"#F5F5F540"}}/>
 				<div className="test-page-domain">
-					<h1>
-						<a>Test Domains</a>
-					</h1>
+					
 					<div
 						className="test-page-domain-top"
-						style={{ textAlign: "right" }}
+						style={{display:"flex", justifyContent:"space-between", flexWrap:"wrap", alignItems:"center"}}
 					>
+						<h1>
+						<a>Test Domains</a>
+					</h1>
 						<Button
 							variant="contained"
 							className="custom-action-btn"
 							color="primary"
 							onClick={() => setAddDomain(true)}
+							style={{ textAlign: "right" }}
 							// style={{ marginRight: "8%" }}
 						>
 							<Add /> Add a new domain

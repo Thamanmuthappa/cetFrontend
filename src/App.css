@@ -17,8 +17,9 @@ a {
 .custom-action-btn {
   font-weight: bold !important;
   border-radius: 50px !important;
-  padding-left: 50px !important;
-  padding-right: 50px !important;
+  padding: 10px 15px !important;
+  /* padding-left: 50px !important;
+  padding-right: 50px !important; */
 }
 
 ::-moz-selection {

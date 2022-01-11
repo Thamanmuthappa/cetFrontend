@@ -176,13 +176,14 @@ const DomainDetails = (props) => {
 					</div>
 					<Divider style={{background:"#F5F5F540"}}/>
 					<div className="test-page-domain">
-						<h1>
-							<a>Questions</a>
-						</h1>
+						
 						<div
 							className="test-page-domain-top"
-							style={{ textAlign: "right" }}
+							style={{display:"flex", justifyContent:"space-between", flexWrap:"wrap", alignItems:"center"}}
 						>
+							<h1>
+							<a>Questions</a>
+						</h1>
 							<Button
 								variant="contained"
 								className="custom-action-btn"

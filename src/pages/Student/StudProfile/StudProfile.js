@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: "20px",
 		marginTop: "10px",
 		paddingBottom: "40px",
-		background: "linear-gradient(180deg, #1799E1 0%, #093966 100%)"
+		background: "#252D3A"
 	},
 	input: {
 		width: "100%",

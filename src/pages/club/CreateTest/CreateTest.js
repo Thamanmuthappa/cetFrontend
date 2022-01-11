@@ -91,7 +91,7 @@ const CreateTest = () => {
     <div className="create-test-page">
       <Navbar location="Create Test" />
       <div className="create-test-main">
-        <div className="create-test-header" style={{ textAlign: "center" }}>
+        <div className="create-test-header" style={{ textAlign: "center", color:"#f5f5f5f5", fontSize:"14px" }}>
           <h1>CREATE A NEW TEST</h1>
         </div>
         <form className="create-test-form" onSubmit={handleSubmit(createTest)}>
@@ -108,7 +108,7 @@ const CreateTest = () => {
                 }
                 label="Graded"
                 labelPlacement="start"
-                style={{ margin: "20px 0" }}
+                style={{ margin: "20px 0", color: "#fff" }}
               />
             </Grid>
           </Grid>

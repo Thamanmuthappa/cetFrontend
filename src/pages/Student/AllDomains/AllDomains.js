@@ -64,7 +64,7 @@ const AllDomains = () => {
       renderCell: (params) => {
         console.log(params);
         return (
-          <a href={params.value} target="_blank" style={{color: "#1799E1"}}>
+          <a href={params.value} target="_blank" style={{ color: "#1799E1" }}>
             {params.value}
           </a>
         );
@@ -80,7 +80,9 @@ const AllDomains = () => {
       return x;
     } else {
       return (
-        <a style={{color: "white"}}>No public organisation in this domain available right now 😞</a>
+        <a style={{ color: "white" }}>
+          No public organisation in this domain available right now 😞
+        </a>
       );
     }
   };
@@ -118,7 +120,7 @@ const AllDomains = () => {
       <>
         <div className="cont-color" style={{ background: "#081220" }}>
           <StudentNavbar location="Dashboard" />
-          <Container style={{ marginBottom: "40px", background: "#081220" }}>
+          <Container style={{ background: "#081220" }}>
             <div style={{ display: "flex", marginTop: "40px" }}>
               <Typography
                 gutterBottom
@@ -229,7 +231,7 @@ const AllDomains = () => {
                 Other Domains
               </Typography>
             </Grid>
-            <Grid container style={{ marginTop: "25px", marginBottom: "40px" }}>
+            <Grid container style={{ marginTop: "25px" }}>
               {clubsMap(otherClubs)}
             </Grid>
             <div style={{ display: "flex", marginTop: "80px" }}>
@@ -251,7 +253,6 @@ const AllDomains = () => {
                 height: 700,
                 width: "100%",
                 marginTop: "40px",
-                marginBottom: "40px",
                 background: "#081220",
               }}
             >
@@ -268,9 +269,13 @@ const AllDomains = () => {
         <Grid
           container
           style={{
-            backgroundColor: "#FCF9F9",
-            color: "#2C2D2D",
-            padding: "25px",
+            background: "#081220",
+            color: "#fff",
+            padding: "75px 25px 25px 25px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
           }}
         >
           <Grid
@@ -280,7 +285,7 @@ const AllDomains = () => {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              flexDirection: "column",
+              alignContent: "center",
             }}
           >
             <div>
@@ -293,7 +298,7 @@ const AllDomains = () => {
                   <img
                     src="/assets/blacklogo.png"
                     alt="CodeChef-VIT"
-                    width="150px"
+                    width="100px"
                     align="center"
                   />
                 </a>

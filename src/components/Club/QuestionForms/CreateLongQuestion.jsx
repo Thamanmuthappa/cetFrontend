@@ -128,7 +128,6 @@ const CreateLongQuestion = ({
 							<Switch
 								checked={isMedia}
 								onChange={(e) => setIsMedia(e.target.checked)}
-								style={{ color: "#1799E1" }}
 							/>
 							
 						}

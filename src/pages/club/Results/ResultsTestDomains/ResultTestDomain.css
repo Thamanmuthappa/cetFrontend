@@ -10,6 +10,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 19rem;
+	height: 3rem;
 }
 
 .responses-btn {
