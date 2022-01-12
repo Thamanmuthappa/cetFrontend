@@ -27,11 +27,22 @@
 }
 
 .submit-fab {
-	position: fixed !important;
-	bottom: 20px !important;
-	left: 30px !important;
+	/* position: fixed !important; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
+	/* bottom: 20px !important;
+	left: 30px !important; */
 }
 
 .cont-colo{
 	background: #081220 !important;
+}
+
+.submit-test-button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
 }

@@ -173,15 +173,25 @@ const TestScreen = (props) => {
         </div>
       </Container>
       </div>
+      <div className="submit-test-button">
       <Tooltip title='Submit Test'>
-        <Fab
+        <Button
+          color='primary'
+          variant='contained'
+          className='submittestbutton'
+          onClick={() => setConfirmSubmit(true)}>
+          Submit Test
+        </Button>
+        
+        {/* <Fab
           color='primary'
           aria-label='submit-test'
           className='submit-fab'
           onClick={() => setConfirmSubmit(true)}>
           <Done />
-        </Fab>
+        </Fab> */}
       </Tooltip>
+      </div>
       <Dialog
         open={confirmSubmit}
         onClose={() => setConfirmSubmit(false)}
