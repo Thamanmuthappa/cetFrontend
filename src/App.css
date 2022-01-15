@@ -41,7 +41,7 @@ a {
 }
 
 .profile-banner {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   max-height: 500px !important;
   border-radius: 12px;
 }

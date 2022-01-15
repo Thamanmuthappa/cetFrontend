@@ -14,6 +14,10 @@ import CCProfile from "./pages/CCProfile";
 const theme = createTheme({
     palette: {
         type: "dark",
+        background: {
+            default: "#081220",
+            paper: "#081220",
+        },
         primary: {
             main: "#1799E1",
         }
