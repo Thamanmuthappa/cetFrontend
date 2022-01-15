@@ -9,7 +9,8 @@ const useStyles = makeStyles( ( theme ) => ( {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        background:'#081220'
     }
 } ) )
 
@@ -25,7 +26,7 @@ const Mobile = () => {
             <br/>
 
             <h4 style={
-                { fontFamily: 'Source Sans Pro' }
+                { color:"#fff" }
             }>
                 Please use a laptop or desktop to use CET.
             </h4>
