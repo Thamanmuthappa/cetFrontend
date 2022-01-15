@@ -74,7 +74,8 @@ function Landing() {
 			style={{
 				background: "url('/assets/homebg.png'),#081220",
 				height: "100vh",
-				width: "calc(100vw - 15px)",
+				// width: "calc(100vw - 15px)",
+				overflow: "hidden",
 				backgroundPosition: "bottom",
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
