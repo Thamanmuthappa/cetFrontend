@@ -27,13 +27,13 @@
 }
 
 .submit-fab {
-	/* position: fixed !important; */
+	position: fixed !important;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	z-index: 10;
-	/* bottom: 20px !important;
-	left: 30px !important; */
+	bottom: 20px !important;
+	left: 30px !important;
 }
 
 .cont-colo{

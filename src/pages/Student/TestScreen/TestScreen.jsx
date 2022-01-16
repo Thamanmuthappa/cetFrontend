@@ -19,6 +19,10 @@ import TestQuestionDisplay from "../../../components/Student/TestQuestionDisplay
 import Loading from "../../Loading";
 import { dummyTest } from "./dummyTest";
 import "./TestScreen.css";
+import Fab from "@material-ui/core/Fab";
+import Camera from "@material-ui/icons/CameraAlt";
+import Webcam from "react-webcam";
+
 import {
   fullScreenListeners,
   fullscreenWindow,
@@ -30,6 +34,7 @@ const TestScreen = (props) => {
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(true);
   const [confirmSubmit, setConfirmSubmit] = useState(false);
+  const [openCam, setopenCam] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [startedAt, setStartedAt] = useState(Date.now() * 100000);
@@ -119,6 +124,24 @@ const TestScreen = (props) => {
     setViolated(true);
     console.log("test violated");
     setCountdownModal(false);
+    setConfirmSubmit(false);
+  };
+
+  const videoConstraints = {
+    width: 300,
+    height: 200,
+    facingMode: "user",
+  };
+  const webcamRef = React.useRef(null);
+  const WebcamCapture = () => {
+    const webcamRef = React.useRef(null);
+  
+    const capture = React.useCallback(
+      () => {
+        const imageSrc = webcamRef.current.getScreenshot();
+      },
+      [webcamRef]
+    );
   };
 
   useEffect(() => {
@@ -156,11 +179,14 @@ const TestScreen = (props) => {
     };
   }, []);
 
+  
   if (loading) {
     return <Loading />;
   } else if (error) {
     return "There was some error";
   }
+
+  
 
   return (
     <div
@@ -260,14 +286,6 @@ const TestScreen = (props) => {
           >
             Submit Test
           </Button>
-
-          {/* <Fab
-          color='primary'
-          aria-label='submit-test'
-          className='submit-fab'
-          onClick={() => setConfirmSubmit(true)}>
-          <Done />
-        </Fab> */}
         </Tooltip>
       </div>
       <Dialog
@@ -324,6 +342,44 @@ const TestScreen = (props) => {
         onClose={handleModalClose}
         onComplete={handleTestViolation}
       />
+      <Fab
+        color="primary"
+        aria-label="submit-test"
+        className="submit-fab"
+        onClick={() => setopenCam(true)}
+      >
+        <Camera />
+      </Fab>
+      <Dialog
+        open={openCam}
+        onClose={() => {
+          setopenCam(false);
+        }}
+        fullWidth
+      >
+        <DialogTitle className style={{ color: "white", background: "#252D3A" }}>
+          Live Camera Feed
+        </DialogTitle>
+        <Webcam
+        audio={false}
+        height={400}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        width={600}
+        videoConstraints={videoConstraints}
+      />
+        <DialogActions style={{ color: "white", background: "#252D3A" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              setopenCam(false);
+            }}
+          >
+            Close ✖
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

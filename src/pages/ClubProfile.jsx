@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import { black } from "color-name";
 import "./ClubProfile.css";
 import "../components/Shared/Navbar/Navbar.css";
+import BannerImg from "./bannerIMG.png";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
@@ -130,7 +131,7 @@ const OrgProfile = (props) => {
 							src={
 								data.clubBanner
 									? data.clubBanner
-									: "/assets/bannerIMG.jpg"
+									: BannerImg
 							}
 							width="100%"
 							alt=""

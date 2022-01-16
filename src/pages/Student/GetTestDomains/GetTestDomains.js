@@ -20,6 +20,8 @@ import Loading from "../../Loading";
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
 import Axios from "axios";
 import { Alert } from "@material-ui/lab";
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
 const GetTestDomains = (props) => {
 	const id = props.match.params.testId;
@@ -102,14 +104,24 @@ const GetTestDomains = (props) => {
 		return <Redirect to="/student/dashboard" />;
 	}
 
+	const handleBack = () => {
+		history.goBack();
+		  };
+
+		  
 	return (
 		<div className="test-details-page">
 			<StudentNavbar location="Test Domains" />
 			<Container className="test-details-container">
-				<div className="test-info">
-					<h1>
-						<a>Test Details</a>
-					</h1>
+			<div className="test-info">
+            <div style={{display: "flex", flexWrap:"wrap", justifyContent:"space-between", alignItems:"center"}}>
+              <h1>
+                <a>Test Details</a>
+              </h1>
+              <IconButton aria-label="delete" onClick={handleBack}>
+                <CloseIcon htmlColor="#FFF" />
+              </IconButton>
+            </div>
 					<div style={{ color: "#fff" }}>
 						<Grid container spacing={3}>
 							<Grid item xs={6} sm={3}>

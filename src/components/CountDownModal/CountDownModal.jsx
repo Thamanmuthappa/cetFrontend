@@ -8,7 +8,7 @@ const CountDownModal = ({ open, onClose, onComplete }) => {
 		<Dialog className="countdown-modal" open={open} onClose={onClose} fullWidth>
 			<DialogTitle>Went out of test area! Test will automatically close in</DialogTitle>
 			<DialogContent>
-				<CountDown endTime={Date.now() + 3000} onComplete={onComplete} />
+				<CountDown endTime={Date.now() + 15000} onComplete={onComplete} />
 			</DialogContent>
 			<DialogActions>
 				<Button color="secondary" className="close-modal" onClick={onClose}>
