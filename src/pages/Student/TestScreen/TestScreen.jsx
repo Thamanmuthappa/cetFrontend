@@ -147,7 +147,11 @@ const TestScreen = (props) => {
   useEffect(() => {
     fullscreenWindow();
     fullScreenListeners(handleFullScreenExit);
+    window.addEventListener("visibilitychange", handleTabChange);
+    window.addEventListener("blur", handleTabChange);
     return () => {
+      window.removeEventListener("visibilitychange", handleTabChange);
+      window.removeEventListener("blur", handleTabChange);
       removeFullScreenListeners();
     };
   }, []);
