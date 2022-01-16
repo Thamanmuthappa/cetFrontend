@@ -1,0 +1,27 @@
+.tile {
+	margin: 0 1px;
+	background-color: #1799E1;
+	color: white;
+	height: 65px;
+	width: 65px;
+	border-radius: 10px !important;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.tile > .time {
+	width: 100%;
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+
+.tile > .type {
+	width: 100%;
+	display: block;
+	font-size: 0.6rem;
+	font-weight: 600;
+	text-transform: uppercase;
+}

@@ -20,7 +20,16 @@ const theme = createTheme({
         },
         primary: {
             main: "#1799E1",
-        }
+        },
+        secondary: {
+			main: "#1799E1",
+		},
+        // whitetext: {
+		// 	main: "#fafafa",
+		// },
+		// pureWhite: {
+		// 	main: "#FFFFFF",
+		// },
     },
     typography: {
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',

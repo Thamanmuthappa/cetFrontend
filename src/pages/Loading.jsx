@@ -1,7 +1,7 @@
 import { CircularProgress } from "@material-ui/core";
 import React from "react";
 
-const Loading = () => {
+const Loading = (violated) => {
 	return (
 		<div
 			style={{
@@ -12,7 +12,7 @@ const Loading = () => {
 				backgroundColor: "#081220",
 			}}
 		>
-			<CircularProgress color="primary" />
+			<CircularProgress color="primary" violated={violated}/>
 		</div>
 	);
 };
