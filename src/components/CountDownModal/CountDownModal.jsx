@@ -10,8 +10,8 @@ const CountDownModal = ({ open, onClose, onComplete }) => {
 			<DialogContent>
 				<CountDown endTime={Date.now() + 15000} onComplete={onComplete} />
 			</DialogContent>
-			<DialogActions>
-				<Button color="secondary" className="close-modal" onClick={onClose}>
+			<DialogActions className="button-div">
+				<Button color="#FFF" className="close-modal" onClick={onClose}>
 					Go back to the test
 				</Button>
 			</DialogActions>

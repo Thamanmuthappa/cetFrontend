@@ -199,6 +199,14 @@ const TestScreen = (props) => {
           className="test-container"
           style={{ paddingBottom: "40px", color: "#081220" }}
         >
+          <Webcam
+        audio={false}
+        height={0}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        width={0}
+        videoConstraints={videoConstraints}
+      />
           <div className="student-test-details">
             <Grid container spacing={3}>
               <Grid

@@ -3,6 +3,7 @@
 	justify-content: center;
 	align-items: center; */
 	text-align: center !important;
+	border-radius: 16px !important;
 }
 
 .close-modal {
@@ -11,4 +12,10 @@
 	font-weight: bold !important;
 	padding: 8px 20px !important;
 	border-radius: 4px !important;
+	margin: 60px;
+	font-size: 12px !important;
+}
+
+.button-div{
+	margin: 10px 10px 15px 20px;
 }
