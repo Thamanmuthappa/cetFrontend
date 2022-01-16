@@ -8,7 +8,8 @@ import SignUp from "../pages/club/SignUp";
 import TestDetails from "../pages/club/TestDetails/TestDetails";
 import DomainDetails from "../pages/club/DomainDetails/DomainDetails";
 import ResultsTestDetails from "../pages/club/Results/ResultsTestDetails/ResultsTestDetails";
-import ResultsTestDomains from '../pages/club/Results/ResultsTestDomains/ResultTestDomains'
+import ResultsTestDomains from '../pages/club/Results/ResultsTestDomains/ResultTestDomains';
+import ErrorPage from "../pages/ErrorPage";
 
 const ClubRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const ClubRoutes = () => {
           path='/club/Results/test/:id/:domainId'
           component={ResultsTestDomains}
         />
+        <Route component={ErrorPage}/>
       </Switch>
     </ClubContextProvider>
   );

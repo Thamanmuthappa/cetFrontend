@@ -13,7 +13,6 @@ import {
 import { Done } from "@material-ui/icons";
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
-
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
 import TestQuestionDisplay from "../../../components/Student/TestQuestionDisplay/TestQuestionDisplay";
 import Loading from "../../Loading";
@@ -21,53 +20,62 @@ import { dummyTest } from "./dummyTest";
 import "./TestScreen.css";
 import Countdown from "react-countdown";
 import { useHistory } from "react-router-dom";
+import {fullscreenWindow, closeFullscreen, fullScreenListeners, removeFullScreenListeners} from "./utils";
+import CountDownModal from "../../../components/CountDownModal/CountDownModal";
 
 const TestScreen = (props) => {
   const [testDetails, setTestDetails] = useState(dummyTest);
-
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(true);
-
   const [confirmSubmit, setConfirmSubmit] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-
   const [error, setError] = useState(false);
-
   const [startedAt, setStartedAt] = useState(Date.now() * 100000);
-
   const history = useHistory();
+  const [countdownModal, setCountdownModal] = useState(false);
 
   const minsToMilli = (mins) => {
     return mins * 60 * 1000;
   };
 
-  const handleTimeout = () => {
-    submitTest();
-  };
+
+  const sendRequest = async (final) => {
+    const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/submit`;
+    const token = localStorage.getItem("studentAuthToken");
+    console.log("Sending request");
+    await Axios.post(url, final, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      setLoading(false);
+      setSubmitted(true);
+      console.log("Submitting Test");
+    })
+      .catch((err) => {
+        setLoading(false);
+        setError(true);
+        console.log(err);
+      });
+  }
+
+
 
   const submitTest = async () => {
     setLoading(true);
-    const url = `${process.env.REACT_APP_BACKEND_URL}/test/domain/submit`;
-    const token = localStorage.getItem("studentAuthToken");
+    console.log("Submit test Called")
 
     const final = JSON.parse(JSON.stringify(answers));
+    final.timeTaken = (Date.now() - startedAt) / 60000
 
-    final.timeTaken = (Date.now() - startedAt) / 60000;
-
-    try {
-      await Axios.post(url, final, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((res) => {
-        setLoading(false);
-        setSubmitted(true);
-      });
-    } catch (error) {
-      setLoading(false);
-    }
+    await sendRequest(final);
   };
 
+  const handleTimeout = () => {
+    console.log("Time Out");
+    submitTest();
+  };
+  
   const createAnsObject = (testDetails) => {
     const obj = {};
     obj.domainId = testDetails.domainDetails._id;
@@ -106,6 +114,43 @@ const TestScreen = (props) => {
 
     setLoading(false);
   }, [props.location.state.startedAt, props.location.state.details]);
+  
+    const handleTabChange = () => {
+		setCountdownModal(true);
+		// console.log(document.visibilityState);
+	};
+
+	const handleFullScreenExit = () => {
+		if (
+			!document.webkitIsFullScreen &&
+			!document.mozFullScreen &&
+			!document.msFullscreenElement
+		) {
+			handleTabChange();
+		}
+	};
+  const handleModalClose = () => {
+		setCountdownModal(false);
+		fullscreenWindow();
+	};
+  const handleTestViolation = () => {
+		// setViolated(true);
+    // setConfirmSubmit(false);
+    console.log("test violated");
+    if(!setConfirmSubmit(true)){
+		submitTest();
+    }
+    setCountdownModal(false);
+    // setSubmitted(true);
+	};
+
+  useEffect(() => {
+    fullscreenWindow();
+    fullScreenListeners(handleFullScreenExit);
+    return () => {
+      removeFullScreenListeners();
+    }
+  }, []);
 
   if (loading) {
     return <Loading />;
@@ -179,7 +224,11 @@ const TestScreen = (props) => {
           color='primary'
           variant='contained'
           className='submittestbutton'
-          onClick={() => setConfirmSubmit(true)}>
+          onClick={() => {
+          setConfirmSubmit(true)
+            console.log("Set Confirm Submit");
+        }
+          }>
           Submit Test
         </Button>
         
@@ -236,6 +285,11 @@ const TestScreen = (props) => {
           </Button>
         </DialogActions>
       </Dialog>
+      <CountDownModal
+				open={countdownModal}
+				onClose={handleModalClose}
+				onComplete={handleTestViolation}
+			/>
     </div>
   );
 };
