@@ -23,7 +23,7 @@ const useStyles = makeStyles( ( theme ) => ( {
     paper: {
         position: "absolute",
         width: "400",
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "#081220",
         border: "1px solid #E45044",
         borderRadius: "10px",
         boxShadow: theme.shadows[5],
@@ -34,7 +34,8 @@ const useStyles = makeStyles( ( theme ) => ( {
     },
     root: {
         overflow: "hidden",
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: "#252D3A",
+        color: "#fff",
         boxShadow: "4px 4px 50px rgba(0, 0, 0, 0.05)",
         borderRadius: "30px",
         textAlign: "center",
@@ -47,7 +48,8 @@ const useStyles = makeStyles( ( theme ) => ( {
         height: 450
     },
     gridContainer: {
-        height: "100%"
+        height: "100%",
+        backgroundColor: "#081220"
     },
     gridContainerBox: {
         width: "100%",
@@ -96,7 +98,7 @@ const StudentSignIn = () => {
                     style={
                         {
                             textAlign: "left",
-                            width: "10rem",
+                            width: "6%",
                             height: "auto",
                             position: "absolute",
                             left: "7rem",
@@ -115,9 +117,9 @@ const StudentSignIn = () => {
                         style={
                             { textAlign: "center" }
                     }>
-                        <img src="/assets/celebration.jpg" alt="celebration"
-                            // width="70%"
-                            height="auto"
+                        <img src="/assets/celebration.png" alt="celebration"
+                            width="70%"
+                            height="50%"
                         />
                     </Grid>
                 </Hidden>
@@ -149,7 +151,7 @@ const StudentSignIn = () => {
                                 </Grid>
                                 <Grid item
                                     xs={12}>
-                                    <Typography variant="body2" color="textSecondary" component="p">
+                                    <Typography variant="body2" color="white" component="p">
                                         Please use your VIT email ID to login
                                     </Typography>
                                 </Grid>

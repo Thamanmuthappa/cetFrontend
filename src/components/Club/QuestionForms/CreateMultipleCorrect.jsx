@@ -4,6 +4,7 @@ import {
 	Switch,
 	TextField,
 	Typography,
+	makeStyles
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -16,6 +17,15 @@ const optionsArr = [
 	{ option: { text: "", isCorrect: false } },
 	{ option: { text: "", isCorrect: false } },
 ];
+
+const useStyles = makeStyles((theme) => ({
+	input: {
+	  color: "#FFF",
+	},
+	label: {
+	  color: "#FFF",
+	},
+  }));
 
 const CreateMultipleCorrect = ({
 	testId,
@@ -119,10 +129,10 @@ const CreateMultipleCorrect = ({
 
 		setLoading(false);
 	};
-
+	const classes = useStyles();
 	return (
 		<div className="create-question-form">
-			<Typography variant="h6" className="light-text">
+			<Typography variant="h6" style={{color: "#fff"}}>
 				Question type: <strong>Multiple Correct</strong>
 			</Typography>
 			<form id="create-question-2" onSubmit={handleSubmit(submit)}>
@@ -136,9 +146,11 @@ const CreateMultipleCorrect = ({
 					inputRef={register({ required: true })}
 					value={question.description}
 					onChange={handleFormChange}
+					inputProps={{ className: classes.input }} 
+					inputLabelProps={{ style: { color: '#fff' },}}
 				/>{" "}
 				<br />
-				<Typography className="light-text">
+				<Typography style={{color: "#fff"}}>
 					<strong>OPTIONS:</strong>
 				</Typography>
 				<div className="options-form" style={{ marginBottom: 30 }}>
@@ -152,6 +164,8 @@ const CreateMultipleCorrect = ({
 								onChange={(e) => handleOptionChange(e, i)}
 								className="create-option-field"
 								inputRef={register({ required: true })}
+								inputProps={{ className: classes.input }} 
+					inputLabelProps={{ style: { color: '#fff' },}}
 							/>
 							<FormControlLabel
 								control={
@@ -162,42 +176,50 @@ const CreateMultipleCorrect = ({
 										onChange={(e) =>
 											handleIsCorrectChange(e, i)
 										}
+										style={{ color: "#1799E1" }}
 									/>
 								}
 								label="Is Correct?"
+								style={{color: "#fff"}}
 							/>
 							<br />
 						</div>
 					))}
 				</div>
-				<Typography className="light-text">
+				<Typography style={{color: "#fff"}}>
 					<strong>Marks:</strong>
 				</Typography>
 				<TextField
 					name="questionMarks"
 					type="number"
 					variant="outlined"
-					label="Question Marks"
+					// label="Question Marks"
 					inputRef={register({ required: true })}
 					value={question.questionMarks}
 					onChange={handleFormChange}
 					className="create-question-marks-field"
+					inputProps={{ className: classes.input }} 
+					inputLabelProps={{ style: { color: '#fff' },}}
 				/>
-				<div className="media-switch">
+				<div className="media-switch" style={{marginLeft:"-1.25%"}}>
 					<FormControlLabel
+						style={{color: "#fff"}}
 						control={
 							<Switch
 								checked={isMedia}
 								onChange={(e) => setIsMedia(e.target.checked)}
+								style={{ color: "#1799E1" }}
 							/>
 						}
 						label="Add Media (Image/Audio/Video): "
 						labelPlacement="start"
+						style={{color: "#fff"}}
 					/>
 				</div>
 				<div
 					style={{ display: isMedia ? "block" : "none" }}
 					className="add-media-section"
+					
 				>
 					<input
 						type="file"
@@ -205,6 +227,7 @@ const CreateMultipleCorrect = ({
 						onChange={(e) => setMedia(e.target.files[0])}
 						accept=".jpg,.jpeg,.png,.mp3,.wav,.mp4,.mkv,.mov"
 						ref={register({ required: isMedia })}
+						style={{color: "#fff"}}
 					/>
 				</div>
 			</form>

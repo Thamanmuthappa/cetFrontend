@@ -22,7 +22,9 @@ const Background = (props) => {
             position: "absolute",
             left: "7rem",
             top: "3rem",
+            
           }}
+          
         />
       </Link>
       {props.children}

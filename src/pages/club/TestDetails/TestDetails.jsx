@@ -120,9 +120,9 @@ const TestDetails = (props) => {
 			<Container className="test-details-container">
 				<div className="test-info">
 					<h1>
-						<u>Test Details</u>
+						<a>Test Details</a>
 					</h1>
-					<div style={{ color: "#666666" }}>
+					<div >
 						<Grid container spacing={3}>
 							<Grid item xs={6} sm={3}>
 								<p>
@@ -159,7 +159,8 @@ const TestDetails = (props) => {
 								<Button
 									color="primary"
 									variant="contained"
-									disabled={testDetails.published}
+									className="publish-btn"
+									// disabled={testDetails.published}
 									onClick={() => setConfirmPublish(true)}
 									style={{ fontWeight: "bold" }}
 								>
@@ -179,20 +180,23 @@ const TestDetails = (props) => {
 						</Grid>
 					</div>
 				</div>
-				<Divider />
+				<Divider style={{background:"#F5F5F540"}}/>
 				<div className="test-page-domain">
-					<h1>
-						<u>Test Domains</u>
-					</h1>
+					
 					<div
 						className="test-page-domain-top"
-						style={{ textAlign: "right" }}
+						style={{display:"flex", justifyContent:"space-between", flexWrap:"wrap", alignItems:"center"}}
 					>
+						<h1>
+						<a>Test Domains</a>
+					</h1>
 						<Button
 							variant="contained"
 							className="custom-action-btn"
 							color="primary"
 							onClick={() => setAddDomain(true)}
+							style={{ textAlign: "right" }}
+							// style={{ marginRight: "8%" }}
 						>
 							<Add /> Add a new domain
 						</Button>
@@ -238,14 +242,16 @@ const TestDetails = (props) => {
 			<Dialog
 				open={confirmPublish}
 				onClose={() => setConfirmPublish(false)}
+				style={{color:"#252D3A"}}
 			>
-				<DialogTitle>
+				<DialogTitle style={{color: "white", background:"#252D3A"}}>
 					Are you sure you want to publish this test?
 				</DialogTitle>
-				<DialogActions>
+				<DialogActions style={{color: "white", background:"#252D3A"}}>
 					<Button
 						variant="outlined"
 						onClick={() => setConfirmPublish(false)}
+						style={{ color: "white" , background:"#252D3A"}}
 					>
 						Cancel
 					</Button>
@@ -268,22 +274,25 @@ const TestDetails = (props) => {
 					Test published!
 				</Alert>
 			</Snackbar>
+
 			<Dialog
 				open={confirmDelete}
 				onClose={() => setConfirmDelete(false)}
+				style={{color:"252D3A"}}
 			>
-				<DialogTitle>
+				<DialogTitle  style={{color: "white", background:"#252D3A"}}> 
 					Are you sure you want to delete this test?
 				</DialogTitle>
-				<DialogContent style={{ textAlign: "center" }}>
+				<DialogContent style={{ textAlign: "center",color: "white", background:"#252D3A"}}>
 					<span className="light-text">
 						All the submissions (if any) will also be lost.
 					</span>
 				</DialogContent>
-				<DialogActions>
+				<DialogActions  style={{color: "white", background:"#252D3A"}}>
 					<Button
 						variant="outlined"
 						onClick={() => setConfirmDelete(false)}
+						style={{color: "white", background:"#252D3A"}}
 					>
 						Cancel
 					</Button>

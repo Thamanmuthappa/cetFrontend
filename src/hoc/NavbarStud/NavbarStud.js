@@ -24,7 +24,7 @@ const NavbarStud = (props) => {
         elevation={2}>
         <Toolbar>
           <Link to={`/student/dashboard`}>
-            <img src='/assets/Group2.png' alt='logo' className='nav-img' />
+            <img src='/assets/Group2.png' alt='logo' className='nav-img' style={{width:"80%"}}/>
           </Link>
           <Typography variant='h5' className='nav-brand' style={{ flex: 1 }}>
             Dashboard

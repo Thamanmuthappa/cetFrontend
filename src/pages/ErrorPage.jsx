@@ -9,7 +9,8 @@ const useStyles = makeStyles( ( theme ) => ( {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        background:'#081220'
     }
 } ) )
 
@@ -24,12 +25,12 @@ const ErrorPage = () => {
                 width="150px"/>
             <br/>
             <h3 style={
-                { fontFamily: 'Source Sans Pro' }
+                { fontFamily: 'Source Sans Pro', color: 'white' }
             }>
                 Looks like you love exploring our page...
             </h3>
             <h4 style={
-                { fontFamily: 'Source Sans Pro' }
+                { fontFamily: 'Source Sans Pro', color: 'white' }
             }>
                 This page doesn't exist though. We strongly recommend you click the button below &darr;
             </h4>
@@ -37,8 +38,8 @@ const ErrorPage = () => {
                 style={
                     {
                         textTransform: "capitalize",
-                        border: "1px solid #E31E43",
-                        backgroundColor: "#E31E43",
+                        border: "1px solid #1799E1",
+                        backgroundColor: "#1799E1",
                         color: "white",
                         fontFamily: "Source Sans Pro",
                         height: "48px",

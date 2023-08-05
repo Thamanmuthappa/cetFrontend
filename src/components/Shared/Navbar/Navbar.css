@@ -4,16 +4,16 @@
 
 .nav-brand {
 	font-weight: bold !important;
-	color: black !important;
+	color: white !important;
 }
 
 .logout-btn-nav {
 	font-weight: bold !important;
 	font-size: 1rem !important;
 	/* background-color: rgba(0, 0, 0, 0.075) !important; */
-	color: #666666 !important;
+	color: #fff !important;
 }
 
 .logout-btn-nav:hover {
-	color: black !important;
+	color: #ffffff80 !important;
 }

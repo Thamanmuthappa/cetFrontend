@@ -8,6 +8,7 @@ import Dashboard from "../pages/Student/AllDomains/AllDomains";
 import StudProfile from "../pages/Student/StudProfile/StudProfile";
 import ClubTestsList from "../pages/Student/ClubTestsList/ClubTestsList";
 import GetTestDomains from "../pages/Student/GetTestDomains/GetTestDomains";
+import ErrorPage from "../pages/ErrorPage";
 
 const StudentRoutes = () => {
     return (
@@ -27,6 +28,7 @@ const StudentRoutes = () => {
                     component={StudentSignIn}/>
                 <Route exact path="/student/oauth/:token/:loginCount"
                     component={StudentOAuth}/>
+                <Route component={ErrorPage}/>
             </Switch>
         </StudentContextProvider>
     );

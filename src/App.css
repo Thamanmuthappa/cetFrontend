@@ -2,7 +2,8 @@
 
 .form-input {
   width: 100% !important;
-  background-color: #fdf9f9 !important;
+  background-color: #081220 !important;
+  color: #fff !important;
 }
 
 .light-text {
@@ -16,17 +17,18 @@ a {
 .custom-action-btn {
   font-weight: bold !important;
   border-radius: 50px !important;
-  padding-left: 50px !important;
-  padding-right: 50px !important;
+  padding: 10px 15px !important;
+  /* padding-left: 50px !important;
+  padding-right: 50px !important; */
 }
 
 ::-moz-selection {
-  background: #e31e43;
+  background: #1799E1;
   color: #fff;
 }
 
 ::selection {
-  background: #e31e43;
+  background: #1799E1;
   color: #fff;
 }
 
@@ -39,7 +41,7 @@ a {
 }
 
 .profile-banner {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   max-height: 500px !important;
   border-radius: 12px;
 }

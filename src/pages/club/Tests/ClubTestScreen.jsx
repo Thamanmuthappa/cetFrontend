@@ -28,7 +28,9 @@ const ClubTestScreen = () => {
             <div style={
                 {
                     display: "flex",
-                    flexDirection: "row"
+                    flexDirection: "row",
+                    color: "#3E62DF",
+                   
                 }
             }>
                 <Typography gutterBottom variant='h2'
@@ -36,7 +38,10 @@ const ClubTestScreen = () => {
                         {
                             fontFamily: "Source Sans Pro",
                             fontWeight: "600",
-                            flex: 1
+                            flex: 1,
+                            color: "#fff",
+                            fontSize: "3rem",
+                            marginTop: "1rem",
                         }
                 }>
                     My Tests
@@ -57,7 +62,7 @@ const ClubTestScreen = () => {
                     </Link>
                 </div>
             </div>
-            <Divider/>
+            <Divider style={{background:"#F5F5F540"}}/>
             <div className="club-test-list">
                 {
                 testsCreated.length === 0 ? (

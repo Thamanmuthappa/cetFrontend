@@ -1,5 +1,7 @@
 .create-question-form {
 	margin-top: 50px;
+	background: #081220 !important;
+	height: 100vh !important;
 }
 
 .create-question-text-input {
@@ -24,4 +26,12 @@
 
 .add-media-section {
 	margin-bottom: 5%;
+}
+
+.MuiSwitch-colorSecondary-409.Mui-checked + .MuiSwitch-track-413 {
+    background-color: #1799E1 !important;
+}
+
+.MuiSwitch-colorSecondary-409.Mui-checked {
+    color: #1799E1 !important;
 }

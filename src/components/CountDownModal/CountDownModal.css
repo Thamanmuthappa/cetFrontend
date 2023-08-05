@@ -1,0 +1,21 @@
+.countdown-modal {
+	/* display: flex;
+	justify-content: center;
+	align-items: center; */
+	text-align: center !important;
+	border-radius: 16px !important;
+}
+
+.close-modal {
+	background-color: #107be5 !important;
+	color: white !important;
+	font-weight: bold !important;
+	padding: 8px 20px !important;
+	border-radius: 4px !important;
+	margin: 60px;
+	font-size: 12px !important;
+}
+
+.button-div{
+	margin: 10px 10px 15px 20px;
+}

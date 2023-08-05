@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
 	paper: {
 		position: "absolute",
 		width: "400",
-		backgroundColor: theme.palette.background.paper,
-		border: "1px solid #E31E43",
+		backgroundColor: "#081220",
+		border: "1px solid #1799E1",
 		borderRadius: "10px",
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(2, 4, 3),
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	root: {
 		overflow: "hidden",
-		backgroundColor: theme.palette.background.paper,
+		backgroundColor: "#252D3A",
 		boxShadow: "4px 4px 50px rgba(0, 0, 0, 0.05)",
 		borderRadius: "30px",
 		textAlign: "center",
@@ -124,6 +124,7 @@ const ClubSignin = () => {
 				height: "100vh",
 				width: "100%",
 				backgroundPosition: "top",
+				backgroundColor: "#081220",
 			}}
 		>
 			<Link to="/">
@@ -132,11 +133,12 @@ const ClubSignin = () => {
 					alt="logo"
 					style={{
 						textAlign: "left",
-						width: "10rem",
+						width: "6%",
 						height: "auto",
 						position: "absolute",
 						left: "7rem",
 						top: "3rem",
+						
 					}}
 				/>
 			</Link>
@@ -149,10 +151,10 @@ const ClubSignin = () => {
 				<Hidden mdDown>
 					<Grid item xs={6} style={{ textAlign: "center" }}>
 						<img
-							src="/assets/celebration.jpg"
+							src="/assets/celebration.png"
 							alt="celebration"
-							// width="70%"
-							height="auto"
+							width="70%"
+							height="70%"
 						/>
 					</Grid>
 				</Hidden>
@@ -173,6 +175,7 @@ const ClubSignin = () => {
 											style={{
 												fontFamily: "Source Sans Pro",
 												fontWeight: "600",
+												color: "#fff",
 											}}
 										>
 											Welcome Back!
@@ -181,8 +184,10 @@ const ClubSignin = () => {
 									<Grid item xs={12}>
 										<Typography
 											variant="body2"
-											color="textSecondary"
 											component="p"
+											style={{
+												color: "#fff",
+											}}
 										>
 											Sign in to your account
 										</Typography>
@@ -206,6 +211,7 @@ const ClubSignin = () => {
 												errors.email &&
 												"Email is required"
 											}
+											// style={{ backgroundColor: "#252D3A" }}
 										/>
 									</Grid>
 									<Grid item xs={12}>
@@ -239,7 +245,7 @@ const ClubSignin = () => {
                                         }>
                                             Don't have an account?{" "}
                                             <span style={
-                                                { color: "#E31E43" }
+                                                { color: "#1799E1" }
                                             }>
                                                 <Link to="/club/signup"
                                                     style={
@@ -257,8 +263,8 @@ const ClubSignin = () => {
 											variant="contained"
 											style={{
 												textTransform: "capitalize",
-												border: "1px solid #E31E43",
-												backgroundColor: "#E31E43",
+												border: "1px solid #1799E1",
+												backgroundColor: "#1799E1",
 												color: "white",
 												fontFamily: "Source Sans Pro",
 												height: "48px",

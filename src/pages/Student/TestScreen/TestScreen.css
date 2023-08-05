@@ -5,7 +5,7 @@
 
 .test-container {
 	padding-top: 2%;
-	background-color: white;
+	background-color: #081220;
 	min-height: calc(100vh - 64px);
 }
 
@@ -28,6 +28,21 @@
 
 .submit-fab {
 	position: fixed !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 10;
 	bottom: 20px !important;
 	left: 30px !important;
+}
+
+.cont-colo{
+	background: #081220 !important;
+}
+
+.submit-test-button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
 }

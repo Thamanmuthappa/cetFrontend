@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 		position: "absolute",
 		width: "400",
 		backgroundColor: theme.palette.background.paper,
-		border: "1px solid #E31E43",
+		border: "1px solid #1799E1",
 		borderRadius: "10px",
 		boxShadow: theme.shadows[5],
 		padding: theme.spacing(2, 4, 3),
@@ -183,7 +183,7 @@ const SignUp = () => {
 					alt="logo"
 					style={{
 						textAlign: "left",
-						width: "10rem",
+						width: "7.5%",
 						height: "auto",
 						position: "absolute",
 						left: "7rem",
@@ -368,7 +368,7 @@ const SignUp = () => {
 									<Grid item xs={12}>
 										<p style={{ textAlign: "center" }}>
 											Already have an account?{" "}
-											<span style={{ color: "#E31E43" }}>
+											<span style={{ color: "#1799E1" }}>
 												<Link
 													to="/club/signin"
 													style={{
@@ -387,8 +387,8 @@ const SignUp = () => {
 											variant="contained"
 											style={{
 												textTransform: "capitalize",
-												border: "1px solid #E31E43",
-												backgroundColor: "#E31E43",
+												border: "1px solid #1799E1",
+												backgroundColor: "#1799E1",
 												color: "white",
 												fontFamily: "Source Sans Pro",
 												height: "48px",
@@ -470,7 +470,7 @@ const SignUp = () => {
 					<p>Account Sucessfully Created</p>
 				</Snackbar>
 				<Grid item xs={6} style={{ textAlign: "center" }}>
-					<img src="/assets/celebration.jpg" alt="" height="auto" />
+					<img src="/assets/celebration.png" alt="" height="auto" />
 				</Grid>
 			</Grid>
 		</div>

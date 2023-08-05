@@ -1,10 +1,12 @@
 .dashboard {
   height: 100vh;
   overflow-x: hidden;
+  background: #081220;
 }
 
 .dashboard-drawer {
   width: 240px !important;
+  background: #081220 !important;
 }
 
 .dash-main {
@@ -14,4 +16,16 @@
 
 .sidebar-item {
   padding: 20px 16px !important;
+  color: #fff !important;;
+  /* background-color: #081220 !important; */
+}
+
+.MuiDrawer-paper{
+  background: #081220 !important;
+  border-right: 1px solid #F5F5F540 !important;
+}
+
+.dashboard-drawer .MuiPaper-root-28{
+  background: #081220 !important;
+  border-right: 1px solid #F5F5F540 !important;
 }

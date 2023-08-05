@@ -20,6 +20,8 @@ import Loading from "../../Loading";
 import StudentNavbar from "../../../components/Student/StudentNavbar/StudentNavbar";
 import Axios from "axios";
 import { Alert } from "@material-ui/lab";
+import CloseIcon from '@material-ui/icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 
 const GetTestDomains = (props) => {
 	const id = props.match.params.testId;
@@ -102,15 +104,25 @@ const GetTestDomains = (props) => {
 		return <Redirect to="/student/dashboard" />;
 	}
 
+	const handleBack = () => {
+		history.goBack();
+		  };
+
+		  
 	return (
 		<div className="test-details-page">
 			<StudentNavbar location="Test Domains" />
 			<Container className="test-details-container">
-				<div className="test-info">
-					<h1>
-						<u>Test Details</u>
-					</h1>
-					<div style={{ color: "#666666" }}>
+			<div className="test-info">
+            <div style={{display: "flex", flexWrap:"wrap", justifyContent:"space-between", alignItems:"center"}}>
+              <h1>
+                <a>Test Details</a>
+              </h1>
+              <IconButton aria-label="delete" onClick={handleBack}>
+                <CloseIcon htmlColor="#FFF" />
+              </IconButton>
+            </div>
+					<div style={{ color: "#fff" }}>
 						<Grid container spacing={3}>
 							<Grid item xs={6} sm={3}>
 								<p>
@@ -143,10 +155,10 @@ const GetTestDomains = (props) => {
 						</Grid>
 					</div>
 				</div>
-				<Divider />
+				<Divider style={{background: "#f5f5f540"}}/>
 				<div className="test-page-domain">
 					<h1>
-						<u>Test Domains</u>
+						<a>Test Domains</a>
 					</h1>
 
 					<div className="test-page-domain-list">
@@ -185,7 +197,7 @@ const GetTestDomains = (props) => {
 				{/* <Divider /> */}
 			</Container>
 			<Dialog open={confirmStart} onClose={handleModalClose} fullWidth>
-				<DialogTitle>
+				<DialogTitle style= {{color: "#fff", background: "#252D3A", borderColor: "#252D3A"}}>
 					Are you sure you want to start this domain?
 				</DialogTitle>
 				<DialogContent
@@ -193,9 +205,12 @@ const GetTestDomains = (props) => {
 						display: "flex",
 						justifyContent: "center",
 						flexDirection: "column",
+						color: "#fff",
+						background: "#252D3A",
+						overflow: "hidden",
 					}}
 				>
-					<div className="modal-test-instructions">
+					<div className="modal-test-instructions" style={{color: "#fff", overflow: "hidden"}}>
 						<strong>DOMAIN INSTRUCTIONS:</strong>
 						<br />
 						<br />
@@ -206,6 +221,7 @@ const GetTestDomains = (props) => {
 							color: "black",
 							fontSize: "13px",
 							textAlign: "center",
+							color: "#fff",
 						}}
 					>
 						P.S: You will lose all progress if you refresh the page
@@ -213,7 +229,7 @@ const GetTestDomains = (props) => {
 					</p>
 				</DialogContent>
 				<DialogActions
-					style={{ justifyContent: "center", marginBottom: "20px" }}
+					style={{ justifyContent: "center", background: "#252D3A" }}
 				>
 					<Button
 						color="primary"

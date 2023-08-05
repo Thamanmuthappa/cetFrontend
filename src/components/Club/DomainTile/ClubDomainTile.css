@@ -2,8 +2,8 @@
 	width: 200px;
 	height: 200px;
 	border-radius: 10px;
-	background: linear-gradient(to bottom, #f85032 0%, #f16f5c 50%, #f6290c 51%, #f02f17 71%, #e73827 100%);
-	color: white;
+	background: linear-gradient(180deg, #1799E1 0%, #093966 100%) !important;
+	color: "081220";
 	font-weight: bold;
 	display: flex;
 	justify-content: center;
@@ -16,6 +16,7 @@
 .tile-title {
 	font-size: 1.4rem;
 	text-align: center;
+	color: white;
 }
 
 .club-domain-tile:hover {

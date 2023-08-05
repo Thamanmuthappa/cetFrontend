@@ -17,21 +17,21 @@ const useStyles = makeStyles((theme) => ({
 		transition: "all .4s",
 	},
 	buttonTeacher: {
-		border: "1px solid #E31E43",
-		backgroundColor: "#E31E43",
+		border: "1px solid #1799E1",
+		backgroundColor: "#1799E1",
 		"&:hover": {
-			backgroundColor: "#E31E43",
+			backgroundColor: "#1799E1",
 			transform: "scale(1.05)",
 		},
 	},
 	textColored: {
-		color: "#E31E43",
+		color: "#1799E1",
 	},
 	buttonStudent: {
-		border: "1px solid #2C2D2D",
-		backgroundColor: "#2C2D2D",
+		border: "1px solid #1799E1",
+		backgroundColor: "#1799E1",
 		"&:hover": {
-			backgroundColor: "#2C2D2D",
+			backgroundColor: "#1799E1",
 			transform: "scale(1.05)",
 		},
 	},
@@ -46,21 +46,23 @@ const useStyles = makeStyles((theme) => ({
 		outline: "none",
 		padding: " 1.2rem 5rem",
 		transition: "all .4s",
-		border: "1px solid #E31E43",
-		backgroundColor: "#E31E43",
+		border: "1px solid #1799E1",
+		backgroundColor: "#1799E1",
 		"&:hover": {
-			backgroundColor: "#E31E43",
+			backgroundColor: "#1799E1",
 			transform: "scale(1.05)",
 		},
 	},
 	header: {
 		fontSize: "2.3rem",
 		textAlign: "center",
+		color: "#fff",
 	},
 	header1: {
 		fontSize: "3rem",
 		textAlign: "center",
 		margin: "5% 0",
+		color: "#fff",
 	},
 }));
 
@@ -70,9 +72,10 @@ function Landing() {
 	return (
 		<div
 			style={{
-				// backgroundImage: "url(assets/longbg.png)",
+				background: "url('/assets/homebg.png'),#081220",
 				height: "100vh",
-				width: "calc(100vw - 15px)",
+				// width: "calc(100vw - 15px)",
+				overflow: "hidden",
 				backgroundPosition: "bottom",
 				backgroundRepeat: "no-repeat",
 				backgroundSize: "cover",
@@ -82,9 +85,9 @@ function Landing() {
 			}}
 		>
 			<Grid container spacing={2}>
-				<Grid item xs={12} style={{ textAlign: "center" }}>
+				{/* <Grid item xs={12} style={{ textAlign: "center" }}>
 					<img src="/assets/greydoor.png" alt="logo" height="200px" />
-				</Grid>
+				</Grid> */}
 				<Grid item xs={12}>
 					<h4 className={classes.header1}>
 						Welcome to{" "}

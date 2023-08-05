@@ -18,13 +18,14 @@ import { Link } from "react-router-dom";
 import { black } from "color-name";
 import "./ClubProfile.css";
 import "../components/Shared/Navbar/Navbar.css";
+import BannerImg from "./bannerIMG.png";
 
 const useStyles = makeStyles((theme) => ({
 	avatar: {
 		width: "150px",
 		height: "150px",
 		marginTop: "-20px",
-		border: "2px solid #e31e43",
+		border: "2px solid #1799E1",
 	},
 	contPaper: {
 		width: "100%",
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	root: {
 		"&.MuiInputBase-input.Mui-disabled": {
-			color: "#000000",
+			color: "#fff",
 		},
 	},
 }));
@@ -86,6 +87,8 @@ const OrgProfile = (props) => {
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",
+				backgroundColor: "#081220",
+
 			}}
 			className="org-profile-container profile-section-container"
 		>
@@ -93,9 +96,11 @@ const OrgProfile = (props) => {
 				<AppBar
 					className="navbar"
 					style={{
-						backgroundColor: "#fdf9f9",
+						backgroundColor: "#081220",
 						zIndex: "1400",
 						position: "relative",
+						borderBottom: "1px solid #f5f5f540",
+						marginBottom: "30px",
 					}}
 					elevation={2}
 				>
@@ -105,12 +110,13 @@ const OrgProfile = (props) => {
 								src="/assets/Group2.png"
 								alt="logo"
 								className="nav-img"
+								style={{width: "80%"}}
 							/>
 						</Link>
 						<Typography
 							variant="h5"
 							className="nav-brand"
-							style={{ flex: 1 }}
+							style={{ flex: 1 , marginLeft: "24px"}}
 						>
 							Dashboard
 						</Typography>
@@ -119,13 +125,13 @@ const OrgProfile = (props) => {
 						</Button>
 					</Toolbar>
 				</AppBar>
-				<Container>
+				<Container> 
 					<Grid container>
 						<img
 							src={
 								data.clubBanner
 									? data.clubBanner
-									: "/assets/bannerIMG.jpg"
+									: BannerImg
 							}
 							width="100%"
 							alt=""
@@ -156,7 +162,7 @@ const OrgProfile = (props) => {
 							item
 							container
 							xs={12}
-							style={{ marginTop: "30px" }}
+							style={{ marginTop: "30px", backgroundColor: "#081220" }}
 						>
 							<form style={{ width: "100%" }}>
 								<Grid
@@ -169,14 +175,14 @@ const OrgProfile = (props) => {
 									<Grid item xs={6}>
 										<Typography
 											style={{
-												color: "#000000",
+												color: "#fff",
 												fontSize: "20px",
 												fontWeight: "bolder",
 											}}
 										>
 											<span
 												style={{
-													color: "#E31E43",
+													color: "#1799E1",
 													fontSize: "20px",
 												}}
 											>
@@ -188,14 +194,14 @@ const OrgProfile = (props) => {
 									<Grid item xs={6}>
 										<Typography
 											style={{
-												color: "#000000",
+												color: "#fff",
 												fontSize: "20px",
 												fontWeight: "bolder",
 											}}
 										>
 											<span
 												style={{
-													color: "#E31E43",
+													color: "#1799E1",
 													fontSize: "20px",
 												}}
 											>
@@ -207,7 +213,7 @@ const OrgProfile = (props) => {
 									<Grid item xs={12}>
 										<Typography
 											style={{
-												color: "#E31E43",
+												color: "#1799E1",
 												fontSize: "20px",
 												fontWeight: "bolder",
 											}}
@@ -219,7 +225,7 @@ const OrgProfile = (props) => {
 											label="Description"
 											variant="outlined"
 											style={{
-												color: "#040404",
+												color: "#fff",
 												marginTop: "10px",
 												whiteSpace: "pre-wrap",
 											}}
@@ -236,14 +242,14 @@ const OrgProfile = (props) => {
 										>
 											<Typography
 												style={{
-													color: "#000000",
+													color: "#fff",
 													fontSize: "20px",
 													marginTop: "10px",
 												}}
 											>
 												<span
 													style={{
-														color: "#E31E43",
+														color: "#1799E1",
 														fontSize: "20px",
 														fontWeight: "bolder",
 													}}
@@ -265,14 +271,14 @@ const OrgProfile = (props) => {
 									<Grid item xs={12}>
 										<Typography
 											style={{
-												color: "#000000",
+												color: "#fff",
 												fontSize: "20px",
 												fontWeight: "bolder",
 											}}
 										>
 											<span
 												style={{
-													color: "#E31E43",
+													color: "#1799E1",
 													fontSize: "20px",
 												}}
 											>
@@ -307,8 +313,8 @@ const OrgProfile = (props) => {
 													paddingTop: "15px",
 													paddingBottom: "15px",
 													textTransform: "capitalize",
-													border: "1px solid #E31E43",
-													backgroundColor: "#E31E43",
+													border: "1px solid #1799E1",
+													backgroundColor: "#1799E1",
 													color: "white",
 													fontFamily:
 														"Source Sans Pro",
@@ -327,95 +333,6 @@ const OrgProfile = (props) => {
 									</Grid>
 								</Grid>
 							</form>
-						</Grid>
-					</Grid>
-				</Container>
-				<Container>
-					<Grid
-						container
-						style={{
-							backgroundColor: "#FCF9F9",
-							color: "#2C2D2D",
-							padding: "25px",
-							marginTop: "40px",
-						}}
-					>
-						<Grid
-							item
-							xs={4}
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								flexDirection: "column",
-							}}
-						>
-							<div>
-								<center>
-									<a
-										href="https://www.codechefvit.com"
-										target="_blank"
-										rel="noreferrer"
-									>
-										<img
-											src="/assets/blacklogo.png"
-											alt="CodeChef-VIT"
-											width="150px"
-											align="center"
-										/>
-									</a>
-								</center>
-
-								<p style={{ textAlign: "center" }}>
-									Imagined, Designed and Developed by{" "}
-									<a
-										href="https://www.codechefvit.com"
-										style={{ color: "#E31E43" }}
-										target="_blank"
-										rel="noreferrer"
-									>
-										CodeChef-VIT
-									</a>
-								</p>
-							</div>
-						</Grid>
-						<Grid item xs={4}></Grid>
-						<Grid
-							item
-							xs={4}
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								flexDirection: "column",
-							}}
-						>
-							<center>
-								<a
-									href="https://vitspot.com"
-									target="_blank"
-									rel="noreferrer"
-								>
-									<img
-										src="/assets/vitspot.png"
-										alt="vitspot"
-										width="85px"
-										align="center"
-									/>
-								</a>
-							</center>
-
-							<p style={{ textAlign: "center" }}>
-								Powered by{" "}
-								<a
-									href="https://vitspot.com"
-									style={{ color: "#E31E43" }}
-									target="_blank"
-									rel="noreferrer"
-								>
-									VITspot
-								</a>
-							</p>
 						</Grid>
 					</Grid>
 				</Container>

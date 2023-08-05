@@ -35,13 +35,13 @@ const ChoiceQuestion = ( { question } ) => {
                             <ListItemIcon>
                                 <Adjust style={
                                     {
-                                        color: option.option.isCorrect ? "green" : "black"
+                                        color: option.option.isCorrect ? "green" : "white"
                                     }
                                 }/>
                             </ListItemIcon>
                             <ListItemText style={
                                     {
-                                        color: option.option.isCorrect ? "green" : "black"
+                                        color: option.option.isCorrect ? "green" : "white"
                                     }
                                 }
                                 primary={

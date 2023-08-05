@@ -1,5 +1,5 @@
 .test-details-page {
-	background-color: #f5f5f5;
+	background-color: #081220;
 	min-height: 100vh;
 }
 
@@ -10,11 +10,12 @@
 
 .test-info {
 	margin-bottom: 30px;
+	color: white;
 }
 
 .test-details-container {
 	margin-top: 0 !important;
-	background-color: white;
+	background-color: "#081220";
 	min-height: calc(100vh - 64px);
 	padding: 0 7%;
 }
@@ -24,11 +25,25 @@
 	padding: 5% 0;
 }
 
+.test-page-domain {
+	color: white;
+}
+
 .test-page-domains-list {
 	margin: 7% 5%;
 }
 
 .delete-test-btn {
-	background-color: #e47944 !important;
+	background-color: #FF2211 !important;
+	font-weight: bold !important;
+	width: 9rem;
+	height: 3.5rem;
+}
+
+.publish-btn {
+	background-color: #1799E1 !important;
+	width: 9rem;
+	height: 3.5rem;
+	color: white !important;
 	font-weight: bold !important;
 }

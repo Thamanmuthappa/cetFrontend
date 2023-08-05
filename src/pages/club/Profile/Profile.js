@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     marginTop: "10px",
     paddingBottom: "40px",
+    background: "#252D3A"
   },
   input: {
     width: "100%",
@@ -138,6 +139,7 @@ const ClubProfile = () => {
   } else if (data) {
     return (
       <>
+      <div className="contain-color">
         <Container
           style={{
             display: "flex",
@@ -145,15 +147,17 @@ const ClubProfile = () => {
             alignItems: "center",
             marginBottom: "30px",
             paddingBottom: "30px",
+            color: "#081220",
+            background: "#081220",
           }}
           className='profile-section-container'>
-          <Paper elevation={3} className={classes.contPaper}>
+          <Paper elevation={3} className={classes.contPaper} style= {{color: "#081220"}}>
             <Grid container>
               <img
                 width='100%'
                 alt='banner img'
                 src={
-                  data.clubBanner ? data.clubBanner : "/assets/bannerIMG.jpg"
+                  data.clubBanner ? data.clubBanner : "/assets/bannerIMG.png"
                 }
                 className='profile-banner'
                 key={Date.now()}
@@ -178,6 +182,7 @@ const ClubProfile = () => {
                     style={{
                       fontFamily: "Source Sans Pro",
                       fontWeight: "600",
+                      color: "#fff",
                     }}>
                     Profile Page
                   </Typography>
@@ -210,6 +215,7 @@ const ClubProfile = () => {
                             labelPlacement='start'
                             style={{
                               marginBottom: "20px",
+                              color: "#fff",
                             }}
                           />
                         </Tooltip>
@@ -342,6 +348,7 @@ const ClubProfile = () => {
             </Alert>
           </Snackbar>
         </Container>
+        </div>
         <Dialog
           open={askPassword}
           onClose={() => setAskPassword(false)}

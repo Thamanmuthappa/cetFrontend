@@ -36,19 +36,19 @@ const MultipleCorrect = ({ question, index, answers, setAnswers }) => {
 	return (
 		<div className="single-correct-question">
 			<Grid container spacing={0}>
-				<Grid item xs={1}>
+				<Grid item xs={1} style={{color: "#fff"}}>
 					<span style={{ marginRight: "30px" }}>Q. {index + 1}</span>
 				</Grid>
 				<Grid item xs={isMedia ? 6 : 11}>
 					<div className="question-description" style={
-                                { whiteSpace: "pre-wrap" }
+                                { whiteSpace: "pre-wrap", color: "#fff"}
                         }>
 						{question.description}
 					</div>
 
-					<div className="question-options">
-						<FormControl component="fieldset">
-							<FormLabel component="legend">
+					<div className="question-options"style={{color: "#fff"}}>
+						<FormControl component="fieldset" style={{color: "#fff"}}>
+							<FormLabel component="legend" style={{color: "#fff"}}>
 								Options (Multiple Correct)
 							</FormLabel>
 							<FormGroup>
@@ -65,6 +65,7 @@ const MultipleCorrect = ({ question, index, answers, setAnswers }) => {
 														option.optionId
 													)
 												}
+												style={{color: "#1799E1"}}
 											/>
 										}
 										label={option.text}
